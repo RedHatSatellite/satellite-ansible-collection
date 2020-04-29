@@ -1,6 +1,6 @@
-namespace: "theforeman"
-name: "foreman"
-description: Ansible Modules to manage Foreman and Katello installations
+namespace: "redhat"
+name: "satellite"
+description: Ansible Modules to manage Satellite installations
 authors:
   - "AlanCoding <arominge@redhat.com>"
   - "Andrew Kofink <ajkofink@gmail.com>"
@@ -55,9 +55,8 @@ tags:
   - foreman
   - katello
   - satellite
-  - orcharhino
 readme: "README.md"
-homepage: "https://theforeman.org/"
-repository: "https://github.com/theforeman/foreman-ansible-modules"
-documentation: "https://theforeman.org/plugins/foreman-ansible-modules/"
-issues: "https://github.com/theforeman/foreman-ansible-modules/issues"
+homepage: "https://access.redhat.com/products/red-hat-satellite"
+repository: "https://github.com/RedHatSatellite/satellite-ansible-collection"
+documentation: "https://access.redhat.com/documentation/en-us/red_hat_satellite/"
+issues: "https://bugzilla.redhat.com"
