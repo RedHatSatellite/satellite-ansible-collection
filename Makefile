@@ -112,6 +112,9 @@ doc-setup:
 doc: $(MANIFEST)
 	make -C docs html
 
+branding:
+	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/tests.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml
+
 FORCE:
 
 .PHONY: help dist lint sanity test test-crud test-check-mode test-other setup test-setup FORCE
