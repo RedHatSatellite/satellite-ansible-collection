@@ -109,10 +109,10 @@ options:
     description:
       - Operating System specific host parameters
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state_with_defaults
-  - theforeman.foreman.foreman.nested_parameters
-  - theforeman.foreman.foreman.os_family
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state_with_defaults
+  - redhat.satellite.foreman.nested_parameters
+  - redhat.satellite.foreman.os_family
 '''
 
 EXAMPLES = '''
@@ -155,7 +155,7 @@ EXAMPLES = '''
 RETURN = ''' # '''
 
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import (
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (
     ForemanEntityAnsibleModule,
     NestedParametersMixin,
     OS_LIST,

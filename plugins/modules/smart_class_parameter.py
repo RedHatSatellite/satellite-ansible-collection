@@ -120,7 +120,7 @@ options:
       - present
       - present_with_defaults
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
+  - redhat.satellite.foreman
 '''
 
 EXAMPLES = '''
@@ -160,7 +160,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule, parameter_value_to_str
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule, parameter_value_to_str
 
 override_value_foreman_spec = dict(
     match=dict(required=True),

@@ -43,10 +43,10 @@ options:
       - When this parameter is set, the module will not be idempotent.
     type: str
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state
-  - theforeman.foreman.foreman.taxonomy
-  - theforeman.foreman.foreman.scap_datastream
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state
+  - redhat.satellite.foreman.taxonomy
+  - redhat.satellite.foreman.scap_datastream
 '''
 
 EXAMPLES = '''
@@ -92,7 +92,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanScapDataStreamModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanScapDataStreamModule
 
 
 class ForemanScapContentModule(ForemanScapDataStreamModule):

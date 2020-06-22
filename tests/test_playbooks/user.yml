@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   tags:
     - setup
   gather_facts: false
@@ -17,7 +17,7 @@
 
 - hosts: tests
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   tags:
     - test
   gather_facts: false
@@ -87,7 +87,7 @@
 
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   tags:
     - teardown
   gather_facts: false

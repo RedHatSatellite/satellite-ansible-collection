@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -70,7 +70,7 @@
 
 - hosts: tests
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -170,7 +170,7 @@
 
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml

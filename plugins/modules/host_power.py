@@ -56,7 +56,7 @@ options:
       - 'status'
     type: str
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
+  - redhat.satellite.foreman
 '''
 
 EXAMPLES = '''
@@ -98,7 +98,7 @@ power_state:
     sample: "off"
  '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
 
 
 def main():

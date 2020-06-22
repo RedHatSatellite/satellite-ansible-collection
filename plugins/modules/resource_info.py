@@ -62,7 +62,7 @@ options:
 notes:
   - Some resources don't support scoping and will return errors when you pass I(organization) or unknown data in I(params).
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
+  - redhat.satellite.foreman
 '''
 
 EXAMPLES = '''
@@ -130,7 +130,7 @@ resources:
   type: list
 '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanAnsibleModule
 
 
 def main():

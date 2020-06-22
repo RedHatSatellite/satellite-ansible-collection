@@ -45,8 +45,8 @@ options:
     type: list
     elements: str
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state
 '''
 
 EXAMPLES = '''
@@ -83,7 +83,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
 
 
 class ForemanArchitectureModule(ForemanEntityAnsibleModule):

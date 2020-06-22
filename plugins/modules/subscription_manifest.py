@@ -51,8 +51,8 @@ options:
     aliases: [ redhat_repository_url ]
     type: str
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.organization
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.organization
 '''
 
 EXAMPLES = '''
@@ -68,7 +68,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
 
 
 def main():

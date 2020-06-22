@@ -90,9 +90,9 @@ options:
     type: list
     elements: str
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state_with_defaults
-  - theforeman.foreman.foreman.taxonomy
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state_with_defaults
+  - redhat.satellite.foreman.taxonomy
 '''
 
 EXAMPLES = '''
@@ -215,7 +215,7 @@ RETURN = ''' # '''
 
 import os
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import (
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (
     ForemanTaxonomicEntityAnsibleModule,
     parse_template,
     parse_template_from_file,

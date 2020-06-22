@@ -114,10 +114,10 @@ options:
     type: str
     required: false
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state
-  - theforeman.foreman.foreman.host_options
-  - theforeman.foreman.foreman.nested_parameters
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state
+  - redhat.satellite.foreman.host_options
+  - redhat.satellite.foreman.nested_parameters
 '''
 
 EXAMPLES = '''
@@ -160,7 +160,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import (
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (
     ensure_puppetclasses,
     ForemanEntityAnsibleModule,
     HostMixin,

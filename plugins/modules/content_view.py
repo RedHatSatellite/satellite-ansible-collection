@@ -96,9 +96,9 @@ options:
         aliases:
           - version
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state_with_defaults
-  - theforeman.foreman.foreman.organization
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state_with_defaults
+  - redhat.satellite.foreman.organization
 '''
 
 EXAMPLES = '''
@@ -132,7 +132,7 @@ EXAMPLES = '''
 RETURN = ''' # '''
 
 import copy
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
 
 
 cvc_foreman_spec = {

@@ -140,8 +140,8 @@ options:
       - Include all RPMs with no errata
     type: bool
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.organization
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.organization
 '''
 
 EXAMPLES = '''
@@ -172,7 +172,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _foreman_spec_helper
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _foreman_spec_helper
 
 content_filter_spec = {
     'id': {},

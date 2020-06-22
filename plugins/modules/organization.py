@@ -49,9 +49,9 @@ options:
       - Label of the Organization
     type: str
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state
-  - theforeman.foreman.foreman.nested_parameters
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state
+  - redhat.satellite.foreman.nested_parameters
 '''
 
 EXAMPLES = '''
@@ -67,7 +67,7 @@ EXAMPLES = '''
 RETURN = ''' # '''
 
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule, NestedParametersMixin
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule, NestedParametersMixin
 
 
 class ForemanOrganizationModule(NestedParametersMixin, ForemanEntityAnsibleModule):

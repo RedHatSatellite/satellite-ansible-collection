@@ -118,9 +118,9 @@ options:
     required: false
     type: str
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state
-  - theforeman.foreman.foreman.taxonomy
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state
+  - redhat.satellite.foreman.taxonomy
 '''
 
 EXAMPLES = '''
@@ -160,7 +160,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
 
 
 class ForemanAuthSourceLdapModule(ForemanTaxonomicEntityAnsibleModule):

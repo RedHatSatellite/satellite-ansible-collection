@@ -120,9 +120,9 @@ options:
           - verify ssl from provider I(provider=proxmox)
         type: bool
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.entity_state_with_defaults
-  - theforeman.foreman.foreman.taxonomy
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.entity_state_with_defaults
+  - redhat.satellite.foreman.taxonomy
 '''
 
 EXAMPLES = '''
@@ -285,7 +285,7 @@ EXAMPLES = '''
 RETURN = ''' # '''
 
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
 
 
 def get_provider_info(provider):

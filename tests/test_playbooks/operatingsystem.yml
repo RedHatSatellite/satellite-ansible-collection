@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -16,7 +16,7 @@
         operatingsystem_state: absent
 - hosts: tests
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
