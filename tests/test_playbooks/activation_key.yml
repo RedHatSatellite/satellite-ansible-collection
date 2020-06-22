@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  collections:
+    - redhat.satellite
   tags:
     - setup
   gather_facts: false
@@ -27,6 +29,8 @@
         activation_key_name: Test Activation Key Copy
 
 - hosts: tests
+  collections:
+    - redhat.satellite
   tags:
     - test
   gather_facts: false
@@ -258,6 +262,8 @@
         expected_change: false
 
 - hosts: localhost
+  collections:
+    - redhat.satellite
   tags:
     - teardown
   gather_facts: false

@@ -26,18 +26,15 @@ def find_all_modules():
 ALL_MODULES = list(find_all_modules())
 
 
-def _strip_module_prefix(module):
-    return module.replace('foreman_', '').replace('katello_', '')
-
-
 def _module_file_path(module):
     module_file_name = "{}.py".format(module)
     return MODULES_PATH / module_file_name
 
 
 def _module_is_tested(module):
-    short_module = _strip_module_prefix(module)
-    return short_module in TEST_PLAYBOOKS or module in TEST_PLAYBOOKS
+    if module == 'subscription_manifest':
+        module = 'katello_manifest'
+    return module in TEST_PLAYBOOKS
 
 
 def _module_framework(module):
@@ -51,7 +48,7 @@ def _module_framework_from_body(body):
     framework = None
     for entry in body:
         if isinstance(entry, ast.ImportFrom):
-            if entry.module == 'ansible.module_utils.foreman_helper' and not framework:
+            if entry.module == 'ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper' and not framework:
                 framework = 'apypie'
         elif isinstance(entry, ast_try) and not framework:
             framework = _module_framework_from_body(entry.body)

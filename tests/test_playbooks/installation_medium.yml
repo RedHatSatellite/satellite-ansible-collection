@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  collections:
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -17,6 +19,8 @@
 
 
 - hosts: tests
+  collections:
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -116,6 +120,8 @@
         expected_change: false
 
 - hosts: localhost
+  collections:
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml

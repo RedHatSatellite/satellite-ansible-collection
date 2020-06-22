@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  collections:
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -22,6 +24,8 @@
         auth_source_ldap_tls: false
 
 - hosts: tests
+  collections:
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -52,6 +56,8 @@
         expected_change: false
 
 - hosts: localhost
+  collections:
+    - redhat.satellite
   tags:
     - teardown
   gather_facts: false
