@@ -9,6 +9,7 @@
       testhost2.example.com: group_b
   collections:
     - community.general
+    - theforeman.foreman
   tasks:
     - name: fetch Foreman container
       docker_image:
@@ -40,7 +41,7 @@
       delay: 10
 
     - name: create test hostgroups
-      foreman_hostgroup:
+      hostgroup:
         username: admin
         password: changeme
         server_url: http://127.0.0.1:3000/
@@ -52,7 +53,7 @@
       with_items: "{{ foreman_groups }}"
 
     - name: create test hosts
-      foreman_host:
+      host:
         username: admin
         password: changeme
         server_url: http://127.0.0.1:3000/

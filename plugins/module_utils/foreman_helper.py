@@ -17,7 +17,7 @@ from contextlib import contextmanager
 from collections import defaultdict
 from functools import wraps
 
-from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import AnsibleModule, missing_required_lib
 from ansible.module_utils._text import to_bytes, to_native
 from ansible.module_utils import six
 
@@ -268,7 +268,7 @@ class ForemanAnsibleModule(AnsibleModule):
             server_url=dict(required=True),
             username=dict(required=True),
             password=dict(required=True, no_log=True),
-            validate_certs=dict(type='bool', default=True, aliases=['verify_ssl']),
+            validate_certs=dict(type='bool', default=True),
         )
         argument_spec.update(gen_args)
         argument_spec.update(kwargs.pop('argument_spec', {}))
@@ -277,9 +277,6 @@ class ForemanAnsibleModule(AnsibleModule):
         self.required_plugins = kwargs.pop('required_plugins', [])
 
         super(ForemanAnsibleModule, self).__init__(argument_spec=argument_spec, supports_check_mode=supports_check_mode, **kwargs)
-
-        if 'verify_ssl' in self.params:
-            self.warn("Please use 'validate_certs' instead of deprecated 'verify_ssl'.")
 
         aliases = {alias for arg in argument_spec.values() for alias in arg.get('aliases', [])}
         self.foreman_params = {k: v for (k, v) in self.params.items() if v is not None and k not in aliases}
@@ -379,7 +376,7 @@ class ForemanAnsibleModule(AnsibleModule):
 
     def check_requirements(self):
         if not HAS_APYPIE:
-            self.fail_json(msg='The apypie Python module is required', exception=APYPIE_IMP_ERR)
+            self.fail_json(msg=missing_required_lib("apypie"), exception=APYPIE_IMP_ERR)
 
     @_exception2fail_json(msg="Failed to connect to Foreman server: {0}")
     def connect(self):
@@ -1173,7 +1170,7 @@ def parameter_value_to_str(value, parameter_type):
 # Helper for templates
 def parse_template(template_content, module):
     if not HAS_PYYAML:
-        module.fail_json(msg='The PyYAML Python module is required', exception=PYYAML_IMP_ERR)
+        module.fail_json(msg=missing_required_lib("PyYAML"), exception=PYYAML_IMP_ERR)
 
     try:
         template_dict = {}
