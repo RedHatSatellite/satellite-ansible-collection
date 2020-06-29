@@ -58,7 +58,7 @@ EXAMPLES = '''
   lifecycle_environment:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Production"
     label: "production"
     organization: "Default Organization"

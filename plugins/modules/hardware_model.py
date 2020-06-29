@@ -57,7 +57,7 @@ EXAMPLES = '''
   hardware_model:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "acme laptop"
     info: "this is the acme laptop"
     state: present

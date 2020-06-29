@@ -53,7 +53,7 @@ EXAMPLES = '''
   os_default_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     operatingsystem: "CoolOS"
     template_kind: "finish"
     provisioning_template: "CoolOS finish"
@@ -63,7 +63,7 @@ EXAMPLES = '''
   os_default_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     operatingsystem: "CoolOS"
     template_kind: "finish"
     state: absent

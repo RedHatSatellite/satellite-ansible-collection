@@ -70,7 +70,7 @@ EXAMPLES = '''
       - permissions:
           - view_hosts
         search: "owner_type = Usergroup and owner_id = 4"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present

@@ -65,7 +65,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: settings
     search: name = foreman_url
   register: result
@@ -76,7 +76,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: registries
   register: result
 - debug:
@@ -87,7 +87,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: organizations
     full_details: true
   register: result
@@ -98,7 +98,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: subscriptions
     params:
       organization_id: 1
@@ -110,7 +110,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: activation_keys
     organization: ACME
   register: result

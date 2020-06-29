@@ -102,7 +102,7 @@ EXAMPLES = '''
   content_view:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Fedora CV"
     organization: "My Cool new Organization"
     repositories:
@@ -113,7 +113,7 @@ EXAMPLES = '''
   content_view:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Fedora CCV"
     organization: "My Cool new Organization"
     composite: true

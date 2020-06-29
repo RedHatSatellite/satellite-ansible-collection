@@ -87,9 +87,9 @@ options:
 '''
 
 EXAMPLES = '''
-- name: Create foreman.example.com Manifest and add 7 sub
+- name: Create satellite.example.com Manifest and add 7 sub
   redhat_manifest:
-    name: "foreman.example.com"
+    name: "satellite.example.com"
     username: "john-smith"
     password: "changeme"
     pool_id: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -104,9 +104,9 @@ EXAMPLES = '''
     quantity: 10
     path: /root/manifest.zip
 
-- name: Remove all of one subs from foreman.example.com
+- name: Remove all of one subs from satellite.example.com
   redhat_manifest:
-    name: foreman.example.com
+    name: satellite.example.com
     username: john-smith
     password: changeme
     pool_id: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

@@ -80,7 +80,7 @@ EXAMPLES = '''
   product:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Fedora"
     organization: "My Cool new Organization"
     sync_plan: "Fedora repos sync"
@@ -90,7 +90,7 @@ EXAMPLES = '''
   product:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "CentOS 7"
     gpg_key: "RPM-GPG-KEY-CentOS7"
     organization: "My Cool new Organization"

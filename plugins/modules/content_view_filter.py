@@ -145,7 +145,7 @@ EXAMPLES = '''
   content_view_filter:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "package filter 1"
     organization: "Default Organization"
     content_view: Web Servers
@@ -156,7 +156,7 @@ EXAMPLES = '''
   content_view_filter:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "package filter 1"
     organization: "Default Organization"
     content_view: Web Servers

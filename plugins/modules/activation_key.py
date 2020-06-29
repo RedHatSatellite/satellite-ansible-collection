@@ -148,7 +148,7 @@ EXAMPLES = '''
   activation_key:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Clients"
     organization: "Default Organization"
     lifecycle_environment: "Library"

@@ -48,7 +48,7 @@ EXAMPLES = '''
       - "Munich"
     organizations:
       - "ACME"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present

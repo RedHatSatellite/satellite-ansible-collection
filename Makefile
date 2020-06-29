@@ -114,6 +114,7 @@ doc: $(MANIFEST)
 
 branding:
 	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/tests.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml
+	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py
 
 FORCE:
 

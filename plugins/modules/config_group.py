@@ -52,7 +52,7 @@ EXAMPLES = '''
     puppetclasses:
       - ntp
       - mymodule::myclass
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
