@@ -155,7 +155,7 @@ EXAMPLES = '''
   job_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: A New Job Template
     state: present
     template: |
@@ -175,7 +175,7 @@ EXAMPLES = '''
   job_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: a new job template
     file_name: timeywimey_template.erb
     template_inputs:
@@ -191,7 +191,7 @@ EXAMPLES = '''
   job_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: a new job template
     template_inputs: []
     state: present
@@ -204,7 +204,7 @@ EXAMPLES = '''
   job_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: timeywimey
     state: absent
 
@@ -212,7 +212,7 @@ EXAMPLES = '''
   job_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: timeywimey_template.erb
     name: Wibbly Wobbly Template
     state: present
@@ -227,7 +227,7 @@ EXAMPLES = '''
   job_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: "{{ item }}"
     state: present
     locations:
@@ -240,7 +240,7 @@ EXAMPLES = '''
 # If the templates are stored locally and the ansible module is executed on a remote host
 - name: Ensure latest version of all your Job Templates
   job_template:
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username:  "admin"
     password:  "changeme"
     state: present
@@ -255,7 +255,7 @@ EXAMPLES = '''
     module: foreman_job_template
     username: "admin"
     password: "admin"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "*"
     state: absent
 
@@ -264,7 +264,7 @@ EXAMPLES = '''
     module: foreman_job_template
     username: "admin"
     password: "admin"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "*"
     state: present
     organizations:

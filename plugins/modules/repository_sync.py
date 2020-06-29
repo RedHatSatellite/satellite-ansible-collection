@@ -54,7 +54,7 @@ EXAMPLES = '''
   repository_sync:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     repository: "My repository"
     product: "My Product"
     organization: "Default Organization"

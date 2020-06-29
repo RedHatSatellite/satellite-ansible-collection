@@ -67,7 +67,7 @@ EXAMPLES = '''
 - name: compute profile
   compute_profile:
     name: example_compute_profile
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -81,7 +81,7 @@ EXAMPLES = '''
         cluster: 'a96d44a4-f14a-1015-82c6-f80354acdf01'
         template: 'c88af4b7-a24a-453b-9ac2-bc647ca2ef99'
         instance_type: 'cb8927e7-a404-40fb-a6c1-06cbfc92e077'
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -125,7 +125,7 @@ EXAMPLES = '''
             capacity: 16G
             allocation: 16G
             format_type: raw
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -133,7 +133,7 @@ EXAMPLES = '''
 - name: Remove compute profile
   compute_profile:
     name: example_compute_profile2
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: absent

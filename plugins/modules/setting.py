@@ -52,7 +52,7 @@ EXAMPLES = '''
   setting:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "http_proxy"
     value: "http://localhost:8088"
 
@@ -60,7 +60,7 @@ EXAMPLES = '''
   setting:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "http_proxy"
 '''
 

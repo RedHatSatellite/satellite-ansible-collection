@@ -120,7 +120,7 @@ EXAMPLES = '''
   operatingsystem:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: Debian
     release_name: stretch
     family: Debian
@@ -134,7 +134,7 @@ EXAMPLES = '''
   operatingsystem:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: Centos
     family: Redhat
     major: 7
@@ -145,7 +145,7 @@ EXAMPLES = '''
   operatingsystem:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: Debian
     family: Debian
     major: 9

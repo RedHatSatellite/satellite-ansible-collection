@@ -131,7 +131,7 @@ EXAMPLES = '''
     override: true
     required: true
     default_value: /etc/prometheus/alert.yml
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
@@ -147,7 +147,7 @@ EXAMPLES = '''
       - domain
     required: true
     default_value: /etc/prometheus/alert.yml
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     override_values:

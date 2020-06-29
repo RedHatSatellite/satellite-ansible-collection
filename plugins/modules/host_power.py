@@ -64,7 +64,7 @@ EXAMPLES = '''
   host_power:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     hostname: "test-host.domain.test"
     state: on
 
@@ -72,7 +72,7 @@ EXAMPLES = '''
   host_power:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     hostname: "test-host.domain.test"
     state: off
 
@@ -80,7 +80,7 @@ EXAMPLES = '''
   host_power:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     hostname: "test-host.domain.test"
     state: state
     register: result

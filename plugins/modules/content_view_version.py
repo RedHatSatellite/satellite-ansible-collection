@@ -80,7 +80,7 @@ EXAMPLES = '''
   content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     content_view: "CV 1"
     organization: "Default Organization"
     version: 2.0
@@ -92,7 +92,7 @@ EXAMPLES = '''
   content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     content_view: "CV 1"
     organization: "Default Organization"
     current_lifecycle_environment: Test
@@ -103,7 +103,7 @@ EXAMPLES = '''
   content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     content_view: "CV 1"
     organization: "Default Organization"
 
@@ -111,7 +111,7 @@ EXAMPLES = '''
   content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     content_view: "CV 1"
     organization: "Default Organization"
     lifecycle_environments:
@@ -122,7 +122,7 @@ EXAMPLES = '''
   content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     content_view: "Web Servers"
     organization: "Default Organization"
     version: 1.0

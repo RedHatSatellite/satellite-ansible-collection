@@ -125,7 +125,7 @@ EXAMPLES = '''
   host:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "new_host"
     hostgroup: my_hostgroup
     state: present
@@ -134,7 +134,7 @@ EXAMPLES = '''
   host:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "new_host"
     hostgroup: my_hostgroup
     build: true
@@ -144,7 +144,7 @@ EXAMPLES = '''
   host:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "new_host"
     managed: false
     state: present
@@ -153,7 +153,7 @@ EXAMPLES = '''
   host:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "new_host"
     state: absent
 '''

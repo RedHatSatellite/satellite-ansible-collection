@@ -60,7 +60,7 @@ EXAMPLES = '''
   content_credential:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "RPM-GPG-KEY-my-repo"
     content_type: gpg_key
     organization: "Default Organization"

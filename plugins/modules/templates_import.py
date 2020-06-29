@@ -104,7 +104,7 @@ EXAMPLES = '''
     repo: https://github.com/theforeman/community-templates.git
     branch: 1.24-stable
     associate: new
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "changeme"
 '''

@@ -59,7 +59,7 @@ EXAMPLES = '''
       - "Default Organization"
     locations:
       - "Default Location"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
@@ -76,7 +76,7 @@ EXAMPLES = '''
     locations:
       - "Loc One"
       - "Loc Two"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
@@ -84,7 +84,7 @@ EXAMPLES = '''
 - name: Delete SCAP content
   scap_content:
     title: "Red Hat firefox default content"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: absent

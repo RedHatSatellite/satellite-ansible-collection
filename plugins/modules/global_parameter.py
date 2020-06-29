@@ -75,7 +75,7 @@ EXAMPLES = '''
   global_parameter:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "TheAnswer"
     value: "42"
     state: present_with_defaults
@@ -84,7 +84,7 @@ EXAMPLES = '''
   global_parameter:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "TheAnswer"
     value: "43"
     state: present
@@ -93,7 +93,7 @@ EXAMPLES = '''
   global_parameter:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "TheAnswer"
     state: absent
 '''

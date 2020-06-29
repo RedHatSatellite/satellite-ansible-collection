@@ -60,7 +60,7 @@ EXAMPLES = '''
   subscription_manifest:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     state: present
     manifest_path: "/tmp/manifest.zip"

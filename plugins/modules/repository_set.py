@@ -89,7 +89,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Red Hat Enterprise Linux 7 Server (RPMs)"
     organization: "Default Organization"
     product: "Red Hat Enterprise Linux Server"
@@ -108,7 +108,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: rhel-7-server-rpms
     repositories:
@@ -126,7 +126,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: Red Hat Enterprise Linux 7 Server - Extras (RPMs)
     organization: "Default Organization"
     product: Red Hat Enterprise Linux Server
@@ -138,7 +138,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: rhel-8-for-x86_64-baseos-rpms
     repositories:
@@ -148,7 +148,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: "rhel-7-server-rhv-4.2-manager-rpms"
     repositories:
@@ -159,7 +159,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: "rhel-7-server-rhv-4.2-manager-rpms"
     all_repositories: true
@@ -169,7 +169,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     resource: repository_sets
     search: product_name="Red Hat Virtualization Manager"
@@ -182,7 +182,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     resource: repository_sets
     search: label=rhel-7-server-rhv-4.2-manager-rpms

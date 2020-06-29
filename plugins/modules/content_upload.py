@@ -65,7 +65,7 @@ EXAMPLES = '''
   content_upload:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     src: "my.rpm"
     repository: "Build RPMs"
     product: "My Product"

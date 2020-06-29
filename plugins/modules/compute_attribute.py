@@ -60,7 +60,7 @@ EXAMPLES = '''
   compute_attribute:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     compute_profile: "Test Compute Profile"
     compute_resource: "Test Compute Resource"
     vm_attrs:
@@ -72,7 +72,7 @@ EXAMPLES = '''
   compute_attribute:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     compute_profile: "Test Compute Profile"
     compute_resource: "Test Compute Resource"
     vm_attrs:

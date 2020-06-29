@@ -171,7 +171,7 @@ EXAMPLES = '''
   repository:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "My repository"
     state: present
     content_type: "yum"
@@ -185,7 +185,7 @@ EXAMPLES = '''
   repository:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "My repository 2"
     state: present
     content_type: "yum"

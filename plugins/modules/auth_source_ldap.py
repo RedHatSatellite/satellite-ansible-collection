@@ -128,7 +128,7 @@ EXAMPLES = '''
   auth_source_ldap:
     name: "Example LDAP"
     host: "ldap.example.org"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     locations:
       - "Uppsala"
     organizations:
@@ -152,7 +152,7 @@ EXAMPLES = '''
     attr_lastname: sn
     attr_mail: mail
     attr_photo: jpegPhoto
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present

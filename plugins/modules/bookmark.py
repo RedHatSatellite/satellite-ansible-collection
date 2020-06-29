@@ -63,7 +63,7 @@ EXAMPLES = '''
   bookmark:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "recent"
     controller: "job_invocations"
     query: "started_at > '24 hours ago'"
@@ -73,7 +73,7 @@ EXAMPLES = '''
   bookmark:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "recent"
     controller: "job_invocations"
     query: "started_at > '12 hours ago'"
@@ -83,7 +83,7 @@ EXAMPLES = '''
   bookmark:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "recent"
     controller: "job_invocations"
     state: absent
