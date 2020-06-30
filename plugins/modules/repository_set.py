@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: repository_set
@@ -50,7 +46,7 @@ options:
     description:
       - Release version and base architecture of the repositories to enable.
       - Some reposotory sets require only I(basearch) or only I(releasever) to be set.
-      - See the examples how you can obtain this information using M(foreman_search_facts).
+      - See the examples how you can obtain this information using M(theforeman.foreman.resource_info).
       - Required when I(all_repositories) is unset or C(false).
     required: false
     type: list

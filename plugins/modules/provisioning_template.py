@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: provisioning_template
@@ -187,8 +183,7 @@ EXAMPLES = '''
 
 # with name set to "*" bulk actions can be performed
 - name: "Delete *ALL* provisioning templates"
-  local_action:
-    module: foreman_provisioning_template
+  provisioning_template:
     username: "admin"
     password: "admin"
     server_url: "https://foreman.example.com"
@@ -196,8 +191,7 @@ EXAMPLES = '''
     state: absent
 
 - name: "Assign all provisioning templates to the same organization(s)"
-  local_action:
-    module: foreman_provisioning_template
+  provisioning_template:
     username: "admin"
     password: "admin"
     server_url: "https://foreman.example.com"

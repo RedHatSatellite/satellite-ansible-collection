@@ -20,10 +20,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: operatingsystem
@@ -90,7 +86,7 @@ options:
       - Specify the full list of template names you want to associate with your OS.
       - For example ["Kickstart default", "Kickstart default finish", "Kickstart default iPXE", "custom"].
       - After specifying the template associations, you can set the default association in
-      - the M(foreman_os_default_template) module.
+      - the M(theforeman.foreman.os_default_template) module.
     required: false
     type: list
     elements: str

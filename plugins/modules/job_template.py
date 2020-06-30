@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: job_template
@@ -251,8 +247,7 @@ EXAMPLES = '''
 
 # with name set to "*" bulk actions can be performed
 - name: "Delete *ALL* Job Templates"
-  local_action:
-    module: foreman_job_template
+  job_template:
     username: "admin"
     password: "admin"
     server_url: "https://foreman.example.com"
@@ -260,8 +255,7 @@ EXAMPLES = '''
     state: absent
 
 - name: "Assign all Job Templates to the same organization(s)"
-  local_action:
-    module: foreman_job_template
+  job_template:
     username: "admin"
     password: "admin"
     server_url: "https://foreman.example.com"
