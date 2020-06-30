@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: location
@@ -58,7 +54,7 @@ EXAMPLES = '''
   location:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "My Cool New Location"
     organizations:
       - "Default Organization"
@@ -69,7 +65,7 @@ EXAMPLES = '''
   location:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "My Nested location"
     parent: "My Cool New Location"
     state: present
@@ -79,7 +75,7 @@ EXAMPLES = '''
   location:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "My Cool New Location/New nested location"
     state: present
 
@@ -88,7 +84,7 @@ EXAMPLES = '''
   location:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "My Cool New Location/New nested location"
     parent: "My Cool New Location/My Nested location"
     state: present

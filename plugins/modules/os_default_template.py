@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: os_default_template
@@ -57,7 +53,7 @@ EXAMPLES = '''
   os_default_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     operatingsystem: "CoolOS"
     template_kind: "finish"
     provisioning_template: "CoolOS finish"
@@ -67,7 +63,7 @@ EXAMPLES = '''
   os_default_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     operatingsystem: "CoolOS"
     template_kind: "finish"
     state: absent

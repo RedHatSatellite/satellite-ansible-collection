@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: compute_attribute
@@ -60,7 +56,7 @@ EXAMPLES = '''
   compute_attribute:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     compute_profile: "Test Compute Profile"
     compute_resource: "Test Compute Resource"
     vm_attrs:
@@ -72,7 +68,7 @@ EXAMPLES = '''
   compute_attribute:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     compute_profile: "Test Compute Profile"
     compute_resource: "Test Compute Resource"
     vm_attrs:

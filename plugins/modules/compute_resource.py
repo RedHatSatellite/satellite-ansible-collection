@@ -21,10 +21,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: compute_resource
@@ -137,7 +133,7 @@ EXAMPLES = '''
     provider_params:
       url: libvirt.example.com
       display_type: vnc
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -154,7 +150,7 @@ EXAMPLES = '''
     provider_params:
       url: libvirt.example.com
       display_type: vnc
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -162,7 +158,7 @@ EXAMPLES = '''
 - name: Delete libvirt compute resource
   compute_resource:
     name: example_compute_resource
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: absent
@@ -180,7 +176,7 @@ EXAMPLES = '''
       user: admin
       password: secret
       datacenter: ax01
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -200,7 +196,7 @@ EXAMPLES = '''
       datacenter: aa92fb54-0736-4066-8fa8-b8b9e3bd75ac
       ovirt_quota: 24868ab9-c2a1-47c3-87e7-706f17d215ac
       use_v4: true
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -218,7 +214,7 @@ EXAMPLES = '''
       user: root@pam
       password: secretpassword
       ssl_verify_peer: true
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -236,7 +232,7 @@ EXAMPLES = '''
       user: AWS_ACCESS_KEY
       password: AWS_SECRET_KEY
       region: eu-west-1
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -256,7 +252,7 @@ EXAMPLES = '''
       app_ident: CLIENT_ID
       password: CLIENT_SECRET
       region: westeurope
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present
@@ -275,7 +271,7 @@ EXAMPLES = '''
       email: myname@atix.de
       key_path: "/usr/share/foreman/gce_orcharhino_key.json"
       zone: europe-west3-b
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: admin
     password: secret
     state: present

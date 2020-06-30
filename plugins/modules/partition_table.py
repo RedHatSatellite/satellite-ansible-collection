@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: partition_table
@@ -78,7 +74,7 @@ EXAMPLES = '''
   partition_table:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: A New Partition Template
     state: present
     layout: |
@@ -97,7 +93,7 @@ EXAMPLES = '''
   partition_table:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: timeywimey_template.erb
     state: present
     locations:
@@ -109,7 +105,7 @@ EXAMPLES = '''
   partition_table:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: timeywimey
     layout: |
       <%#
@@ -121,7 +117,7 @@ EXAMPLES = '''
   partition_table:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: timeywimey_template.erb
     name: Wibbly Wobbly Template
     state: present
@@ -136,7 +132,7 @@ EXAMPLES = '''
   partition_table:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: "{{ item }}"
     state: present
     locations:
@@ -149,7 +145,7 @@ EXAMPLES = '''
 # If the templates are stored locally and the ansible module is executed on a remote host
 - name: Ensure latest version of all Ptable Community Templates
   partition_table:
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username:  "admin"
     password:  "changeme"
     state: present
@@ -160,20 +156,18 @@ EXAMPLES = '''
 
 # with name set to "*" bulk actions can be performed
 - name: "Delete *ALL* partition tables"
-  local_action:
-    module: foreman_ptable
+  partition_table:
     username: "admin"
     password: "admin"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "*"
     state: absent
 
 - name: "Assign all partition tables to the same organization(s)"
-  local_action:
-    module: foreman_ptable
+  partition_table:
     username: "admin"
     password: "admin"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "*"
     state: present
     organizations:

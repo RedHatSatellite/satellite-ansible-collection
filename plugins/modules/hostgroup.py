@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: hostgroup
@@ -74,7 +70,7 @@ EXAMPLES = '''
     operatingsystem: "operatingsystem_name"
     medium: "media_name"
     ptable: "Partition_table_name"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
@@ -94,7 +90,7 @@ EXAMPLES = '''
     medium: "updated_media_name"
     ptable: "updated_Partition_table_name"
     root_pass: "password"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
@@ -126,7 +122,7 @@ EXAMPLES = '''
 - name: "Delete a Hostgroup"
   hostgroup:
     name: "new_hostgroup"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: absent

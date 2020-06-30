@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: content_view
@@ -106,7 +102,7 @@ EXAMPLES = '''
   content_view:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Fedora CV"
     organization: "My Cool new Organization"
     repositories:
@@ -117,7 +113,7 @@ EXAMPLES = '''
   content_view:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Fedora CCV"
     organization: "My Cool new Organization"
     composite: true

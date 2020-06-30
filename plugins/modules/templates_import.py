@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.0',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: templates_import
@@ -36,7 +32,7 @@ notes:
   - Due to a bug in the foreman_templates plugin, this module won't report C(changed=true)
     when the only change is the Organization/Location association of the imported templates.
     Please see U(https://projects.theforeman.org/issues/29534) for details.
-  - Default values for all module options can be set using M(foreman_setting) for TemplateSync category or on the settings page in WebUI.
+  - Default values for all module options can be set using M(redhat.satellite.setting) for TemplateSync category or on the settings page in WebUI.
 options:
   prefix:
     description:
@@ -104,7 +100,7 @@ EXAMPLES = '''
     repo: https://github.com/theforeman/community-templates.git
     branch: 1.24-stable
     associate: new
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "changeme"
 '''

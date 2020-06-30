@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: provisioning_template
@@ -102,7 +98,7 @@ EXAMPLES = '''
   provisioning_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: A New Finish Template
     kind: finish
     state: present
@@ -122,7 +118,7 @@ EXAMPLES = '''
   provisioning_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: timeywimey_template.erb
     state: present
     locations:
@@ -136,7 +132,7 @@ EXAMPLES = '''
   provisioning_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: timeywimey_template
     template: |
       <%#
@@ -148,7 +144,7 @@ EXAMPLES = '''
   provisioning_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: timeywimey_template.erb
     name: Wibbly Wobbly Template
     state: present
@@ -163,7 +159,7 @@ EXAMPLES = '''
   provisioning_template:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     file_name: "{{ item }}"
     state: present
     locations:
@@ -176,7 +172,7 @@ EXAMPLES = '''
 # If the templates are stored locally and the ansible module is executed on a remote host
 - name: Ensure latest version of all Provisioning Community Templates
   provisioning_template:
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username:  "admin"
     password:  "changeme"
     state: present
@@ -187,20 +183,18 @@ EXAMPLES = '''
 
 # with name set to "*" bulk actions can be performed
 - name: "Delete *ALL* provisioning templates"
-  local_action:
-    module: foreman_provisioning_template
+  provisioning_template:
     username: "admin"
     password: "admin"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "*"
     state: absent
 
 - name: "Assign all provisioning templates to the same organization(s)"
-  local_action:
-    module: foreman_provisioning_template
+  provisioning_template:
     username: "admin"
     password: "admin"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "*"
     state: present
     organizations:

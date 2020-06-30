@@ -19,11 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
-
 DOCUMENTATION = '''
 ---
 module: resource_info
@@ -70,7 +65,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: settings
     search: name = foreman_url
   register: result
@@ -81,7 +76,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: registries
   register: result
 - debug:
@@ -92,7 +87,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: organizations
     full_details: true
   register: result
@@ -103,7 +98,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: subscriptions
     params:
       organization_id: 1
@@ -115,7 +110,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     resource: activation_keys
     organization: ACME
   register: result

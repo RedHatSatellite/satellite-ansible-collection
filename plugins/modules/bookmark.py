@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: bookmark
@@ -63,7 +59,7 @@ EXAMPLES = '''
   bookmark:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "recent"
     controller: "job_invocations"
     query: "started_at > '24 hours ago'"
@@ -73,7 +69,7 @@ EXAMPLES = '''
   bookmark:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "recent"
     controller: "job_invocations"
     query: "started_at > '12 hours ago'"
@@ -83,7 +79,7 @@ EXAMPLES = '''
   bookmark:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "recent"
     controller: "job_invocations"
     state: absent

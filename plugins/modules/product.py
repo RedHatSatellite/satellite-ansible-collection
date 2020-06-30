@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: product
@@ -84,7 +80,7 @@ EXAMPLES = '''
   product:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Fedora"
     organization: "My Cool new Organization"
     sync_plan: "Fedora repos sync"
@@ -94,7 +90,7 @@ EXAMPLES = '''
   product:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "CentOS 7"
     gpg_key: "RPM-GPG-KEY-CentOS7"
     organization: "My Cool new Organization"

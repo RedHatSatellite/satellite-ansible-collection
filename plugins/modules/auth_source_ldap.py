@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: auth_source_ldap
@@ -128,7 +124,7 @@ EXAMPLES = '''
   auth_source_ldap:
     name: "Example LDAP"
     host: "ldap.example.org"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     locations:
       - "Uppsala"
     organizations:
@@ -152,7 +148,7 @@ EXAMPLES = '''
     attr_lastname: sn
     attr_mail: mail
     attr_photo: jpegPhoto
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present

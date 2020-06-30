@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: content_view_filter
@@ -149,7 +145,7 @@ EXAMPLES = '''
   content_view_filter:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "package filter 1"
     organization: "Default Organization"
     content_view: Web Servers
@@ -160,7 +156,7 @@ EXAMPLES = '''
   content_view_filter:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "package filter 1"
     organization: "Default Organization"
     content_view: Web Servers

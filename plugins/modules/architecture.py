@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: architecture
@@ -56,7 +52,7 @@ EXAMPLES = '''
     operatingsystems:
       - "TestOS1"
       - "TestOS2"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
@@ -67,7 +63,7 @@ EXAMPLES = '''
     operatingsystems:
       - "TestOS3"
       - "TestOS4"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: present
@@ -75,7 +71,7 @@ EXAMPLES = '''
 - name: "Delete an Architecture"
   architecture:
     name: "i386"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "secret"
     state: absent

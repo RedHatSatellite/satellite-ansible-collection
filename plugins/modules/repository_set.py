@@ -19,10 +19,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = '''
 ---
 module: repository_set
@@ -50,7 +46,7 @@ options:
     description:
       - Release version and base architecture of the repositories to enable.
       - Some reposotory sets require only I(basearch) or only I(releasever) to be set.
-      - See the examples how you can obtain this information using M(foreman_search_facts).
+      - See the examples how you can obtain this information using M(redhat.satellite.resource_info).
       - Required when I(all_repositories) is unset or C(false).
     required: false
     type: list
@@ -89,7 +85,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: "Red Hat Enterprise Linux 7 Server (RPMs)"
     organization: "Default Organization"
     product: "Red Hat Enterprise Linux Server"
@@ -108,7 +104,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: rhel-7-server-rpms
     repositories:
@@ -126,7 +122,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     name: Red Hat Enterprise Linux 7 Server - Extras (RPMs)
     organization: "Default Organization"
     product: Red Hat Enterprise Linux Server
@@ -138,7 +134,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: rhel-8-for-x86_64-baseos-rpms
     repositories:
@@ -148,7 +144,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: "rhel-7-server-rhv-4.2-manager-rpms"
     repositories:
@@ -159,7 +155,7 @@ EXAMPLES = '''
   repository_set:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     label: "rhel-7-server-rhv-4.2-manager-rpms"
     all_repositories: true
@@ -169,7 +165,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     resource: repository_sets
     search: product_name="Red Hat Virtualization Manager"
@@ -182,7 +178,7 @@ EXAMPLES = '''
   resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     resource: repository_sets
     search: label=rhel-7-server-rhv-4.2-manager-rpms
