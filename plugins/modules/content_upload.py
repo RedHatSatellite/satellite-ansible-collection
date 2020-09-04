@@ -23,7 +23,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: content_upload
-short_description: Upload content
+version_added: 1.0.0
+short_description: Upload content to a repository
 description:
   - Allows the upload of content to a repository
 author: "Eric D Helms (@ehelms)"
@@ -58,7 +59,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Upload my.rpm"
-  content_upload:
+  redhat.satellite.content_upload:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"

@@ -22,6 +22,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: image
+version_added: 1.0.0
 short_description: Manage Images
 description:
   - Create, update, and delete Images
@@ -78,7 +79,17 @@ EXAMPLES = '''
         architecture: "x86_64"
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    images:
+      description: List of images.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
 
@@ -103,8 +114,7 @@ def main():
             operatingsystem=dict(type='entity', required=True),
             user_data=dict(type='bool')
         ),
-        entity_scope=['compute_resource'],
-        entity_resolve=False,
+        entity_opts={'scope': ['compute_resource']},
     )
 
     module.foreman_params['username'] = module.foreman_params.pop('image_username')

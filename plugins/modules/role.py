@@ -22,6 +22,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: role
+version_added: 1.0.0
 short_description: Manage Roles
 description:
   - Create, update, and delete Roles
@@ -59,7 +60,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: role
-  role:
+  redhat.satellite.role:
     name: "Provisioner"
     description: "Only provision on libvirt"
     locations:
@@ -76,7 +77,17 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    roles:
+      description: List of roles.
+      type: list
+      elements: dict
+'''
 
 import copy
 

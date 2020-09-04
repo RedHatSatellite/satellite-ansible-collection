@@ -22,9 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: repository
-short_description: Create and manage repositories
+version_added: 1.0.0
+short_description: Manage Repositories
 description:
-    - Crate and manage repositories
+  - Crate and manage repositories
 author: "Eric D Helms (@ehelms)"
 options:
   name:
@@ -164,7 +165,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create repository"
-  repository:
+  redhat.satellite.repository:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -178,7 +179,7 @@ EXAMPLES = '''
     download_policy: background
 
 - name: "Create repository with content credentials"
-  repository:
+  redhat.satellite.repository:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -193,7 +194,17 @@ EXAMPLES = '''
     gpg_key: RPM-GPG-KEY-my-product2
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    repositories:
+      description: List of repositories.
+      type: list
+      elements: dict
+'''
 
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
@@ -232,7 +243,7 @@ def main():
         argument_spec=dict(
             state=dict(default='present', choices=['present_with_defaults', 'present', 'absent']),
         ),
-        entity_scope=['product'],
+        entity_opts={'scope': ['product']},
     )
 
     if module.foreman_params['content_type'] != 'docker':

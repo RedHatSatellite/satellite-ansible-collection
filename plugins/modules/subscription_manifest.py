@@ -22,9 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: subscription_manifest
-short_description: Manage manifests
+version_added: 1.0.0
+short_description: Manage Subscription Manifests
 description:
-    - Upload and manage manifests
+  - Upload, refresh and delete Subscription Manifests
 author: "Andrew Kofink (@akofink)"
 options:
   manifest_path:
@@ -53,7 +54,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Upload the RHEL developer edition manifest"
-  subscription_manifest:
+  redhat.satellite.subscription_manifest:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"

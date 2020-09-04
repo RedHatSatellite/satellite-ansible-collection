@@ -23,6 +23,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: compute_profile
+version_added: 1.0.0
 short_description: Manage Compute Profiles
 description:
   - Create, update, and delete Compute Profiles
@@ -61,7 +62,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: compute profile
-  compute_profile:
+  redhat.satellite.compute_profile:
     name: example_compute_profile
     server_url: "https://satellite.example.com"
     username: admin
@@ -69,7 +70,7 @@ EXAMPLES = '''
     state: present
 
 - name: another compute profile
-  compute_profile:
+  redhat.satellite.compute_profile:
     name: another_example_compute_profile
     compute_attributes:
     - compute_resource: ovirt_compute_resource1
@@ -83,7 +84,7 @@ EXAMPLES = '''
     state: present
 
 - name: compute profile2
-  compute_profile:
+  redhat.satellite.compute_profile:
     name: example_compute_profile2
     compute_attributes:
     - compute_resource: ovirt_compute_resource01
@@ -127,7 +128,7 @@ EXAMPLES = '''
     state: present
 
 - name: Remove compute profile
-  compute_profile:
+  redhat.satellite.compute_profile:
     name: example_compute_profile2
     server_url: "https://satellite.example.com"
     username: admin
@@ -135,7 +136,27 @@ EXAMPLES = '''
     state: absent
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    compute_profiles:
+      description: List of compute profiles.
+      type: list
+      elements: dict
+      contains:
+        id:
+          description: Database id of the compute profile.
+          type: int
+        name:
+          description: Name of the compute profile.
+          type: str
+        compute_attributes:
+          description: Attributes for this compute profile.
+          type: list
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
 

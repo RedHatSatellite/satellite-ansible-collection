@@ -255,6 +255,16 @@ class HostMixin(NestedParametersMixin):
 
 
 class ForemanAnsibleModule(AnsibleModule):
+    """ Baseclass for all foreman related Ansible modules.
+        It handles connection parameters and adds the concept of the `foreman_spec`.
+        This adds automatic entities resolution based on provided attributes/ sub entities options.
+        It adds the following options to foreman_spec 'entity' and 'entity_list' types:
+        * search_by (str): Field used to search the sub entity. Defaults to 'name' unless `parent` was set, in which case it defaults to `title`.
+        * search_operator (str): Operator used to search the sub entity. Defaults to '='. For fuzzy search use '~'.
+        * resource_type (str): Resource type used to build API resource PATH. Defaults to pluralized entity key.
+        * resolve (boolean): Defaults to 'True'. If set to false, the sub entity will not be resolved automatically
+        * ensure (boolean): Defaults to 'True'. If set to false, it will be removed before sending data to the foreman server.
+    """
 
     def __init__(self, **kwargs):
         # State recording for changed and diff reporting
@@ -477,32 +487,24 @@ class ForemanAnsibleModule(AnsibleModule):
     def find_resource_by_id(self, resource, obj_id, **kwargs):
         return self.find_resource_by(resource, 'id', obj_id, **kwargs)
 
-    def find_resources_by(self, resource, search_field, search_list, **kwargs):
-        return [self.find_resource_by(resource, search_field, search_item, **kwargs) for search_item in search_list]
-
     def find_resources_by_name(self, resource, names, **kwargs):
         return [self.find_resource_by_name(resource, name, **kwargs) for name in names]
 
-    def find_resources_by_title(self, resource, titles, **kwargs):
-        return [self.find_resource_by_title(resource, title, **kwargs) for title in titles]
-
-    def find_resources_by_id(self, resource, obj_ids, **kwargs):
-        return [self.find_resource_by_id(resource, obj_id, **kwargs) for obj_id in obj_ids]
-
-    def find_operatingsystem(self, name, params=None, failsafe=False, thin=None):
-        result = self.find_resource_by_title('operatingsystems', name, params=params, failsafe=True, thin=thin)
+    def find_operatingsystem(self, name, failsafe=False, **kwargs):
+        result = self.find_resource_by_title('operatingsystems', name, failsafe=True, **kwargs)
         if not result:
-            result = self.find_resource_by('operatingsystems', 'title', name, search_operator='~', params=params, failsafe=failsafe, thin=thin)
+            result = self.find_resource_by('operatingsystems', 'title', name, search_operator='~', failsafe=failsafe, **kwargs)
         return result
 
-    def find_operatingsystems(self, names, **kwargs):
-        return [self.find_operatingsystem(name, **kwargs) for name in names]
-
     def find_puppetclass(self, name, environment=None, params=None, failsafe=False, thin=None):
+        if thin is None:
+            thin = self._thin_default
         if environment:
             scope = {'environment_id': environment}
         else:
-            scope = None
+            scope = {}
+        if params is not None:
+            scope.update(params)
         search = 'name="{0}"'.format(name)
         results = self.list_resource('puppetclasses', search, params=scope)
 
@@ -841,12 +843,12 @@ class ForemanAnsibleModule(AnsibleModule):
             self.fail_json(msg=missing_msg)
 
 
-class ForemanEntityAnsibleModule(ForemanAnsibleModule):
-    """ Base class for Foreman entities. To use it, subclass it with the following convention:
+class ForemanStatelessEntityAnsibleModule(ForemanAnsibleModule):
+    """ Base class for Foreman entities without a state. To use it, subclass it with the following convention:
         To manage my_entity entity, create the following sub class:
 
         ```
-        class ForemanMyEntityModule(ForemanEntityAnsibleModule):
+        class ForemanMyEntityModule(ForemanStatelessEntityAnsibleModule):
             pass
         ```
 
@@ -863,60 +865,39 @@ class ForemanEntityAnsibleModule(ForemanAnsibleModule):
         )
         ```
 
-        This add automatic entities resolution based on provided attributes/ sub entities options.
-        It add following options to foreman_spec 'entity' and 'entity_list' types:
-        * search_by (str): Field used to search the sub entity. Defaults to 'name' unless `parent` was set, in which case it defaults to `title`.
-        * search_operator (str): Operator used to search the sub entity. Defaults to '='. For fuzzy search use '~'.
-        * resource_type (str): Resource type used to build API resource PATH. Defaults to pluralized entity key.
-        * resolve (boolean): Defaults to 'True'. If set to false, the sub entity will not be resolved automatically
-        * ensure (boolean): Defaults to 'True'. If set to false, it will be removed before sending data to the foreman server.
-        It add following attributes:
-        * entity_search (str): Defautls to None. If provided, the base entity resolver will use this search query instead to try to build it.
+        It adds the following attributes:
         * entity_key (str): field used to search current entity. Defaults to value provided by `ENTITY_KEYS` or 'name' if no value found.
         * entity_name (str): name of the current entity.
           By default deduce the entity name from the class name (eg: 'ForemanProvisioningTemplateModule' class will produce 'provisioning_template').
-        * entity_scope (list): List of the entity used to build search scope. Defaults to None.
-        * entity_resolve (boolean): Set it to False to disable base entity resolution.
         * entity_opts (dict): Dict of options for base entity. Same options can be provided for subentities described in foreman_spec.
+        The main entity is referenced with the key `entity` in the `foreman_spec`.
     """
 
     def __init__(self, **kwargs):
         self.entity_key = kwargs.pop('entity_key', 'name')
-        self.entity_scope = kwargs.pop('entity_scope', None)
-        self.entity_resolve = kwargs.pop('entity_resolve', True)
-        self.entity_opts = kwargs.pop('entity_opts', {})
         self.entity_name = kwargs.pop('entity_name', self.entity_name_from_class)
+        entity_opts = kwargs.pop('entity_opts', {})
 
-        argument_spec = dict(
-            state=dict(choices=['present', 'absent'], default='present'),
-        )
-        argument_spec.update(kwargs.pop('argument_spec', {}))
-        super(ForemanEntityAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
+        super(ForemanStatelessEntityAnsibleModule, self).__init__(**kwargs)
 
-        self._entity_resource_name = inflector.pluralize(self.entity_name)
-        self.state = self.foreman_params.pop('state')
-        self.desired_absent = self.state == 'absent'
-        self._thin_default = self.desired_absent
-
-        if 'resource_type' not in self.entity_opts:
-            self.entity_opts['resource_type'] = inflector.pluralize(self.entity_name)
-        if 'thin' not in self.entity_opts:
-            self.entity_opts['thin'] = self._thin_default
-        if 'failsafe' not in self.entity_opts:
-            self.entity_opts['failsafe'] = True
-        if 'search_operator' not in self.entity_opts:
-            self.entity_opts['search_operator'] = '='
-        if 'search_by' not in self.entity_opts:
-            self.entity_opts['search_by'] = ENTITY_KEYS.get(self._entity_resource_name, 'name')
-        if self.entity_scope:
-            self.entity_opts['scope'] = self.entity_scope
+        if 'resource_type' not in entity_opts:
+            entity_opts['resource_type'] = inflector.pluralize(self.entity_name)
+        if 'thin' not in entity_opts:
+            # Explicit None to trigger the _thin_default mechanism lazily
+            entity_opts['thin'] = None
+        if 'failsafe' not in entity_opts:
+            entity_opts['failsafe'] = True
+        if 'search_operator' not in entity_opts:
+            entity_opts['search_operator'] = '='
+        if 'search_by' not in entity_opts:
+            entity_opts['search_by'] = ENTITY_KEYS.get(entity_opts['resource_type'], 'name')
 
         self.foreman_spec.update(_foreman_spec_helper(dict(
             entity=dict(
                 type='entity',
                 flat_name='id',
                 ensure=False,
-                **self.entity_opts
+                **entity_opts
             ),
         ))[0])
 
@@ -953,9 +934,46 @@ class ForemanEntityAnsibleModule(ForemanAnsibleModule):
         # Get entity name from snake case class name
         return '_'.join(class_name.split('_')[1:-1])
 
+
+class ForemanEntityAnsibleModule(ForemanStatelessEntityAnsibleModule):
+    """ Base class for Foreman entities. To use it, subclass it with the following convention:
+        To manage my_entity entity, create the following sub class:
+
+        ```
+        class ForemanMyEntityModule(ForemanEntityAnsibleModule):
+            pass
+        ```
+
+        and use that class to instanciate module:
+
+        ```
+        module = ForemanMyEntityModule(
+            argument_spec=dict(
+                [...]
+            ),
+            foreman_spec=dict(
+                [...]
+            ),
+        )
+        ```
+
+        This adds a `state` parameter to the module and provides the `run` method for the most
+        common usecases.
+    """
+
+    def __init__(self, **kwargs):
+        argument_spec = dict(
+            state=dict(choices=['present', 'absent'], default='present'),
+        )
+        argument_spec.update(kwargs.pop('argument_spec', {}))
+        super(ForemanEntityAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
+
+        self.state = self.foreman_params.pop('state')
+        self.desired_absent = self.state == 'absent'
+        self._thin_default = self.desired_absent
+
     def run(self, **kwargs):
         """ lookup entities, ensure entity, remove sensitive data, manage parameters.
-            Like 'run', just faster and more convenient...
         """
         if ('parent' in self.foreman_spec and self.foreman_spec['parent'].get('type') == 'entity'
                 and self.desired_absent and 'parent' in self.foreman_params and self.lookup_entity('parent') is None):
@@ -971,10 +989,11 @@ class ForemanEntityAnsibleModule(ForemanAnsibleModule):
                 self.foreman_params[self.entity_key] = self.foreman_params.pop(updated_key)
 
         params = kwargs.get('params', {})
-        if self.entity_scope:
-            for scope in self.entity_scope:
+        entity_scope = self.foreman_spec['entity'].get('scope')
+        if entity_scope:
+            for scope in entity_scope:
                 params.update(self.scope_for(scope))
-        new_entity = self.ensure_entity(self._entity_resource_name, self.foreman_params, entity, params=params)
+        new_entity = self.ensure_entity(self.foreman_spec['entity']['resource_type'], self.foreman_params, entity, params=params)
         new_entity = self.remove_sensitive_fields(new_entity)
 
         return new_entity
@@ -1046,10 +1065,12 @@ class KatelloAnsibleModule(KatelloMixin, ForemanAnsibleModule):
 
 class KatelloEntityAnsibleModule(KatelloMixin, ForemanEntityAnsibleModule):
     def __init__(self, **kwargs):
-        entity_scope = kwargs.pop('entity_scope', [])
-        if 'organization' not in entity_scope:
-            entity_scope.append('organization')
-        super(KatelloEntityAnsibleModule, self).__init__(entity_scope=entity_scope, **kwargs)
+        entity_opts = kwargs.pop('entity_opts', {})
+        if 'scope' not in entity_opts:
+            entity_opts['scope'] = ['organization']
+        elif 'organization' not in entity_opts['scope']:
+            entity_opts['scope'].append('organization')
+        super(KatelloEntityAnsibleModule, self).__init__(entity_opts=entity_opts, **kwargs)
 
 
 def _foreman_spec_helper(spec):

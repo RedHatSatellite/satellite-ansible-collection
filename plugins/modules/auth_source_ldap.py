@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: auth_source_ldap
-short_description: Manage LDAP authentication sources
+version_added: 1.0.0
+short_description: Manage LDAP Authentication Sources
 description:
   - Create, update, and delete LDAP authentication sources
 author:
@@ -121,7 +122,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: LDAP Authentication source
-  auth_source_ldap:
+  redhat.satellite.auth_source_ldap:
     name: "Example LDAP"
     host: "ldap.example.org"
     server_url: "https://satellite.example.com"
@@ -134,7 +135,7 @@ EXAMPLES = '''
     state: present
 
 - name: LDAP Authentication with automatic registration
-  auth_source_ldap:
+  redhat.satellite.auth_source_ldap:
     name: "Example LDAP"
     host: "ldap.example.org"
     onthefly_register: True
@@ -154,7 +155,18 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    auth_source_ldaps:
+      description: List of auth sources for LDAP.
+      type: list
+      elements: dict
+'''
+
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
 

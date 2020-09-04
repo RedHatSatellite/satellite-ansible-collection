@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: host_collection
-short_description: Create and Manage host collections
+version_added: 1.0.0
+short_description: Manage Host Collections
 description:
     - Create and Manage host collections
 author:
@@ -51,7 +52,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create Foo host collection"
-  host_collection:
+  redhat.satellite.host_collection:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -61,7 +62,17 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    host_collections:
+      description: List of host collections.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
 

@@ -44,11 +44,6 @@ extensions = [
     'sphinx.ext.intersphinx',
 ]
 
-ansible_extensions_path = os.path.abspath('.tmp/ansible/docs/docsite/_extensions')
-if os.path.exists(ansible_extensions_path):
-    sys.path.append(ansible_extensions_path)
-    extensions.append('pygments_lexer')
-
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -87,8 +82,7 @@ html_theme_path = ['_themes']
 # a list of builtin themes.
 #
 # html_theme = 'alabaster'
-#html_theme = 'sphinx_rtd_theme'
-html_theme = 'ansible_rtd_theme'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

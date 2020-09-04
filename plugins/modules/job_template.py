@@ -22,9 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: job_template
+version_added: 1.0.0
 short_description: Manage Job Templates
 description:
-  - "Manage Remote Execution Job Templates"
+  - Manage Remote Execution Job Templates
 author:
   - "Manuel Bonk (@manuelbonk) ATIX AG"
   - "Matthias Dellweg (@mdellweg) ATIX AG"
@@ -148,7 +149,7 @@ extends_documentation_fragment:
 EXAMPLES = '''
 
 - name: "Create a Job Template inline"
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -168,7 +169,7 @@ EXAMPLES = '''
     - TARDIS INC
 
 - name: "Create a Job Template from a file"
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -184,7 +185,7 @@ EXAMPLES = '''
     - TARDIS INC
 
 - name: "remove a job template's template inputs"
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -197,7 +198,7 @@ EXAMPLES = '''
     - TARDIS INC
 
 - name: "Delete a Job Template"
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -205,7 +206,7 @@ EXAMPLES = '''
     state: absent
 
 - name: "Create a Job Template from a file and modify with parameter(s)"
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -220,7 +221,7 @@ EXAMPLES = '''
 # Providing a name in this case wouldn't be very sensible.
 # Alternatively make use of with_filetree to parse recursively with filter.
 - name: Parsing a directory of Job templates
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -235,7 +236,7 @@ EXAMPLES = '''
 
 # If the templates are stored locally and the ansible module is executed on a remote host
 - name: Ensure latest version of all your Job Templates
-  job_template:
+  redhat.satellite.job_template:
     server_url: "https://satellite.example.com"
     username:  "admin"
     password:  "changeme"
@@ -247,7 +248,7 @@ EXAMPLES = '''
 
 # with name set to "*" bulk actions can be performed
 - name: "Delete *ALL* Job Templates"
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "admin"
     server_url: "https://satellite.example.com"
@@ -255,7 +256,7 @@ EXAMPLES = '''
     state: absent
 
 - name: "Assign all Job Templates to the same organization(s)"
-  job_template:
+  redhat.satellite.job_template:
     username: "admin"
     password: "admin"
     server_url: "https://satellite.example.com"
@@ -268,7 +269,21 @@ EXAMPLES = '''
 
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    job_templates:
+      description: List of job templates.
+      type: list
+      elements: dict
+    template_inputs:
+      description: List of template inputs associated with the job template.
+      type: list
+      elements: dict
+'''
 
 import os
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (

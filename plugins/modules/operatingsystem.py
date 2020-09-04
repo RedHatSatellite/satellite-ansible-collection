@@ -23,9 +23,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: operatingsystem
+version_added: 1.0.0
 short_description: Manage Operating Systems
 description:
-  - "Manage Operating System Entities"
+  - Manage Operating Systems
 author:
   - "Matthias M Dellweg (@mdellweg) ATIX AG"
   - "Bernhard Hopfenmüller (@Fobhep) ATIX AG"
@@ -113,7 +114,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create an Operating System"
-  operatingsystem:
+  redhat.satellite.operatingsystem:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -127,7 +128,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Ensure existence of an Operating System (provide default values)"
-  operatingsystem:
+  redhat.satellite.operatingsystem:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -138,7 +139,7 @@ EXAMPLES = '''
     state: present_with_defaults
 
 - name: "Delete an Operating System"
-  operatingsystem:
+  redhat.satellite.operatingsystem:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -148,7 +149,17 @@ EXAMPLES = '''
     state: absent
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    operatinsystems:
+      description: List of operatinsystems.
+      type: list
+      elements: dict
+'''
 
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (

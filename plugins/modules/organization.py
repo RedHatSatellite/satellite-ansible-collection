@@ -23,9 +23,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: organization
-short_description: Manage Organization
+version_added: 1.0.0
+short_description: Manage Organizations
 description:
-    - Manage Organization
+    - Manage Organizations
 author:
     - "Eric D Helms (@ehelms)"
     - "Matthias M Dellweg (@mdellweg) ATIX AG"
@@ -52,7 +53,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create CI Organization"
-  organization:
+  redhat.satellite.organization:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -60,7 +61,17 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    organizations:
+      description: List of organizations.
+      type: list
+      elements: dict
+'''
 
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule, NestedParametersMixin

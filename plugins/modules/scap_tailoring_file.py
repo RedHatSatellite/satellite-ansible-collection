@@ -22,9 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: scap_tailoring_file
-short_description: Manage SCAP tailoring files.
+version_added: 1.0.0
+short_description: Manage SCAP Tailoring Files
 description:
-  - Create, update, and delete SCAP tailoring files.
+  - Create, update, and delete SCAP Tailoring Files
 author:
   - "Evgeni Golov (@evgeni)"
 options:
@@ -47,7 +48,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: Create SCAP tailoring file
-  scap_tailoring_file:
+  redhat.satellite.scap_tailoring_file:
     name: "Red Hat firefox default content"
     scap_file: "/home/user/Downloads/ssg-firefox-ds-tailoring.xml"
     original_filename: "ssg-firefox-ds-tailoring.xml"
@@ -61,7 +62,7 @@ EXAMPLES = '''
     state: present
 
 - name: Update SCAP tailoring file
-  scap_tailoring_file:
+  redhat.satellite.scap_tailoring_file:
     name: "Red Hat firefox default content"
     updated_name: "Updated tailoring file name"
     scap_file: "/home/user/Downloads/updated-ssg-firefox-ds-tailoring.xml"
@@ -78,7 +79,7 @@ EXAMPLES = '''
     state: present
 
 - name: Delete SCAP tailoring file
-  scap_tailoring_file:
+  redhat.satellite.scap_tailoring_file:
     name: "Red Hat firefox default content"
     server_url: "https://satellite.example.com"
     username: "admin"
@@ -86,7 +87,17 @@ EXAMPLES = '''
     state: absent
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    scap_tailoring_files:
+      description: List of scap tailoring files.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanScapDataStreamModule
 

@@ -22,10 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: host
-short_description: Manage hosts
+version_added: 1.0.0
+short_description: Manage Hosts
 description:
-  - "Manage host Entities"
-  - "This beta version can create and delete hosts from preexisting host groups"
+  - Create, update, and delete Hosts
 author:
   - "Bernhard Hopfenmueller (@Fobhep) ATIX AG"
 options:
@@ -118,7 +118,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create a host"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -127,7 +127,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Create a host with build context"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -137,7 +137,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Create an unmanaged host"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -146,7 +146,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Delete a host"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -154,7 +154,17 @@ EXAMPLES = '''
     state: absent
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    hosts:
+      description: List of hosts.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (
     ensure_puppetclasses,

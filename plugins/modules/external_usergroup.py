@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: external_usergroup
-short_description: Manage external user groups
+version_added: 1.0.0
+short_description: Manage External User Groups
 description:
   - Create, update, and delete external user groups
 author:
@@ -50,14 +51,24 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: Create an external user group
-  external_usergroup:
+  redhat.satellite.external_usergroup:
     name: test
     auth_source_ldap: "My LDAP server"
     usergroup: "Internal Usergroup"
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    external_usergroups:
+      description: List of external usergroups.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
 
@@ -73,7 +84,6 @@ def main():
             usergroup=dict(required=True),
             auth_source_ldap=dict(required=True, type='entity', flat_name='auth_source_id', resource_type='auth_sources'),
         ),
-        entity_resolve=False,
     )
 
     params = {"usergroup_id": module.foreman_params.pop('usergroup')}

@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: content_view
-short_description: Create and manage content views
+version_added: 1.0.0
+short_description: Manage Content Views
 description:
     - Create and manage content views
 author: "Eric D Helms (@ehelms)"
@@ -99,7 +100,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create or update Fedora content view"
-  content_view:
+  redhat.satellite.content_view:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -110,7 +111,7 @@ EXAMPLES = '''
         product: 'Fedora'
 
 - name: "Create a composite content view"
-  content_view:
+  redhat.satellite.content_view:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -125,7 +126,17 @@ EXAMPLES = '''
         latest: true
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    content_views:
+      description: List of content views.
+      type: list
+      elements: dict
+'''
 
 import copy
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
