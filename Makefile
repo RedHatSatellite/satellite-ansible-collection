@@ -118,7 +118,7 @@ doc: $(MANIFEST)
 	make -C docs html
 
 branding:
-	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/tests.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml
+	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/tests.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst
 	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py
 
 FORCE:

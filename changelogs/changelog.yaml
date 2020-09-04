@@ -15,7 +15,7 @@ releases:
           * foreman_model to hardware_model
           * foreman_environment to puppet_environment
       release_summary: |
-        This is the first stable release of the ``theforeman.foreman`` collection.
+        This is the first stable release of the ``redhat.satellite`` collection.
     modules:
     - description: Manage Activation Keys
       name: activation_key
