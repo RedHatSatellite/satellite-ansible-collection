@@ -164,13 +164,13 @@ entity:
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (
     ForemanEntityAnsibleModule,
-    NestedParametersMixin,
+    ParametersMixin,
     OS_LIST,
 )
 
 
-class ForemanOperatingsystemModule(NestedParametersMixin, ForemanEntityAnsibleModule):
-    pass
+class ForemanOperatingsystemModule(ParametersMixin, ForemanEntityAnsibleModule):
+    PARAMETERS_FLAT_NAME = 'os_parameters_attributes'
 
 
 def main():

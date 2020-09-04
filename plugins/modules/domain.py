@@ -85,10 +85,10 @@ entity:
       elements: dict
 '''
 
-from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule, NestedParametersMixin
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule, ParametersMixin
 
 
-class ForemanDomainModule(NestedParametersMixin, ForemanTaxonomicEntityAnsibleModule):
+class ForemanDomainModule(ParametersMixin, ForemanTaxonomicEntityAnsibleModule):
     pass
 
 

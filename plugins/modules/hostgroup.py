@@ -149,7 +149,7 @@ from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper im
 
 
 class ForemanHostgroupModule(HostMixin, ForemanTaxonomicEntityAnsibleModule):
-    pass
+    PARAMETERS_FLAT_NAME = 'group_parameters_attributes'
 
 
 def main():
