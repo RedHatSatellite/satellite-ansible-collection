@@ -50,8 +50,6 @@ TEST_PLAYBOOKS = [
     'role',
     'scap_content',
     'scap_tailoring_file',
-    'scc_account',
-    'scc_product',
     'setting',
     'smart_class_parameter',
     'subnet',
