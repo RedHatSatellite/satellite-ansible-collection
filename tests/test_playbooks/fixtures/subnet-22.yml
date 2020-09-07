@@ -11,87 +11,10 @@ interactions:
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.com/api/status
+    uri: https://foreman.example.org/api/status
   response:
     body:
-      string: '{"result":"ok","status":200,"version":"1.23.1","api_version":2}'
-    headers:
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      Connection:
-      - Keep-Alive
-      Content-Length:
-      - '63'
-      Content-Security-Policy:
-      - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"f26fab35869f9a602399f2f56dc6b2ef"
-      Foreman_api_version:
-      - '2'
-      Foreman_current_location:
-      - ; ANY
-      Foreman_current_organization:
-      - ; ANY
-      Foreman_version:
-      - 1.23.1
-      Keep-Alive:
-      - timeout=5, max=100
-      Server:
-      - Apache
-      Set-Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5; path=/; secure; HttpOnly; SameSite=Lax
-      Status:
-      - 200 OK
-      Strict-Transport-Security:
-      - max-age=631139040; includeSubdomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Frame-Options:
-      - sameorigin
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - 1da35830-44ff-4281-8f4a-763745fe689c
-      X-Runtime:
-      - '0.077086'
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json;version=2
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5
-      User-Agent:
-      - apypie (https://github.com/Apipie/apypie)
-    method: GET
-    uri: https://foreman.example.com/api/subnets?search=name%3D%22Test+Subnet+2%22&per_page=4294967296
-  response:
-    body:
-      string: "{\n  \"total\": 1,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
-        4294967296,\n  \"search\": \"name=\\\"Test Subnet 2\\\"\",\n  \"sort\": {\n
-        \   \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"network\":\"192.168.200.0\",\"network_type\":\"IPv4\",\"cidr\":27,\"mask\":\"255.255.255.224\",\"priority\":null,\"vlanid\":42,\"mtu\":9000,\"gateway\":\"192.168.200.1\",\"dns_primary\":\"1.1.1.1\",\"dns_secondary\":\"1.1.1.2\",\"from\":\"192.168.200.10\",\"to\":\"192.168.200.20\",\"created_at\":\"2019-12-04
-        10:07:58 UTC\",\"updated_at\":\"2019-12-04 10:07:58 UTC\",\"ipam\":\"Internal
-        DB\",\"boot_mode\":\"Static\",\"id\":24,\"name\":\"Test Subnet 2\",\"description\":\"My
-        subnet description\",\"network_address\":\"192.168.200.0/27\",\"dhcp_id\":null,\"dhcp_name\":null,\"tftp_id\":null,\"tftp_name\":null,\"httpboot_id\":null,\"httpboot_name\":null,\"dns_id\":null,\"template_id\":null,\"template_name\":null,\"dhcp\":null,\"tftp\":null,\"httpboot\":null,\"dns\":null,\"template\":null}]\n}\n"
+      string: '{"result":"ok","status":200,"version":"2.1.0","api_version":2}'
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
@@ -99,14 +22,10 @@ interactions:
       - Keep-Alive
       Content-Security-Policy:
       - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
       Content-Type:
       - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"64d4101514cc2cd178169b20214334d8-gzip"
       Foreman_api_version:
       - '2'
       Foreman_current_location:
@@ -114,13 +33,9 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 1.23.1
+      - 2.1.0
       Keep-Alive:
-      - timeout=5, max=99
-      Server:
-      - Apache
-      Status:
-      - 200 OK
+      - timeout=15, max=100
       Strict-Transport-Security:
       - max-age=631139040; includeSubdomains
       Vary:
@@ -133,16 +48,10 @@ interactions:
       - sameorigin
       X-Permitted-Cross-Domain-Policies:
       - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - 8c22af7d-3498-4fea-90d5-81396f26ded7
-      X-Runtime:
-      - '0.017138'
       X-XSS-Protection:
       - 1; mode=block
       content-length:
-      - '875'
+      - '62'
     status:
       code: 200
       message: OK
@@ -155,18 +64,85 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.com/api/subnets/24
+    uri: https://foreman.example.org/api/subnets?search=name%3D%22Test+Subnet+2%22&per_page=4294967296
   response:
     body:
-      string: '{"network":"192.168.200.0","network_type":"IPv4","cidr":27,"mask":"255.255.255.224","priority":null,"vlanid":42,"mtu":9000,"gateway":"192.168.200.1","dns_primary":"1.1.1.1","dns_secondary":"1.1.1.2","from":"192.168.200.10","to":"192.168.200.20","created_at":"2019-12-04
-        10:07:58 UTC","updated_at":"2019-12-04 10:07:58 UTC","ipam":"Internal DB","boot_mode":"Static","id":24,"name":"Test
-        Subnet 2","description":"My subnet description","network_address":"192.168.200.0/27","dhcp_id":null,"dhcp_name":null,"tftp_id":null,"tftp_name":null,"httpboot_id":null,"httpboot_name":null,"dns_id":null,"template_id":null,"template_name":null,"dhcp":null,"tftp":null,"httpboot":null,"dns":null,"template":null,"domains":[],"interfaces":[],"parameters":[],"locations":[{"id":35,"name":"Bar","title":"Bar","description":null},{"id":33,"name":"Foo","title":"Foo","description":null},{"id":34,"name":"Baz","title":"Foo/Baz","description":null}],"organizations":[{"id":36,"name":"Test
-        Org1","title":"Test Org1","description":"A test organization"},{"id":37,"name":"Test
+      string: "{\n  \"total\": 3,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+        : 4294967296,\n  \"search\": \"name=\\\"Test Subnet 2\\\"\",\n  \"sort\":\
+        \ {\n    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"network\"\
+        :\"192.168.200.0\",\"network_type\":\"IPv4\",\"cidr\":27,\"mask\":\"255.255.255.224\"\
+        ,\"priority\":null,\"vlanid\":42,\"mtu\":9000,\"gateway\":\"192.168.200.1\"\
+        ,\"dns_primary\":\"1.1.1.1\",\"dns_secondary\":\"1.1.1.2\",\"from\":\"192.168.200.10\"\
+        ,\"to\":\"192.168.200.20\",\"created_at\":\"2020-09-03 06:57:24 UTC\",\"updated_at\"\
+        :\"2020-09-03 06:57:24 UTC\",\"ipam\":\"Internal DB\",\"boot_mode\":\"Static\"\
+        ,\"id\":34,\"name\":\"Test Subnet 2\",\"description\":\"My subnet description\"\
+        ,\"network_address\":\"192.168.200.0/27\",\"dhcp_id\":null,\"dhcp_name\":null,\"\
+        tftp_id\":null,\"tftp_name\":null,\"httpboot_id\":null,\"httpboot_name\":null,\"\
+        externalipam_id\":null,\"externalipam_name\":null,\"dns_id\":null,\"template_id\"\
+        :null,\"template_name\":null,\"dhcp\":null,\"tftp\":null,\"httpboot\":null,\"\
+        externalipam\":null,\"dns\":null,\"template\":null}]\n}\n"
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Security-Policy:
+      - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
+      Content-Type:
+      - application/json; charset=utf-8
+      Foreman_api_version:
+      - '2'
+      Foreman_current_location:
+      - ; ANY
+      Foreman_current_organization:
+      - ; ANY
+      Foreman_version:
+      - 2.1.0
+      Keep-Alive:
+      - timeout=15, max=99
+      Strict-Transport-Security:
+      - max-age=631139040; includeSubdomains
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - sameorigin
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-XSS-Protection:
+      - 1; mode=block
+      content-length:
+      - '943'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json;version=2
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - apypie (https://github.com/Apipie/apypie)
+    method: GET
+    uri: https://foreman.example.org/api/subnets/34
+  response:
+    body:
+      string: '{"network":"192.168.200.0","network_type":"IPv4","cidr":27,"mask":"255.255.255.224","priority":null,"vlanid":42,"mtu":9000,"gateway":"192.168.200.1","dns_primary":"1.1.1.1","dns_secondary":"1.1.1.2","from":"192.168.200.10","to":"192.168.200.20","created_at":"2020-09-03
+        06:57:24 UTC","updated_at":"2020-09-03 06:57:24 UTC","ipam":"Internal DB","boot_mode":"Static","id":34,"name":"Test
+        Subnet 2","description":"My subnet description","network_address":"192.168.200.0/27","dhcp_id":null,"dhcp_name":null,"tftp_id":null,"tftp_name":null,"httpboot_id":null,"httpboot_name":null,"externalipam_id":null,"externalipam_name":null,"dns_id":null,"template_id":null,"template_name":null,"dhcp":null,"tftp":null,"httpboot":null,"externalipam":null,"dns":null,"template":null,"domains":[],"interfaces":[],"parameters":[],"locations":[{"id":40,"name":"Bar","title":"Bar","description":null},{"id":38,"name":"Foo","title":"Foo","description":null},{"id":39,"name":"Baz","title":"Foo/Baz","description":null}],"organizations":[{"id":41,"name":"Test
+        Org1","title":"Test Org1","description":"A test organization"},{"id":42,"name":"Test
         Org2","title":"Test Org2","description":"A test organization"}]}'
     headers:
       Cache-Control:
@@ -175,14 +151,10 @@ interactions:
       - Keep-Alive
       Content-Security-Policy:
       - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
       Content-Type:
       - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"8c1e42eac7e77f8f460b4530cd0635e6-gzip"
       Foreman_api_version:
       - '2'
       Foreman_current_location:
@@ -190,13 +162,9 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 1.23.1
+      - 2.1.0
       Keep-Alive:
-      - timeout=5, max=98
-      Server:
-      - Apache
-      Status:
-      - 200 OK
+      - timeout=15, max=98
       Strict-Transport-Security:
       - max-age=631139040; includeSubdomains
       Vary:
@@ -209,16 +177,10 @@ interactions:
       - sameorigin
       X-Permitted-Cross-Domain-Policies:
       - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - 33e8bfc6-a821-4c89-a039-45314d6d2514
-      X-Runtime:
-      - '0.025279'
       X-XSS-Protection:
       - 1; mode=block
       content-length:
-      - '1115'
+      - '1183'
     status:
       code: 200
       message: OK
@@ -231,18 +193,19 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.com/api/locations?search=title%3D%22Foo%22&per_page=4294967296
+    uri: https://foreman.example.org/api/organizations?search=name%3D%22Test+Org1%22&per_page=4294967296
   response:
     body:
-      string: "{\n  \"total\": 4,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
-        4294967296,\n  \"search\": \"title=\\\"Foo\\\"\",\n  \"sort\": {\n    \"by\":
-        null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\":null,\"parent_id\":null,\"parent_name\":null,\"created_at\":\"2019-12-04
-        10:07:39 UTC\",\"updated_at\":\"2019-12-04 10:07:39 UTC\",\"id\":33,\"name\":\"Foo\",\"title\":\"Foo\",\"description\":null}]\n}\n"
+      string: "{\n  \"total\": 3,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+        : 4294967296,\n  \"search\": \"name=\\\"Test Org1\\\"\",\n  \"sort\": {\n\
+        \    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\"\
+        :null,\"parent_id\":null,\"parent_name\":null,\"created_at\":\"2020-09-03\
+        \ 06:57:05 UTC\",\"updated_at\":\"2020-09-03 06:57:05 UTC\",\"id\":41,\"name\"\
+        :\"Test Org1\",\"title\":\"Test Org1\",\"description\":\"A test organization\"\
+        }]\n}\n"
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
@@ -250,14 +213,10 @@ interactions:
       - Keep-Alive
       Content-Security-Policy:
       - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
       Content-Type:
       - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"13898f94dcb51ef1dfc948b38af58379-gzip"
       Foreman_api_version:
       - '2'
       Foreman_current_location:
@@ -265,13 +224,9 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 1.23.1
+      - 2.1.0
       Keep-Alive:
-      - timeout=5, max=97
-      Server:
-      - Apache
-      Status:
-      - 200 OK
+      - timeout=15, max=97
       Strict-Transport-Security:
       - max-age=631139040; includeSubdomains
       Vary:
@@ -284,12 +239,129 @@ interactions:
       - sameorigin
       X-Permitted-Cross-Domain-Policies:
       - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - 3b3bebb5-0bd9-42d1-9d0c-7f7f3db3b477
-      X-Runtime:
-      - '0.015093'
+      X-XSS-Protection:
+      - 1; mode=block
+      content-length:
+      - '389'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json;version=2
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - apypie (https://github.com/Apipie/apypie)
+    method: GET
+    uri: https://foreman.example.org/api/organizations?search=name%3D%22Test+Org2%22&per_page=4294967296
+  response:
+    body:
+      string: "{\n  \"total\": 3,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+        : 4294967296,\n  \"search\": \"name=\\\"Test Org2\\\"\",\n  \"sort\": {\n\
+        \    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\"\
+        :null,\"parent_id\":null,\"parent_name\":null,\"created_at\":\"2020-09-03\
+        \ 06:57:07 UTC\",\"updated_at\":\"2020-09-03 06:57:07 UTC\",\"id\":42,\"name\"\
+        :\"Test Org2\",\"title\":\"Test Org2\",\"description\":\"A test organization\"\
+        }]\n}\n"
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Security-Policy:
+      - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
+      Content-Type:
+      - application/json; charset=utf-8
+      Foreman_api_version:
+      - '2'
+      Foreman_current_location:
+      - ; ANY
+      Foreman_current_organization:
+      - ; ANY
+      Foreman_version:
+      - 2.1.0
+      Keep-Alive:
+      - timeout=15, max=96
+      Strict-Transport-Security:
+      - max-age=631139040; includeSubdomains
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - sameorigin
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-XSS-Protection:
+      - 1; mode=block
+      content-length:
+      - '389'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json;version=2
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - apypie (https://github.com/Apipie/apypie)
+    method: GET
+    uri: https://foreman.example.org/api/locations?search=title%3D%22Foo%22&per_page=4294967296
+  response:
+    body:
+      string: "{\n  \"total\": 4,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+        : 4294967296,\n  \"search\": \"title=\\\"Foo\\\"\",\n  \"sort\": {\n    \"\
+        by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\":null,\"\
+        parent_id\":null,\"parent_name\":null,\"created_at\":\"2020-09-03 06:57:02\
+        \ UTC\",\"updated_at\":\"2020-09-03 06:57:02 UTC\",\"id\":38,\"name\":\"Foo\"\
+        ,\"title\":\"Foo\",\"description\":null}]\n}\n"
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Security-Policy:
+      - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
+      Content-Type:
+      - application/json; charset=utf-8
+      Foreman_api_version:
+      - '2'
+      Foreman_current_location:
+      - ; ANY
+      Foreman_current_organization:
+      - ; ANY
+      Foreman_version:
+      - 2.1.0
+      Keep-Alive:
+      - timeout=15, max=95
+      Strict-Transport-Security:
+      - max-age=631139040; includeSubdomains
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - sameorigin
+      X-Permitted-Cross-Domain-Policies:
+      - none
       X-XSS-Protection:
       - 1; mode=block
       content-length:
@@ -306,18 +378,18 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.com/api/locations?search=title%3D%22Foo%2FBaz%22&per_page=4294967296
+    uri: https://foreman.example.org/api/locations?search=title%3D%22Foo%2FBaz%22&per_page=4294967296
   response:
     body:
-      string: "{\n  \"total\": 4,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
-        4294967296,\n  \"search\": \"title=\\\"Foo/Baz\\\"\",\n  \"sort\": {\n    \"by\":
-        null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\":\"33\",\"parent_id\":33,\"parent_name\":\"Foo\",\"created_at\":\"2019-12-04
-        10:07:40 UTC\",\"updated_at\":\"2019-12-04 10:07:40 UTC\",\"id\":34,\"name\":\"Baz\",\"title\":\"Foo/Baz\",\"description\":null}]\n}\n"
+      string: "{\n  \"total\": 4,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+        : 4294967296,\n  \"search\": \"title=\\\"Foo/Baz\\\"\",\n  \"sort\": {\n \
+        \   \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\"\
+        :\"38\",\"parent_id\":38,\"parent_name\":\"Foo\",\"created_at\":\"2020-09-03\
+        \ 06:57:03 UTC\",\"updated_at\":\"2020-09-03 06:57:03 UTC\",\"id\":39,\"name\"\
+        :\"Baz\",\"title\":\"Foo/Baz\",\"description\":null}]\n}\n"
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
@@ -325,14 +397,10 @@ interactions:
       - Keep-Alive
       Content-Security-Policy:
       - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
       Content-Type:
       - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"5ef7c3e495999dd3f33dbf7b762ad3ae-gzip"
       Foreman_api_version:
       - '2'
       Foreman_current_location:
@@ -340,13 +408,9 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 1.23.1
+      - 2.1.0
       Keep-Alive:
-      - timeout=5, max=96
-      Server:
-      - Apache
-      Status:
-      - 200 OK
+      - timeout=15, max=94
       Strict-Transport-Security:
       - max-age=631139040; includeSubdomains
       Vary:
@@ -359,12 +423,6 @@ interactions:
       - sameorigin
       X-Permitted-Cross-Domain-Policies:
       - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - 29298f96-adcd-4792-8843-2d790bd7364e
-      X-Runtime:
-      - '0.016233'
       X-XSS-Protection:
       - 1; mode=block
       content-length:
@@ -381,18 +439,18 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.com/api/locations?search=title%3D%22Bar%22&per_page=4294967296
+    uri: https://foreman.example.org/api/locations?search=title%3D%22Bar%22&per_page=4294967296
   response:
     body:
-      string: "{\n  \"total\": 4,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
-        4294967296,\n  \"search\": \"title=\\\"Bar\\\"\",\n  \"sort\": {\n    \"by\":
-        null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\":null,\"parent_id\":null,\"parent_name\":null,\"created_at\":\"2019-12-04
-        10:07:42 UTC\",\"updated_at\":\"2019-12-04 10:07:42 UTC\",\"id\":35,\"name\":\"Bar\",\"title\":\"Bar\",\"description\":null}]\n}\n"
+      string: "{\n  \"total\": 4,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+        : 4294967296,\n  \"search\": \"title=\\\"Bar\\\"\",\n  \"sort\": {\n    \"\
+        by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\":null,\"\
+        parent_id\":null,\"parent_name\":null,\"created_at\":\"2020-09-03 06:57:04\
+        \ UTC\",\"updated_at\":\"2020-09-03 06:57:04 UTC\",\"id\":40,\"name\":\"Bar\"\
+        ,\"title\":\"Bar\",\"description\":null}]\n}\n"
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
@@ -400,14 +458,10 @@ interactions:
       - Keep-Alive
       Content-Security-Policy:
       - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
+        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
+        style-src ''unsafe-inline'' ''self'''
       Content-Type:
       - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"d894ad17d3475ef6ae7132607dc869bf-gzip"
       Foreman_api_version:
       - '2'
       Foreman_current_location:
@@ -415,13 +469,9 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 1.23.1
+      - 2.1.0
       Keep-Alive:
-      - timeout=5, max=95
-      Server:
-      - Apache
-      Status:
-      - 200 OK
+      - timeout=15, max=93
       Strict-Transport-Security:
       - max-age=631139040; includeSubdomains
       Vary:
@@ -434,168 +484,10 @@ interactions:
       - sameorigin
       X-Permitted-Cross-Domain-Policies:
       - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - e330740c-6988-42ec-b912-a41184c751b6
-      X-Runtime:
-      - '0.016723'
       X-XSS-Protection:
       - 1; mode=block
       content-length:
       - '355'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json;version=2
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5
-      User-Agent:
-      - apypie (https://github.com/Apipie/apypie)
-    method: GET
-    uri: https://foreman.example.com/api/organizations?search=name%3D%22Test+Org1%22&per_page=4294967296
-  response:
-    body:
-      string: "{\n  \"total\": 3,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
-        4294967296,\n  \"search\": \"name=\\\"Test Org1\\\"\",\n  \"sort\": {\n    \"by\":
-        null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\":null,\"parent_id\":null,\"parent_name\":null,\"created_at\":\"2019-12-04
-        10:07:43 UTC\",\"updated_at\":\"2019-12-04 10:07:43 UTC\",\"id\":36,\"name\":\"Test
-        Org1\",\"title\":\"Test Org1\",\"description\":\"A test organization\"}]\n}\n"
-    headers:
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      Connection:
-      - Keep-Alive
-      Content-Security-Policy:
-      - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"3097ef1c9f9fdeea8c8131c3338a7aec-gzip"
-      Foreman_api_version:
-      - '2'
-      Foreman_current_location:
-      - ; ANY
-      Foreman_current_organization:
-      - ; ANY
-      Foreman_version:
-      - 1.23.1
-      Keep-Alive:
-      - timeout=5, max=94
-      Server:
-      - Apache
-      Status:
-      - 200 OK
-      Strict-Transport-Security:
-      - max-age=631139040; includeSubdomains
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Frame-Options:
-      - sameorigin
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - 4bf5efbd-9af0-492e-906d-e5b7b70dccca
-      X-Runtime:
-      - '0.015808'
-      X-XSS-Protection:
-      - 1; mode=block
-      content-length:
-      - '389'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json;version=2
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Cookie:
-      - _session_id=50d85e7063bb9c5e4077ba561976a7f5
-      User-Agent:
-      - apypie (https://github.com/Apipie/apypie)
-    method: GET
-    uri: https://foreman.example.com/api/organizations?search=name%3D%22Test+Org2%22&per_page=4294967296
-  response:
-    body:
-      string: "{\n  \"total\": 3,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
-        4294967296,\n  \"search\": \"name=\\\"Test Org2\\\"\",\n  \"sort\": {\n    \"by\":
-        null,\n    \"order\": null\n  },\n  \"results\": [{\"ancestry\":null,\"parent_id\":null,\"parent_name\":null,\"created_at\":\"2019-12-04
-        10:07:44 UTC\",\"updated_at\":\"2019-12-04 10:07:44 UTC\",\"id\":37,\"name\":\"Test
-        Org2\",\"title\":\"Test Org2\",\"description\":\"A test organization\"}]\n}\n"
-    headers:
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      Connection:
-      - Keep-Alive
-      Content-Security-Policy:
-      - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data: *.gravatar.com; script-src ''unsafe-eval'' ''unsafe-inline''
-        ''self''; style-src ''unsafe-inline'' ''self'''
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Wed, 04 Dec 2019 10:07:59 GMT
-      ETag:
-      - W/"4c71f98e3bcb5ca195083d797255f6e4-gzip"
-      Foreman_api_version:
-      - '2'
-      Foreman_current_location:
-      - ; ANY
-      Foreman_current_organization:
-      - ; ANY
-      Foreman_version:
-      - 1.23.1
-      Keep-Alive:
-      - timeout=5, max=93
-      Server:
-      - Apache
-      Status:
-      - 200 OK
-      Strict-Transport-Security:
-      - max-age=631139040; includeSubdomains
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Frame-Options:
-      - sameorigin
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Powered-By:
-      - Phusion Passenger 4.0.53
-      X-Request-Id:
-      - d6368149-f652-4ca7-9636-a546975dd190
-      X-Runtime:
-      - '0.015573'
-      X-XSS-Protection:
-      - 1; mode=block
-      content-length:
-      - '389'
     status:
       code: 200
       message: OK

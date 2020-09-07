@@ -23,7 +23,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: repository_sync
-short_description: Sync a repository or product
+version_added: 1.0.0
+short_description: Sync a Repository or Product
 description:
   - Sync a repository or product
 author:
@@ -47,7 +48,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Sync repository"
-  repository_sync:
+  redhat.satellite.repository_sync:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"

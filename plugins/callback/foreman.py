@@ -4,6 +4,8 @@
 # (c) 2017 Ansible Project
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
+# pylint: disable=super-with-arguments
+
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
@@ -12,10 +14,7 @@ DOCUMENTATION = '''
     type: notification
     short_description: Sends events to Foreman
     description:
-      - This callback will report facts and task events to Foreman https://theforeman.org/
-      - Before 2.4, if you wanted to use an ini configuration, the file must be placed in the same directory as this plugin and named foreman.ini
-      - In 2.4 and above you can just put it in the main Ansible configuration file.
-    version_added: "2.2"
+      - This callback will report facts and task events to Foreman
     requirements:
       - whitelisting in configuration
       - requests (python library)
@@ -208,6 +207,7 @@ class CallbackModule(CallbackBase):
                     "metrics": metrics,
                     "status": status,
                     "logs": log,
+                    "reporter": "ansible",
                 }
             }
             try:

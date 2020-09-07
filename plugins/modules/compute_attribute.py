@@ -22,6 +22,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: compute_attribute
+version_added: 1.0.0
 short_description: Manage Compute Attributes
 description:
   - "Manage Compute Attributes"
@@ -53,7 +54,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create compute attribute"
-  compute_attribute:
+  redhat.satellite.compute_attribute:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -65,7 +66,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Update compute attribute"
-  compute_attribute:
+  redhat.satellite.compute_attribute:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -77,7 +78,51 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    compute_attributes:
+      description: List of compute attributes.
+      type: list
+      elements: dict
+      contains:
+        id:
+          description: Database id of the compute_attribute.
+          type: int
+        compute_profile_id:
+          description: Database id of the associated compute profile.
+          type: int
+        compute_profile_name:
+          description: Name of the associated compute profile.
+          type: str
+        compute_resource_id:
+          description: Database id of the associated compute resource.
+          type: int
+        compute_resource_name:
+          description: Name of the associated compute resource.
+          type: str
+        created_at:
+          description: Creation date of the compute attribute.
+          type: str
+        updated_at:
+          description: Date of last change to the compute attribute.
+          type: str
+        name:
+          description: Generated friendly name for the compute attribute.
+          type: str
+        provider_friendly_name:
+          description: Name of the provider type of the compute resource.
+          type: str
+        attributes:
+          description: Effective attributes for the given combination of compute profile and resource.
+          type: dict
+        vm_attrs:
+          description: Configured attributes.
+          type: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
 
@@ -94,7 +139,6 @@ def main():
             vm_attrs=dict(type='dict', aliases=['vm_attributes']),
         ),
         entity_opts=dict(resolve=False),
-        entity_resolve=False,
     )
 
     with module.api_connection():

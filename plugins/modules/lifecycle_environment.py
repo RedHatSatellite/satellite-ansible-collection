@@ -23,7 +23,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: lifecycle_environment
-short_description: Create and manage lifecycle environments
+version_added: 1.0.0
+short_description: Manage Lifecycle Environments
 description:
     - Create and manage lifecycle environments
 author:
@@ -55,7 +56,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Add a production lifecycle environment"
-  lifecycle_environment:
+  redhat.satellite.lifecycle_environment:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -67,7 +68,17 @@ EXAMPLES = '''
     state: "present"
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    lifecycle_environments:
+      description: List of lifecycle environments.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
 

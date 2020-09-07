@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: usergroup
-short_description: Manage User groups
+version_added: 1.0.0
+short_description: Manage User Groups
 description:
   - Create, update, and delete user groups
 author:
@@ -69,7 +70,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: Create a user group
-  usergroup:
+  redhat.satellite.usergroup:
     name: test
     admin: no
     roles:
@@ -82,7 +83,17 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    usergroups:
+      description: List of usergroups.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
 

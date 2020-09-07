@@ -22,9 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: os_default_template
+version_added: 1.0.0
 short_description: Manage Default Template Associations To Operating Systems
 description:
-  - "Manage OSDefaultTemplate Entities"
+  - Manage OSDefaultTemplate Entities
 author:
   - "Matthias M Dellweg (@mdellweg) ATIX AG"
 options:
@@ -50,7 +51,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create an Association"
-  os_default_template:
+  redhat.satellite.os_default_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -60,7 +61,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Delete an Association"
-  os_default_template:
+  redhat.satellite.os_default_template:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -69,7 +70,17 @@ EXAMPLES = '''
     state: absent
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    os_default_templates:
+      description: List of operatingsystem default templates.
+      type: list
+      elements: dict
+'''
 
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule
@@ -93,7 +104,7 @@ def main():
             ['state', 'present', ['provisioning_template']],
             ['state', 'present_with_defaults', ['provisioning_template']],
         ),
-        entity_scope=['operatingsystem'],
+        entity_opts={'scope': ['operatingsystem']},
     )
 
     if 'provisioning_template' in module.foreman_params and module.desired_absent:

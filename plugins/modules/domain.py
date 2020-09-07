@@ -22,6 +22,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: domain
+version_added: 1.0.0
 short_description: Manage Domains
 description:
   - Create, update, and delete Domains
@@ -59,7 +60,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: domain
-  domain:
+  redhat.satellite.domain:
     name: "example.org"
     description: "Example Domain"
     locations:
@@ -72,12 +73,22 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    domains:
+      description: List of domains.
+      type: list
+      elements: dict
+'''
 
-from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule, NestedParametersMixin
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule, ParametersMixin
 
 
-class ForemanDomainModule(NestedParametersMixin, ForemanTaxonomicEntityAnsibleModule):
+class ForemanDomainModule(ParametersMixin, ForemanTaxonomicEntityAnsibleModule):
     pass
 
 

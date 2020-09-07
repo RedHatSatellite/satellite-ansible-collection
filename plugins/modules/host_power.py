@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: host_power
-short_description: Manage hosts power state
+version_added: 1.0.0
+short_description: Manage Power State of Hosts
 description:
   - "Manage power state of a host"
   - "This beta version can start and stop an existing foreman host and question the current power state."
@@ -57,7 +58,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Switch a host on"
-  host_power:
+  redhat.satellite.host_power:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -65,7 +66,7 @@ EXAMPLES = '''
     state: on
 
 - name: "Switch a host off"
-  host_power:
+  redhat.satellite.host_power:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -73,7 +74,7 @@ EXAMPLES = '''
     state: off
 
 - name: "Query host power state"
-  host_power:
+  redhat.satellite.host_power:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"

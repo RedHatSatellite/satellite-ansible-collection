@@ -22,6 +22,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: redhat_manifest
+version_added: 1.0.0
 short_description: Interact with a Red Hat Satellite Subscription Manifest
 description:
     - Download and modify a Red Hat Satellite Subscription Manifest
@@ -88,7 +89,7 @@ options:
 
 EXAMPLES = '''
 - name: Create satellite.example.com Manifest and add 7 sub
-  redhat_manifest:
+  redhat.satellite.redhat_manifest:
     name: "satellite.example.com"
     username: "john-smith"
     password: "changeme"
@@ -96,7 +97,7 @@ EXAMPLES = '''
     quantity: 7
 
 - name: Ensure my manifest has 10 of one subs in it and export
-  redhat_manifest:
+  redhat.satellite.redhat_manifest:
     uuid: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
     username: john-smith
     password: changeme
@@ -105,7 +106,7 @@ EXAMPLES = '''
     path: /root/manifest.zip
 
 - name: Remove all of one subs from satellite.example.com
-  redhat_manifest:
+  redhat.satellite.redhat_manifest:
     name: satellite.example.com
     username: john-smith
     password: changeme

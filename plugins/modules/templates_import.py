@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: templates_import
-short_description: Sync templates from a repository
+version_added: 1.0.0
+short_description: Sync Templates from a repository
 description:
   - Sync provisioning templates, report_templates, partition tables and job templates from external git repository or file system.
   - Based on foreman_templates plugin U(https://github.com/theforeman/foreman_templates).
@@ -96,7 +97,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: Sync templates from git repo
-  templates_import:
+  redhat.satellite.templates_import:
     repo: https://github.com/theforeman/community-templates.git
     branch: 1.24-stable
     associate: new
@@ -105,7 +106,34 @@ EXAMPLES = '''
     password: "changeme"
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+message:
+  description: Information about the import.
+  returned: success
+  type: dict
+  contains:
+    repo:
+      description: Repository, the templates were imported from.
+      type: str
+    branch:
+      description: Branch used in the repository.
+      type: str
+report:
+  description: Report of the import.
+  returned: success
+  type: dict
+  contains:
+    changed:
+      description: List of templates that have been updated.
+      type: list
+    new:
+      description: List of templates that have been created.
+      type: list
+templates:
+  description: Final state of the templates.
+  returned: success
+  type: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicAnsibleModule, _flatten_entity
 

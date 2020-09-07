@@ -22,6 +22,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: smart_class_parameter
+version_added: 1.0.0
 short_description: Manage Smart Class Parameters
 description:
   - Update Smart Class Parameters.
@@ -121,7 +122,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Update prometheus::server alertmanagers_config param default value"
-  smart_class_parameter:
+  redhat.satellite.smart_class_parameter:
     puppetclass_name: "prometheus::server"
     parameter: alertmanagers_config
     override: true
@@ -133,7 +134,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Update prometheus::server alertmanagers_config param default value"
-  smart_class_parameter:
+  redhat.satellite.smart_class_parameter:
     puppetclass_name: "prometheus::server"
     parameter: alertmanagers_config
     override: true
@@ -154,7 +155,17 @@ EXAMPLES = '''
     state: present
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    smart_class_parameters:
+      description: List of smart class parameters.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule, parameter_value_to_str
 

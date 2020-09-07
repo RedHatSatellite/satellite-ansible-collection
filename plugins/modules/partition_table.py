@@ -22,9 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: partition_table
-short_description: Manage Partition Table Template
+version_added: 1.0.0
+short_description: Manage Partition Table Templates
 description:
-    - "Manage Partition Table"
+  - Manage Partition Table Templates
 author:
   - "Bernhard Hopfenmueller (@Fobhep) ATIX AG"
   - "Matthias Dellweg (@mdellweg) ATIX AG"
@@ -71,7 +72,7 @@ EXAMPLES = '''
 
 # Keep in mind, that in this case, the inline parameters will be overwritten
 - name: "Create a Partition Table inline"
-  partition_table:
+  redhat.satellite.partition_table:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -90,7 +91,7 @@ EXAMPLES = '''
       - TARDIS INC
 
 - name: "Create a Partition Template from a file"
-  partition_table:
+  redhat.satellite.partition_table:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -102,7 +103,7 @@ EXAMPLES = '''
       - TARDIS INC
 
 - name: "Delete a Partition Template"
-  partition_table:
+  redhat.satellite.partition_table:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -114,7 +115,7 @@ EXAMPLES = '''
     state: absent
 
 - name: "Create a Partition Template from a file and modify with parameter(s)"
-  partition_table:
+  redhat.satellite.partition_table:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -129,7 +130,7 @@ EXAMPLES = '''
 # Providing a name in this case wouldn't be very sensible.
 # Alternatively make use of with_filetree to parse recursively with filter.
 - name: "Parsing a directory of partition templates"
-  partition_table:
+  redhat.satellite.partition_table:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -144,7 +145,7 @@ EXAMPLES = '''
 
 # If the templates are stored locally and the ansible module is executed on a remote host
 - name: Ensure latest version of all Ptable Community Templates
-  partition_table:
+  redhat.satellite.partition_table:
     server_url: "https://satellite.example.com"
     username:  "admin"
     password:  "changeme"
@@ -156,7 +157,7 @@ EXAMPLES = '''
 
 # with name set to "*" bulk actions can be performed
 - name: "Delete *ALL* partition tables"
-  partition_table:
+  redhat.satellite.partition_table:
     username: "admin"
     password: "admin"
     server_url: "https://satellite.example.com"
@@ -164,7 +165,7 @@ EXAMPLES = '''
     state: absent
 
 - name: "Assign all partition tables to the same organization(s)"
-  partition_table:
+  redhat.satellite.partition_table:
     username: "admin"
     password: "admin"
     server_url: "https://satellite.example.com"
@@ -177,7 +178,17 @@ EXAMPLES = '''
 
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    ptables:
+      description: List of partition tables.
+      type: list
+      elements: dict
+'''
 
 
 import os

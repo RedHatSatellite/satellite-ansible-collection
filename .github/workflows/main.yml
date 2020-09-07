@@ -13,32 +13,52 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["2.7", "3.5", "3.6", "3.7"]
+        python:
+          - "2.7"
+          - "3.5"
+          - "3.6"
+          - "3.7"
+          - "3.8"
         ansible:
           - stable-2.8
           - stable-2.9
+          - stable-2.10
           - devel
         exclude:
           - python: "2.7"
             ansible: "stable-2.8"
           - python: "2.7"
             ansible: "stable-2.9"
+          - python: "2.7"
+            ansible: "stable-2.10"
           - python: "3.5"
             ansible: "stable-2.8"
           - python: "3.5"
             ansible: "stable-2.9"
+          - python: "3.5"
+            ansible: "stable-2.10"
           - python: "3.6"
             ansible: "stable-2.8"
           - python: "3.6"
             ansible: "stable-2.9"
+          - python: "3.6"
+            ansible: "stable-2.10"
+          - python: "3.8"
+            ansible: "stable-2.8"
+          - python: "3.8"
+            ansible: "stable-2.9"
+          - python: "3.8"
+            ansible: "stable-2.10"
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
+      - name: Install libyaml-dev for PyYAML
+        run: sudo apt-get install -y libyaml-dev
       - name: Install Ansible
-        run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}#egg=ansible
+        run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}
       - name: Set Environment to use mazer
         run: |
           echo "::set-env name=COLLECTION_COMMAND::mazer"
@@ -49,14 +69,18 @@ jobs:
         run: make test-setup
       - name: fake redhat-uep.pem for redhat_manifest module
         run: sudo mkdir -p /etc/rhsm/ca/ && sudo touch /etc/rhsm/ca/redhat-uep.pem
-      - name: Install Ansible devel specific dependencies
+      - name: Install required collections for ansible-base (2.10+)
         run: ansible-galaxy collection install community.general
-        if: matrix.ansible == 'devel'
-      - name: Run basic tests
-        run: make test-crud test-other
-      - name: Run Ansible devel specific tests
-        run: make SANITY_OPTS="--local" PYTHON_VERSION=${{ matrix.python }} sanity dist-test
-        if: matrix.ansible == 'devel'
+        if: matrix.ansible == 'devel' || matrix.ansible == 'stable-2.10'
+      - name: Run crud tests
+        run: make test-crud
+      - name: Run other tests
+        run: make test-other
+      - name: Run dist tests
+        run: make dist-test
+      - name: Run sanity tests
+        run: make SANITY_OPTS="--local" sanity
+        if: (matrix.ansible == 'devel' || matrix.ansible == 'stable-2.10') && matrix.python != '3.8'
 
   checkmode:
     runs-on: ubuntu-latest
@@ -83,8 +107,13 @@ jobs:
           python-version: "3.7"
       - name: Install dependencies
         run: make doc-setup
-      - name: Run tests
+      - name: Build docs
         run: make doc
+      - name: Upload docs artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs-html
+          path: docs/_build/html/
 
   lint:
     runs-on: ubuntu-latest
@@ -98,3 +127,8 @@ jobs:
         run: pip install flake8 yamllint
       - name: Run lint
         run: make lint
+      - name: Upload collection artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: collection
+          path: theforeman-foreman-*.tar.gz

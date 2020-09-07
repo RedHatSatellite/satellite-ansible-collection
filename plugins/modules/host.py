@@ -22,10 +22,10 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: host
-short_description: Manage hosts
+version_added: 1.0.0
+short_description: Manage Hosts
 description:
-  - "Manage host Entities"
-  - "This beta version can create and delete hosts from preexisting host groups"
+  - Create, update, and delete Hosts
 author:
   - "Bernhard Hopfenmueller (@Fobhep) ATIX AG"
 options:
@@ -109,6 +109,12 @@ options:
       - The image to use when I(provision_method=image).
     type: str
     required: false
+  compute_attributes:
+    description:
+      - Additional compute resource specific attributes.
+      - When this parameter is set, the module will not be idempotent.
+    type: dict
+    required: false
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state
@@ -118,7 +124,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create a host"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -127,7 +133,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Create a host with build context"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -137,7 +143,7 @@ EXAMPLES = '''
     state: present
 
 - name: "Create an unmanaged host"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -145,8 +151,29 @@ EXAMPLES = '''
     managed: false
     state: present
 
+- name: "Create a VM with 2 CPUs and 4GB RAM"
+  redhat.satellite.host:
+    username: "admin"
+    password: "changeme"
+    server_url: "https://satellite.example.com"
+    name: "new_host"
+    compute_attributes:
+       cpus: 2
+       memory_mb: 4096
+    state: present
+
+- name: "Create a VM and start it after creation"
+  redhat.satellite.host:
+    username: "admin"
+    password: "changeme"
+    server_url: "https://satellite.example.com"
+    name: "new_host"
+    compute_attributes:
+       start: "1"
+    state: present
+
 - name: "Delete a host"
-  host:
+  redhat.satellite.host:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -154,7 +181,17 @@ EXAMPLES = '''
     state: absent
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    hosts:
+      description: List of hosts.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (
     ensure_puppetclasses,
@@ -185,6 +222,7 @@ def main():
             owner_type=dict(type='invisible'),
             provision_method=dict(choices=['build', 'image', 'bootdisk']),
             image=dict(type='entity'),
+            compute_attributes=dict(type='dict'),
         ),
         mutually_exclusive=[
             ['owner', 'owner_group']

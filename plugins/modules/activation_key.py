@@ -22,7 +22,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: activation_key
-short_description: Create and manage activation keys
+version_added: 1.0.0
+short_description: Manage Activation Keys
 description:
   - Create and manage activation keys
 author: "Andrew Kofink (@akofink)"
@@ -31,6 +32,10 @@ options:
     description:
       - Name of the activation key
     required: true
+    type: str
+  description:
+    description:
+      - Description of the activation key
     type: str
   lifecycle_environment:
     description:
@@ -145,7 +150,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: "Create client activation key"
-  activation_key:
+  redhat.satellite.activation_key:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"
@@ -168,7 +173,17 @@ EXAMPLES = '''
     service_level: Standard
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    activation_keys:
+      description: List of activation keys.
+      type: list
+      elements: dict
+'''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
 
@@ -197,6 +212,7 @@ def main():
         foreman_spec=dict(
             name=dict(required=True),
             new_name=dict(),
+            description=dict(),
             lifecycle_environment=dict(type='entity', flat_name='environment_id', scope=['organization']),
             content_view=dict(type='entity', scope=['organization']),
             host_collections=dict(type='entity_list', scope=['organization']),

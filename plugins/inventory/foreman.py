@@ -2,17 +2,21 @@
 # Copyright (C) 2016 Guido Günther <agx@sigxcpu.org>, Daniel Lobato Garcia <dlobatog@redhat.com>
 # Copyright (c) 2018 Ansible Project
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+
+# pylint: disable=raise-missing-from
+# pylint: disable=super-with-arguments
+
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = '''
     name: foreman
     plugin_type: inventory
-    short_description: foreman inventory source
+    short_description: Foreman inventory source
     requirements:
         - requests >= 1.1
     description:
-        - Get inventory hosts from the Foreman service.
+        - Get inventory hosts from Foreman.
         - Uses a YAML configuration file that ends with ``foreman.(yml|yaml)``.
     extends_documentation_fragment:
         - inventory_cache
@@ -68,6 +72,10 @@ DOCUMENTATION = '''
       host_filters:
         description: This can be used to restrict the list of returned host
         type: string
+      batch_size:
+        description: Number of hosts per batch that will be retrieved from the Foreman API per individual call
+        type: integer
+        default: 250
 '''
 
 EXAMPLES = '''
@@ -143,7 +151,7 @@ class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
             if params is None:
                 params = {}
             params['page'] = 1
-            params['per_page'] = 250
+            params['per_page'] = self.get_option('batch_size')
             while True:
                 ret = s.get(url, params=params)
                 if ignore_errors and ret.status_code in ignore_errors:
@@ -261,10 +269,10 @@ class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
                     else:
                         for k, v in filtered_params.items():
                             try:
-                                self.inventory.set_variable(host_name, p['name'], p['value'])
+                                self.inventory.set_variable(host_name, k, v)
                             except ValueError as e:
                                 self.display.warning("Could not set hostvar %s to '%s' for the '%s' host, skipping:  %s" %
-                                                     (p['name'], to_native(p['value']), host, to_native(e)))
+                                                     (k, to_native(v), host, to_native(e)))
 
                 # set host vars from facts
                 if self.get_option('want_facts'):

@@ -24,7 +24,8 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: compute_resource
-short_description: Manage Compute resources
+version_added: 1.0.0
+short_description: Manage Compute Resources
 description:
   - Create, update, and delete Compute Resources
 author:
@@ -115,6 +116,10 @@ options:
         description:
           - verify ssl from provider I(provider=proxmox)
         type: bool
+      caching_enabled:
+        description:
+          - enable caching for I(provider=vmware)
+        type: bool
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state_with_defaults
@@ -123,7 +128,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: Create livirt compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: example_compute_resource
     locations:
       - Munich
@@ -139,7 +144,7 @@ EXAMPLES = '''
     state: present
 
 - name: Update libvirt compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: example_compute_resource
     description: updated compute resource
     locations:
@@ -156,7 +161,7 @@ EXAMPLES = '''
     state: present
 
 - name: Delete libvirt compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: example_compute_resource
     server_url: "https://satellite.example.com"
     username: admin
@@ -164,7 +169,7 @@ EXAMPLES = '''
     state: absent
 
 - name: Create vmware compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: example_compute_resource
     locations:
       - Munich
@@ -172,6 +177,7 @@ EXAMPLES = '''
       - ACME
     provider: vmware
     provider_params:
+      caching_enabled: false
       url: vsphere.example.com
       user: admin
       password: secret
@@ -182,7 +188,7 @@ EXAMPLES = '''
     state: present
 
 - name: Create ovirt compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: ovirt_compute_resource
     locations:
       - France/Toulouse
@@ -202,7 +208,7 @@ EXAMPLES = '''
     state: present
 
 - name: Create proxmox compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: proxmox_compute_resource
     locations:
       - Munich
@@ -220,7 +226,7 @@ EXAMPLES = '''
     state: present
 
 - name: create EC2 compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: EC2_compute_resource
     description: EC2
     locations:
@@ -238,7 +244,7 @@ EXAMPLES = '''
     state: present
 
 - name: create Azure compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: AzureRm_compute_resource
     description: AzureRm
     locations:
@@ -258,7 +264,7 @@ EXAMPLES = '''
     state: present
 
 - name: create GCE compute resource
-  compute_resource:
+  redhat.satellite.compute_resource:
     name: GCE compute resource
     description: Google Cloud Engine
     locations:
@@ -278,7 +284,17 @@ EXAMPLES = '''
 
 '''
 
-RETURN = ''' # '''
+RETURN = '''
+entity:
+  description: Final state of the affected entities grouped by their type.
+  returned: success
+  type: dict
+  contains:
+    compute_resources:
+      description: List of compute resources.
+      type: list
+      elements: dict
+'''
 
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
@@ -297,7 +313,7 @@ def get_provider_info(provider):
         return 'Proxmox', ['url', 'user', 'password', 'ssl_verify_peer']
 
     elif provider_name == 'vmware':
-        return 'Vmware', ['url', 'user', 'password', 'datacenter']
+        return 'Vmware', ['url', 'user', 'password', 'datacenter', 'caching_enabled']
 
     elif provider_name == 'ec2':
         return 'EC2', ['user', 'password', 'region']
@@ -326,6 +342,7 @@ def main():
             display_type=dict(type='invisible'),
             datacenter=dict(type='invisible'),
             url=dict(type='invisible'),
+            caching_enabled=dict(type='invisible'),
             user=dict(type='invisible'),
             password=dict(type='invisible'),
             region=dict(type='invisible'),
@@ -349,6 +366,7 @@ def main():
                 tenant=dict(),
                 app_ident=dict(),
                 datacenter=dict(),
+                caching_enabled=dict(type='bool'),
                 use_v4=dict(type='bool'),
                 ovirt_quota=dict(),
                 project=dict(),
