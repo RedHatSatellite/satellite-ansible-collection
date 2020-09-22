@@ -147,8 +147,8 @@ EXAMPLES = '''
 - name: Ensure latest version of all Ptable Community Templates
   redhat.satellite.partition_table:
     server_url: "https://satellite.example.com"
-    username:  "admin"
-    password:  "changeme"
+    username: "admin"
+    password: "changeme"
     state: present
     layout: '{{ lookup("file", item.src) }}'
   with_filetree: '/path/to/partition/tables'
@@ -159,7 +159,7 @@ EXAMPLES = '''
 - name: "Delete *ALL* partition tables"
   redhat.satellite.partition_table:
     username: "admin"
-    password: "admin"
+    password: "changeme"
     server_url: "https://satellite.example.com"
     name: "*"
     state: absent
@@ -167,7 +167,7 @@ EXAMPLES = '''
 - name: "Assign all partition tables to the same organization(s)"
   redhat.satellite.partition_table:
     username: "admin"
-    password: "admin"
+    password: "changeme"
     server_url: "https://satellite.example.com"
     name: "*"
     state: present

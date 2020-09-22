@@ -85,15 +85,11 @@ options:
   updated_name:
     description: New provisioning template name. When this parameter is set, the module will not be idempotent.
     type: str
-  operatingsystems:
-    description: The Operatingsystems the template shall be assigned to
-    required: false
-    type: list
-    elements: str
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state_with_defaults
   - redhat.satellite.foreman.taxonomy
+  - redhat.satellite.foreman.operatingsystems
 '''
 
 EXAMPLES = '''
@@ -178,8 +174,8 @@ EXAMPLES = '''
 - name: Ensure latest version of all Provisioning Community Templates
   redhat.satellite.provisioning_template:
     server_url: "https://satellite.example.com"
-    username:  "admin"
-    password:  "changeme"
+    username: "admin"
+    password: "changeme"
     state: present
     template: '{{ lookup("file", item.src) }}'
   with_filetree: '/path/to/provisioning/templates'
@@ -190,7 +186,7 @@ EXAMPLES = '''
 - name: "Delete *ALL* provisioning templates"
   redhat.satellite.provisioning_template:
     username: "admin"
-    password: "admin"
+    password: "changeme"
     server_url: "https://satellite.example.com"
     name: "*"
     state: absent
@@ -198,7 +194,7 @@ EXAMPLES = '''
 - name: "Assign all provisioning templates to the same organization(s)"
   redhat.satellite.provisioning_template:
     username: "admin"
-    password: "admin"
+    password: "changeme"
     server_url: "https://satellite.example.com"
     name: "*"
     state: present
@@ -279,7 +275,7 @@ def main():
             locked=dict(type='bool'),
             name=dict(),
             operatingsystems=dict(type='entity_list'),
-            snippet=dict(type='invisible'),
+            snippet=dict(invisible=True),
         ),
         mutually_exclusive=[
             ['file_name', 'template'],

@@ -38,11 +38,6 @@ options:
   updated_name:
     description: New full installation medium name. When this parameter is set, the module will not be idempotent.
     type: str
-  operatingsystems:
-    description: List of operating systems the installation medium should be assigned to
-    required: false
-    type: list
-    elements: str
   os_family:
     description:
       - The OS family the template shall be assigned with.
@@ -55,6 +50,7 @@ extends_documentation_fragment:
   - redhat.satellite.foreman.entity_state_with_defaults
   - redhat.satellite.foreman.taxonomy
   - redhat.satellite.foreman.os_family
+  - redhat.satellite.foreman.operatingsystems
 '''
 
 EXAMPLES = '''
@@ -70,7 +66,7 @@ EXAMPLES = '''
     path: "http://debian.org/mirror/"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 '''
 

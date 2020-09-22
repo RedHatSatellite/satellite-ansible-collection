@@ -55,7 +55,7 @@ EXAMPLES = '''
       - mymodule::myclass
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 '''
 

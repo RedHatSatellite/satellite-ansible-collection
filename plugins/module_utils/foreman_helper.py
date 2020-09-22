@@ -21,7 +21,7 @@ from contextlib import contextmanager
 from collections import defaultdict
 from functools import wraps
 
-from ansible.module_utils.basic import AnsibleModule, missing_required_lib
+from ansible.module_utils.basic import AnsibleModule, missing_required_lib, env_fallback
 from ansible.module_utils._text import to_bytes, to_native
 from ansible.module_utils import six
 
@@ -42,7 +42,7 @@ except ImportError:
     PYYAML_IMP_ERR = traceback.format_exc()
 
 parameter_foreman_spec = dict(
-    id=dict(type='invisible'),
+    id=dict(invisible=True),
     name=dict(required=True),
     value=dict(type='raw', required=True),
     parameter_type=dict(default='string', choices=['string', 'boolean', 'integer', 'real', 'array', 'hash', 'yaml', 'json']),
@@ -302,10 +302,10 @@ class ForemanAnsibleModule(AnsibleModule):
 
         self.foreman_spec, gen_args = _foreman_spec_helper(kwargs.pop('foreman_spec', {}))
         argument_spec = dict(
-            server_url=dict(required=True),
-            username=dict(required=True),
-            password=dict(required=True, no_log=True),
-            validate_certs=dict(type='bool', default=True),
+            server_url=dict(required=True, fallback=(env_fallback, ['FOREMAN_SERVER_URL', 'FOREMAN_SERVER', 'FOREMAN_URL'])),
+            username=dict(required=True, fallback=(env_fallback, ['FOREMAN_USERNAME', 'FOREMAN_USER'])),
+            password=dict(required=True, no_log=True, fallback=(env_fallback, ['FOREMAN_PASSWORD'])),
+            validate_certs=dict(type='bool', default=True, fallback=(env_fallback, ['FOREMAN_VALIDATE_CERTS'])),
         )
         argument_spec.update(gen_args)
         argument_spec.update(kwargs.pop('argument_spec', {}))
@@ -425,7 +425,7 @@ class ForemanAnsibleModule(AnsibleModule):
             verify_ssl=self._foremanapi_validate_certs,
         )
 
-        self.ping()
+        self.status()
 
         self._patch_templates_resource_name()
         self._patch_location_api()
@@ -434,7 +434,7 @@ class ForemanAnsibleModule(AnsibleModule):
         self.check_required_plugins()
 
     @_exception2fail_json(msg="Failed to connect to Foreman server: {0}")
-    def ping(self):
+    def status(self):
         return self.foremanapi.resource('home').call('status')
 
     def _resource(self, resource):
@@ -494,11 +494,8 @@ class ForemanAnsibleModule(AnsibleModule):
             else:
                 error_msg = "no"
             self.fail_json(msg="Found {0} results while searching for {1} with {2}".format(error_msg, resource, search))
-        if result:
-            if thin:
-                result = {'id': result['id']}
-            else:
-                result = self.show_resource(resource, result['id'], params=params)
+        if result and not thin:
+            result = self.show_resource(resource, result['id'], params=params)
         return result
 
     def find_resource_by(self, resource, search_field, value, **kwargs):
@@ -1124,6 +1121,7 @@ def _foreman_spec_helper(spec):
         'failsafe',
         'flat_name',
         'foreman_spec',
+        'invisible',
         'resolve',
         'resource_type',
         'scope',
@@ -1162,6 +1160,7 @@ def _foreman_spec_helper(spec):
         argument_value = {k: v for (k, v) in value.items() if k not in _FILTER_SPEC_KEYS}
 
         foreman_type = value.get('type')
+        ansible_invisible = value.get('invisible', False)
         flat_name = value.get('flat_name')
 
         if foreman_type == 'entity':
@@ -1194,7 +1193,7 @@ def _foreman_spec_helper(spec):
 
         foreman_spec[key] = foreman_value
 
-        if foreman_type != 'invisible':
+        if not ansible_invisible:
             argument_spec[key] = argument_value
 
     return foreman_spec, argument_spec
