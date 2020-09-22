@@ -6,6 +6,14 @@ redhat.satellite Release Notes
 
 This changelog describes changes after version 0.8.1.
 
+v1.2.1
+======
+
+Bugfixes
+--------
+
+- host - properly scope image lookups by the compute resource (https://bugzilla.redhat.com/show_bug.cgi?id=1878693)
+
 v1.2.0
 ======
 

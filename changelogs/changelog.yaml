@@ -224,3 +224,10 @@ releases:
     - bz1855008-single_call_parameters.yaml
     - bz1871978-template_kinds.yaml
     release_date: '2020-09-03'
+  1.2.1:
+    changes:
+      bugfixes:
+      - host - properly scope image lookups by the compute resource (https://bugzilla.redhat.com/show_bug.cgi?id=1878693)
+    fragments:
+    - bz1878693-scope_image_lookups.yaml
+    release_date: '2020-09-22'

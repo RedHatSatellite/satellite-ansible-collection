@@ -52,7 +52,7 @@ authors:
   - "metalcated <mike.gomon@gmail.com>"
   - "russianguppie <46544650+russianguppie@users.noreply.github.com>"
   - "willtome <willtome@gmail.com>"
-version: "1.2.0"
+version: "1.2.1"
 license:
   - "GPL-3.0-or-later"
 tags:
