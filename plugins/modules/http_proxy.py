@@ -68,7 +68,7 @@ EXAMPLES = '''
       - "ACME"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 '''
 

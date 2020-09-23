@@ -238,8 +238,8 @@ EXAMPLES = '''
 - name: Ensure latest version of all your Job Templates
   redhat.satellite.job_template:
     server_url: "https://satellite.example.com"
-    username:  "admin"
-    password:  "changeme"
+    username: "admin"
+    password: "changeme"
     state: present
     template: '{{ lookup("file", item.src) }}'
   with_filetree: '/path/to/job/templates'
@@ -250,7 +250,7 @@ EXAMPLES = '''
 - name: "Delete *ALL* Job Templates"
   redhat.satellite.job_template:
     username: "admin"
-    password: "admin"
+    password: "changeme"
     server_url: "https://satellite.example.com"
     name: "*"
     state: absent
@@ -258,7 +258,7 @@ EXAMPLES = '''
 - name: "Assign all Job Templates to the same organization(s)"
   redhat.satellite.job_template:
     username: "admin"
-    password: "admin"
+    password: "changeme"
     server_url: "https://satellite.example.com"
     name: "*"
     state: present

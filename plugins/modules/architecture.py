@@ -36,14 +36,10 @@ options:
   updated_name:
     description: New architecture name. When this parameter is set, the module will not be idempotent.
     type: str
-  operatingsystems:
-    description: List of operating systems the architecture should be assigned to
-    required: false
-    type: list
-    elements: str
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state
+  - redhat.satellite.foreman.operatingsystems
 '''
 
 EXAMPLES = '''
@@ -55,7 +51,7 @@ EXAMPLES = '''
       - "TestOS2"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 
 - name: "Update an Architecture"
@@ -66,7 +62,7 @@ EXAMPLES = '''
       - "TestOS4"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 
 - name: "Delete an Architecture"
@@ -74,7 +70,7 @@ EXAMPLES = '''
     name: "i386"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: absent
 '''
 

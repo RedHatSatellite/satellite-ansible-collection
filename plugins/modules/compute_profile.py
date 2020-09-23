@@ -65,8 +65,8 @@ EXAMPLES = '''
   redhat.satellite.compute_profile:
     name: example_compute_profile
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: another compute profile
@@ -79,8 +79,8 @@ EXAMPLES = '''
         template: 'c88af4b7-a24a-453b-9ac2-bc647ca2ef99'
         instance_type: 'cb8927e7-a404-40fb-a6c1-06cbfc92e077'
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: compute profile2
@@ -123,16 +123,16 @@ EXAMPLES = '''
             allocation: 16G
             format_type: raw
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: Remove compute profile
   redhat.satellite.compute_profile:
     name: example_compute_profile2
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: absent
 '''
 

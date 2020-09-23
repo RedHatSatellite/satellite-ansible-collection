@@ -107,6 +107,7 @@ options:
   image:
     description:
       - The image to use when I(provision_method=image).
+      - The I(compute_resource) parameter is required to find the correct image.
     type: str
     required: false
   compute_attributes:
@@ -120,6 +121,7 @@ extends_documentation_fragment:
   - redhat.satellite.foreman.entity_state
   - redhat.satellite.foreman.host_options
   - redhat.satellite.foreman.nested_parameters
+  - redhat.satellite.foreman.operatingsystem
 '''
 
 EXAMPLES = '''
@@ -158,8 +160,8 @@ EXAMPLES = '''
     server_url: "https://satellite.example.com"
     name: "new_host"
     compute_attributes:
-       cpus: 2
-       memory_mb: 4096
+      cpus: 2
+      memory_mb: 4096
     state: present
 
 - name: "Create a VM and start it after creation"
@@ -169,7 +171,7 @@ EXAMPLES = '''
     server_url: "https://satellite.example.com"
     name: "new_host"
     compute_attributes:
-       start: "1"
+      start: "1"
     state: present
 
 - name: "Delete a host"
@@ -219,14 +221,17 @@ def main():
             comment=dict(),
             owner=dict(type='entity', resource_type='users', flat_name='owner_id'),
             owner_group=dict(type='entity', resource_type='usergroups', flat_name='owner_id'),
-            owner_type=dict(type='invisible'),
+            owner_type=dict(invisible=True),
             provision_method=dict(choices=['build', 'image', 'bootdisk']),
-            image=dict(type='entity'),
+            image=dict(type='entity', scope=['compute_resource']),
             compute_attributes=dict(type='dict'),
         ),
         mutually_exclusive=[
             ['owner', 'owner_group']
         ],
+        required_by=dict(
+            image=('compute_resource',),
+        ),
     )
 
     # additional param validation

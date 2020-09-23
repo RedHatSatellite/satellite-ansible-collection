@@ -139,8 +139,8 @@ EXAMPLES = '''
       url: libvirt.example.com
       display_type: vnc
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: Update libvirt compute resource
@@ -156,16 +156,16 @@ EXAMPLES = '''
       url: libvirt.example.com
       display_type: vnc
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: Delete libvirt compute resource
   redhat.satellite.compute_resource:
     name: example_compute_resource
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: absent
 
 - name: Create vmware compute resource
@@ -183,8 +183,8 @@ EXAMPLES = '''
       password: secret
       datacenter: ax01
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: Create ovirt compute resource
@@ -203,8 +203,8 @@ EXAMPLES = '''
       ovirt_quota: 24868ab9-c2a1-47c3-87e7-706f17d215ac
       use_v4: true
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: Create proxmox compute resource
@@ -221,8 +221,8 @@ EXAMPLES = '''
       password: secretpassword
       ssl_verify_peer: true
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: create EC2 compute resource
@@ -239,8 +239,8 @@ EXAMPLES = '''
       password: AWS_SECRET_KEY
       region: eu-west-1
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: create Azure compute resource
@@ -259,8 +259,8 @@ EXAMPLES = '''
       password: CLIENT_SECRET
       region: westeurope
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 - name: create GCE compute resource
@@ -278,8 +278,8 @@ EXAMPLES = '''
       key_path: "/usr/share/foreman/gce_orcharhino_key.json"
       zone: europe-west3-b
     server_url: "https://satellite.example.com"
-    username: admin
-    password: secret
+    username: "admin"
+    password: "changeme"
     state: present
 
 '''
@@ -339,22 +339,22 @@ def main():
             updated_name=dict(),
             description=dict(),
             provider=dict(choices=['vmware', 'libvirt', 'ovirt', 'proxmox', 'EC2', 'AzureRm', 'GCE']),
-            display_type=dict(type='invisible'),
-            datacenter=dict(type='invisible'),
-            url=dict(type='invisible'),
-            caching_enabled=dict(type='invisible'),
-            user=dict(type='invisible'),
-            password=dict(type='invisible'),
-            region=dict(type='invisible'),
-            tenant=dict(type='invisible'),
-            app_ident=dict(type='invisible'),
-            use_v4=dict(type='invisible'),
-            ovirt_quota=dict(type='invisible'),
-            project=dict(type='invisible'),
-            email=dict(type='invisible'),
-            key_path=dict(type='invisible'),
-            zone=dict(type='invisible'),
-            ssl_verify_peer=dict(type='invisible'),
+            display_type=dict(invisible=True),
+            datacenter=dict(invisible=True),
+            url=dict(invisible=True),
+            caching_enabled=dict(invisible=True),
+            user=dict(invisible=True),
+            password=dict(invisible=True),
+            region=dict(invisible=True),
+            tenant=dict(invisible=True),
+            app_ident=dict(invisible=True),
+            use_v4=dict(invisible=True),
+            ovirt_quota=dict(invisible=True),
+            project=dict(invisible=True),
+            email=dict(invisible=True),
+            key_path=dict(invisible=True),
+            zone=dict(invisible=True),
+            ssl_verify_peer=dict(invisible=True),
         ),
         argument_spec=dict(
             provider_params=dict(type='dict', options=dict(

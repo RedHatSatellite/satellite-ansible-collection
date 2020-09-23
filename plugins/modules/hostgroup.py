@@ -61,6 +61,7 @@ extends_documentation_fragment:
   - redhat.satellite.foreman.taxonomy
   - redhat.satellite.foreman.nested_parameters
   - redhat.satellite.foreman.host_options
+  - redhat.satellite.foreman.operatingsystem
 '''
 
 EXAMPLES = '''
@@ -73,7 +74,7 @@ EXAMPLES = '''
     ptable: "Partition_table_name"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 
 - name: "Update a Hostgroup"
@@ -93,7 +94,7 @@ EXAMPLES = '''
     root_pass: "password"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 
 - name: "My nested hostgroup"
@@ -125,7 +126,7 @@ EXAMPLES = '''
     name: "new_hostgroup"
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: absent
 '''
 

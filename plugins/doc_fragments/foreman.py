@@ -26,19 +26,27 @@ requirements:
   - apypie
 options:
   server_url:
-    description: URL of the Foreman server
+    description:
+      - URL of the Foreman server.
+      - If the value is not specified in the task, the value of environment variable C(FOREMAN_SERVER_URL) will be used instead.
     required: true
     type: str
   username:
-    description: Username accessing the Foreman server
+    description:
+      - Username accessing the Foreman server.
+      - If the value is not specified in the task, the value of environment variable C(FOREMAN_USERNAME) will be used instead.
     required: true
     type: str
   password:
-    description: Password of the user accessing the Foreman server
+    description:
+      - Password of the user accessing the Foreman server.
+      - If the value is not specified in the task, the value of environment variable C(FOREMAN_PASSWORD) will be used instead.
     required: true
     type: str
   validate_certs:
-    description: Whether or not to verify the TLS certificates of the Foreman server
+    description:
+      - Whether or not to verify the TLS certificates of the Foreman server.
+      - If the value is not specified in the task, the value of environment variable C(FOREMAN_VALIDATE_CERTS) will be used instead.
     default: true
     type: bool
 '''
@@ -184,10 +192,6 @@ options:
       - Mutually exclusive with I(kickstart_repository).
     required: False
     type: str
-  operatingsystem:
-    description: Operatingsystem title
-    required: False
-    type: str
   pxe_loader:
     description: PXE Bootloader
     required: false
@@ -290,4 +294,26 @@ options:
       - If unset, the filename of I(scap_file) will be used.
     required: false
     type: str
+'''
+
+    OPERATINGSYSTEMS = '''
+options:
+  operatingsystems:
+    description:
+      - List of operating systems the entity should be assigned to.
+      - Operating systems are looked up by their title which is composed as "<name> <major>.<minor>".
+      - You can omit the version part as long as you only have one operating system by that name.
+    required: false
+    type: list
+    elements: str
+'''
+
+    OPERATINGSYSTEM = '''
+options:
+  operatingsystem:
+    description:
+      - Operating systems are looked up by their title which is composed as "<name> <major>.<minor>".
+      - You can omit the version part as long as you only have one operating system by that name.
+    type: str
+    required: False
 '''

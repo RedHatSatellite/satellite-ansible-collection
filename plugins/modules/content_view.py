@@ -143,7 +143,7 @@ from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper im
 
 
 cvc_foreman_spec = {
-    'id': {'type': 'invisible'},
+    'id': {'invisible': True},
     'content_view': {'type': 'entity', 'required': True},
     'latest': {'type': 'bool', 'default': False},
     'content_view_version': {'type': 'entity', 'aliases': ['version']},
@@ -172,6 +172,7 @@ def main():
             state=dict(default='present', choices=['present_with_defaults', 'present', 'absent']),
         ),
         mutually_exclusive=[['repositories', 'components']],
+        entity_opts=dict(thin=False),
     )
 
     # components is None when we're managing a CCV but don't want to adjust its components
@@ -195,6 +196,10 @@ def main():
                         product = module.find_resource_by_name('products', repository['product'], params=scope, thin=True)
                         repositories.append(module.find_resource_by_name('repositories', repository['name'], params={'product_id': product['id']}, thin=True))
                     module.foreman_params['repositories'] = repositories
+
+        if entity and module.desired_absent:
+            for lce in entity.get('environments', []):
+                module.resource_action('content_views', 'remove_from_environment', {'id': entity['id'], 'environment_id': lce['id']})
 
         content_view_entity = module.run()
 

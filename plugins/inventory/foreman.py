@@ -27,24 +27,33 @@ DOCUMENTATION = '''
         required: True
         choices: ['redhat.satellite.foreman']
       url:
-        description: url to foreman
+        description:
+          - URL of the Foreman server.
         default: 'http://localhost:3000'
         env:
             - name: FOREMAN_SERVER
+            - name: FOREMAN_SERVER_URL
+            - name: FOREMAN_URL
       user:
-        description: foreman authentication user
+        description:
+          - Username accessing the Foreman server.
         required: True
         env:
             - name: FOREMAN_USER
+            - name: FOREMAN_USERNAME
       password:
-        description: foreman authentication password
+        description:
+          - Password of the user accessing the Foreman server.
         required: True
         env:
             - name: FOREMAN_PASSWORD
       validate_certs:
-        description: verify SSL certificate if using https
+        description:
+          - Whether or not to verify the TLS certificates of the Foreman server.
         type: boolean
         default: False
+        env:
+            - name: FOREMAN_VALIDATE_CERTS
       group_prefix:
         description: prefix to apply to foreman groups
         default: foreman_
@@ -239,9 +248,16 @@ class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
                 # create directly mapped groups
                 group_name = host.get('hostgroup_title', host.get('hostgroup_name'))
                 if group_name:
-                    group_name = to_safe_group_name('%s%s' % (self.get_option('group_prefix'), group_name.lower().replace(" ", "")))
-                    group_name = self.inventory.add_group(group_name)
-                    self.inventory.add_child(group_name, host_name)
+                    parent_name = None
+                    group_label_parts = []
+                    for part in group_name.split('/'):
+                        group_label_parts.append(part.lower().replace(" ", ""))
+                        gname = to_safe_group_name('%s%s' % (self.get_option('group_prefix'), '/'.join(group_label_parts)))
+                        result_gname = self.inventory.add_group(gname)
+                        if parent_name:
+                            self.inventory.add_child(parent_name, result_gname)
+                        parent_name = result_gname
+                    self.inventory.add_child(result_gname, host_name)
 
                 if self.get_option('legacy_hostvars'):
                     hostvars = self._get_hostvars(host)

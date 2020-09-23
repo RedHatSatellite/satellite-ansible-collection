@@ -52,6 +52,7 @@ TEST_PLAYBOOKS = [
     'scap_tailoring_file',
     'setting',
     'smart_class_parameter',
+    'status_info',
     'subnet',
     'sync_plan',
     'templates_import',

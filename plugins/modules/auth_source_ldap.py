@@ -131,7 +131,7 @@ EXAMPLES = '''
     organizations:
       - "Sweden"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 
 - name: LDAP Authentication with automatic registration
@@ -151,7 +151,7 @@ EXAMPLES = '''
     attr_photo: jpegPhoto
     server_url: "https://satellite.example.com"
     username: "admin"
-    password: "secret"
+    password: "changeme"
     state: present
 '''
 

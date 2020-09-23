@@ -52,9 +52,7 @@ options:
     required: false
     type: str
   operatingsystem:
-    description: Operating system that will be deployed using the image
     required: true
-    type: str
   architecture:
     description: architecture of the image
     required: true
@@ -66,6 +64,7 @@ options:
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state
+  - redhat.satellite.foreman.operatingsystem
 '''
 
 EXAMPLES = '''
@@ -106,9 +105,9 @@ def main():
         ),
         foreman_spec=dict(
             name=dict(required=True),
-            username=dict(type='invisible'),
+            username=dict(invisible=True),
             uuid=dict(required=True, aliases=['image_uuid']),
-            password=dict(type='invisible', no_log=True),
+            password=dict(invisible=True, no_log=True),
             compute_resource=dict(type='entity', required=True),
             architecture=dict(type='entity', required=True),
             operatingsystem=dict(type='entity', required=True),
