@@ -120,6 +120,10 @@ doc: $(MANIFEST)
 branding:
 	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/tests.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst
 	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py
+	sed -i 's#theforeman/foreman-ansible-modules#RedHatSatellite/satellite-ansible-collection#g' .github/workflows/*.yml
+	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml
+	sed -i 's/Foreman Ansible Modules/Red Hat Satellite Ansible Collection/g' docs/index.rst docs/conf.py
+	sed -i 's/The Foreman Project/Red Hat, Inc./g' docs/conf.py
 
 FORCE:
 
