@@ -23,7 +23,7 @@ class ModuleDocFragment(object):
     # Foreman documentation fragment
     DOCUMENTATION = '''
 requirements:
-  - apypie
+  - requests
 options:
   server_url:
     description:
@@ -210,6 +210,7 @@ options:
       - iPXE UEFI HTTP
       - iPXE Chain BIOS
       - iPXE Chain UEFI
+      - None
     type: str
   ptable:
     description: Partition table name

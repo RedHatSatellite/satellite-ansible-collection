@@ -15,6 +15,7 @@
 import datetime
 import os
 import sys
+sys.path.insert(0, os.path.abspath('../plugins/module_utils/'))
 # sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
@@ -42,7 +43,7 @@ extensions = [
     'recommonmark',
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
-    'sphinx_ansible_theme.ext.pygments_lexer',
+    'ansible_basic_sphinx_ext',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

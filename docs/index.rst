@@ -20,6 +20,7 @@ Welcome to Red Hat Satellite Ansible Collection' documentation!
    :caption: Developer documentation
 
    developing
+   api
    testing
    releasing
 

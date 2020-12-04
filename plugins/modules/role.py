@@ -95,6 +95,7 @@ from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper im
 
 
 filter_foreman_spec = dict(
+    id=dict(invisible=True),
     permissions=dict(type='entity_list', required=True),
     search=dict(),
 )
