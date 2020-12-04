@@ -23,9 +23,9 @@ DOCUMENTATION = '''
 ---
 module: repository_set
 version_added: 1.0.0
-short_description: Enable/disable Repositories in Repository Sets
+short_description: Enable/disable Red Hat Repositories available through subscriptions
 description:
-  - Enable/disable repositories in repository sets
+  - Enable/disable Red Hat Repositories that are available through subscriptions
 author: "Andrew Kofink (@akofink)"
 options:
   name:
@@ -268,7 +268,7 @@ def main():
         ],
     )
 
-    repositories = [{k: v for (k, v) in sub.items() if v is not None} for sub in module.foreman_params.get('repositories', [])]
+    repositories = module.foreman_params.get('repositories', [])
 
     with module.api_connection():
         scope = module.scope_for('organization')

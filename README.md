@@ -2,6 +2,10 @@
 
 Ansible modules for interacting with the Satellite API.
 
+## Documentation
+
+The documentation for this collection can be found in the [Satellite documentation](https://access.redhat.com/documentation/en-us/red_hat_satellite/).
+
 ## Support
 
 For support questions around this collection, please open a ticket on the [Red Hat Customer Portal](https://access.redhat.com).
@@ -16,10 +20,6 @@ The GitHub repository serves as the source for the release and should not be use
 
 You can install the collection with `ansible-galaxy collection install redhat.satellite` (Ansible 2.9 and later).
 You will require the `python2-apypie` RPM provided in the Red Hat Satellite repositories.
-
-## Satellite Documentation
-
-The official Satellite documentation can be found in the [Product Documentation section of the Red Hat Customer Portal](https://access.redhat.com/documentation/en-us/red_hat_satellite/).
 
 ## Upstream
 

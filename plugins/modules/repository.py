@@ -27,6 +27,11 @@ short_description: Manage Repositories
 description:
   - Crate and manage repositories
 author: "Eric D Helms (@ehelms)"
+notes:
+  - You can configure certain aspects of existing Red Hat Repositories (like I(download_policy)) using this module,
+    but you can't create (enable) or delete (disable) them.
+  - If you want to enable or disable Red Hat Repositories available through your subscription,
+    please use the M(redhat.satellite.repository_set) module instead.
 options:
   name:
     description:
@@ -294,6 +299,10 @@ def main():
         entity_opts={'scope': ['product']},
     )
 
+    # KatelloEntityAnsibleModule automatically adds organization to the entity scope
+    # but repositories are scoped by product (and these are org scoped)
+    module.foreman_spec['entity']['scope'].remove('organization')
+
     if module.foreman_params['content_type'] != 'docker':
         invalid_list = [key for key in ['docker_upstream_name', 'docker_tags_whitelist'] if key in module.foreman_params]
         if invalid_list:
@@ -318,6 +327,9 @@ def main():
         module.foreman_params['http_proxy_policy'] = 'none' if module.foreman_params['ignore_global_proxy'] else 'global_default_http_proxy'
 
     with module.api_connection():
+        if not module.desired_absent:
+            module.auto_lookup_entities()
+            module.foreman_params.pop('organization')
         module.run()
 
 

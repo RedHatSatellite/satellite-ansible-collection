@@ -99,10 +99,12 @@ def _exception2fail_json(msg='Generic failure: {0}'):
     return decor
 
 
-def _check_patch_needed(fixed_version=None, plugins=None):
+def _check_patch_needed(introduced_version=None, fixed_version=None, plugins=None):
     """
     Decorator to check whether a specific apidoc patch is required.
 
+    :param introduced_version: The version of Foreman the API bug was introduced.
+    :type introduced_version: str, optional
     :param fixed_version: The version of Foreman the API bug was fixed.
     :type fixed_version: str, optional
     :param plugins: Which plugins are required for this patch.
@@ -116,6 +118,9 @@ def _check_patch_needed(fixed_version=None, plugins=None):
                 return
 
             if fixed_version is not None and self.foreman_version >= LooseVersion(fixed_version):
+                return
+
+            if introduced_version is not None and self.foreman_version < LooseVersion(introduced_version):
                 return
 
             return f(self, *args, **kwargs)
@@ -324,7 +329,7 @@ class ForemanAnsibleModule(AnsibleModule):
         super(ForemanAnsibleModule, self).__init__(argument_spec=argument_spec, supports_check_mode=supports_check_mode, **kwargs)
 
         aliases = {alias for arg in argument_spec.values() for alias in arg.get('aliases', [])}
-        self.foreman_params = {k: v for (k, v) in self.params.items() if v is not None and k not in aliases}
+        self.foreman_params = _recursive_dict_without_none(self.params, aliases)
 
         self.check_requirements()
 
@@ -397,10 +402,11 @@ class ForemanAnsibleModule(AnsibleModule):
         _location_update_params_location = next(x for x in _location_update['params'] if x['name'] == 'location')
         _location_update_params_location['params'].append(_location_organizations_parameter)
 
-    @_check_patch_needed(plugins=['remote_execution'])
+    @_check_patch_needed(fixed_version='2.2.0', plugins=['remote_execution'])
     def _patch_subnet_rex_api(self):
-        """This is a workaround for the broken subnet apidoc in foreman remote execution.
-            see https://projects.theforeman.org/issues/19086
+        """
+        This is a workaround for the broken subnet apidoc in foreman remote execution.
+        See https://projects.theforeman.org/issues/19086 and https://projects.theforeman.org/issues/30651
         """
 
         _subnet_rex_proxies_parameter = {
@@ -425,6 +431,36 @@ class ForemanAnsibleModule(AnsibleModule):
         _subnet_update = next(x for x in _subnet_methods if x['name'] == 'update')
         _subnet_update_params_subnet = next(x for x in _subnet_update['params'] if x['name'] == 'subnet')
         _subnet_update_params_subnet['params'].append(_subnet_rex_proxies_parameter)
+
+    @_check_patch_needed(introduced_version='2.1.0', fixed_version='2.3.0')
+    def _patch_subnet_externalipam_group_api(self):
+        """
+        This is a workaround for the broken subnet apidoc for External IPAM.
+        See https://projects.theforeman.org/issues/30890
+        """
+
+        _subnet_externalipam_group_parameter = {
+            u'validations': [],
+            u'name': u'externalipam_group',
+            u'show': True,
+            u'description': u'\n<p>External IPAM group - only relevant when IPAM is set to external</p>\n',
+            u'required': False,
+            u'allow_nil': True,
+            u'allow_blank': False,
+            u'full_name': u'subnet[externalipam_group]',
+            u'expected_type': u'string',
+            u'metadata': None,
+            u'validator': u'',
+        }
+        _subnet_methods = self.foremanapi.apidoc['docs']['resources']['subnets']['methods']
+
+        _subnet_create = next(x for x in _subnet_methods if x['name'] == 'create')
+        _subnet_create_params_subnet = next(x for x in _subnet_create['params'] if x['name'] == 'subnet')
+        _subnet_create_params_subnet['params'].append(_subnet_externalipam_group_parameter)
+
+        _subnet_update = next(x for x in _subnet_methods if x['name'] == 'update')
+        _subnet_update_params_subnet = next(x for x in _subnet_update['params'] if x['name'] == 'subnet')
+        _subnet_update_params_subnet['params'].append(_subnet_externalipam_group_parameter)
 
     @_check_patch_needed(fixed_version='1.24.0', plugins=['katello'])
     def _patch_content_uploads_update_api(self):
@@ -556,6 +592,7 @@ class ForemanAnsibleModule(AnsibleModule):
         self._patch_templates_resource_name()
         self._patch_location_api()
         self._patch_subnet_rex_api()
+        self._patch_subnet_externalipam_group_api()
 
         # Katello
         self._patch_content_uploads_update_api()
@@ -585,12 +622,7 @@ class ForemanAnsibleModule(AnsibleModule):
 
     def _resource_prepare_params(self, resource, action, params):
         api_action = self._resource(resource).action(action)
-        prepared_params = api_action.prepare_params(params)
-        api_route = api_action.find_route(params)
-        for url_param in api_route.params_in_path:
-            if url_param in params:
-                prepared_params[url_param] = params[url_param]
-        return prepared_params
+        return api_action.prepare_params(params)
 
     @_exception2fail_json(msg='Failed to show resource: {0}')
     def show_resource(self, resource, resource_id, params=None):
@@ -734,6 +766,11 @@ class ForemanAnsibleModule(AnsibleModule):
             # Already looked up or not an entity(_list) so nothing to do
             return self.foreman_params[key]
 
+        result = self._lookup_entity(self.foreman_params[key], entity_spec, params)
+        self.set_entity(key, result)
+        return result
+
+    def _lookup_entity(self, identifier, entity_spec, params=None):
         resource_type = entity_spec['resource_type']
         failsafe = entity_spec.get('failsafe', False)
         thin = entity_spec.get('thin', True)
@@ -750,26 +787,26 @@ class ForemanAnsibleModule(AnsibleModule):
                 if entity_spec.get('type') == 'entity':
                     result = None
                 else:
-                    result = [None for value in self.foreman_params[key]]
+                    result = [None for value in identifier]
             else:
                 self.fail_json(msg="Failed to lookup scope {0} while searching for {1}.".format(entity_spec['scope'], resource_type))
         else:
             # No exception happend => scope is in place
             if resource_type == 'operatingsystems':
                 if entity_spec.get('type') == 'entity':
-                    result = self.find_operatingsystem(self.foreman_params[key], params=params, failsafe=failsafe, thin=thin)
+                    result = self.find_operatingsystem(identifier, params=params, failsafe=failsafe, thin=thin)
                 else:
-                    result = [self.find_operatingsystem(value, params=params, failsafe=failsafe, thin=thin) for value in self.foreman_params[key]]
+                    result = [self.find_operatingsystem(value, params=params, failsafe=failsafe, thin=thin) for value in identifier]
             elif resource_type == 'puppetclasses':
                 if entity_spec.get('type') == 'entity':
-                    result = self.find_puppetclass(self.foreman_params[key], params=params, failsafe=failsafe, thin=thin)
+                    result = self.find_puppetclass(identifier, params=params, failsafe=failsafe, thin=thin)
                 else:
-                    result = [self.find_puppetclass(value, params=params, failsafe=failsafe, thin=thin) for value in self.foreman_params[key]]
+                    result = [self.find_puppetclass(value, params=params, failsafe=failsafe, thin=thin) for value in identifier]
             else:
                 if entity_spec.get('type') == 'entity':
                     result = self.find_resource_by(
                         resource=resource_type,
-                        value=self.foreman_params[key],
+                        value=identifier,
                         search_field=entity_spec.get('search_by', ENTITY_KEYS.get(resource_type, 'name')),
                         search_operator=entity_spec.get('search_operator', '='),
                         failsafe=failsafe, thin=thin, params=params,
@@ -781,16 +818,26 @@ class ForemanAnsibleModule(AnsibleModule):
                         search_field=entity_spec.get('search_by', ENTITY_KEYS.get(resource_type, 'name')),
                         search_operator=entity_spec.get('search_operator', '='),
                         failsafe=failsafe, thin=thin, params=params,
-                    ) for value in self.foreman_params[key]]
-        self.set_entity(key, result)
+                    ) for value in identifier]
         return result
 
     def auto_lookup_entities(self):
+        self.auto_lookup_nested_entities()
         return [
             self.lookup_entity(key)
             for key, entity_spec in self.foreman_spec.items()
             if entity_spec.get('resolve', True) and entity_spec.get('type') in {'entity', 'entity_list'}
         ]
+
+    def auto_lookup_nested_entities(self):
+        for key, entity_spec in self.foreman_spec.items():
+            if entity_spec.get('type') in {'nested_list'}:
+                for nested_key, nested_spec in self.foreman_spec[key]['foreman_spec'].items():
+                    for item in self.foreman_params.get(key, []):
+                        if (nested_key in item and nested_spec.get('resolve', True) and not nested_spec.get('resolved', False)
+                                and nested_spec.get('type') in {'entity', 'entity_list'}):
+                            item[nested_key] = self._lookup_entity(item[nested_key], nested_spec)
+                            nested_spec['resolved'] = True
 
     def record_before(self, resource, entity):
         self._before[resource].append(entity)
@@ -1419,7 +1466,7 @@ def _foreman_spec_helper(spec):
         elif foreman_type == 'nested_list':
             argument_value['type'] = 'list'
             argument_value['elements'] = 'dict'
-            _dummy, argument_value['options'] = _foreman_spec_helper(value['foreman_spec'])
+            foreman_value['foreman_spec'], argument_value['options'] = _foreman_spec_helper(value['foreman_spec'])
             foreman_value['ensure'] = value.get('ensure', False)
         elif foreman_type:
             argument_value['type'] = foreman_type
@@ -1457,6 +1504,8 @@ def _flatten_entity(entity, foreman_spec):
                     result[flat_name] = None
             elif property_type == 'entity_list':
                 result[flat_name] = sorted(val['id'] for val in value)
+            elif property_type == 'nested_list':
+                result[flat_name] = [_flatten_entity(ent, foreman_spec[key]['foreman_spec']) for ent in value]
             else:
                 result[flat_name] = value
     return result
@@ -1469,6 +1518,27 @@ def _recursive_dict_keys(a_dict):
         if isinstance(v, dict):
             keys.update(_recursive_dict_keys(v))
     return keys
+
+
+def _recursive_dict_without_none(a_dict, exclude=None):
+    """
+    Remove all entries with `None` value from a dict, recursively.
+    Also drops all entries with keys in `exclude` in the top level.
+    """
+    if exclude is None:
+        exclude = []
+
+    result = {}
+
+    for (k, v) in a_dict.items():
+        if v is not None and k not in exclude:
+            if isinstance(v, dict):
+                v = _recursive_dict_without_none(v)
+            elif isinstance(v, list) and v and isinstance(v[0], dict):
+                v = [_recursive_dict_without_none(element) for element in v]
+            result[k] = v
+
+    return result
 
 
 # Helper for (global, operatingsystem, ...) parameters
@@ -1596,3 +1666,39 @@ TEMPLATE_KIND_LIST = [
     'user_data',
     'ZTP',
 ]
+
+# interface specs
+interfaces_spec = dict(
+    id=dict(invisible=True),
+    mac=dict(),
+    ip=dict(),
+    ip6=dict(),
+    type=dict(choices=['interface', 'bmc', 'bond', 'bridge']),
+    name=dict(),
+    subnet=dict(type='entity'),
+    subnet6=dict(type='entity', resource_type='subnets'),
+    domain=dict(type='entity'),
+    identifier=dict(),
+    managed=dict(type='bool'),
+    primary=dict(type='bool'),
+    provision=dict(type='bool'),
+    username=dict(),
+    password=dict(no_log=True),
+    provider=dict(choices=['IPMI', 'SSH']),
+    virtual=dict(type='bool'),
+    tag=dict(),
+    mtu=dict(type='int'),
+    attached_to=dict(),
+    mode=dict(choices=[
+        'balance-rr',
+        'active-backup',
+        'balance-xor',
+        'broadcast',
+        '802.3ad',
+        'balance-tlb',
+        'balance-alb',
+    ]),
+    attached_devices=dict(type='list', elements='str'),
+    bond_options=dict(),
+    compute_attributes=dict(type='dict'),
+)
