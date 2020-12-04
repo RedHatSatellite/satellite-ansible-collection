@@ -1,6 +1,6 @@
-# Migrating from `cvmanager` to Foreman Ansible Modules
+# Migrating from `cvmanager` to Red Hat Satellite Ansible Collection
 
-[cvmanager](https://github.com/RedHatSatellite/katello-cvmanager) is a tool to automate Content View management workflows. It hasn't been updated in a long time and users are encouraged to migrate to Ansible and the Foreman Ansible Modules.
+[cvmanager](https://github.com/RedHatSatellite/katello-cvmanager) is a tool to automate Content View management workflows. It hasn't been updated in a long time and users are encouraged to migrate to Ansible and the Red Hat Satellite Ansible Collection.
 
 This document documents how the various workflows can be translated into Ansible playbooks.
 
@@ -15,7 +15,7 @@ To ease cleanup of old Content Views, we ship the `content_view_version_cleanup`
   roles:
     - role: redhat.satellite.content_view_version_cleanup
       vars:
-        server_url: https://foreman.example.com
+        server_url: https://satellite.example.com
         username: "admin"
         password: "changeme"
         organization: "Default Organization"
@@ -43,7 +43,7 @@ You can achieve the same using the `content_view` module:
   redhat.satellite.content_view:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     name: "ccv-RHEL7-automated"
     composite: true
@@ -66,7 +66,7 @@ To avoid that, you still can use individual versions instead of `latest: true` b
   redhat.satellite.resource_info:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     resource: content_views
     search: 'name="cv-tools"'
@@ -76,7 +76,7 @@ To avoid that, you still can use individual versions instead of `latest: true` b
   redhat.satellite.content_view:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     name: "ccv-RHEL7-automated"
     composite: true
@@ -91,7 +91,7 @@ To avoid that, you still can use individual versions instead of `latest: true` b
   redhat.satellite.content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     content_view: "ccv-RHEL7-automated"
   when:
@@ -109,7 +109,7 @@ To configure this using Ansible, add `auto_publish: true` to the `content_view` 
   redhat.satellite.content_view:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     name: "ccv-RHEL7-automated"
     composite: true
@@ -129,7 +129,7 @@ As the underlying logic is too fragile, there is no equivalent for doing conditi
   redhat.satellite.content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     content_view: "cv-tools"
 ```
@@ -145,7 +145,7 @@ The same can be achieved using the `content_view_version` module:
   redhat.satellite.content_view_version:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     content_view: "ccv-RHEL7-automated"
     current_lifecycle_environment: Library
