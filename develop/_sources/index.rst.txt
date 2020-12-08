@@ -14,12 +14,15 @@ Welcome to Red Hat Satellite Ansible Collection' documentation!
    Changelog <CHANGELOG>
    plugins/index
    Filters <filters>
+   roles/index
+   cvmanager
 
 .. toctree::
    :maxdepth: 2
    :caption: Developer documentation
 
    developing
+   api
    testing
    releasing
 

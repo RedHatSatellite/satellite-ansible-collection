@@ -13,6 +13,7 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/ansible-basic-sphinx-ext.css" type="text/css" />
 
   
   
@@ -84,12 +85,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Red Hat Satellite Ansible Collection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Plugin Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Redhat.Satellite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roles/index.html">Role Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cvmanager.html">Migrating from <code class="docutils literal notranslate"><span class="pre">cvmanager</span></code> to Red Hat Satellite Ansible Collection</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../developing.html">How to write modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html"><code class="docutils literal notranslate"><span class="pre">foreman_helper</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Foreman Ansible Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasing.html">Releasing the collection</a></li>
 </ul>
@@ -161,7 +165,7 @@
 <h1>redhat.satellite.subnet – Manage Subnets<a class="headerlink" href="#redhat-satellite-subnet-manage-subnets" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a>.</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 1.5.0).</p>
 <p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.subnet</span></code>.</p>
 </div>
@@ -187,8 +191,8 @@
 <h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>The below requirements are needed on the host that executes this module.</p>
 <ul class="simple">
-<li><p>apypie</p></li>
 <li><p>ipaddress</p></li>
+<li><p>requests</p></li>
 </ul>
 </div>
 <div class="section" id="parameters">
@@ -341,6 +345,25 @@
         </tr>
                             <tr>
                                                             <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-externalipam_group"></div>
+                <b>externalipam_group</b>
+                <a class="ansibleOptionLink" href="#parameter-externalipam_group" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of redhat.satellite
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>External IPAM group for this subnet.</div>
+                                        <div>Only relevant if <em>ipam=External IPAM</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
                 <div class="ansibleOptionAnchor" id="parameter-externalipam_proxy"></div>
                 <b>externalipam_proxy</b>
                 <a class="ansibleOptionLink" href="#parameter-externalipam_proxy" title="Permalink to this option"></a>
@@ -351,7 +374,8 @@
                             <td>
                                                                                                                                                         </td>
                                                             <td>
-                                        <div>External IPAM proxy for this subnet</div>
+                                        <div>External IPAM proxy for this subnet.</div>
+                                        <div>Only relevant if <em>ipam=External IPAM</em>.</div>
                                                     </td>
         </tr>
                             <tr>
@@ -635,6 +659,7 @@
                                                             <td>
                                         <div>Remote execution Smart proxies for this subnet</div>
                                         <div>This option is only available if the remote_execution plugin is installed.</div>
+                                        <div>This will always report <em>changed=true</em> when used with <em>remote_execution &lt; 4.1.0</em>, due to a bug in the plugin.</div>
                                                     </td>
         </tr>
                             <tr>

@@ -2,27 +2,32 @@
 
 .. _plugins_in_redhat.satellite:
 
-Plugin Index
-============
+Redhat.Satellite
+================
 
-These are the plugins in the redhat.satellite collection
+Collection version 1.5.0
 
 .. toctree::
     :maxdepth: 1
 
+Plugin Index
+------------
+
+These are the plugins in the redhat.satellite collection
+
 
 Callback Plugins
-----------------
+~~~~~~~~~~~~~~~~
 
 * :ref:`foreman <ansible_collections.redhat.satellite.foreman_callback>` -- Sends events to Foreman
 
 Inventory Plugins
------------------
+~~~~~~~~~~~~~~~~~
 
 * :ref:`foreman <ansible_collections.redhat.satellite.foreman_inventory>` -- Foreman inventory source
 
-Module Plugins
---------------
+Modules
+~~~~~~~
 
 * :ref:`activation_key <ansible_collections.redhat.satellite.activation_key_module>` -- Manage Activation Keys
 * :ref:`architecture <ansible_collections.redhat.satellite.architecture_module>` -- Manage Architectures
@@ -48,6 +53,7 @@ Module Plugins
 * :ref:`http_proxy <ansible_collections.redhat.satellite.http_proxy_module>` -- Manage HTTP Proxies
 * :ref:`image <ansible_collections.redhat.satellite.image_module>` -- Manage Images
 * :ref:`installation_medium <ansible_collections.redhat.satellite.installation_medium_module>` -- Manage Installation Media
+* :ref:`job_invocation <ansible_collections.redhat.satellite.job_invocation_module>` -- Invoke Remote Execution Jobs
 * :ref:`job_template <ansible_collections.redhat.satellite.job_template_module>` -- Manage Job Templates
 * :ref:`lifecycle_environment <ansible_collections.redhat.satellite.lifecycle_environment_module>` -- Manage Lifecycle Environments
 * :ref:`location <ansible_collections.redhat.satellite.location_module>` -- Manage Locations
@@ -61,7 +67,7 @@ Module Plugins
 * :ref:`realm <ansible_collections.redhat.satellite.realm_module>` -- Manage Realms
 * :ref:`redhat_manifest <ansible_collections.redhat.satellite.redhat_manifest_module>` -- Interact with a Red Hat Satellite Subscription Manifest
 * :ref:`repository <ansible_collections.redhat.satellite.repository_module>` -- Manage Repositories
-* :ref:`repository_set <ansible_collections.redhat.satellite.repository_set_module>` -- Enable/disable Repositories in Repository Sets
+* :ref:`repository_set <ansible_collections.redhat.satellite.repository_set_module>` -- Enable/disable Red Hat Repositories available through subscriptions
 * :ref:`repository_sync <ansible_collections.redhat.satellite.repository_sync_module>` -- Sync a Repository or Product
 * :ref:`resource_info <ansible_collections.redhat.satellite.resource_info_module>` -- Gather information about resources
 * :ref:`role <ansible_collections.redhat.satellite.role_module>` -- Manage Roles
@@ -69,6 +75,7 @@ Module Plugins
 * :ref:`scap_tailoring_file <ansible_collections.redhat.satellite.scap_tailoring_file_module>` -- Manage SCAP Tailoring Files
 * :ref:`setting <ansible_collections.redhat.satellite.setting_module>` -- Manage Settings
 * :ref:`smart_class_parameter <ansible_collections.redhat.satellite.smart_class_parameter_module>` -- Manage Smart Class Parameters
+* :ref:`smart_proxy <ansible_collections.redhat.satellite.smart_proxy_module>` -- Manage Smart Proxies
 * :ref:`status_info <ansible_collections.redhat.satellite.status_info_module>` -- Get status info
 * :ref:`subnet <ansible_collections.redhat.satellite.subnet_module>` -- Manage Subnets
 * :ref:`subscription_manifest <ansible_collections.redhat.satellite.subscription_manifest_module>` -- Manage Subscription Manifests

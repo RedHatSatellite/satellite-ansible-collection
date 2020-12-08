@@ -20,7 +20,7 @@ redhat.satellite.status_info -- Get status info
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_.
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 1.5.0).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Get status information from the server
 
+
 .. Aliases
 
 
@@ -53,7 +54,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- apypie
+- requests
 
 
 .. Options
@@ -155,7 +156,7 @@ Examples
 
     
     - name: status
-      redhat.satellite.status:
+      redhat.satellite.status_info:
         server_url: "https://satellite.example.com"
         username: "admin"
         password: "changeme"

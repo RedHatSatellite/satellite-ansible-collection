@@ -13,6 +13,7 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/ansible-basic-sphinx-ext.css" type="text/css" />
 
   
   
@@ -84,12 +85,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Red Hat Satellite Ansible Collection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Plugin Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Redhat.Satellite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roles/index.html">Role Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cvmanager.html">Migrating from <code class="docutils literal notranslate"><span class="pre">cvmanager</span></code> to Red Hat Satellite Ansible Collection</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../developing.html">How to write modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html"><code class="docutils literal notranslate"><span class="pre">foreman_helper</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Foreman Ansible Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasing.html">Releasing the collection</a></li>
 </ul>
@@ -161,7 +165,7 @@
 <h1>redhat.satellite.foreman – Foreman inventory source<a class="headerlink" href="#redhat-satellite-foreman-foreman-inventory-source" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a>.</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 1.5.0).</p>
 <p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.foreman</span></code>.</p>
 </div>
@@ -390,6 +394,25 @@
         </tr>
                             <tr>
                                                             <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-foreman"></div>
+                <b>foreman</b>
+                <a class="ansibleOptionLink" href="#parameter-foreman" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Foreman server related configuration, deprecated.</div>
+                                        <div>You can pass <em>use_reports_api</em> in this dict to enable the Reporting API.</div>
+                                        <div>Only for backward compatibility.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
                 <div class="ansibleOptionAnchor" id="parameter-group_prefix"></div>
                 <b>group_prefix</b>
                 <a class="ansibleOptionLink" href="#parameter-group_prefix" title="Permalink to this option"></a>
@@ -443,6 +466,25 @@
         </tr>
                             <tr>
                                                             <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-hostnames"></div>
+                <b>hostnames</b>
+                <a class="ansibleOptionLink" href="#parameter-hostnames" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">["name"]</div>
+                                </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>A list of templates in order of precedence to compose inventory_hostname.</div>
+                                        <div>If the template results in an empty string or None value it is ignored.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
                 <div class="ansibleOptionAnchor" id="parameter-keyed_groups"></div>
                 <b>keyed_groups</b>
                 <a class="ansibleOptionLink" href="#parameter-keyed_groups" title="Permalink to this option"></a>
@@ -483,6 +525,24 @@
         </tr>
                             <tr>
                                                             <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-max_timeout"></div>
+                <b>max_timeout</b>
+                <a class="ansibleOptionLink" href="#parameter-max_timeout" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">600</div>
+                                </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Timeout before falling back to old host API when using report_data endpoint while polling.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
                 <div class="ansibleOptionAnchor" id="parameter-password"></div>
                 <b>password</b>
                 <a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a>
@@ -519,6 +579,43 @@
                                                                                         </td>
                                             <td>
                                         <div>token that ensures this is a source file for the <code>foreman</code> plugin.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-poll_interval"></div>
+                <b>poll_interval</b>
+                <a class="ansibleOptionLink" href="#parameter-poll_interval" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">10</div>
+                                </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>The polling interval between 2 calls to the report_data endpoint while polling.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-report"></div>
+                <b>report</b>
+                <a class="ansibleOptionLink" href="#parameter-report" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Report API specific configuration, deprecated.</div>
+                                        <div>You can pass the Report API specific params as part of this dict, instead of the main configuration.</div>
+                                        <div>Only for backward compatibility.</div>
                                                     </td>
         </tr>
                             <tr>
@@ -568,6 +665,27 @@
                                                                 </td>
                                             <td>
                                         <div>URL of the Foreman server.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-use_reports_api"></div>
+                <b>use_reports_api</b>
+                <a class="ansibleOptionLink" href="#parameter-use_reports_api" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Use Reporting API.</div>
                                                     </td>
         </tr>
                             <tr>
@@ -637,6 +755,27 @@
         </tr>
                             <tr>
                                                             <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_content_facet_attributes"></div>
+                <b>want_content_facet_attributes</b>
+                <a class="ansibleOptionLink" href="#parameter-want_content_facet_attributes" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch content view details that the host is tied to.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
                 <div class="ansibleOptionAnchor" id="parameter-want_facts"></div>
                 <b>want_facts</b>
                 <a class="ansibleOptionLink" href="#parameter-want_facts" title="Permalink to this option"></a>
@@ -654,6 +793,27 @@
                                                                                         </td>
                                             <td>
                                         <div>Toggle, if True the plugin will retrieve host facts from the server</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_host_group"></div>
+                <b>want_host_group</b>
+                <a class="ansibleOptionLink" href="#parameter-want_host_group" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch host_groups and create groupings for the same.</div>
                                                     </td>
         </tr>
                             <tr>
@@ -679,6 +839,90 @@
         </tr>
                             <tr>
                                                             <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_ipv4"></div>
+                <b>want_ipv4</b>
+                <a class="ansibleOptionLink" href="#parameter-want_ipv4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch ipv4 address of the host.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_ipv6"></div>
+                <b>want_ipv6</b>
+                <a class="ansibleOptionLink" href="#parameter-want_ipv6" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch ipv6 address of the host.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_location"></div>
+                <b>want_location</b>
+                <a class="ansibleOptionLink" href="#parameter-want_location" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch location the host belongs to and create groupings for the same.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_organization"></div>
+                <b>want_organization</b>
+                <a class="ansibleOptionLink" href="#parameter-want_organization" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch organization the host belongs to and create groupings for the same.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
                 <div class="ansibleOptionAnchor" id="parameter-want_params"></div>
                 <b>want_params</b>
                 <a class="ansibleOptionLink" href="#parameter-want_params" title="Permalink to this option"></a>
@@ -698,17 +942,87 @@
                                         <div>Toggle, if true the inventory will retrieve &#x27;all_parameters&#x27; information as host vars</div>
                                                     </td>
         </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_smart_proxies"></div>
+                <b>want_smart_proxies</b>
+                <a class="ansibleOptionLink" href="#parameter-want_smart_proxies" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch smart proxy that the host is registered to.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_subnet"></div>
+                <b>want_subnet</b>
+                <a class="ansibleOptionLink" href="#parameter-want_subnet" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch subnet.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-want_subnet_v6"></div>
+                <b>want_subnet_v6</b>
+                <a class="ansibleOptionLink" href="#parameter-want_subnet_v6" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                <td>
+                                                                                        </td>
+                                            <td>
+                                        <div>Toggle, if true the inventory will fetch ipv6 subnet.</div>
+                                                    </td>
+        </tr>
                     </table>
 <br/></div>
 <div class="section" id="examples">
 <h2><a class="toc-backref" href="#id4">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="c1"># my.foreman.yml</span>
 <span class="nt">plugin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redhat.satellite.foreman</span>
-<span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:2222</span>
-<span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible-tester</span>
-<span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secure</span>
-<span class="nt">validate_certs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://satellite.example.com</span>
+<span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansibleinventory</span>
+<span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">changeme</span>
 <span class="nt">host_filters</span><span class="p">:</span> <span class="s">&#39;organization=&quot;Web</span><span class="nv"> </span><span class="s">Engineering&quot;&#39;</span>
+
+<span class="c1"># shortname.foreman.yml</span>
+<span class="nt">plugin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redhat.satellite.foreman</span>
+<span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://satellite.example.com</span>
+<span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansibleinventory</span>
+<span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">changeme</span>
+<span class="nt">hostnames</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name.split(&#39;.&#39;)[0]</span>
 </pre></div>
 </div>
 </div>

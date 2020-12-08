@@ -7,12 +7,13 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Plugin Index &mdash; Red Hat Satellite Ansible Collection  documentation</title>
+  <title>Redhat.Satellite &mdash; Red Hat Satellite Ansible Collection  documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/ansible-basic-sphinx-ext.css" type="text/css" />
 
   
   
@@ -86,17 +87,23 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Red Hat Satellite Ansible Collection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Plugin Index</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#callback-plugins">Callback Plugins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#inventory-plugins">Inventory Plugins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-plugins">Module Plugins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Redhat.Satellite</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plugin-index">Plugin Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#callback-plugins">Callback Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inventory-plugins">Inventory Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modules">Modules</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roles/index.html">Role Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cvmanager.html">Migrating from <code class="docutils literal notranslate"><span class="pre">cvmanager</span></code> to Red Hat Satellite Ansible Collection</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../developing.html">How to write modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html"><code class="docutils literal notranslate"><span class="pre">foreman_helper</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Foreman Ansible Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasing.html">Releasing the collection</a></li>
 </ul>
@@ -145,7 +152,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Plugin Index</li>
+      <li>Redhat.Satellite</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,25 +171,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="plugin-index">
-<span id="plugins-in-redhat-satellite"></span><h1>Plugin Index<a class="headerlink" href="#plugin-index" title="Permalink to this headline">¶</a></h1>
-<p>These are the plugins in the redhat.satellite collection</p>
+  <div class="section" id="redhat-satellite">
+<span id="plugins-in-redhat-satellite"></span><h1>Redhat.Satellite<a class="headerlink" href="#redhat-satellite" title="Permalink to this headline">¶</a></h1>
+<p>Collection version 1.5.0</p>
 <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="plugin-index">
+<h2>Plugin Index<a class="headerlink" href="#plugin-index" title="Permalink to this headline">¶</a></h2>
+<p>These are the plugins in the redhat.satellite collection</p>
 <div class="section" id="callback-plugins">
-<h2>Callback Plugins<a class="headerlink" href="#callback-plugins" title="Permalink to this headline">¶</a></h2>
+<h3>Callback Plugins<a class="headerlink" href="#callback-plugins" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="foreman_callback.html#ansible-collections-redhat-satellite-foreman-callback"><span class="std std-ref">foreman</span></a> – Sends events to Foreman</p></li>
 </ul>
 </div>
 <div class="section" id="inventory-plugins">
-<h2>Inventory Plugins<a class="headerlink" href="#inventory-plugins" title="Permalink to this headline">¶</a></h2>
+<h3>Inventory Plugins<a class="headerlink" href="#inventory-plugins" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="foreman_inventory.html#ansible-collections-redhat-satellite-foreman-inventory"><span class="std std-ref">foreman</span></a> – Foreman inventory source</p></li>
 </ul>
 </div>
-<div class="section" id="module-plugins">
-<h2>Module Plugins<a class="headerlink" href="#module-plugins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="activation_key_module.html#ansible-collections-redhat-satellite-activation-key-module"><span class="std std-ref">activation_key</span></a> – Manage Activation Keys</p></li>
 <li><p><a class="reference internal" href="architecture_module.html#ansible-collections-redhat-satellite-architecture-module"><span class="std std-ref">architecture</span></a> – Manage Architectures</p></li>
@@ -208,6 +218,7 @@
 <li><p><a class="reference internal" href="http_proxy_module.html#ansible-collections-redhat-satellite-http-proxy-module"><span class="std std-ref">http_proxy</span></a> – Manage HTTP Proxies</p></li>
 <li><p><a class="reference internal" href="image_module.html#ansible-collections-redhat-satellite-image-module"><span class="std std-ref">image</span></a> – Manage Images</p></li>
 <li><p><a class="reference internal" href="installation_medium_module.html#ansible-collections-redhat-satellite-installation-medium-module"><span class="std std-ref">installation_medium</span></a> – Manage Installation Media</p></li>
+<li><p><a class="reference internal" href="job_invocation_module.html#ansible-collections-redhat-satellite-job-invocation-module"><span class="std std-ref">job_invocation</span></a> – Invoke Remote Execution Jobs</p></li>
 <li><p><a class="reference internal" href="job_template_module.html#ansible-collections-redhat-satellite-job-template-module"><span class="std std-ref">job_template</span></a> – Manage Job Templates</p></li>
 <li><p><a class="reference internal" href="lifecycle_environment_module.html#ansible-collections-redhat-satellite-lifecycle-environment-module"><span class="std std-ref">lifecycle_environment</span></a> – Manage Lifecycle Environments</p></li>
 <li><p><a class="reference internal" href="location_module.html#ansible-collections-redhat-satellite-location-module"><span class="std std-ref">location</span></a> – Manage Locations</p></li>
@@ -221,7 +232,7 @@
 <li><p><a class="reference internal" href="realm_module.html#ansible-collections-redhat-satellite-realm-module"><span class="std std-ref">realm</span></a> – Manage Realms</p></li>
 <li><p><a class="reference internal" href="redhat_manifest_module.html#ansible-collections-redhat-satellite-redhat-manifest-module"><span class="std std-ref">redhat_manifest</span></a> – Interact with a Red Hat Satellite Subscription Manifest</p></li>
 <li><p><a class="reference internal" href="repository_module.html#ansible-collections-redhat-satellite-repository-module"><span class="std std-ref">repository</span></a> – Manage Repositories</p></li>
-<li><p><a class="reference internal" href="repository_set_module.html#ansible-collections-redhat-satellite-repository-set-module"><span class="std std-ref">repository_set</span></a> – Enable/disable Repositories in Repository Sets</p></li>
+<li><p><a class="reference internal" href="repository_set_module.html#ansible-collections-redhat-satellite-repository-set-module"><span class="std std-ref">repository_set</span></a> – Enable/disable Red Hat Repositories available through subscriptions</p></li>
 <li><p><a class="reference internal" href="repository_sync_module.html#ansible-collections-redhat-satellite-repository-sync-module"><span class="std std-ref">repository_sync</span></a> – Sync a Repository or Product</p></li>
 <li><p><a class="reference internal" href="resource_info_module.html#ansible-collections-redhat-satellite-resource-info-module"><span class="std std-ref">resource_info</span></a> – Gather information about resources</p></li>
 <li><p><a class="reference internal" href="role_module.html#ansible-collections-redhat-satellite-role-module"><span class="std std-ref">role</span></a> – Manage Roles</p></li>
@@ -229,6 +240,7 @@
 <li><p><a class="reference internal" href="scap_tailoring_file_module.html#ansible-collections-redhat-satellite-scap-tailoring-file-module"><span class="std std-ref">scap_tailoring_file</span></a> – Manage SCAP Tailoring Files</p></li>
 <li><p><a class="reference internal" href="setting_module.html#ansible-collections-redhat-satellite-setting-module"><span class="std std-ref">setting</span></a> – Manage Settings</p></li>
 <li><p><a class="reference internal" href="smart_class_parameter_module.html#ansible-collections-redhat-satellite-smart-class-parameter-module"><span class="std std-ref">smart_class_parameter</span></a> – Manage Smart Class Parameters</p></li>
+<li><p><a class="reference internal" href="smart_proxy_module.html#ansible-collections-redhat-satellite-smart-proxy-module"><span class="std std-ref">smart_proxy</span></a> – Manage Smart Proxies</p></li>
 <li><p><a class="reference internal" href="status_info_module.html#ansible-collections-redhat-satellite-status-info-module"><span class="std std-ref">status_info</span></a> – Get status info</p></li>
 <li><p><a class="reference internal" href="subnet_module.html#ansible-collections-redhat-satellite-subnet-module"><span class="std std-ref">subnet</span></a> – Manage Subnets</p></li>
 <li><p><a class="reference internal" href="subscription_manifest_module.html#ansible-collections-redhat-satellite-subscription-manifest-module"><span class="std std-ref">subscription_manifest</span></a> – Manage Subscription Manifests</p></li>
@@ -240,6 +252,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>List of <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/index.html#list-of-collections" title="(in Ansible v2.10)"><span class="xref std std-ref">collections</span></a> with docs hosted here.</p>
+</div>
 </div>
 </div>
 </div>

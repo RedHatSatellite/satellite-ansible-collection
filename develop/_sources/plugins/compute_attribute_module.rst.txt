@@ -20,7 +20,7 @@ redhat.satellite.compute_attribute -- Manage Compute Attributes
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_.
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 1.5.0).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 
@@ -45,6 +45,7 @@ Synopsis
 - Manage Compute Attributes
 - This beta version can create, and update compute attributes
 
+
 .. Aliases
 
 
@@ -54,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- apypie
+- requests
 
 
 .. Options
