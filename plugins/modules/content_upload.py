@@ -74,7 +74,7 @@ RETURN = ''' # '''
 import os
 import traceback
 
-from ansible.module_utils._text import to_bytes
+from ansible.module_utils._text import to_bytes, to_native
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule, missing_required_lib
 
 try:
@@ -113,11 +113,11 @@ def get_rpm_info(path):
     with open(path) as rpmfile:
         rpmhdr = ts.hdrFromFdno(rpmfile)
 
-    name = rpmhdr[rpm.RPMTAG_NAME].decode('ascii')
     epoch = rpmhdr[rpm.RPMTAG_EPOCHNUM]
-    version = rpmhdr[rpm.RPMTAG_VERSION].decode('ascii')
-    release = rpmhdr[rpm.RPMTAG_RELEASE].decode('ascii')
-    arch = rpmhdr[rpm.RPMTAG_ARCH].decode('ascii')
+    name = to_native(rpmhdr[rpm.RPMTAG_NAME])
+    version = to_native(rpmhdr[rpm.RPMTAG_VERSION])
+    release = to_native(rpmhdr[rpm.RPMTAG_RELEASE])
+    arch = to_native(rpmhdr[rpm.RPMTAG_ARCH])
 
     return (name, epoch, version, release, arch)
 
@@ -174,7 +174,7 @@ def main():
 
                 with open(b_src, 'rb') as contentfile:
                     for chunk in iter(lambda: contentfile.read(CONTENT_CHUNK_SIZE), b""):
-                        data = {'content': chunk, 'offset': offset, 'size': len(chunk)}
+                        data = {'content': chunk, 'offset': offset, 'size': size}
                         module.resource_action('content_uploads', 'update', params=content_upload_scope, data=data)
 
                         offset += len(chunk)

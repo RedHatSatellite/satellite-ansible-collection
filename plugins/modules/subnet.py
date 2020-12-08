@@ -129,11 +129,21 @@ options:
     description:
       - Remote execution Smart proxies for this subnet
       - This option is only available if the remote_execution plugin is installed.
+      - This will always report I(changed=true) when used with I(remote_execution < 4.1.0), due to a bug in the plugin.
     required: false
     type: list
     elements: str
   externalipam_proxy:
-    description: External IPAM proxy for this subnet
+    description:
+      - External IPAM proxy for this subnet.
+      - Only relevant if I(ipam=External IPAM).
+    required: false
+    type: str
+  externalipam_group:
+    description:
+      - External IPAM group for this subnet.
+      - Only relevant if I(ipam=External IPAM).
+    version_added: 1.5.0
     required: false
     type: str
   vlanid:
@@ -240,10 +250,14 @@ def main():
             template_proxy=dict(type='entity', flat_name='template_id', resource_type='smart_proxies'),
             remote_execution_proxies=dict(type='entity_list', resource_type='smart_proxies'),
             externalipam_proxy=dict(type='entity', flat_name='externalipam_id', resource_type='smart_proxies'),
+            externalipam_group=dict(),
             vlanid=dict(type='int'),
             mtu=dict(type='int'),
         ),
-        required_plugins=[('discovery', ['discovery_proxy'])],
+        required_plugins=[
+            ('discovery', ['discovery_proxy']),
+            ('remote_execution', ['remote_execution_proxies']),
+        ],
     )
 
     if not HAS_IPADDRESS:

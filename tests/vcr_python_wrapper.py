@@ -13,6 +13,11 @@ FILTER_REQUEST_HEADERS = ['Authorization', 'Cookie']
 FILTER_RESPONSE_HEADERS = ['Apipie-Checksum', 'Date', 'ETag', 'Server', 'Set-Cookie', 'Via', 'X-Powered-By', 'X-Request-Id', 'X-Runtime']
 
 
+def safe_method_matcher(r1, r2):
+    assert r1.method not in ['POST', 'PUT', 'PATCH', 'DELETE'], 'Method {0} not allowed in check_mode'.format(r1.method)
+    assert r1.method == r2.method
+
+
 # We need our own json level2 matcher, because, python2 and python3 do not save
 # dictionaries in the same order
 def body_json_l2_matcher(r1, r2):
@@ -56,7 +61,7 @@ def query_matcher_ignore_proxy(r1, r2):
     _query_without_search_matcher(r1, r2, '/api/smart_proxies')
 
 
-def katello_manifest_body_matcher(r1, r2):
+def subscription_manifest_body_matcher(r1, r2):
     if r1.path.endswith('/subscriptions/upload') and r2.path.endswith('/subscriptions/upload'):
         if r1.headers.get('content-type').startswith('multipart/form-data') and r2.headers.get('content-type').startswith('multipart/form-data'):
             r1_copy = vcr.request.Request(r1.method, r1.uri, r1.body, r1.headers)
@@ -81,6 +86,19 @@ def host_body_matcher(r1, r2):
             r1_copy.body = json.dumps(body1)
             r2_copy.body = json.dumps(body2)
             return body_json_l2_matcher(r1_copy, r2_copy)
+    return body_json_l2_matcher(r1, r2)
+
+
+def job_invocation_body_matcher(r1, r2):
+    if r1.path == r2.path == '/api/job_invocations':
+        r1_copy = vcr.request.Request(r1.method, r1.uri, r1.body, r1.headers)
+        r2_copy = vcr.request.Request(r2.method, r2.uri, r2.body, r2.headers)
+        body1 = json.loads(r1_copy.body.decode('utf8'))
+        body2 = json.loads(r2_copy.body.decode('utf8'))
+        if 'search_query' in body1['job_invocation']:
+            body1['job_invocation']['search_query'] = body2['job_invocation']['search_query']
+        r1_copy.body = json.dumps(body1)
+        return body_json_l2_matcher(r1_copy, r2_copy)
     return body_json_l2_matcher(r1, r2)
 
 
@@ -122,14 +140,18 @@ else:
     # Call the original python script with vcr-cassette in place
     fam_vcr = vcr.VCR()
 
+    method_matcher = 'method'
+    if test_params['check_mode']:
+        fam_vcr.register_matcher('safe_method_matcher', safe_method_matcher)
+        method_matcher = 'safe_method_matcher'
+
+    query_matcher = 'query'
     if test_params['test_name'] in ['domain', 'hostgroup', 'katello_hostgroup', 'luna_hostgroup', 'realm', 'subnet']:
         fam_vcr.register_matcher('query_ignore_proxy', query_matcher_ignore_proxy)
         query_matcher = 'query_ignore_proxy'
     elif test_params['test_name'] == 'snapshot':
         fam_vcr.register_matcher('snapshot_query', snapshot_query_matcher)
         query_matcher = 'snapshot_query'
-    else:
-        query_matcher = 'query'
 
     fam_vcr.register_matcher('body_json_l2', body_json_l2_matcher)
 
@@ -137,13 +159,16 @@ else:
     if test_params['test_name'] == 'host':
         fam_vcr.register_matcher('host_body', host_body_matcher)
         body_matcher = 'host_body'
-    elif test_params['test_name'] == 'katello_manifest':
-        fam_vcr.register_matcher('katello_manifest_body', katello_manifest_body_matcher)
-        body_matcher = 'katello_manifest_body'
+    elif test_params['test_name'] in ['subscription_manifest', 'manifest_role']:
+        fam_vcr.register_matcher('subscription_manifest_body', subscription_manifest_body_matcher)
+        body_matcher = 'subscription_manifest_body'
+    elif test_params['test_name'] == 'job_invocation':
+        fam_vcr.register_matcher('job_invocation_body', job_invocation_body_matcher)
+        body_matcher = 'job_invocation_body'
 
     with fam_vcr.use_cassette(cassette_file,
                               record_mode=test_params['record_mode'],
-                              match_on=['method', 'path', query_matcher, body_matcher],
+                              match_on=[method_matcher, 'path', query_matcher, body_matcher],
                               filter_headers=FILTER_REQUEST_HEADERS,
                               before_record_request=filter_request_uri,
                               before_record_response=filter_response,

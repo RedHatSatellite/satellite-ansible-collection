@@ -7,7 +7,7 @@ ROLES := $(wildcard roles/*)
 PLUGIN_TYPES := $(filter-out __%,$(notdir $(wildcard plugins/*)))
 METADATA := galaxy.yml LICENSE README.md meta/runtime.yml requirements.txt changelogs/changelog.yaml CHANGELOG.rst
 $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__init__.py,$(wildcard plugins/$(PLUGIN_TYPE)/*.py))))
-DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*))
+DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md)
 
 PYTHON_VERSION = $(shell python -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
 COLLECTION_COMMAND ?= ansible-galaxy
@@ -16,20 +16,24 @@ TEST =
 FLAGS =
 PYTEST = pytest -n 4 --boxed -v
 
+APIPIE_VERSION ?= v0.3.2
+
 default: help
 help:
 	@echo "Please use \`make <target>' where <target> is one of:"
-	@echo "  help           to show this message"
-	@echo "  info           to show infos about the collection"
-	@echo "  lint           to run code linting"
-	@echo "  test           to run unit tests"
-	@echo "  sanity         to run santy tests"
-	@echo "  setup          to set up test, lint"
-	@echo "  test-setup     to install test dependencies"
-	@echo "  test_<test>    to run a specific unittest"
-	@echo "  record_<test>  to (re-)record the server answers for a specific test"
-	@echo "  clean_<test>   to run a specific test playbook with the teardown and cleanup tags"
-	@echo "  dist           to build the collection artifact"
+	@echo "  help             to show this message"
+	@echo "  info             to show infos about the collection"
+	@echo "  lint             to run code linting"
+	@echo "  test             to run unit tests"
+	@echo "  livetest         to run test playbooks live (without vcr)"
+	@echo "  sanity           to run santy tests"
+	@echo "  setup            to set up test, lint"
+	@echo "  test-setup       to install test dependencies"
+	@echo "  test_<test>      to run a specific unittest"
+	@echo "  livetest_<test>  to run a specific unittest live (without vcr)"
+	@echo "  record_<test>    to (re-)record the server answers for a specific test"
+	@echo "  clean_<test>     to run a specific test playbook with the teardown and cleanup tags"
+	@echo "  dist             to build the collection artifact"
 
 info:
 	@echo "Building collection $(NAMESPACE)-$(NAME)-$(VERSION)"
@@ -37,7 +41,8 @@ info:
 	@echo " $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES), $(PLUGIN_TYPE):\n $(foreach PLUGIN,$(basename $(notdir $(_$(PLUGIN_TYPE)))),   - $(PLUGIN)\n)\n)"
 
 lint: $(MANIFEST) | tests/test_playbooks/vars/server.yml
-	yamllint -f parsable tests/test_playbooks
+	yamllint -f parsable tests/test_playbooks roles
+	ansible-lint -v roles/*
 	ansible-playbook --syntax-check tests/test_playbooks/*.yml | grep -v '^$$'
 	flake8 --ignore=E402,W503 --max-line-length=160 plugins/ tests/
 
@@ -49,7 +54,7 @@ test: $(MANIFEST) | tests/test_playbooks/vars/server.yml
 	$(PYTEST) $(TEST)
 
 test-crud: $(MANIFEST) | tests/test_playbooks/vars/server.yml
-	$(PYTEST) 'tests/test_crud.py::test_crud'
+	$(PYTEST) 'tests/test_crud.py::test_crud' 'tests/test_crud.py::test_inventory'
 
 test-check-mode: $(MANIFEST) | tests/test_playbooks/vars/server.yml
 	$(PYTEST) 'tests/test_crud.py::test_check_mode'
@@ -57,12 +62,18 @@ test-check-mode: $(MANIFEST) | tests/test_playbooks/vars/server.yml
 test-other:
 	$(PYTEST) -k 'not test_crud.py'
 
+livetest: $(MANIFEST) | tests/test_playbooks/vars/server.yml
+	pytest -v 'tests/test_crud.py::test_crud' --vcrmode live
+
 test_%: FORCE $(MANIFEST) | tests/test_playbooks/vars/server.yml
 	pytest -v 'tests/test_crud.py::test_crud[$*]' 'tests/test_crud.py::test_check_mode[$*]' $(FLAGS)
 
+livetest_%: FORCE $(MANIFEST) | tests/test_playbooks/vars/server.yml
+	pytest -v 'tests/test_crud.py::test_crud[$*]' --vcrmode live $(FLAGS)
+
 record_%: FORCE $(MANIFEST)
 	$(RM) tests/test_playbooks/fixtures/$*-*.yml
-	pytest -v 'tests/test_crud.py::test_crud[$*]' --record $(FLAGS)
+	pytest -v 'tests/test_crud.py::test_crud[$*]' --vcrmode record $(FLAGS)
 
 clean_%: FORCE $(MANIFEST)
 	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/test_playbooks/$*.yml'
@@ -71,7 +82,7 @@ setup: test-setup
 
 test-setup: | tests/test_playbooks/vars/server.yml
 	pip install --upgrade 'pip<20'
-	pip install -r requirements-dev.txt
+	pip install --upgrade -r requirements-dev.txt
 
 tests/test_playbooks/vars/server.yml:
 	cp $@.example $@
@@ -111,20 +122,29 @@ clean:
 	rm -rf build docs/plugins
 
 doc-setup:
-	pip install -r docs/requirements.txt
+	pip install --upgrade -r docs/requirements.txt
 doc: $(MANIFEST)
-	mkdir -p ./docs/plugins
+	mkdir -p ./docs/plugins ./docs/roles
+	cat ./docs/roles.rst.template > ./docs/roles/index.rst
+	for role_readme in roles/*/README.md; do \
+		ln -f -s ../../$$role_readme ./docs/roles/$$(basename $$(dirname $$role_readme)).md; \
+		echo " * :doc:\`$$(basename $$(dirname $$role_readme))\`" >> ./docs/roles/index.rst; \
+	done
 	antsibull-docs collection --use-current --squash-hierarchy --dest-dir ./docs/plugins $(NAMESPACE).$(NAME)
 	make -C docs html
 
+vendor:
+	git clone --depth=1 --branch=$(APIPIE_VERSION) https://github.com/Apipie/apypie/ build/apypie-git
+	python vendor.py build/apypie-git/apypie/*.py > plugins/module_utils/_apypie.py
+
 branding:
-	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/tests.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst
-	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py
+	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md
+	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py docs/cvmanager.md
 	sed -i 's#theforeman/foreman-ansible-modules#RedHatSatellite/satellite-ansible-collection#g' .github/workflows/*.yml
 	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml
-	sed -i 's/Foreman Ansible Modules/Red Hat Satellite Ansible Collection/g' docs/index.rst docs/conf.py
+	sed -i 's/Foreman Ansible Modules/Red Hat Satellite Ansible Collection/g' docs/index.rst docs/conf.py docs/cvmanager.md
 	sed -i 's/The Foreman Project/Red Hat, Inc./g' docs/conf.py
 
 FORCE:
 
-.PHONY: help dist lint sanity test test-crud test-check-mode test-other setup test-setup doc-setup doc publish FORCE
+.PHONY: help dist lint sanity test test-crud test-check-mode test-other livetest setup test-setup doc-setup doc publish FORCE

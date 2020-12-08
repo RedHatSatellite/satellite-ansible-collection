@@ -34,7 +34,7 @@ extends_documentation_fragment:
 
 EXAMPLES = '''
 - name: status
-  redhat.satellite.status:
+  redhat.satellite.status_info:
     server_url: "https://satellite.example.com"
     username: "admin"
     password: "changeme"

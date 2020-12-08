@@ -25,8 +25,13 @@ from ansible.module_utils.basic import AnsibleModule, missing_required_lib, env_
 from ansible.module_utils._text import to_bytes, to_native
 from ansible.module_utils import six
 
+from distutils.version import LooseVersion
+
 try:
-    import apypie
+    try:
+        from ansible_collections.redhat.satellite.plugins.module_utils import _apypie as apypie
+    except ImportError:
+        from plugins.module_utils import _apypie as apypie
     import requests.exceptions
     HAS_APYPIE = True
     inflector = apypie.Inflector()
@@ -64,7 +69,7 @@ ENTITY_KEYS = dict(
     hostgroups='title',
     locations='title',
     operatingsystems='title',
-    # TODO: Organizations should be search by title (as foreman allow nested orgs) but that's not the case ATM.
+    # TODO: Organizations should be search by title (as foreman allows nested orgs) but that's not the case ATM.
     #       Applying this will need to record a lot of tests that is out of scope for the moment.
     # organizations='title',
     scap_contents='title',
@@ -73,19 +78,66 @@ ENTITY_KEYS = dict(
 )
 
 
+class NoEntity(object):
+    pass
+
+
 def _exception2fail_json(msg='Generic failure: {0}'):
+    """
+    Decorator to convert Python exceptions into Ansible errors that can be reported to the user.
+    """
+
     def decor(f):
         @wraps(f)
         def inner(self, *args, **kwargs):
             try:
                 return f(self, *args, **kwargs)
             except Exception as e:
-                self.fail_from_exception(e, msg.format(to_native(e)))
+                err_msg = "{0}: {1}".format(e.__class__.__name__, to_native(e))
+                self.fail_from_exception(e, msg.format(err_msg))
+        return inner
+    return decor
+
+
+def _check_patch_needed(introduced_version=None, fixed_version=None, plugins=None):
+    """
+    Decorator to check whether a specific apidoc patch is required.
+
+    :param introduced_version: The version of Foreman the API bug was introduced.
+    :type introduced_version: str, optional
+    :param fixed_version: The version of Foreman the API bug was fixed.
+    :type fixed_version: str, optional
+    :param plugins: Which plugins are required for this patch.
+    :type plugins: list, optional
+    """
+
+    def decor(f):
+        @wraps(f)
+        def inner(self, *args, **kwargs):
+            if plugins is not None and not all(self.has_plugin(plugin) for plugin in plugins):
+                return
+
+            if fixed_version is not None and self.foreman_version >= LooseVersion(fixed_version):
+                return
+
+            if introduced_version is not None and self.foreman_version < LooseVersion(introduced_version):
+                return
+
+            return f(self, *args, **kwargs)
         return inner
     return decor
 
 
 class KatelloMixin():
+    """
+    Katello Mixin to extend a :class:`ForemanAnsibleModule` (or any subclass) to work with Katello entities.
+
+    This includes:
+
+    * add a required ``organization`` parameter to the module
+    * add Katello to the list of required plugins
+    """
+
     def __init__(self, **kwargs):
         foreman_spec = dict(
             organization=dict(type='entity', required=True),
@@ -95,83 +147,14 @@ class KatelloMixin():
         required_plugins.append(('katello', ['*']))
         super(KatelloMixin, self).__init__(foreman_spec=foreman_spec, required_plugins=required_plugins, **kwargs)
 
-    @_exception2fail_json(msg="Failed to connect to Foreman server: {0}")
-    def connect(self):
-        super(KatelloMixin, self).connect()
-
-        self._patch_content_uploads_update_api()
-        self._patch_organization_update_api()
-        self._patch_subscription_index_api()
-        self._patch_sync_plan_api()
-
-    def _patch_content_uploads_update_api(self):
-        """This is a workaround for the broken content_uploads update apidoc in katello.
-            see https://projects.theforeman.org/issues/27590
-        """
-
-        _content_upload_methods = self.foremanapi.apidoc['docs']['resources']['content_uploads']['methods']
-
-        _content_upload_update = next(x for x in _content_upload_methods if x['name'] == 'update')
-        _content_upload_update_params_id = next(x for x in _content_upload_update['params'] if x['name'] == 'id')
-        _content_upload_update_params_id['expected_type'] = 'string'
-
-        _content_upload_destroy = next(x for x in _content_upload_methods if x['name'] == 'destroy')
-        _content_upload_destroy_params_id = next(x for x in _content_upload_destroy['params'] if x['name'] == 'id')
-        _content_upload_destroy_params_id['expected_type'] = 'string'
-
-    def _patch_organization_update_api(self):
-        """This is a workaround for the broken organization update apidoc in katello.
-            see https://projects.theforeman.org/issues/27538
-        """
-
-        _organization_methods = self.foremanapi.apidoc['docs']['resources']['organizations']['methods']
-
-        _organization_update = next(x for x in _organization_methods if x['name'] == 'update')
-        _organization_update_params_organization = next(x for x in _organization_update['params'] if x['name'] == 'organization')
-        _organization_update_params_organization['required'] = False
-
-    def _patch_subscription_index_api(self):
-        """This is a workaround for the broken subscriptions apidoc in katello.
-        https://projects.theforeman.org/issues/27575
-        """
-
-        _subscription_methods = self.foremanapi.apidoc['docs']['resources']['subscriptions']['methods']
-
-        _subscription_index = next(x for x in _subscription_methods if x['name'] == 'index')
-        _subscription_index_params_organization_id = next(x for x in _subscription_index['params'] if x['name'] == 'organization_id')
-        _subscription_index_params_organization_id['required'] = False
-
-    def _patch_sync_plan_api(self):
-        """This is a workaround for the broken sync_plan apidoc in katello.
-            see https://projects.theforeman.org/issues/27532
-        """
-
-        _organization_parameter = {
-            u'validations': [],
-            u'name': u'organization_id',
-            u'show': True,
-            u'description': u'\n<p>Filter sync plans by organization name or label</p>\n',
-            u'required': False,
-            u'allow_nil': False,
-            u'allow_blank': False,
-            u'full_name': u'organization_id',
-            u'expected_type': u'numeric',
-            u'metadata': None,
-            u'validator': u'Must be a number.',
-        }
-
-        _sync_plan_methods = self.foremanapi.apidoc['docs']['resources']['sync_plans']['methods']
-
-        _sync_plan_add_products = next(x for x in _sync_plan_methods if x['name'] == 'add_products')
-        if next((x for x in _sync_plan_add_products['params'] if x['name'] == 'organization_id'), None) is None:
-            _sync_plan_add_products['params'].append(_organization_parameter)
-
-        _sync_plan_remove_products = next(x for x in _sync_plan_methods if x['name'] == 'remove_products')
-        if next((x for x in _sync_plan_remove_products['params'] if x['name'] == 'organization_id'), None) is None:
-            _sync_plan_remove_products['params'].append(_organization_parameter)
-
 
 class TaxonomyMixin(object):
+    """
+    Taxonomy Mixin to extend a :class:`ForemanAnsibleModule` (or any subclass) to work with taxonomic entities.
+
+    This adds optional ``organizations`` and ``locations`` parameters to the module.
+    """
+
     def __init__(self, **kwargs):
         foreman_spec = dict(
             organizations=dict(type='entity_list'),
@@ -182,6 +165,19 @@ class TaxonomyMixin(object):
 
 
 class ParametersMixin(object):
+    """
+    Parameters Mixin to extend a :class:`ForemanAnsibleModule` (or any subclass) to work with entities that support parameters.
+
+    This allows to submit parameters to Foreman in the same request as modifying the main entity, thus making the parameters
+    available to any action that might be triggered when the entity is saved.
+
+    By default, parametes are submited to the API using the ``<entity_name>_parameters_attributes`` key.
+    If you need to override this, set the ``PARAMETERS_FLAT_NAME`` attribute to the key that shall be used instead.
+
+    This adds optional ``parameters`` parameter to the module. It also enhances the ``run()`` method to properly handle the
+    provided parameters.
+    """
+
     def __init__(self, **kwargs):
         self.entity_name = kwargs.pop('entity_name', self.entity_name_from_class)
         parameters_flat_name = getattr(self, "PARAMETERS_FLAT_NAME", None) or '{0}_parameters_attributes'.format(self.entity_name)
@@ -204,6 +200,14 @@ class ParametersMixin(object):
 
 
 class NestedParametersMixin(object):
+    """
+    Nested Parameters Mixin to extend a :class:`ForemanAnsibleModule` (or any subclass) to work with entities that support parameters,
+    but require them to be managed in separate API requests.
+
+    This adds optional ``parameters`` parameter to the module. It also enhances the ``run()`` method to properly handle the
+    provided parameters.
+    """
+
     def __init__(self, **kwargs):
         foreman_spec = dict(
             parameters=dict(type='nested_list', foreman_spec=parameter_foreman_spec),
@@ -245,6 +249,13 @@ class NestedParametersMixin(object):
 
 
 class HostMixin(ParametersMixin):
+    """
+    Host Mixin to extend a :class:`ForemanAnsibleModule` (or any subclass) to work with host-related entities (Hosts, Hostgroups).
+
+    This adds many optional parameters that are specific to Hosts and Hostgroups to the module.
+    It also includes :class:`ParametersMixin`.
+    """
+
     def __init__(self, **kwargs):
         foreman_spec = dict(
             compute_resource=dict(type='entity'),
@@ -260,7 +271,7 @@ class HostMixin(ParametersMixin):
             ptable=dict(type='entity'),
             pxe_loader=dict(choices=['PXELinux BIOS', 'PXELinux UEFI', 'Grub UEFI', 'Grub2 BIOS', 'Grub2 ELF',
                                      'Grub2 UEFI', 'Grub2 UEFI SecureBoot', 'Grub2 UEFI HTTP', 'Grub2 UEFI HTTPS',
-                                     'Grub2 UEFI HTTPS SecureBoot', 'iPXE Embedded', 'iPXE UEFI HTTP', 'iPXE Chain BIOS', 'iPXE Chain UEFI']),
+                                     'Grub2 UEFI HTTPS SecureBoot', 'iPXE Embedded', 'iPXE UEFI HTTP', 'iPXE Chain BIOS', 'iPXE Chain UEFI', 'None']),
             environment=dict(type='entity'),
             puppetclasses=dict(type='entity_list', resolve=False),
             config_groups=dict(type='entity_list'),
@@ -285,7 +296,9 @@ class ForemanAnsibleModule(AnsibleModule):
     """ Baseclass for all foreman related Ansible modules.
         It handles connection parameters and adds the concept of the `foreman_spec`.
         This adds automatic entities resolution based on provided attributes/ sub entities options.
+
         It adds the following options to foreman_spec 'entity' and 'entity_list' types:
+
         * search_by (str): Field used to search the sub entity. Defaults to 'name' unless `parent` was set, in which case it defaults to `title`.
         * search_operator (str): Operator used to search the sub entity. Defaults to '='. For fuzzy search use '~'.
         * resource_type (str): Resource type used to build API resource PATH. Defaults to pluralized entity key.
@@ -316,7 +329,7 @@ class ForemanAnsibleModule(AnsibleModule):
         super(ForemanAnsibleModule, self).__init__(argument_spec=argument_spec, supports_check_mode=supports_check_mode, **kwargs)
 
         aliases = {alias for arg in argument_spec.values() for alias in arg.get('aliases', [])}
-        self.foreman_params = {k: v for (k, v) in self.params.items() if v is not None and k not in aliases}
+        self.foreman_params = _recursive_dict_without_none(self.params, aliases)
 
         self.check_requirements()
 
@@ -333,6 +346,12 @@ class ForemanAnsibleModule(AnsibleModule):
 
     @contextmanager
     def api_connection(self):
+        """
+        Execute a given code block after connecting to the API.
+
+        When the block has finished, call :func:`exit_json` to report that the module has finished to Ansible.
+        """
+
         self.connect()
         yield
         self.exit_json()
@@ -344,13 +363,17 @@ class ForemanAnsibleModule(AnsibleModule):
     def set_changed(self):
         self._changed = True
 
+    @_check_patch_needed(fixed_version='2.0.0')
     def _patch_templates_resource_name(self):
-        """ Need to support both singular and plural form. The resource was made plural per
-             https://projects.theforeman.org/issues/28750
+        """
+        Need to support both singular and plural form.
+        Not checking for the templates plugin here, as the check relies on the new name.
+        The resource was made plural per https://projects.theforeman.org/issues/28750
         """
         if 'template' in self.foremanapi.apidoc['docs']['resources']:
             self.foremanapi.apidoc['docs']['resources']['templates'] = self.foremanapi.apidoc['docs']['resources']['template']
 
+    @_check_patch_needed(fixed_version='1.23.0')
     def _patch_location_api(self):
         """This is a workaround for the broken taxonomies apidoc in foreman.
             see https://projects.theforeman.org/issues/10359
@@ -379,14 +402,12 @@ class ForemanAnsibleModule(AnsibleModule):
         _location_update_params_location = next(x for x in _location_update['params'] if x['name'] == 'location')
         _location_update_params_location['params'].append(_location_organizations_parameter)
 
+    @_check_patch_needed(fixed_version='2.2.0', plugins=['remote_execution'])
     def _patch_subnet_rex_api(self):
-        """This is a workaround for the broken subnet apidoc in foreman remote execution.
-            see https://projects.theforeman.org/issues/19086
         """
-
-        if not self.has_plugin('remote_execution'):
-            # the system has no foreman_remote_execution installed, no need to patch
-            return
+        This is a workaround for the broken subnet apidoc in foreman remote execution.
+        See https://projects.theforeman.org/issues/19086 and https://projects.theforeman.org/issues/30651
+        """
 
         _subnet_rex_proxies_parameter = {
             u'validations': [],
@@ -411,12 +432,143 @@ class ForemanAnsibleModule(AnsibleModule):
         _subnet_update_params_subnet = next(x for x in _subnet_update['params'] if x['name'] == 'subnet')
         _subnet_update_params_subnet['params'].append(_subnet_rex_proxies_parameter)
 
+    @_check_patch_needed(introduced_version='2.1.0', fixed_version='2.3.0')
+    def _patch_subnet_externalipam_group_api(self):
+        """
+        This is a workaround for the broken subnet apidoc for External IPAM.
+        See https://projects.theforeman.org/issues/30890
+        """
+
+        _subnet_externalipam_group_parameter = {
+            u'validations': [],
+            u'name': u'externalipam_group',
+            u'show': True,
+            u'description': u'\n<p>External IPAM group - only relevant when IPAM is set to external</p>\n',
+            u'required': False,
+            u'allow_nil': True,
+            u'allow_blank': False,
+            u'full_name': u'subnet[externalipam_group]',
+            u'expected_type': u'string',
+            u'metadata': None,
+            u'validator': u'',
+        }
+        _subnet_methods = self.foremanapi.apidoc['docs']['resources']['subnets']['methods']
+
+        _subnet_create = next(x for x in _subnet_methods if x['name'] == 'create')
+        _subnet_create_params_subnet = next(x for x in _subnet_create['params'] if x['name'] == 'subnet')
+        _subnet_create_params_subnet['params'].append(_subnet_externalipam_group_parameter)
+
+        _subnet_update = next(x for x in _subnet_methods if x['name'] == 'update')
+        _subnet_update_params_subnet = next(x for x in _subnet_update['params'] if x['name'] == 'subnet')
+        _subnet_update_params_subnet['params'].append(_subnet_externalipam_group_parameter)
+
+    @_check_patch_needed(fixed_version='1.24.0', plugins=['katello'])
+    def _patch_content_uploads_update_api(self):
+        """
+        This is a workaround for the broken content_uploads update apidoc in Katello.
+        See https://projects.theforeman.org/issues/27590
+        """
+
+        _content_upload_methods = self.foremanapi.apidoc['docs']['resources']['content_uploads']['methods']
+
+        _content_upload_update = next(x for x in _content_upload_methods if x['name'] == 'update')
+        _content_upload_update_params_id = next(x for x in _content_upload_update['params'] if x['name'] == 'id')
+        _content_upload_update_params_id['expected_type'] = 'string'
+
+        _content_upload_destroy = next(x for x in _content_upload_methods if x['name'] == 'destroy')
+        _content_upload_destroy_params_id = next(x for x in _content_upload_destroy['params'] if x['name'] == 'id')
+        _content_upload_destroy_params_id['expected_type'] = 'string'
+
+    @_check_patch_needed(plugins=['katello'])
+    def _patch_organization_update_api(self):
+        """
+        This is a workaround for the broken organization update apidoc in Katello.
+        See https://projects.theforeman.org/issues/27538
+        """
+
+        _organization_methods = self.foremanapi.apidoc['docs']['resources']['organizations']['methods']
+
+        _organization_update = next(x for x in _organization_methods if x['name'] == 'update')
+        _organization_update_params_organization = next(x for x in _organization_update['params'] if x['name'] == 'organization')
+        _organization_update_params_organization['required'] = False
+
+    @_check_patch_needed(fixed_version='1.24.0', plugins=['katello'])
+    def _patch_subscription_index_api(self):
+        """
+        This is a workaround for the broken subscriptions apidoc in Katello.
+        See https://projects.theforeman.org/issues/27575
+        """
+
+        _subscription_methods = self.foremanapi.apidoc['docs']['resources']['subscriptions']['methods']
+
+        _subscription_index = next(x for x in _subscription_methods if x['name'] == 'index')
+        _subscription_index_params_organization_id = next(x for x in _subscription_index['params'] if x['name'] == 'organization_id')
+        _subscription_index_params_organization_id['required'] = False
+
+    @_check_patch_needed(fixed_version='1.24.0', plugins=['katello'])
+    def _patch_sync_plan_api(self):
+        """
+        This is a workaround for the broken sync_plan apidoc in Katello.
+        See https://projects.theforeman.org/issues/27532
+        """
+
+        _organization_parameter = {
+            u'validations': [],
+            u'name': u'organization_id',
+            u'show': True,
+            u'description': u'\n<p>Filter sync plans by organization name or label</p>\n',
+            u'required': False,
+            u'allow_nil': False,
+            u'allow_blank': False,
+            u'full_name': u'organization_id',
+            u'expected_type': u'numeric',
+            u'metadata': None,
+            u'validator': u'Must be a number.',
+        }
+
+        _sync_plan_methods = self.foremanapi.apidoc['docs']['resources']['sync_plans']['methods']
+
+        _sync_plan_add_products = next(x for x in _sync_plan_methods if x['name'] == 'add_products')
+        if next((x for x in _sync_plan_add_products['params'] if x['name'] == 'organization_id'), None) is None:
+            _sync_plan_add_products['params'].append(_organization_parameter)
+
+        _sync_plan_remove_products = next(x for x in _sync_plan_methods if x['name'] == 'remove_products')
+        if next((x for x in _sync_plan_remove_products['params'] if x['name'] == 'organization_id'), None) is None:
+            _sync_plan_remove_products['params'].append(_organization_parameter)
+
+    @_check_patch_needed(plugins=['katello'])
+    def _patch_cv_filter_rule_api(self):
+        """
+        This is a workaround for missing params of CV Filter Rule update controller in Katello.
+        See https://projects.theforeman.org/issues/30908
+        """
+
+        _content_view_filter_rule_methods = self.foremanapi.apidoc['docs']['resources']['content_view_filter_rules']['methods']
+
+        _content_view_filter_rule_create = next(x for x in _content_view_filter_rule_methods if x['name'] == 'create')
+        _content_view_filter_rule_update = next(x for x in _content_view_filter_rule_methods if x['name'] == 'update')
+
+        for param_name in ['uuid', 'errata_ids', 'date_type', 'module_stream_ids']:
+            create_param = next((x for x in _content_view_filter_rule_create['params'] if x['name'] == param_name), None)
+            update_param = next((x for x in _content_view_filter_rule_update['params'] if x['name'] == param_name), None)
+            if create_param is not None and update_param is None:
+                _content_view_filter_rule_update['params'].append(create_param)
+
     def check_requirements(self):
         if not HAS_APYPIE:
-            self.fail_json(msg=missing_required_lib("apypie"), exception=APYPIE_IMP_ERR)
+            self.fail_json(msg=missing_required_lib("requests"), exception=APYPIE_IMP_ERR)
 
     @_exception2fail_json(msg="Failed to connect to Foreman server: {0}")
     def connect(self):
+        """
+        Connect to the Foreman API.
+
+        This will create a new ``apypie.Api`` instance using the provided server information,
+        check that the API is actually reachable (by calling :func:`status`),
+        apply any required patches to the apidoc and ensure the server has all the plugins installed
+        that are required by the module.
+        """
+
         self.foremanapi = apypie.Api(
             uri=self._foremanapi_server_url,
             username=to_bytes(self._foremanapi_username),
@@ -425,16 +577,39 @@ class ForemanAnsibleModule(AnsibleModule):
             verify_ssl=self._foremanapi_validate_certs,
         )
 
-        self.status()
+        _status = self.status()
+        self.foreman_version = LooseVersion(_status.get('version', '0.0.0'))
+        self.apply_apidoc_patches()
+        self.check_required_plugins()
+
+    def apply_apidoc_patches(self):
+        """
+        Apply patches to the local apidoc representation.
+        When adding another patch, consider that the endpoint in question may depend on a plugin to be available.
+        If possible, make the patch only execute on specific server/plugin versions.
+        """
 
         self._patch_templates_resource_name()
         self._patch_location_api()
         self._patch_subnet_rex_api()
+        self._patch_subnet_externalipam_group_api()
 
-        self.check_required_plugins()
+        # Katello
+        self._patch_content_uploads_update_api()
+        self._patch_organization_update_api()
+        self._patch_subscription_index_api()
+        self._patch_sync_plan_api()
+        self._patch_cv_filter_rule_api()
 
     @_exception2fail_json(msg="Failed to connect to Foreman server: {0}")
     def status(self):
+        """
+        Call the ``status`` API endpoint to ensure the server is reachable.
+
+        :return: The full API response
+        :rtype: dict
+        """
+
         return self.foremanapi.resource('home').call('status')
 
     def _resource(self, resource):
@@ -446,10 +621,22 @@ class ForemanAnsibleModule(AnsibleModule):
         return self._resource(resource).call(*args, **kwargs)
 
     def _resource_prepare_params(self, resource, action, params):
-        return self._resource(resource).action(action).prepare_params(params)
+        api_action = self._resource(resource).action(action)
+        return api_action.prepare_params(params)
 
     @_exception2fail_json(msg='Failed to show resource: {0}')
     def show_resource(self, resource, resource_id, params=None):
+        """
+        Execute the ``show`` action on an entity.
+
+        :param resource: Plural name of the api resource to show
+        :type resource: str
+        :param resource_id: The ID of the entity to show
+        :type resource_id: int
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: Union[dict,None], optional
+        """
+
         if params is None:
             params = {}
         else:
@@ -463,6 +650,17 @@ class ForemanAnsibleModule(AnsibleModule):
 
     @_exception2fail_json(msg='Failed to list resource: {0}')
     def list_resource(self, resource, search=None, params=None):
+        """
+        Execute the ``index`` action on an resource.
+
+        :param resource: Plural name of the api resource to show
+        :type resource: str
+        :param search: Search string as accepted by the API to limit the results
+        :type search: str, optional
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: Union[dict,None], optional
+        """
+
         if params is None:
             params = {}
         else:
@@ -499,6 +697,8 @@ class ForemanAnsibleModule(AnsibleModule):
         return result
 
     def find_resource_by(self, resource, search_field, value, **kwargs):
+        if not value:
+            return NoEntity
         search = '{0}{1}"{2}"'.format(search_field, kwargs.pop('search_operator', '='), value)
         return self.find_resource(resource, search, **kwargs)
 
@@ -557,7 +757,7 @@ class ForemanAnsibleModule(AnsibleModule):
         self.foreman_params[key] = entity
         self.foreman_spec[key]['resolved'] = True
 
-    def lookup_entity(self, key):
+    def lookup_entity(self, key, params=None):
         if key not in self.foreman_params:
             return None
 
@@ -566,10 +766,18 @@ class ForemanAnsibleModule(AnsibleModule):
             # Already looked up or not an entity(_list) so nothing to do
             return self.foreman_params[key]
 
+        result = self._lookup_entity(self.foreman_params[key], entity_spec, params)
+        self.set_entity(key, result)
+        return result
+
+    def _lookup_entity(self, identifier, entity_spec, params=None):
         resource_type = entity_spec['resource_type']
         failsafe = entity_spec.get('failsafe', False)
         thin = entity_spec.get('thin', True)
-        params = {}
+        if params:
+            params = params.copy()
+        else:
+            params = {}
         try:
             if 'scope' in entity_spec:
                 for scope in entity_spec['scope']:
@@ -579,26 +787,26 @@ class ForemanAnsibleModule(AnsibleModule):
                 if entity_spec.get('type') == 'entity':
                     result = None
                 else:
-                    result = [None for value in self.foreman_params[key]]
+                    result = [None for value in identifier]
             else:
                 self.fail_json(msg="Failed to lookup scope {0} while searching for {1}.".format(entity_spec['scope'], resource_type))
         else:
             # No exception happend => scope is in place
             if resource_type == 'operatingsystems':
                 if entity_spec.get('type') == 'entity':
-                    result = self.find_operatingsystem(self.foreman_params[key], params=params, failsafe=failsafe, thin=thin)
+                    result = self.find_operatingsystem(identifier, params=params, failsafe=failsafe, thin=thin)
                 else:
-                    result = [self.find_operatingsystem(value, params=params, failsafe=failsafe, thin=thin) for value in self.foreman_params[key]]
+                    result = [self.find_operatingsystem(value, params=params, failsafe=failsafe, thin=thin) for value in identifier]
             elif resource_type == 'puppetclasses':
                 if entity_spec.get('type') == 'entity':
-                    result = self.find_puppetclass(self.foreman_params[key], params=params, failsafe=failsafe, thin=thin)
+                    result = self.find_puppetclass(identifier, params=params, failsafe=failsafe, thin=thin)
                 else:
-                    result = [self.find_puppetclass(value, params=params, failsafe=failsafe, thin=thin) for value in self.foreman_params[key]]
+                    result = [self.find_puppetclass(value, params=params, failsafe=failsafe, thin=thin) for value in identifier]
             else:
                 if entity_spec.get('type') == 'entity':
                     result = self.find_resource_by(
                         resource=resource_type,
-                        value=self.foreman_params[key],
+                        value=identifier,
                         search_field=entity_spec.get('search_by', ENTITY_KEYS.get(resource_type, 'name')),
                         search_operator=entity_spec.get('search_operator', '='),
                         failsafe=failsafe, thin=thin, params=params,
@@ -610,16 +818,26 @@ class ForemanAnsibleModule(AnsibleModule):
                         search_field=entity_spec.get('search_by', ENTITY_KEYS.get(resource_type, 'name')),
                         search_operator=entity_spec.get('search_operator', '='),
                         failsafe=failsafe, thin=thin, params=params,
-                    ) for value in self.foreman_params[key]]
-        self.set_entity(key, result)
+                    ) for value in identifier]
         return result
 
     def auto_lookup_entities(self):
+        self.auto_lookup_nested_entities()
         return [
             self.lookup_entity(key)
             for key, entity_spec in self.foreman_spec.items()
             if entity_spec.get('resolve', True) and entity_spec.get('type') in {'entity', 'entity_list'}
         ]
+
+    def auto_lookup_nested_entities(self):
+        for key, entity_spec in self.foreman_spec.items():
+            if entity_spec.get('type') in {'nested_list'}:
+                for nested_key, nested_spec in self.foreman_spec[key]['foreman_spec'].items():
+                    for item in self.foreman_params.get(key, []):
+                        if (nested_key in item and nested_spec.get('resolve', True) and not nested_spec.get('resolved', False)
+                                and nested_spec.get('type') in {'entity', 'entity_list'}):
+                            item[nested_key] = self._lookup_entity(item[nested_key], nested_spec)
+                            nested_spec['resolved'] = True
 
     def record_before(self, resource, entity):
         self._before[resource].append(entity)
@@ -632,17 +850,24 @@ class ForemanAnsibleModule(AnsibleModule):
 
     @_exception2fail_json(msg='Failed to ensure entity state: {0}')
     def ensure_entity(self, resource, desired_entity, current_entity, params=None, state=None, foreman_spec=None):
-        """Ensure that a given entity has a certain state
+        """
+        Ensure that a given entity has a certain state
 
-            Parameters:
-                resource (string): Plural name of the api resource to manipulate
-                desired_entity (dict): Desired properties of the entity
-                current_entity (dict, None): Current properties of the entity or None if nonexistent
-                params (dict): Lookup parameters (i.e. parent_id for nested entities) (optional)
-                state (dict): Desired state of the entity (optionally taken from the module)
-                foreman_spec (dict): Description of the entity structure (optionally taken from module)
-            Return value:
-                The new current state of the entity
+        :param resource: Plural name of the api resource to manipulate
+        :type resource: str
+        :param desired_entity: Desired properties of the entity
+        :type desired_entity: dict
+        :param current_entity: Current properties of the entity or None if nonexistent
+        :type current_entity: Union[dict,None]
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: dict, optional
+        :param state: Desired state of the entity (optionally taken from the module)
+        :type state: str, optional
+        :param foreman_spec: Description of the entity structure (optionally taken from module)
+        :type foreman_spec: dict, optional
+
+        :return: The new current state of the entity
+        :rtype: Union[dict,None]
         """
         if state is None:
             state = self.state
@@ -680,18 +905,47 @@ class ForemanAnsibleModule(AnsibleModule):
 
         return updated_entity
 
-    def _create_entity(self, resource, desired_entity, params, foreman_spec):
-        """Create entity with given properties
+    def _validate_supported_payload(self, resource, action, payload):
+        """
+        Check whether the payload only contains supported keys.
+        Emits a warning for keys that are not part of the apidoc.
 
-            Parameters:
-                resource (string): Plural name of the api resource to manipulate
-                desired_entity (dict): Desired properties of the entity
-                params (dict): Lookup parameters (i.e. parent_id for nested entities) (optional)
-                foreman_spec (dict): Description of the entity structure
-            Return value:
-                The new current state if the entity
+        :param resource: Plural name of the api resource to check
+        :type resource: str
+        :param action: Name of the action to check payload against
+        :type action: str
+        :param payload: API paylod to be checked
+        :type payload: dict
+
+        :return: The payload as it can be submitted to the API
+        :rtype: dict
+        """
+        filtered_payload = self._resource_prepare_params(resource, action, payload)
+        # On Python 2 dict.keys() is just a list, but we need a set here.
+        unsupported_parameters = set(payload.keys()) - set(_recursive_dict_keys(filtered_payload))
+        if unsupported_parameters:
+            warn_msg = "The following parameters are not supported by your server when performing {0} on {1}: {2}. They were ignored."
+            self.warn(warn_msg.format(action, resource, unsupported_parameters))
+        return filtered_payload
+
+    def _create_entity(self, resource, desired_entity, params, foreman_spec):
+        """
+        Create entity with given properties
+
+        :param resource: Plural name of the api resource to manipulate
+        :type resource: str
+        :param desired_entity: Desired properties of the entity
+        :type desired_entity: dict
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: dict, optional
+        :param foreman_spec: Description of the entity structure
+        :type foreman_spec: dict
+
+        :return: The new current state of the entity
+        :rtype: dict
         """
         payload = _flatten_entity(desired_entity, foreman_spec)
+        self._validate_supported_payload(resource, 'create', payload)
         if not self.check_mode:
             if params:
                 payload.update(params)
@@ -703,16 +957,22 @@ class ForemanAnsibleModule(AnsibleModule):
             return fake_entity
 
     def _update_entity(self, resource, desired_entity, current_entity, params, foreman_spec):
-        """Update a given entity with given properties if any diverge
+        """
+        Update a given entity with given properties if any diverge
 
-            Parameters:
-                resource (string): Plural name of the api resource to manipulate
-                desired_entity (dict): Desired properties of the entity
-                current_entity (dict): Current properties of the entity
-                params (dict): Lookup parameters (i.e. parent_id for nested entities) (optional)
-                foreman_spec (dict): Description of the entity structure
-            Return value:
-                The new current state if the entity
+        :param resource: Plural name of the api resource to manipulate
+        :type resource: str
+        :param desired_entity: Desired properties of the entity
+        :type desired_entity: dict
+        :param current_entity: Current properties of the entity
+        :type current_entity: dict
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: dict, optional
+        :param foreman_spec: Description of the entity structure
+        :type foreman_spec: dict
+
+        :return: The new current state of the entity
+        :rtype: dict
         """
         payload = {}
         desired_entity = _flatten_entity(desired_entity, foreman_spec)
@@ -737,7 +997,7 @@ class ForemanAnsibleModule(AnsibleModule):
                 old_value = sorted(old_value, key=operator.itemgetter(sort_key))
             if new_value != old_value:
                 payload[key] = value
-        if payload:
+        if self._validate_supported_payload(resource, 'update', payload):
             payload['id'] = current_entity['id']
             if not self.check_mode:
                 if params:
@@ -754,14 +1014,20 @@ class ForemanAnsibleModule(AnsibleModule):
             return current_entity
 
     def _copy_entity(self, resource, desired_entity, current_entity, params):
-        """Copy a given entity
+        """
+        Copy a given entity
 
-            Parameters:
-                resource (string): Plural name of the api resource to manipulate
-                current_entity (dict): Current properties of the entity
-                params (dict): Lookup parameters (i.e. parent_id for nested entities) (optional)
-            Return value:
-                The new current state of the entity
+        :param resource: Plural name of the api resource to manipulate
+        :type resource: str
+        :param desired_entity: Desired properties of the entity
+        :type desired_entity: dict
+        :param current_entity: Current properties of the entity
+        :type current_entity: dict
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: dict, optional
+
+        :return: The new current state of the entity
+        :rtype: dict
         """
         payload = {
             'id': current_entity['id'],
@@ -772,14 +1038,18 @@ class ForemanAnsibleModule(AnsibleModule):
         return self.resource_action(resource, 'copy', payload)
 
     def _revert_entity(self, resource, current_entity, params):
-        """Revert a given entity
+        """
+        Revert a given entity
 
-            Parameters:
-                resource (string): Plural name of the api resource to manipulate
-                current_entity (dict): Current properties of the entity
-                params (dict): Lookup parameters (i.e. parent_id for nested entities) (optional)
-            Return value:
-                The new current state of the entity
+        :param resource: Plural name of the api resource to manipulate
+        :type resource: str
+        :param current_entity: Current properties of the entity
+        :type current_entity: dict
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: dict, optional
+
+        :return: The new current state of the entity
+        :rtype: dict
         """
         payload = {'id': current_entity['id']}
         if params:
@@ -787,14 +1057,18 @@ class ForemanAnsibleModule(AnsibleModule):
         return self.resource_action(resource, 'revert', payload)
 
     def _delete_entity(self, resource, current_entity, params):
-        """Delete a given entity
+        """
+        Delete a given entity
 
-            Parameters:
-                resource (string): Plural name of the api resource to manipulate
-                current_entity (dict): Current properties of the entity
-                params (dict): Lookup parameters (i.e. parent_id for nested entities) (optional)
-            Return value:
-                The new current state of the entity
+        :param resource: Plural name of the api resource to manipulate
+        :type resource: str
+        :param current_entity: Current properties of the entity
+        :type current_entity: dict
+        :param params: Lookup parameters (i.e. parent_id for nested entities)
+        :type params: dict, optional
+
+        :return: The new current state of the entity
+        :rtype: Union[dict,None]
         """
         payload = {'id': current_entity['id']}
         if params:
@@ -857,6 +1131,11 @@ class ForemanAnsibleModule(AnsibleModule):
 
     def exit_json(self, changed=False, **kwargs):
         kwargs['changed'] = changed or self.changed
+        if 'diff' not in kwargs and (self._before or self._after):
+            kwargs['diff'] = {'before': self._before,
+                              'after': self._after}
+        if 'entity' not in kwargs and self._after_full:
+            kwargs['entity'] = self._after_full
         super(ForemanAnsibleModule, self).exit_json(**kwargs)
 
     def has_plugin(self, plugin_name):
@@ -881,31 +1160,29 @@ class ForemanAnsibleModule(AnsibleModule):
 
 class ForemanStatelessEntityAnsibleModule(ForemanAnsibleModule):
     """ Base class for Foreman entities without a state. To use it, subclass it with the following convention:
-        To manage my_entity entity, create the following sub class:
+        To manage my_entity entity, create the following sub class::
 
-        ```
-        class ForemanMyEntityModule(ForemanStatelessEntityAnsibleModule):
-            pass
-        ```
+            class ForemanMyEntityModule(ForemanStatelessEntityAnsibleModule):
+                pass
 
-        and use that class to instanciate module:
+        and use that class to instantiate module::
 
-        ```
-        module = ForemanMyEntityModule(
-            argument_spec=dict(
-                [...]
-            ),
-            foreman_spec=dict(
-                [...]
-            ),
-        )
-        ```
+            module = ForemanMyEntityModule(
+                argument_spec=dict(
+                    [...]
+                ),
+                foreman_spec=dict(
+                    [...]
+                ),
+            )
 
         It adds the following attributes:
+
         * entity_key (str): field used to search current entity. Defaults to value provided by `ENTITY_KEYS` or 'name' if no value found.
         * entity_name (str): name of the current entity.
           By default deduce the entity name from the class name (eg: 'ForemanProvisioningTemplateModule' class will produce 'provisioning_template').
         * entity_opts (dict): Dict of options for base entity. Same options can be provided for subentities described in foreman_spec.
+
         The main entity is referenced with the key `entity` in the `foreman_spec`.
     """
 
@@ -954,16 +1231,21 @@ class ForemanStatelessEntityAnsibleModule(ForemanAnsibleModule):
 
     @property
     def entity_name_from_class(self):
-        """ Convert class name to entity name. The class name must follow folowing name convention:
-            * Starts with Foreman or Katello
-            * Ends with Module
+        """
+        The entity name derived from the class name.
 
-            This will concert ForemanMyEntityModule class name to my_entity entity name.
-            eg:
-            * ForemanArchitectureModule => architecture
-            * ForemanProvisioningTemplateModule => provisioning_template
-            * KatelloProductMudule => product
-            * ...
+        The class name must follow the following name convention:
+
+        * It starts with ``Foreman`` or ``Katello``.
+        * It ends with ``Module``.
+
+        This will convert the class name ``ForemanMyEntityModule`` to the entity name ``my_entity``.
+
+        Examples:
+
+        * ``ForemanArchitectureModule`` => ``architecture``
+        * ``ForemanProvisioningTemplateModule`` => ``provisioning_template``
+        * ``KatelloProductMudule`` => ``product``
         """
         # Convert current class name from CamelCase to snake_case
         class_name = re.sub(r'(?<=[a-z])[A-Z]|[A-Z](?=[^A-Z])', r'_\g<0>', self.__class__.__name__).lower().strip('_')
@@ -973,25 +1255,21 @@ class ForemanStatelessEntityAnsibleModule(ForemanAnsibleModule):
 
 class ForemanEntityAnsibleModule(ForemanStatelessEntityAnsibleModule):
     """ Base class for Foreman entities. To use it, subclass it with the following convention:
-        To manage my_entity entity, create the following sub class:
+        To manage my_entity entity, create the following sub class::
 
-        ```
-        class ForemanMyEntityModule(ForemanEntityAnsibleModule):
-            pass
-        ```
+            class ForemanMyEntityModule(ForemanEntityAnsibleModule):
+                pass
 
-        and use that class to instanciate module:
+        and use that class to instantiate module::
 
-        ```
-        module = ForemanMyEntityModule(
-            argument_spec=dict(
-                [...]
-            ),
-            foreman_spec=dict(
-                [...]
-            ),
-        )
-        ```
+            module = ForemanMyEntityModule(
+                argument_spec=dict(
+                    [...]
+                ),
+                foreman_spec=dict(
+                    [...]
+                ),
+            )
 
         This adds a `state` parameter to the module and provides the `run` method for the most
         common usecases.
@@ -1041,24 +1319,24 @@ class ForemanEntityAnsibleModule(ForemanStatelessEntityAnsibleModule):
                 entity[blacklisted_field] = None
         return entity
 
-    def exit_json(self, **kwargs):
-        if 'diff' not in kwargs and (self._before or self._after):
-            kwargs['diff'] = {'before': self._before,
-                              'after': self._after}
-        if 'entity' not in kwargs and self._after_full:
-            kwargs['entity'] = self._after_full
-        super(ForemanEntityAnsibleModule, self).exit_json(**kwargs)
-
     @property
     def blacklisted_fields(self):
         return [key for key, value in self.foreman_spec.items() if value.get('no_log', False)]
 
 
 class ForemanTaxonomicAnsibleModule(TaxonomyMixin, ForemanAnsibleModule):
+    """
+    Combine :class:`ForemanAnsibleModule` with the :class:`TaxonomyMixin` Mixin.
+    """
+
     pass
 
 
 class ForemanTaxonomicEntityAnsibleModule(TaxonomyMixin, ForemanEntityAnsibleModule):
+    """
+    Combine :class:`ForemanEntityAnsibleModule` with the :class:`TaxonomyMixin` Mixin.
+    """
+
     pass
 
 
@@ -1096,10 +1374,20 @@ class ForemanScapDataStreamModule(ForemanTaxonomicEntityAnsibleModule):
 
 
 class KatelloAnsibleModule(KatelloMixin, ForemanAnsibleModule):
+    """
+    Combine :class:`ForemanAnsibleModule` with the :class:`KatelloMixin` Mixin.
+    """
+
     pass
 
 
 class KatelloEntityAnsibleModule(KatelloMixin, ForemanEntityAnsibleModule):
+    """
+    Combine :class:`ForemanEntityAnsibleModule` with the :class:`KatelloMixin` Mixin.
+
+    Enforces scoping of entities by ``organization`` as required by Katello.
+    """
+
     def __init__(self, **kwargs):
         entity_opts = kwargs.pop('entity_opts', {})
         if 'scope' not in entity_opts:
@@ -1111,7 +1399,7 @@ class KatelloEntityAnsibleModule(KatelloMixin, ForemanEntityAnsibleModule):
 
 def _foreman_spec_helper(spec):
     """Extend an entity spec by adding entries for all flat_names.
-    Extract ansible compatible argument_spec on the way.
+    Extract Ansible compatible argument_spec on the way.
     """
     foreman_spec = {}
     argument_spec = {}
@@ -1149,7 +1437,7 @@ def _foreman_spec_helper(spec):
     # We have to ensure that apypie is available before using it.
     # There is two cases where we can call _foreman_spec_helper() without apypie available:
     # * When the user calls the module but doesn't have the right Python libraries installed.
-    #   In this case nothing will works and the module will warn teh user to install the required library.
+    #   In this case nothing will works and the module will warn the user to install the required library.
     # * When Ansible generates docs from the argument_spec. As the inflector is only used to build foreman_spec and not argument_spec,
     #   This is not a problem.
     #
@@ -1178,7 +1466,7 @@ def _foreman_spec_helper(spec):
         elif foreman_type == 'nested_list':
             argument_value['type'] = 'list'
             argument_value['elements'] = 'dict'
-            _dummy, argument_value['options'] = _foreman_spec_helper(value['foreman_spec'])
+            foreman_value['foreman_spec'], argument_value['options'] = _foreman_spec_helper(value['foreman_spec'])
             foreman_value['ensure'] = value.get('ensure', False)
         elif foreman_type:
             argument_value['type'] = foreman_type
@@ -1210,11 +1498,46 @@ def _flatten_entity(entity, foreman_spec):
             flat_name = spec.get('flat_name', key)
             property_type = spec.get('type', 'str')
             if property_type == 'entity':
-                result[flat_name] = value['id']
+                if value is not NoEntity:
+                    result[flat_name] = value['id']
+                else:
+                    result[flat_name] = None
             elif property_type == 'entity_list':
                 result[flat_name] = sorted(val['id'] for val in value)
+            elif property_type == 'nested_list':
+                result[flat_name] = [_flatten_entity(ent, foreman_spec[key]['foreman_spec']) for ent in value]
             else:
                 result[flat_name] = value
+    return result
+
+
+def _recursive_dict_keys(a_dict):
+    """Find all keys of a nested dictionary"""
+    keys = set(a_dict.keys())
+    for _k, v in a_dict.items():
+        if isinstance(v, dict):
+            keys.update(_recursive_dict_keys(v))
+    return keys
+
+
+def _recursive_dict_without_none(a_dict, exclude=None):
+    """
+    Remove all entries with `None` value from a dict, recursively.
+    Also drops all entries with keys in `exclude` in the top level.
+    """
+    if exclude is None:
+        exclude = []
+
+    result = {}
+
+    for (k, v) in a_dict.items():
+        if v is not None and k not in exclude:
+            if isinstance(v, dict):
+                v = _recursive_dict_without_none(v)
+            elif isinstance(v, list) and v and isinstance(v[0], dict):
+                v = [_recursive_dict_without_none(element) for element in v]
+            result[k] = v
+
     return result
 
 
@@ -1324,3 +1647,58 @@ OS_LIST = ['AIX',
            'Windows',
            'Xenserver',
            ]
+
+TEMPLATE_KIND_LIST = [
+    'Bootdisk',
+    'cloud-init',
+    'finish',
+    'iPXE',
+    'job_template',
+    'kexec',
+    'POAP',
+    'provision',
+    'ptable',
+    'PXEGrub',
+    'PXEGrub2',
+    'PXELinux',
+    'registration',
+    'script',
+    'user_data',
+    'ZTP',
+]
+
+# interface specs
+interfaces_spec = dict(
+    id=dict(invisible=True),
+    mac=dict(),
+    ip=dict(),
+    ip6=dict(),
+    type=dict(choices=['interface', 'bmc', 'bond', 'bridge']),
+    name=dict(),
+    subnet=dict(type='entity'),
+    subnet6=dict(type='entity', resource_type='subnets'),
+    domain=dict(type='entity'),
+    identifier=dict(),
+    managed=dict(type='bool'),
+    primary=dict(type='bool'),
+    provision=dict(type='bool'),
+    username=dict(),
+    password=dict(no_log=True),
+    provider=dict(choices=['IPMI', 'SSH']),
+    virtual=dict(type='bool'),
+    tag=dict(),
+    mtu=dict(type='int'),
+    attached_to=dict(),
+    mode=dict(choices=[
+        'balance-rr',
+        'active-backup',
+        'balance-xor',
+        'broadcast',
+        '802.3ad',
+        'balance-tlb',
+        'balance-alb',
+    ]),
+    attached_devices=dict(type='list', elements='str'),
+    bond_options=dict(),
+    compute_attributes=dict(type='dict'),
+)

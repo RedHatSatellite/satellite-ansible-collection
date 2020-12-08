@@ -162,6 +162,7 @@ from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper im
 
 
 compute_attribute_foreman_spec = {
+    'id': {'invisible': True},
     'compute_resource': {'type': 'entity'},
     'vm_attrs': {'type': 'dict', 'aliases': ['vm_attributes']},
 }

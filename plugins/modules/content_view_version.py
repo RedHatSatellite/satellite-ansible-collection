@@ -124,6 +124,29 @@ EXAMPLES = '''
     organization: "Default Organization"
     version: 1.0
     state: absent
+
+# Obtain information about a Content View and its versions
+- name: find all CVs
+  redhat.satellite.resource_info:
+    username: "admin"
+    password: "changeme"
+    server_url: "https://satellite.example.com"
+    organization: "Default Organization"
+    resource: content_views
+    search: 'name="Example Content"'
+  register: example_content
+
+# Obtain more details about all versions of a specific Content View
+- name: "find content view versions of {{ cv_id }}"
+  redhat.satellite.resource_info:
+    username: "admin"
+    password: "changeme"
+    server_url: "https://satellite.example.com"
+    organization: "Default Organization"
+    resource: content_view_versions
+    params:
+      content_view_id: "{{ example_content.resources[0].id }}"
+  register: version_information
 '''
 
 RETURN = '''

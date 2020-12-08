@@ -6,6 +6,59 @@ redhat.satellite Release Notes
 
 This changelog describes changes after version 0.8.1.
 
+v1.5.0
+======
+
+Minor Changes
+-------------
+
+- content_upload - use ``to_native`` to decode RPM headers if needed (RPM 4.15+ returns strings)
+- content_view_version - provide examples how to obtain detailed information about content view versions (https://bugzilla.redhat.com/show_bug.cgi?id=1868145)
+- content_view_version_cleanup - new role for cleaning up unused content view versions (https://github.com/theforeman/foreman-ansible-modules/issues/497)
+- host - allow management of interfaces (https://github.com/theforeman/foreman-ansible-modules/issues/757)
+- inventory plugin - add support for the Report API present in Foreman 1.24 and later
+- inventory plugin - allow to compose the ``inventory_hostname`` (https://github.com/theforeman/foreman-ansible-modules/issues/1070)
+- manifest - new role for easier handling of subscription manifest workflows
+- subnet - add new ``externalipam_group`` parameter
+- update vendored ``apypie`` to 0.3.2
+
+Bugfixes
+--------
+
+- content_upload - Fix upload of files bigger than 2MB in Pulp3-based setups (https://github.com/theforeman/foreman-ansible-modules/issues/1043)
+- job_invocation - properly submit ``ssh``, ``recurrence``, ``scheduling`` and ``concurrency_control`` to the server
+- repository - don't emit a false warning about ``organization_id`` not being supported by the server (https://github.com/theforeman/foreman-ansible-modules/issues/1055)
+- repository_set, repository - clarify documentation which module should be used for Red Hat Repositories (https://github.com/theforeman/foreman-ansible-modules/issues/1059)
+
+v1.4.0
+======
+
+Minor Changes
+-------------
+
+- global_parameter - allow to set hidden flag (https://github.com/theforeman/foreman-ansible-modules/issues/1024)
+- job_template - stricter validation of ``template_inputs`` sub-options
+- redhat_manifest - allow configuring content access mode (https://github.com/theforeman/foreman-ansible-modules/issues/820)
+- subnet - verify the server has the ``remote_execution`` plugin when specifying ``remote_execution_proxies``
+- the ``apypie`` library is vendored inside the collection, so users only have to install ``requests`` manually now.
+
+Bugfixes
+--------
+
+- Don't try to update an entity, if only parameters that aren't supported by the server are detected as changed. (https://github.com/theforeman/foreman-ansible-modules/issues/975)
+- allow to pass an empty string when refering to entities, thus unsetting the value (https://github.com/theforeman/foreman-ansible-modules/issues/969)
+- compute_profile - don't fail when trying to update compute attributes of a profile (https://github.com/theforeman/foreman-ansible-modules/issues/997)
+- host, hostgroup - support ``None`` as the ``pxe_loader`` (https://github.com/theforeman/foreman-ansible-modules/issues/971)
+- job_template - don't fail when trying to update template_inputs
+- os_default_template - document possible template kind choices (https://bugzilla.redhat.com/show_bug.cgi?id=1889952)
+- smart_class_parameters - don't fail when trying to update override_values
+
+New Modules
+-----------
+
+- redhat.satellite.job_invocation - Invoke Remote Execution Jobs
+- redhat.satellite.smart_proxy - Manage Smart Proxies
+
 v1.3.0
 ======
 

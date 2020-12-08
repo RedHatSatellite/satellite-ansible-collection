@@ -4,3 +4,5 @@ user: admin
 password: changeme
 validate_certs: False
 want_params: True
+want_facts: True
+use_reports_api: False
