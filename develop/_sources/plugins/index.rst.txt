@@ -5,7 +5,7 @@
 Redhat.Satellite
 ================
 
-Collection version 1.5.0
+Collection version 1.5.1
 
 .. toctree::
     :maxdepth: 1
