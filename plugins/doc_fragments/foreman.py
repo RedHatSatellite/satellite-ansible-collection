@@ -270,6 +270,13 @@ options:
       - Only available for Katello installations.
     required: false
     type: str
+  activation_keys:
+    description:
+      - Activation Keys used for deployment.
+      - Comma separated list.
+      - Only available for Katello installations.
+    required: false
+    type: str
 '''
 
     ORGANIZATION = '''
@@ -317,4 +324,36 @@ options:
       - You can omit the version part as long as you only have one operating system by that name.
     type: str
     required: False
+'''
+
+    INFOMODULE = '''
+options:
+  name:
+    description:
+      - Name of the resource to fetch information for.
+      - Mutually exclusive with I(search).
+    required: false
+    type: str
+  location:
+    description:
+      - Label of the Location to scope the search for.
+    required: false
+    type: str
+  organization:
+    description:
+      - Name of the Organization to scope the search for.
+    required: false
+    type: str
+  search:
+    description:
+      - Search query to use
+      - If None, and I(name) is not set, all resources are returned.
+      - Mutually exclusive with I(name).
+    type: str
+'''
+
+    KATELLOINFOMODULE = '''
+options:
+  organization:
+    required: true
 '''

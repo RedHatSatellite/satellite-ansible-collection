@@ -73,7 +73,6 @@ ENTITY_KEYS = dict(
     #       Applying this will need to record a lot of tests that is out of scope for the moment.
     # organizations='title',
     scap_contents='title',
-    scc_products='friendly_name',
     users='login',
 )
 
@@ -164,7 +163,21 @@ class TaxonomyMixin(object):
         super(TaxonomyMixin, self).__init__(foreman_spec=foreman_spec, **kwargs)
 
 
-class ParametersMixin(object):
+class ParametersMixinBase(object):
+    """
+    Base Class for the Parameters Mixins.
+
+    Provides a function to verify no duplicate parameters are set.
+    """
+
+    def validate_parameters(self):
+        parameters = self.foreman_params.get('parameters')
+        if parameters is not None:
+            if len(parameters) != len(set(param['name'] for param in parameters)):
+                self.fail_json(msg="There are duplicate keys in 'parameters'.")
+
+
+class ParametersMixin(ParametersMixinBase):
     """
     Parameters Mixin to extend a :class:`ForemanAnsibleModule` (or any subclass) to work with entities that support parameters.
 
@@ -187,6 +200,8 @@ class ParametersMixin(object):
         foreman_spec.update(kwargs.pop('foreman_spec', {}))
         super(ParametersMixin, self).__init__(foreman_spec=foreman_spec, **kwargs)
 
+        self.validate_parameters()
+
     def run(self, **kwargs):
         entity = self.lookup_entity('entity')
         if not self.desired_absent:
@@ -199,7 +214,7 @@ class ParametersMixin(object):
         return super(ParametersMixin, self).run(**kwargs)
 
 
-class NestedParametersMixin(object):
+class NestedParametersMixin(ParametersMixinBase):
     """
     Nested Parameters Mixin to extend a :class:`ForemanAnsibleModule` (or any subclass) to work with entities that support parameters,
     but require them to be managed in separate API requests.
@@ -214,6 +229,8 @@ class NestedParametersMixin(object):
         )
         foreman_spec.update(kwargs.pop('foreman_spec', {}))
         super(NestedParametersMixin, self).__init__(foreman_spec=foreman_spec, **kwargs)
+
+        self.validate_parameters()
 
     def run(self, **kwargs):
         new_entity = super(NestedParametersMixin, self).run(**kwargs)
@@ -280,16 +297,26 @@ class HostMixin(ParametersMixin):
             openscap_proxy=dict(type='entity', resource_type='smart_proxies'),
             content_source=dict(type='entity', scope=['organization'], resource_type='smart_proxies'),
             lifecycle_environment=dict(type='entity', scope=['organization']),
-            kickstart_repository=dict(type='entity', scope=['organization'], resource_type='repositories'),
-            content_view=dict(type='entity', scope=['organization']),
+            kickstart_repository=dict(type='entity', scope=['organization'], optional_scope=['lifecycle_environment', 'content_view'],
+                                      resource_type='repositories'),
+            content_view=dict(type='entity', scope=['organization'], optional_scope=['lifecycle_environment']),
+            activation_keys=dict(),
         )
         foreman_spec.update(kwargs.pop('foreman_spec', {}))
         required_plugins = kwargs.pop('required_plugins', []) + [
-            ('katello', ['content_source', 'lifecycle_environment', 'kickstart_repository', 'content_view']),
+            ('katello', ['activation_keys', 'content_source', 'lifecycle_environment', 'kickstart_repository', 'content_view']),
             ('openscap', ['openscap_proxy']),
         ]
         mutually_exclusive = kwargs.pop('mutually_exclusive', []) + [['medium', 'kickstart_repository']]
         super(HostMixin, self).__init__(foreman_spec=foreman_spec, required_plugins=required_plugins, mutually_exclusive=mutually_exclusive, **kwargs)
+
+        if 'activation_keys' in self.foreman_params:
+            if 'parameters' not in self.foreman_params:
+                self.foreman_params['parameters'] = []
+            ak_param = {'name': 'kt_activation_keys', 'parameter_type': 'string', 'value': self.foreman_params.pop('activation_keys')}
+            self.foreman_params['parameters'].append(ak_param)
+
+        self.validate_parameters()
 
 
 class ForemanAnsibleModule(AnsibleModule):
@@ -362,6 +389,14 @@ class ForemanAnsibleModule(AnsibleModule):
 
     def set_changed(self):
         self._changed = True
+
+    def _patch_host_update(self):
+        _host_methods = self.foremanapi.apidoc['docs']['resources']['hosts']['methods']
+
+        _host_update = next(x for x in _host_methods if x['name'] == 'update')
+        for param in ['location_id', 'organization_id']:
+            _host_update_taxonomy_param = next(x for x in _host_update['params'] if x['name'] == param)
+            _host_update['params'].remove(_host_update_taxonomy_param)
 
     @_check_patch_needed(fixed_version='2.0.0')
     def _patch_templates_resource_name(self):
@@ -589,6 +624,8 @@ class ForemanAnsibleModule(AnsibleModule):
         If possible, make the patch only execute on specific server/plugin versions.
         """
 
+        self._patch_host_update()
+
         self._patch_templates_resource_name()
         self._patch_location_api()
         self._patch_subnet_rex_api()
@@ -750,19 +787,56 @@ class ForemanAnsibleModule(AnsibleModule):
     def find_puppetclasses(self, names, **kwargs):
         return [self.find_puppetclass(name, **kwargs) for name in names]
 
-    def scope_for(self, key):
-        return {'{0}_id'.format(key): self.lookup_entity(key)['id']}
+    def find_cluster(self, name, compute_resource):
+        if compute_resource['provider'].lower() not in ['ovirt', 'vmware']:
+            return {'id': name, 'name': name, '_api_identifier': name}
+
+        avc_params = {'id': compute_resource['id']}
+        available_clusters = self.resource_action('compute_resources', 'available_clusters', params=avc_params,
+                                                  ignore_check_mode=True, record_change=False)['results']
+        cluster = next((cluster for cluster in available_clusters if cluster['name'] == name or cluster['id'] == name), None)
+        if cluster is None:
+            err_msg = "Could not find cluster '{0}' on compute resource '{1}'.".format(name, compute_resource.get('name'))
+            self.fail_json(msg=err_msg)
+        # workaround for https://projects.theforeman.org/issues/31874
+        if compute_resource['provider'].lower() == 'vmware':
+            cluster['_api_identifier'] = cluster['name']
+        else:
+            cluster['_api_identifier'] = cluster['id']
+        return cluster
+
+    def find_network(self, name, compute_resource, cluster=None):
+        if compute_resource['provider'].lower() not in ['ovirt', 'vmware', 'google', 'azurerm']:
+            return {'id': name, 'name': name}
+
+        avn_params = {'id': compute_resource['id']}
+        if cluster is not None:
+            avn_params['cluster_id'] = cluster['_api_identifier']
+        available_networks = self.resource_action('compute_resources', 'available_networks', params=avn_params,
+                                                  ignore_check_mode=True, record_change=False)['results']
+        network = next((network for network in available_networks if network['name'] == name or network['id'] == name), None)
+        if network is None:
+            err_msg = "Could not find network '{0}' on compute resource '{1}'.".format(name, compute_resource.get('name'))
+            self.fail_json(msg=err_msg)
+        return network
+
+    def scope_for(self, key, scoped_resource=None):
+        # workaround for https://projects.theforeman.org/issues/31714
+        if scoped_resource in ['content_views', 'repositories'] and key == 'lifecycle_environment':
+            scope_key = 'environment'
+        else:
+            scope_key = key
+        return {'{0}_id'.format(scope_key): self.lookup_entity(key)['id']}
 
     def set_entity(self, key, entity):
         self.foreman_params[key] = entity
-        self.foreman_spec[key]['resolved'] = True
 
     def lookup_entity(self, key, params=None):
         if key not in self.foreman_params:
             return None
 
         entity_spec = self.foreman_spec[key]
-        if entity_spec.get('resolved') or entity_spec.get('type') not in ('entity', 'entity_list'):
+        if _is_resolved(entity_spec, self.foreman_params[key]):
             # Already looked up or not an entity(_list) so nothing to do
             return self.foreman_params[key]
 
@@ -779,9 +853,12 @@ class ForemanAnsibleModule(AnsibleModule):
         else:
             params = {}
         try:
-            if 'scope' in entity_spec:
-                for scope in entity_spec['scope']:
-                    params.update(self.scope_for(scope))
+            for scope in entity_spec.get('scope', []):
+                params.update(self.scope_for(scope, resource_type))
+            for optional_scope in entity_spec.get('optional_scope', []):
+                if optional_scope in self.foreman_params:
+                    params.update(self.scope_for(optional_scope, resource_type))
+
         except TypeError:
             if failsafe:
                 if entity_spec.get('type') == 'entity':
@@ -835,8 +912,7 @@ class ForemanAnsibleModule(AnsibleModule):
                 for nested_key, nested_spec in self.foreman_spec[key]['foreman_spec'].items():
                     for item in self.foreman_params.get(key, []):
                         if (nested_key in item and nested_spec.get('resolve', True)
-                                and item[nested_key] is not None and not isinstance(item[nested_key], (dict, list))
-                                and nested_spec.get('type') in {'entity', 'entity_list'}):
+                                and not _is_resolved(nested_spec, item[nested_key])):
                             item[nested_key] = self._lookup_entity(item[nested_key], nested_spec)
 
     def record_before(self, resource, entity):
@@ -1253,6 +1329,40 @@ class ForemanStatelessEntityAnsibleModule(ForemanAnsibleModule):
         return '_'.join(class_name.split('_')[1:-1])
 
 
+class ForemanInfoAnsibleModule(ForemanStatelessEntityAnsibleModule):
+    """
+    Base class for Foreman info modules that fetch information about entities
+    """
+    def __init__(self, **kwargs):
+        self._resources = []
+        foreman_spec = dict(
+            name=dict(),
+            search=dict(),
+            organization=dict(type='entity'),
+            location=dict(type='entity'),
+        )
+        foreman_spec.update(kwargs.pop('foreman_spec', {}))
+        super(ForemanInfoAnsibleModule, self).__init__(foreman_spec=foreman_spec, **kwargs)
+
+    def run(self, **kwargs):
+        """
+        lookup entities
+        """
+        self.auto_lookup_entities()
+
+        resource = self.foreman_spec['entity']['resource_type']
+
+        if 'name' in self.foreman_params:
+            self._info_result = {self.entity_name: self.lookup_entity('entity')}
+        else:
+            _flat_entity = _flatten_entity(self.foreman_params, self.foreman_spec)
+            self._info_result = {resource: self.list_resource(resource, self.foreman_params['search'], _flat_entity)}
+
+    def exit_json(self, **kwargs):
+        kwargs.update(self._info_result)
+        super(ForemanInfoAnsibleModule, self).exit_json(**kwargs)
+
+
 class ForemanEntityAnsibleModule(ForemanStatelessEntityAnsibleModule):
     """ Base class for Foreman entities. To use it, subclass it with the following convention:
         To manage my_entity entity, create the following sub class::
@@ -1303,10 +1413,11 @@ class ForemanEntityAnsibleModule(ForemanStatelessEntityAnsibleModule):
                 self.foreman_params[self.entity_key] = self.foreman_params.pop(updated_key)
 
         params = kwargs.get('params', {})
-        entity_scope = self.foreman_spec['entity'].get('scope')
-        if entity_scope:
-            for scope in entity_scope:
-                params.update(self.scope_for(scope))
+        for scope in self.foreman_spec['entity'].get('scope', []):
+            params.update(self.scope_for(scope))
+        for optional_scope in self.foreman_spec['entity'].get('optional_scope', []):
+            if optional_scope in self.foreman_params:
+                params.update(self.scope_for(optional_scope))
         new_entity = self.ensure_entity(self.foreman_spec['entity']['resource_type'], self.foreman_params, entity, params=params)
         new_entity = self.remove_sensitive_fields(new_entity)
 
@@ -1370,7 +1481,7 @@ class ForemanScapDataStreamModule(ForemanTaxonomicEntityAnsibleModule):
                 if entity['digest'] in [digest, digest_stripped]:
                     self.foreman_params.pop('scap_file')
 
-        super(ForemanScapDataStreamModule, self).run(**kwargs)
+        return super(ForemanScapDataStreamModule, self).run(**kwargs)
 
 
 class KatelloAnsibleModule(KatelloMixin, ForemanAnsibleModule):
@@ -1381,11 +1492,9 @@ class KatelloAnsibleModule(KatelloMixin, ForemanAnsibleModule):
     pass
 
 
-class KatelloEntityAnsibleModule(KatelloMixin, ForemanEntityAnsibleModule):
+class KatelloScopedMixin(KatelloMixin):
     """
-    Combine :class:`ForemanEntityAnsibleModule` with the :class:`KatelloMixin` Mixin.
-
-    Enforces scoping of entities by ``organization`` as required by Katello.
+    Enhances :class:`KatelloMixin` with scoping by ``organization`` as required by Katello.
     """
 
     def __init__(self, **kwargs):
@@ -1394,7 +1503,23 @@ class KatelloEntityAnsibleModule(KatelloMixin, ForemanEntityAnsibleModule):
             entity_opts['scope'] = ['organization']
         elif 'organization' not in entity_opts['scope']:
             entity_opts['scope'].append('organization')
-        super(KatelloEntityAnsibleModule, self).__init__(entity_opts=entity_opts, **kwargs)
+        super(KatelloScopedMixin, self).__init__(entity_opts=entity_opts, **kwargs)
+
+
+class KatelloInfoAnsibleModule(KatelloScopedMixin, ForemanInfoAnsibleModule):
+    """
+    Combine :class:`ForemanInfoAnsibleModule` with the :class:`KatelloScopedMixin` Mixin.
+    """
+
+    pass
+
+
+class KatelloEntityAnsibleModule(KatelloScopedMixin, ForemanEntityAnsibleModule):
+    """
+    Combine :class:`ForemanEntityAnsibleModule` with the :class:`KatelloScopedMixin` Mixin.
+    """
+
+    pass
 
 
 def _foreman_spec_helper(spec):
@@ -1410,6 +1535,7 @@ def _foreman_spec_helper(spec):
         'flat_name',
         'foreman_spec',
         'invisible',
+        'optional_scope',
         'resolve',
         'resource_type',
         'scope',
@@ -1424,6 +1550,7 @@ def _foreman_spec_helper(spec):
     }
     _ENTITY_SPEC_KEYS = {
         'failsafe',
+        'optional_scope',
         'resolve',
         'resource_type',
         'scope',
@@ -1539,6 +1666,19 @@ def _recursive_dict_without_none(a_dict, exclude=None):
             result[k] = v
 
     return result
+
+
+def _is_resolved(spec, what):
+    if spec.get('type') not in ('entity', 'entity_list'):
+        return True
+
+    if spec.get('type') == 'entity' and (what is None or isinstance(what, dict)):
+        return True
+
+    if spec.get('type') == 'entity_list' and isinstance(what, list) and what and (what[0] is None or isinstance(what[0], dict)):
+        return True
+
+    return False
 
 
 # Helper for (global, operatingsystem, ...) parameters

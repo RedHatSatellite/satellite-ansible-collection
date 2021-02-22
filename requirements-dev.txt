@@ -4,11 +4,10 @@ vcrpy
 ansible_runner
 python-debian
 rpm-py-installer
+rstcheck
 docker
 cryptography<3.1; python_version < '3.6'
 -r requirements-lint.txt
 -r requirements.txt
--r https://github.com/ansible/ansible/raw/devel/test/lib/ansible_test/_data/requirements/sanity.pylint.txt
--r https://github.com/ansible/ansible/raw/devel/test/lib/ansible_test/_data/requirements/sanity.rstcheck.txt
--r https://github.com/ansible/ansible/raw/devel/test/lib/ansible_test/_data/requirements/sanity.yamllint.txt
+pylint==2.6.0; python_version >= '3.6'
 -r https://github.com/ansible/ansible/raw/devel/test/lib/ansible_test/_data/requirements/sanity.validate-modules.txt

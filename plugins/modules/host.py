@@ -85,6 +85,7 @@ options:
   owner:
     description:
       - Owner (user) of the host.
+      - Users are looked up by their C(login).
       - Mutually exclusive with I(owner_group).
     type: str
     required: false
@@ -114,6 +115,7 @@ options:
     description:
       - Additional compute resource specific attributes.
       - When this parameter is set, the module will not be idempotent.
+      - When you provide a I(cluster) here and I(compute_resource) is set, the cluster id will be automatically looked up.
     type: dict
     required: false
   interfaces_attributes:
@@ -250,6 +252,8 @@ options:
         description:
           - Additional compute resource specific attributes for the interface.
           - When this parameter is set, the module will not be idempotent.
+          - When you provide a I(network) here and I(compute_resource) is set, the network id will be automatically looked up.
+          - On oVirt/RHV I(cluster) is required in the hosts I(compute_attributes) for the lookup to work.
         type: dict
 extends_documentation_fragment:
   - redhat.satellite.foreman
@@ -482,6 +486,20 @@ def main():
 
         if not module.desired_absent:
             module.auto_lookup_entities()
+
+        if 'compute_resource' in module.foreman_params:
+            compute_resource = module.foreman_params['compute_resource']
+            if 'compute_attributes' in module.foreman_params and 'cluster' in module.foreman_params['compute_attributes']:
+                cluster = module.find_cluster(module.foreman_params['compute_attributes']['cluster'], compute_resource)
+                module.foreman_params['compute_attributes']['cluster'] = cluster['_api_identifier']
+            else:
+                cluster = None
+
+            if 'interfaces_attributes' in module.foreman_params:
+                for interface in module.foreman_params['interfaces_attributes']:
+                    if 'compute_attributes' in interface and 'network' in interface['compute_attributes']:
+                        network = module.find_network(interface['compute_attributes']['network'], compute_resource, cluster)
+                        interface['compute_attributes']['network'] = network['id']
 
         # We use different APIs for creating a host with interfaces
         # and updating it, so let's differentiate based on entity being present or not

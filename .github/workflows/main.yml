@@ -18,6 +18,7 @@ jobs:
           - "3.6"
           - "3.7"
           - "3.8"
+          - "3.9"
         ansible:
           - stable-2.8
           - stable-2.9
@@ -42,6 +43,12 @@ jobs:
             ansible: "stable-2.9"
           - python: "3.8"
             ansible: "stable-2.10"
+          - python: "3.9"
+            ansible: "stable-2.8"
+          - python: "3.9"
+            ansible: "stable-2.9"
+          - python: "3.9"
+            ansible: "stable-2.10"
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -49,7 +56,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Restore pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
@@ -69,7 +76,7 @@ jobs:
       - name: fake redhat-uep.pem for redhat_manifest module
         run: sudo mkdir -p /etc/rhsm/ca/ && sudo touch /etc/rhsm/ca/redhat-uep.pem
       - name: Install required collections for ansible-base (2.10+)
-        run: ansible-galaxy collection install community.general
+        run: ansible-galaxy collection install community.docker
         if: matrix.ansible == 'devel' || matrix.ansible == 'stable-2.10'
       - name: Run crud tests
         run: make test-crud
@@ -79,7 +86,7 @@ jobs:
         run: make dist-test
       - name: Run sanity tests
         run: make SANITY_OPTS="--local" sanity
-        if: (matrix.ansible == 'devel' || matrix.ansible == 'stable-2.10') && matrix.python != '3.8'
+        if: matrix.ansible == 'devel' || matrix.ansible == 'stable-2.10'
 
   checkmode:
     runs-on: ubuntu-latest
@@ -90,7 +97,7 @@ jobs:
         with:
           python-version: "3.7"
       - name: Restore pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
@@ -112,7 +119,7 @@ jobs:
         with:
           python-version: "3.7"
       - name: Restore pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
@@ -137,14 +144,16 @@ jobs:
         with:
           python-version: "3.7"
       - name: Restore pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Install dependencies
-        run: pip install --upgrade -r requirements-lint.txt
+        run: |
+          pip install ansible
+          pip install --upgrade -r requirements-lint.txt
       - name: Run lint
         run: make lint
       - name: Upload collection artifact
