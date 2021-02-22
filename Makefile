@@ -147,6 +147,8 @@ branding:
 	sed -i '/FOREMAN_\w/ s/FOREMAN_/SATELLITE_/g' plugins/doc_fragments/foreman.py plugins/module_utils/foreman_helper.py Makefile
 	sed -i '/foreman_\w/ s/foreman_/satellite_/g' roles/*/README.md roles/*/*/*.yml
 	sed -i '/foreman_\w.*:/ s/foreman_/satellite_/g' tests/test_playbooks/*_role.yml
+	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
+	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot.py tests/fixtures/apidoc/snapshot.json
 
 FORCE:
 
