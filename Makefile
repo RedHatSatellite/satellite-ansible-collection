@@ -144,6 +144,7 @@ branding:
 	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml
 	sed -i 's/Foreman Ansible Modules/Red Hat Satellite Ansible Collection/g' docs/index.rst docs/conf.py docs/cvmanager.md
 	sed -i 's/The Foreman Project/Red Hat, Inc./g' docs/conf.py
+	sed -i '/FOREMAN_\w/ s/FOREMAN_/SATELLITE_/g' plugins/doc_fragments/foreman.py plugins/module_utils/foreman_helper.py Makefile
 
 FORCE:
 
