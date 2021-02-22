@@ -21,8 +21,8 @@
   roles:
     - role: repositories
       vars:
-        foreman_organization: "Test Organization"
-        foreman_products:
+        satellite_organization: "Test Organization"
+        satellite_products:
           - name: Red Hat Enterprise Linux Server
             repository_sets:
               - name: Red Hat Satellite Tools 6.7 (for RHEL 7 Server) (RPMs)

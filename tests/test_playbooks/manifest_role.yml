@@ -21,6 +21,6 @@
   roles:
     - role: manifest
       vars:
-        foreman_manifest_download: false
-        foreman_manifest_path: "{{ subscription_manifest_path }}"
-        foreman_organization: "Test Organization"
+        satellite_manifest_download: false
+        satellite_manifest_path: "{{ subscription_manifest_path }}"
+        satellite_organization: "Test Organization"

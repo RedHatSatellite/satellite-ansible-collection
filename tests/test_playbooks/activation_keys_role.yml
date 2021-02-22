@@ -21,8 +21,8 @@
   roles:
     - role: activation_keys
       vars:
-        foreman_organization: "Test Organization"
-        foreman_activation_keys:
+        satellite_organization: "Test Organization"
+        satellite_activation_keys:
           - name: Testkey1
           - name: Testkey2
             auto_attach: false

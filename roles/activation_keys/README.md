@@ -8,7 +8,7 @@ Role Variables
 
 This role supports the [Common Role Variables](https://github.com/theforeman/foreman-ansible-modules/blob/develop/README.md#common-role-variables).
 
-The main data structure for this role is the list of `foreman_activation_keys`. Each `activation_key` requires the following fields:
+The main data structure for this role is the list of `satellite_activation_keys`. Each `activation_key` requires the following fields:
 
 - `name`: The name of the activation key.
 
@@ -46,11 +46,11 @@ Create a basic Activation Key that uses Library LCE, Default Organization View, 
   roles:
     - role: redhat.satellite.activation_keys
       vars:
-        foreman_server_url: https://foreman.example.com
-        foreman_username: "admin"
-        foreman_password: "changeme"
-        foreman_organization: "Default Organization"
-        foreman_activation_keys:
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_organization: "Default Organization"
+        satellite_activation_keys:
           - name: "Basic Activation Key"
             description: "Registers hosts in Library/Default Organization View and tries to attach the best fitting subscription(s) from all available in the organization"
 ```
@@ -62,11 +62,11 @@ Define two Activation Keys. The first registers hosts in the "ACME" organization
   roles:
     - role: redhat.satellite.activation_keys
       vars:
-        foreman_server_url: https://foreman.example.com
-        foreman_username: "admin"
-        foreman_password: "changeme"
-        foreman_organization: "ACME"
-        foreman_activation_keys:
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_organization: "ACME"
+        satellite_activation_keys:
           - name: "ACME_App_Key"
             auto_attach: false
             subscriptions:

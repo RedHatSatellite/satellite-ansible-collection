@@ -21,8 +21,8 @@
   roles:
     - role: lifecycle_environments
       vars:
-        foreman_organization: "Test Organization"
-        foreman_lifecycle_environments:
+        satellite_organization: "Test Organization"
+        satellite_lifecycle_environments:
           - name: "Dev"
             prior: "Library"
           - name: "Test"

@@ -21,11 +21,11 @@ This role supports the [Common Role Variables](https://github.com/theforeman/for
 
 ### Required
 
-- `foreman_content_view_version_cleanup_keep`: How many unused versions to keep.
+- `satellite_content_view_version_cleanup_keep`: How many unused versions to keep.
 
 ### Optional
 
-- `foreman_content_view_version_cleanup_search`: Limit the cleaned content views using a search string (example: `name ~ SOE`).
+- `satellite_content_view_version_cleanup_search`: Limit the cleaned content views using a search string (example: `name ~ SOE`).
   When using Composite Content Views, both the composite and the non-composite ones need to match this search to be properly cleaned up by this role.
 
 Example Playbook
@@ -36,9 +36,9 @@ Example Playbook
   roles:
     - role: redhat.satellite.content_view_version_cleanup
       vars:
-        foreman_server_url: https://foreman.example.com
-        foreman_username: "admin"
-        foreman_password: "changeme"
-        foreman_organization: "Default Organization"
-        foreman_content_view_version_cleanup_keep: 10
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_organization: "Default Organization"
+        satellite_content_view_version_cleanup_keep: 10
 ```

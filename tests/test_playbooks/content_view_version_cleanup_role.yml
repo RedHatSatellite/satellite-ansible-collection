@@ -52,9 +52,9 @@
   roles:
     - role: content_view_version_cleanup
       vars:
-        foreman_organization: "Test Organization"
-        foreman_content_view_version_cleanup_keep: 2
-        foreman_content_view_version_cleanup_search: "name ~ cleanup"
+        satellite_organization: "Test Organization"
+        satellite_content_view_version_cleanup_keep: 2
+        satellite_content_view_version_cleanup_search: "name ~ cleanup"
   post_tasks:
     - name: find remaining content view versions
       redhat.satellite.resource_info:

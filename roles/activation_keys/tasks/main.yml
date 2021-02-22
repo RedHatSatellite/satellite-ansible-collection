@@ -1,11 +1,11 @@
 ---
 - name: 'Create Activation Keys'
   redhat.satellite.activation_key:
-    username: "{{ foreman_username | default(omit) }}"
-    password: "{{ foreman_password | default(omit) }}"
-    server_url: "{{ foreman_server_url | default(omit) }}"
-    validate_certs: "{{ foreman_validate_certs | default(omit) }}"
-    organization: "{{ foreman_organization }}"
+    username: "{{ satellite_username | default(omit) }}"
+    password: "{{ satellite_password | default(omit) }}"
+    server_url: "{{ satellite_server_url | default(omit) }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
     name: "{{ item.name }}"
     description: "{{ item.description | default(omit) }}"
     lifecycle_environment: "{{ item.lifecycle_environment | default('Library') }}"
@@ -23,4 +23,4 @@
     purpose_addons: "{{ item.purpose_addons | default(omit) }}"
     state: present
   with_items:
-    - "{{ foreman_activation_keys }}"
+    - "{{ satellite_activation_keys }}"

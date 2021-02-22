@@ -27,4 +27,10 @@ rhsm_validate_certs: false
 scc_account_name_for_scc_product: testaccount
 scc_account_login_for_scc_product: testuser
 scc_account_password_for_scc_product: testpass
+
+# Satellite branded params
+satellite_username: "{{ foreman_username }}"
+satellite_password: "{{ foreman_password }}"
+satellite_server_url: "{{ foreman_server_url }}"
+satellite_validate_certs: "{{ foreman_validate_certs }}"
 ...
