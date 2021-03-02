@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - name: ensure test organization
+      include_tasks: tasks/organization.yml
+      vars:
+        organization_name: "Test Organization"
+        organization_state: "present"
+
+- hosts: tests
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  roles:
+    - role: activation_keys
+      vars:
+        satellite_organization: "Test Organization"
+        satellite_activation_keys:
+          - name: Testkey1
+          - name: Testkey2
+            auto_attach: false

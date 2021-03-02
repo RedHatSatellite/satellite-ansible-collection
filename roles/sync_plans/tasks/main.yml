@@ -1,0 +1,15 @@
+---
+- name: 'Create Sync Plans'
+  redhat.satellite.sync_plan:
+    username: "{{ satellite_username | default(omit) }}"
+    password: "{{ satellite_password | default(omit) }}"
+    server_url: "{{ satellite_server_url | default(omit) }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    name: "{{ item.name }}"
+    sync_date: "{{ item.sync_date }}"
+    interval: "{{ item.interval }}"
+    cron_expression: "{{ item.cron_expression | default(omit) }}"
+    enabled: "{{ item.enabled | default(true) }}"
+    products: "{{ item.products }}"
+  with_items: "{{ satellite_sync_plans | default([]) }}"

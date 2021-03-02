@@ -21,10 +21,6 @@
   roles:
     - role: manifest
       vars:
-        manifest_download: false
-        manifest_path: "{{ subscription_manifest_path }}"
-        organization: "Test Organization"
-        username: "{{ foreman_username }}"
-        password: "{{ foreman_password }}"
-        server_url: "{{ foreman_server_url }}"
-        validate_certs: false
+        satellite_manifest_download: false
+        satellite_manifest_path: "{{ subscription_manifest_path }}"
+        satellite_organization: "Test Organization"

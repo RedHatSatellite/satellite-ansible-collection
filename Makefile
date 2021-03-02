@@ -89,7 +89,7 @@ tests/test_playbooks/vars/server.yml:
 	@echo "For recording, please adjust $@ to match your reference server."
 
 dist-test: $(MANIFEST)
-	FOREMAN_SERVER_URL=https://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost | grep -q "Failed to connect to Foreman server.*foreman.example.test"
+	SATELLITE_SERVER_URL=https://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost | grep -q "Failed to connect to Foreman server.*foreman.example.test"
 	ansible-doc $(NAMESPACE).$(NAME).organization | grep -q "Manage Organization"
 
 $(MANIFEST): $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
@@ -139,11 +139,16 @@ vendor:
 
 branding:
 	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md
-	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py docs/cvmanager.md
+	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py docs/cvmanager.md roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman/foreman-ansible-modules#RedHatSatellite/satellite-ansible-collection#g' .github/workflows/*.yml
 	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml
 	sed -i 's/Foreman Ansible Modules/Red Hat Satellite Ansible Collection/g' docs/index.rst docs/conf.py docs/cvmanager.md
 	sed -i 's/The Foreman Project/Red Hat, Inc./g' docs/conf.py
+	sed -i '/FOREMAN_\w/ s/FOREMAN_/SATELLITE_/g' plugins/doc_fragments/foreman.py plugins/module_utils/foreman_helper.py Makefile
+	sed -i '/foreman_\w/ s/foreman_/satellite_/g' roles/*/README.md roles/*/*/*.yml
+	sed -i '/foreman_\w.*:/ s/foreman_/satellite_/g' tests/test_playbooks/*_role.yml
+	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
+	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot.py tests/fixtures/apidoc/snapshot.json
 
 FORCE:
 
