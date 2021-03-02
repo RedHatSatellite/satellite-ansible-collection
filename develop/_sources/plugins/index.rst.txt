@@ -5,7 +5,7 @@
 Redhat.Satellite
 ================
 
-Collection version 1.5.1
+Collection version 2.0.1
 
 .. toctree::
     :maxdepth: 1
@@ -48,6 +48,7 @@ Modules
 * :ref:`hardware_model <ansible_collections.redhat.satellite.hardware_model_module>` -- Manage Hardware Models
 * :ref:`host <ansible_collections.redhat.satellite.host_module>` -- Manage Hosts
 * :ref:`host_collection <ansible_collections.redhat.satellite.host_collection_module>` -- Manage Host Collections
+* :ref:`host_info <ansible_collections.redhat.satellite.host_info_module>` -- Fetch information about Hosts
 * :ref:`host_power <ansible_collections.redhat.satellite.host_power_module>` -- Manage Power State of Hosts
 * :ref:`hostgroup <ansible_collections.redhat.satellite.hostgroup_module>` -- Manage Hostgroups
 * :ref:`http_proxy <ansible_collections.redhat.satellite.http_proxy_module>` -- Manage HTTP Proxies
@@ -64,9 +65,11 @@ Modules
 * :ref:`product <ansible_collections.redhat.satellite.product_module>` -- Manage Products
 * :ref:`provisioning_template <ansible_collections.redhat.satellite.provisioning_template_module>` -- Manage Provisioning Templates
 * :ref:`puppet_environment <ansible_collections.redhat.satellite.puppet_environment_module>` -- Manage Puppet Environments
+* :ref:`puppetclasses_import <ansible_collections.redhat.satellite.puppetclasses_import_module>` -- Import Puppet Classes from a Proxy
 * :ref:`realm <ansible_collections.redhat.satellite.realm_module>` -- Manage Realms
 * :ref:`redhat_manifest <ansible_collections.redhat.satellite.redhat_manifest_module>` -- Interact with a Red Hat Satellite Subscription Manifest
 * :ref:`repository <ansible_collections.redhat.satellite.repository_module>` -- Manage Repositories
+* :ref:`repository_info <ansible_collections.redhat.satellite.repository_info_module>` -- Fetch information about Repositories
 * :ref:`repository_set <ansible_collections.redhat.satellite.repository_set_module>` -- Enable/disable Red Hat Repositories available through subscriptions
 * :ref:`repository_sync <ansible_collections.redhat.satellite.repository_sync_module>` -- Sync a Repository or Product
 * :ref:`resource_info <ansible_collections.redhat.satellite.resource_info_module>` -- Gather information about resources

@@ -20,7 +20,7 @@ redhat.satellite.domain -- Manage Domains
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 1.5.1).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.0.1).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 
@@ -234,7 +234,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Password of the user accessing the Foreman server.</div>
-                                            <div>If the value is not specified in the task, the value of environment variable <code>FOREMAN_PASSWORD</code> will be used instead.</div>
+                                            <div>If the value is not specified in the task, the value of environment variable <code>SATELLITE_PASSWORD</code> will be used instead.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -250,7 +250,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>URL of the Foreman server.</div>
-                                            <div>If the value is not specified in the task, the value of environment variable <code>FOREMAN_SERVER_URL</code> will be used instead.</div>
+                                            <div>If the value is not specified in the task, the value of environment variable <code>SATELLITE_SERVER_URL</code> will be used instead.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -300,7 +300,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Username accessing the Foreman server.</div>
-                                            <div>If the value is not specified in the task, the value of environment variable <code>FOREMAN_USERNAME</code> will be used instead.</div>
+                                            <div>If the value is not specified in the task, the value of environment variable <code>SATELLITE_USERNAME</code> will be used instead.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -320,7 +320,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether or not to verify the TLS certificates of the Foreman server.</div>
-                                            <div>If the value is not specified in the task, the value of environment variable <code>FOREMAN_VALIDATE_CERTS</code> will be used instead.</div>
+                                            <div>If the value is not specified in the task, the value of environment variable <code>SATELLITE_VALIDATE_CERTS</code> will be used instead.</div>
                                                         </td>
             </tr>
                         </table>
