@@ -22,7 +22,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: host_info
-version_added: 1.6.0
+version_added: 2.0.0
 short_description: Fetch information about Hosts
 description:
   - Fetch information about Hosts
@@ -42,7 +42,7 @@ EXAMPLES = '''
     name: "host.example.com"
 
 - name: "Show all hosts with domain example.com"
-  redhat.satellite.host:
+  redhat.satellite.host_info:
     username: "admin"
     password: "changeme"
     server_url: "https://satellite.example.com"

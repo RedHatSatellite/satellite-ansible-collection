@@ -1342,7 +1342,8 @@ class ForemanInfoAnsibleModule(ForemanStatelessEntityAnsibleModule):
             location=dict(type='entity'),
         )
         foreman_spec.update(kwargs.pop('foreman_spec', {}))
-        super(ForemanInfoAnsibleModule, self).__init__(foreman_spec=foreman_spec, **kwargs)
+        mutually_exclusive = kwargs.pop('mutually_exclusive', []) + [['name', 'search']]
+        super(ForemanInfoAnsibleModule, self).__init__(foreman_spec=foreman_spec, mutually_exclusive=mutually_exclusive, **kwargs)
 
     def run(self, **kwargs):
         """
@@ -1356,7 +1357,7 @@ class ForemanInfoAnsibleModule(ForemanStatelessEntityAnsibleModule):
             self._info_result = {self.entity_name: self.lookup_entity('entity')}
         else:
             _flat_entity = _flatten_entity(self.foreman_params, self.foreman_spec)
-            self._info_result = {resource: self.list_resource(resource, self.foreman_params['search'], _flat_entity)}
+            self._info_result = {resource: self.list_resource(resource, self.foreman_params.get('search'), _flat_entity)}
 
     def exit_json(self, **kwargs):
         kwargs.update(self._info_result)

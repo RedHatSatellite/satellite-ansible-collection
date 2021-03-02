@@ -6,6 +6,16 @@ redhat.satellite Release Notes
 
 This changelog describes changes after version 0.8.1.
 
+v2.0.1
+======
+
+Bugfixes
+--------
+
+- host - don't filter ``false`` values for ``interfaces_attributes`` (https://github.com/theforeman/foreman-ansible-modules/issues/1148)
+- host_info, repository_info - correctly fetch all entities when neither ``name`` nor ``search`` is set
+- host_info, repository_info - enforce mutual exclusivity of ``name`` and ``search``
+
 v2.0.0
 ======
 
@@ -35,6 +45,13 @@ Bugfixes
 - host - fix subnet/domain assignment when multiple interfaces are defined (https://github.com/theforeman/foreman-ansible-modules/issues/1095)
 - host, hostgroup - select kickstart_repository based on lifecycle_environment and content_view if those are set (https://github.com/theforeman/foreman-ansible-modules/issues/1090, https://bugzilla.redhat.com/1915872)
 - resource_info - correctly show the exact resource when passing ``id`` in ``params``
+
+New Modules
+-----------
+
+- redhat.satellite.host_info - Fetch information about Hosts
+- redhat.satellite.puppetclasses_import - Import Puppet Classes from a Proxy
+- redhat.satellite.repository_info - Fetch information about Repositories
 
 v1.5.0
 ======
