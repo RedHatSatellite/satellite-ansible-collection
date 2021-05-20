@@ -300,7 +300,7 @@ interactions:
       message: OK
 - request:
     body: '{"organization_id": 3, "name": "basic_rhel_key", "description": "Generated
-      by ansible role theforeman.foreman.content_rhel", "environment_id": 2, "content_view_id":
+      by ansible role redhat.satellite.content_rhel", "environment_id": 2, "content_view_id":
       2}'
     headers:
       Accept:
@@ -320,7 +320,7 @@ interactions:
   response:
     body:
       string: '  {"service_level":null,"content_overrides":[],"id":1,"name":"basic_rhel_key","description":"Generated
-        by ansible role theforeman.foreman.content_rhel","unlimited_hosts":true,"auto_attach":true,"content_view_id":2,"environment_id":2,"usage_count":0,"user_id":4,"max_hosts":null,"release_version":null,"purpose_usage":null,"purpose_role":null,"organization_id":3,"organization":{"name":"Test
+        by ansible role redhat.satellite.content_rhel","unlimited_hosts":true,"auto_attach":true,"content_view_id":2,"environment_id":2,"usage_count":0,"user_id":4,"max_hosts":null,"release_version":null,"purpose_usage":null,"purpose_role":null,"organization_id":3,"organization":{"name":"Test
         Organization","label":"Test_Organization","id":3},"created_at":"2021-03-18
         16:17:02 UTC","updated_at":"2021-03-18 16:17:03 UTC","content_view":{"id":2,"name":"Default
         Organization View"},"environment":{"name":"Library","id":2},"products":[],"host_collections":[],"purpose_addons":[],"permissions":{"view_activation_keys":true,"edit_activation_keys":true,"destroy_activation_keys":true}}
