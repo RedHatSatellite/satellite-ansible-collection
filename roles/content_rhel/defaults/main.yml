@@ -1,0 +1,5 @@
+---
+satellite_content_rhel_enable_rhel7: true
+satellite_content_rhel_enable_rhel8: true
+satellite_content_rhel_sync_now: true
+satellite_content_rhel_wait_for_syncs: true

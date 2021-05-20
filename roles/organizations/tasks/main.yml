@@ -1,0 +1,14 @@
+---
+- name: Add organizations
+  redhat.satellite.organization:
+    name: "{{ satellite_organizations_item.name }}"
+    description: "{{ satellite_organizations_item.description | default(omit) }}"
+    label: "{{ satellite_organizations_item.label | default(omit) }}"
+    server_url: "{{ satellite_server_url | default(omit) }}"
+    username: "{{ satellite_username | default(omit) }}"
+    password: "{{ satellite_password | default(omit) }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    state: "{{ satellite_organizations_item.state | default(omit) }}"
+  loop: "{{ satellite_organizations | default([]) }}"
+  loop_control:
+    loop_var: satellite_organizations_item

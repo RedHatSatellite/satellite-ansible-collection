@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - name: ensure test organization
+      include_tasks: tasks/organization.yml
+      vars:
+        organization_name: "Test Organization"
+        organization_state: "present"
+
+- hosts: tests
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  roles:
+    - role: content_rhel
+      vars:
+        satellite_organization: "Test Organization"
+        satellite_validate_certs: false
+        satellite_manifest_download: false
+        satellite_manifest_path: "{{ subscription_manifest_path }}"
+        satellite_sync_plan_name: "RHEL Sync Plan"
+        satellite_sync_plan_interval: daily
+        satellite_sync_plan_sync_date: 2021-02-02 00:00:00 UTC
+        satellite_activation_key_name: "basic_rhel_key"
+        satellite_content_rhel_wait_for_syncs: "{{ ansible_version['full'] is version('2.9', '>=') }}"
