@@ -20,7 +20,7 @@ redhat.satellite.product -- Manage Products
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.0.1).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.0).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 

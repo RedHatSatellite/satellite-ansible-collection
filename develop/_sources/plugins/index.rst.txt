@@ -4,7 +4,7 @@
 Redhat.Satellite
 ================
 
-Collection version 2.0.1
+Collection version 2.1.0
 
 .. toctree::
     :maxdepth: 1
@@ -40,13 +40,17 @@ Modules
 * :ref:`content_upload <ansible_collections.redhat.satellite.content_upload_module>` -- Upload content to a repository
 * :ref:`content_view <ansible_collections.redhat.satellite.content_view_module>` -- Manage Content Views
 * :ref:`content_view_filter <ansible_collections.redhat.satellite.content_view_filter_module>` -- Manage Content View Filters
+* :ref:`content_view_info <ansible_collections.redhat.satellite.content_view_info_module>` -- Fetch information about Content Views
 * :ref:`content_view_version <ansible_collections.redhat.satellite.content_view_version_module>` -- Manage Content View Versions
+* :ref:`content_view_version_info <ansible_collections.redhat.satellite.content_view_version_info_module>` -- Fetch information about Content Views
 * :ref:`domain <ansible_collections.redhat.satellite.domain_module>` -- Manage Domains
+* :ref:`domain_info <ansible_collections.redhat.satellite.domain_info_module>` -- Fetch information about Domains
 * :ref:`external_usergroup <ansible_collections.redhat.satellite.external_usergroup_module>` -- Manage External User Groups
 * :ref:`global_parameter <ansible_collections.redhat.satellite.global_parameter_module>` -- Manage Global Parameters
 * :ref:`hardware_model <ansible_collections.redhat.satellite.hardware_model_module>` -- Manage Hardware Models
 * :ref:`host <ansible_collections.redhat.satellite.host_module>` -- Manage Hosts
 * :ref:`host_collection <ansible_collections.redhat.satellite.host_collection_module>` -- Manage Host Collections
+* :ref:`host_errata_info <ansible_collections.redhat.satellite.host_errata_info_module>` -- Fetch information about Host Errata
 * :ref:`host_info <ansible_collections.redhat.satellite.host_info_module>` -- Fetch information about Hosts
 * :ref:`host_power <ansible_collections.redhat.satellite.host_power_module>` -- Manage Power State of Hosts
 * :ref:`hostgroup <ansible_collections.redhat.satellite.hostgroup_module>` -- Manage Hostgroups
@@ -70,16 +74,20 @@ Modules
 * :ref:`repository <ansible_collections.redhat.satellite.repository_module>` -- Manage Repositories
 * :ref:`repository_info <ansible_collections.redhat.satellite.repository_info_module>` -- Fetch information about Repositories
 * :ref:`repository_set <ansible_collections.redhat.satellite.repository_set_module>` -- Enable/disable Red Hat Repositories available through subscriptions
+* :ref:`repository_set_info <ansible_collections.redhat.satellite.repository_set_info_module>` -- Fetch information about Red Hat Repositories
 * :ref:`repository_sync <ansible_collections.redhat.satellite.repository_sync_module>` -- Sync a Repository or Product
 * :ref:`resource_info <ansible_collections.redhat.satellite.resource_info_module>` -- Gather information about resources
 * :ref:`role <ansible_collections.redhat.satellite.role_module>` -- Manage Roles
 * :ref:`scap_content <ansible_collections.redhat.satellite.scap_content_module>` -- Manage SCAP content
 * :ref:`scap_tailoring_file <ansible_collections.redhat.satellite.scap_tailoring_file_module>` -- Manage SCAP Tailoring Files
 * :ref:`setting <ansible_collections.redhat.satellite.setting_module>` -- Manage Settings
+* :ref:`setting_info <ansible_collections.redhat.satellite.setting_info_module>` -- Fetch information about Settings
 * :ref:`smart_class_parameter <ansible_collections.redhat.satellite.smart_class_parameter_module>` -- Manage Smart Class Parameters
 * :ref:`smart_proxy <ansible_collections.redhat.satellite.smart_proxy_module>` -- Manage Smart Proxies
 * :ref:`status_info <ansible_collections.redhat.satellite.status_info_module>` -- Get status info
 * :ref:`subnet <ansible_collections.redhat.satellite.subnet_module>` -- Manage Subnets
+* :ref:`subnet_info <ansible_collections.redhat.satellite.subnet_info_module>` -- Fetch information about Subnets
+* :ref:`subscription_info <ansible_collections.redhat.satellite.subscription_info_module>` -- Fetch information about Subscriptions
 * :ref:`subscription_manifest <ansible_collections.redhat.satellite.subscription_manifest_module>` -- Manage Subscription Manifests
 * :ref:`sync_plan <ansible_collections.redhat.satellite.sync_plan_module>` -- Manage Sync Plans
 * :ref:`templates_import <ansible_collections.redhat.satellite.templates_import_module>` -- Sync Templates from a repository
@@ -109,13 +117,17 @@ Modules
     content_upload_module
     content_view_module
     content_view_filter_module
+    content_view_info_module
     content_view_version_module
+    content_view_version_info_module
     domain_module
+    domain_info_module
     external_usergroup_module
     global_parameter_module
     hardware_model_module
     host_module
     host_collection_module
+    host_errata_info_module
     host_info_module
     host_power_module
     hostgroup_module
@@ -139,16 +151,20 @@ Modules
     repository_module
     repository_info_module
     repository_set_module
+    repository_set_info_module
     repository_sync_module
     resource_info_module
     role_module
     scap_content_module
     scap_tailoring_file_module
     setting_module
+    setting_info_module
     smart_class_parameter_module
     smart_proxy_module
     status_info_module
     subnet_module
+    subnet_info_module
+    subscription_info_module
     subscription_manifest_module
     sync_plan_module
     templates_import_module

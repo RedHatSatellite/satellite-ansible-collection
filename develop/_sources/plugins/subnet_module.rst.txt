@@ -20,7 +20,7 @@ redhat.satellite.subnet -- Manage Subnets
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.0.1).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.0).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 
@@ -72,6 +72,24 @@ Parameters
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-bmc_proxy"></div>
+                    <b>bmc_proxy</b>
+                    <a class="ansibleOptionLink" href="#parameter-bmc_proxy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.1.0 of redhat.satellite
+                      </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>BMC Smart proxy for this subnet</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-boot_mode"></div>
                     <b>boot_mode</b>
@@ -178,7 +196,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DNS Smart proxy for this subnet</div>
+                                            <div>Reverse DNS Smart proxy for this subnet</div>
                                                         </td>
             </tr>
                                 <tr>

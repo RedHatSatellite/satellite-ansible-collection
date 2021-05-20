@@ -20,7 +20,7 @@ redhat.satellite.hostgroup -- Manage Hostgroups
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.0.1).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.0).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 
@@ -85,6 +85,25 @@ Parameters
                                             <div>Activation Keys used for deployment.</div>
                                             <div>Comma separated list.</div>
                                             <div>Only available for Katello installations.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ansible_roles"></div>
+                    <b>ansible_roles</b>
+                    <a class="ansibleOptionLink" href="#parameter-ansible_roles" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.1.0 of redhat.satellite
+                      </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of ansible roles to associate with the hostgroup.</div>
+                                            <div>The foreman-ansible plugin must be installed to use this parameter.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -15,11 +15,11 @@ To ease cleanup of old Content Views, we ship the `content_view_version_cleanup`
   roles:
     - role: redhat.satellite.content_view_version_cleanup
       vars:
-        server_url: https://satellite.example.com
-        username: "admin"
-        password: "changeme"
-        organization: "Default Organization"
-        content_view_version_cleanup_keep: 10
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_organization: "Default Organization"
+        satellite_content_view_version_cleanup_keep: 10
 ```
 
 ## Automated Updates

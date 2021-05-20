@@ -111,13 +111,17 @@
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter – Manage Content View Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_view_info_module.html">redhat.satellite.content_view_info – Fetch information about Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_version_module.html">redhat.satellite.content_view_version – Manage Content View Versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_view_version_info_module.html">redhat.satellite.content_view_version_info – Fetch information about Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="domain_module.html">redhat.satellite.domain – Manage Domains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="domain_info_module.html">redhat.satellite.domain_info – Fetch information about Domains</a></li>
 <li class="toctree-l4"><a class="reference internal" href="external_usergroup_module.html">redhat.satellite.external_usergroup – Manage External User Groups</a></li>
 <li class="toctree-l4"><a class="reference internal" href="global_parameter_module.html">redhat.satellite.global_parameter – Manage Global Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hardware_model_module.html">redhat.satellite.hardware_model – Manage Hardware Models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_module.html">redhat.satellite.host – Manage Hosts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_collection_module.html">redhat.satellite.host_collection – Manage Host Collections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="host_errata_info_module.html">redhat.satellite.host_errata_info – Fetch information about Host Errata</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_info_module.html">redhat.satellite.host_info – Fetch information about Hosts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_power_module.html">redhat.satellite.host_power – Manage Power State of Hosts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hostgroup_module.html">redhat.satellite.hostgroup – Manage Hostgroups</a></li>
@@ -141,16 +145,20 @@
 <li class="toctree-l4"><a class="reference internal" href="repository_module.html">redhat.satellite.repository – Manage Repositories</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_info_module.html">redhat.satellite.repository_info – Fetch information about Repositories</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_set_module.html">redhat.satellite.repository_set – Enable/disable Red Hat Repositories available through subscriptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository_set_info_module.html">redhat.satellite.repository_set_info – Fetch information about Red Hat Repositories</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_sync_module.html">redhat.satellite.repository_sync – Sync a Repository or Product</a></li>
 <li class="toctree-l4"><a class="reference internal" href="resource_info_module.html">redhat.satellite.resource_info – Gather information about resources</a></li>
 <li class="toctree-l4"><a class="reference internal" href="role_module.html">redhat.satellite.role – Manage Roles</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scap_content_module.html">redhat.satellite.scap_content – Manage SCAP content</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scap_tailoring_file_module.html">redhat.satellite.scap_tailoring_file – Manage SCAP Tailoring Files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="setting_module.html">redhat.satellite.setting – Manage Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting_info_module.html">redhat.satellite.setting_info – Fetch information about Settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smart_class_parameter_module.html">redhat.satellite.smart_class_parameter – Manage Smart Class Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smart_proxy_module.html">redhat.satellite.smart_proxy – Manage Smart Proxies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="status_info_module.html">redhat.satellite.status_info – Get status info</a></li>
 <li class="toctree-l4"><a class="reference internal" href="subnet_module.html">redhat.satellite.subnet – Manage Subnets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subnet_info_module.html">redhat.satellite.subnet_info – Fetch information about Subnets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subscription_info_module.html">redhat.satellite.subscription_info – Fetch information about Subscriptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="subscription_manifest_module.html">redhat.satellite.subscription_manifest – Manage Subscription Manifests</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sync_plan_module.html">redhat.satellite.sync_plan – Manage Sync Plans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="templates_import_module.html">redhat.satellite.templates_import – Sync Templates from a repository</a></li>
@@ -241,7 +249,7 @@
             
   <div class="section" id="redhat-satellite">
 <span id="plugins-in-redhat-satellite"></span><h1>Redhat.Satellite<a class="headerlink" href="#redhat-satellite" title="Permalink to this headline">¶</a></h1>
-<p>Collection version 2.0.1</p>
+<p>Collection version 2.1.0</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="section" id="plugin-index">
@@ -274,13 +282,17 @@
 <li><p><a class="reference internal" href="content_upload_module.html#ansible-collections-redhat-satellite-content-upload-module"><span class="std std-ref">content_upload</span></a> – Upload content to a repository</p></li>
 <li><p><a class="reference internal" href="content_view_module.html#ansible-collections-redhat-satellite-content-view-module"><span class="std std-ref">content_view</span></a> – Manage Content Views</p></li>
 <li><p><a class="reference internal" href="content_view_filter_module.html#ansible-collections-redhat-satellite-content-view-filter-module"><span class="std std-ref">content_view_filter</span></a> – Manage Content View Filters</p></li>
+<li><p><a class="reference internal" href="content_view_info_module.html#ansible-collections-redhat-satellite-content-view-info-module"><span class="std std-ref">content_view_info</span></a> – Fetch information about Content Views</p></li>
 <li><p><a class="reference internal" href="content_view_version_module.html#ansible-collections-redhat-satellite-content-view-version-module"><span class="std std-ref">content_view_version</span></a> – Manage Content View Versions</p></li>
+<li><p><a class="reference internal" href="content_view_version_info_module.html#ansible-collections-redhat-satellite-content-view-version-info-module"><span class="std std-ref">content_view_version_info</span></a> – Fetch information about Content Views</p></li>
 <li><p><a class="reference internal" href="domain_module.html#ansible-collections-redhat-satellite-domain-module"><span class="std std-ref">domain</span></a> – Manage Domains</p></li>
+<li><p><a class="reference internal" href="domain_info_module.html#ansible-collections-redhat-satellite-domain-info-module"><span class="std std-ref">domain_info</span></a> – Fetch information about Domains</p></li>
 <li><p><a class="reference internal" href="external_usergroup_module.html#ansible-collections-redhat-satellite-external-usergroup-module"><span class="std std-ref">external_usergroup</span></a> – Manage External User Groups</p></li>
 <li><p><a class="reference internal" href="global_parameter_module.html#ansible-collections-redhat-satellite-global-parameter-module"><span class="std std-ref">global_parameter</span></a> – Manage Global Parameters</p></li>
 <li><p><a class="reference internal" href="hardware_model_module.html#ansible-collections-redhat-satellite-hardware-model-module"><span class="std std-ref">hardware_model</span></a> – Manage Hardware Models</p></li>
 <li><p><a class="reference internal" href="host_module.html#ansible-collections-redhat-satellite-host-module"><span class="std std-ref">host</span></a> – Manage Hosts</p></li>
 <li><p><a class="reference internal" href="host_collection_module.html#ansible-collections-redhat-satellite-host-collection-module"><span class="std std-ref">host_collection</span></a> – Manage Host Collections</p></li>
+<li><p><a class="reference internal" href="host_errata_info_module.html#ansible-collections-redhat-satellite-host-errata-info-module"><span class="std std-ref">host_errata_info</span></a> – Fetch information about Host Errata</p></li>
 <li><p><a class="reference internal" href="host_info_module.html#ansible-collections-redhat-satellite-host-info-module"><span class="std std-ref">host_info</span></a> – Fetch information about Hosts</p></li>
 <li><p><a class="reference internal" href="host_power_module.html#ansible-collections-redhat-satellite-host-power-module"><span class="std std-ref">host_power</span></a> – Manage Power State of Hosts</p></li>
 <li><p><a class="reference internal" href="hostgroup_module.html#ansible-collections-redhat-satellite-hostgroup-module"><span class="std std-ref">hostgroup</span></a> – Manage Hostgroups</p></li>
@@ -304,16 +316,20 @@
 <li><p><a class="reference internal" href="repository_module.html#ansible-collections-redhat-satellite-repository-module"><span class="std std-ref">repository</span></a> – Manage Repositories</p></li>
 <li><p><a class="reference internal" href="repository_info_module.html#ansible-collections-redhat-satellite-repository-info-module"><span class="std std-ref">repository_info</span></a> – Fetch information about Repositories</p></li>
 <li><p><a class="reference internal" href="repository_set_module.html#ansible-collections-redhat-satellite-repository-set-module"><span class="std std-ref">repository_set</span></a> – Enable/disable Red Hat Repositories available through subscriptions</p></li>
+<li><p><a class="reference internal" href="repository_set_info_module.html#ansible-collections-redhat-satellite-repository-set-info-module"><span class="std std-ref">repository_set_info</span></a> – Fetch information about Red Hat Repositories</p></li>
 <li><p><a class="reference internal" href="repository_sync_module.html#ansible-collections-redhat-satellite-repository-sync-module"><span class="std std-ref">repository_sync</span></a> – Sync a Repository or Product</p></li>
 <li><p><a class="reference internal" href="resource_info_module.html#ansible-collections-redhat-satellite-resource-info-module"><span class="std std-ref">resource_info</span></a> – Gather information about resources</p></li>
 <li><p><a class="reference internal" href="role_module.html#ansible-collections-redhat-satellite-role-module"><span class="std std-ref">role</span></a> – Manage Roles</p></li>
 <li><p><a class="reference internal" href="scap_content_module.html#ansible-collections-redhat-satellite-scap-content-module"><span class="std std-ref">scap_content</span></a> – Manage SCAP content</p></li>
 <li><p><a class="reference internal" href="scap_tailoring_file_module.html#ansible-collections-redhat-satellite-scap-tailoring-file-module"><span class="std std-ref">scap_tailoring_file</span></a> – Manage SCAP Tailoring Files</p></li>
 <li><p><a class="reference internal" href="setting_module.html#ansible-collections-redhat-satellite-setting-module"><span class="std std-ref">setting</span></a> – Manage Settings</p></li>
+<li><p><a class="reference internal" href="setting_info_module.html#ansible-collections-redhat-satellite-setting-info-module"><span class="std std-ref">setting_info</span></a> – Fetch information about Settings</p></li>
 <li><p><a class="reference internal" href="smart_class_parameter_module.html#ansible-collections-redhat-satellite-smart-class-parameter-module"><span class="std std-ref">smart_class_parameter</span></a> – Manage Smart Class Parameters</p></li>
 <li><p><a class="reference internal" href="smart_proxy_module.html#ansible-collections-redhat-satellite-smart-proxy-module"><span class="std std-ref">smart_proxy</span></a> – Manage Smart Proxies</p></li>
 <li><p><a class="reference internal" href="status_info_module.html#ansible-collections-redhat-satellite-status-info-module"><span class="std std-ref">status_info</span></a> – Get status info</p></li>
 <li><p><a class="reference internal" href="subnet_module.html#ansible-collections-redhat-satellite-subnet-module"><span class="std std-ref">subnet</span></a> – Manage Subnets</p></li>
+<li><p><a class="reference internal" href="subnet_info_module.html#ansible-collections-redhat-satellite-subnet-info-module"><span class="std std-ref">subnet_info</span></a> – Fetch information about Subnets</p></li>
+<li><p><a class="reference internal" href="subscription_info_module.html#ansible-collections-redhat-satellite-subscription-info-module"><span class="std std-ref">subscription_info</span></a> – Fetch information about Subscriptions</p></li>
 <li><p><a class="reference internal" href="subscription_manifest_module.html#ansible-collections-redhat-satellite-subscription-manifest-module"><span class="std std-ref">subscription_manifest</span></a> – Manage Subscription Manifests</p></li>
 <li><p><a class="reference internal" href="sync_plan_module.html#ansible-collections-redhat-satellite-sync-plan-module"><span class="std std-ref">sync_plan</span></a> – Manage Sync Plans</p></li>
 <li><p><a class="reference internal" href="templates_import_module.html#ansible-collections-redhat-satellite-templates-import-module"><span class="std std-ref">templates_import</span></a> – Sync Templates from a repository</p></li>

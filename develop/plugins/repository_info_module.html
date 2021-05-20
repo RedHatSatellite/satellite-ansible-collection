@@ -111,13 +111,17 @@
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter – Manage Content View Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_view_info_module.html">redhat.satellite.content_view_info – Fetch information about Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_version_module.html">redhat.satellite.content_view_version – Manage Content View Versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_view_version_info_module.html">redhat.satellite.content_view_version_info – Fetch information about Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="domain_module.html">redhat.satellite.domain – Manage Domains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="domain_info_module.html">redhat.satellite.domain_info – Fetch information about Domains</a></li>
 <li class="toctree-l4"><a class="reference internal" href="external_usergroup_module.html">redhat.satellite.external_usergroup – Manage External User Groups</a></li>
 <li class="toctree-l4"><a class="reference internal" href="global_parameter_module.html">redhat.satellite.global_parameter – Manage Global Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hardware_model_module.html">redhat.satellite.hardware_model – Manage Hardware Models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_module.html">redhat.satellite.host – Manage Hosts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_collection_module.html">redhat.satellite.host_collection – Manage Host Collections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="host_errata_info_module.html">redhat.satellite.host_errata_info – Fetch information about Host Errata</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_info_module.html">redhat.satellite.host_info – Fetch information about Hosts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="host_power_module.html">redhat.satellite.host_power – Manage Power State of Hosts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hostgroup_module.html">redhat.satellite.hostgroup – Manage Hostgroups</a></li>
@@ -141,16 +145,20 @@
 <li class="toctree-l4"><a class="reference internal" href="repository_module.html">redhat.satellite.repository – Manage Repositories</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">redhat.satellite.repository_info – Fetch information about Repositories</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_set_module.html">redhat.satellite.repository_set – Enable/disable Red Hat Repositories available through subscriptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository_set_info_module.html">redhat.satellite.repository_set_info – Fetch information about Red Hat Repositories</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_sync_module.html">redhat.satellite.repository_sync – Sync a Repository or Product</a></li>
 <li class="toctree-l4"><a class="reference internal" href="resource_info_module.html">redhat.satellite.resource_info – Gather information about resources</a></li>
 <li class="toctree-l4"><a class="reference internal" href="role_module.html">redhat.satellite.role – Manage Roles</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scap_content_module.html">redhat.satellite.scap_content – Manage SCAP content</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scap_tailoring_file_module.html">redhat.satellite.scap_tailoring_file – Manage SCAP Tailoring Files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="setting_module.html">redhat.satellite.setting – Manage Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting_info_module.html">redhat.satellite.setting_info – Fetch information about Settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smart_class_parameter_module.html">redhat.satellite.smart_class_parameter – Manage Smart Class Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smart_proxy_module.html">redhat.satellite.smart_proxy – Manage Smart Proxies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="status_info_module.html">redhat.satellite.status_info – Get status info</a></li>
 <li class="toctree-l4"><a class="reference internal" href="subnet_module.html">redhat.satellite.subnet – Manage Subnets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subnet_info_module.html">redhat.satellite.subnet_info – Fetch information about Subnets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subscription_info_module.html">redhat.satellite.subscription_info – Fetch information about Subscriptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="subscription_manifest_module.html">redhat.satellite.subscription_manifest – Manage Subscription Manifests</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sync_plan_module.html">redhat.satellite.sync_plan – Manage Sync Plans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="templates_import_module.html">redhat.satellite.templates_import – Sync Templates from a repository</a></li>
@@ -245,7 +253,7 @@
 <h1>redhat.satellite.repository_info – Fetch information about Repositories<a class="headerlink" href="#redhat-satellite-repository-info-fetch-information-about-repositories" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 2.0.1).</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 2.1.0).</p>
 <p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.repository_info</span></code>.</p>
 </div>
