@@ -112,6 +112,21 @@ options:
         description:
           - zone for I(provider=GCE)
         type: str
+      cloud:
+        description:
+          - cloud for I(provider=AzureRm)
+        type: str
+        choices:
+          - azure
+          - azureusgovernment
+          - azurechina
+          - azuregermancloud
+        version_added: 2.1.0
+      sub_id:
+        description:
+          - Subscription ID for I(provider=AzureRm)
+        type: str
+        version_added: 2.1.0
       ssl_verify_peer:
         description:
           - verify ssl from provider I(provider=proxmox)
@@ -302,7 +317,7 @@ EXAMPLES = '''
       - ACME
     provider: AzureRm
     provider_params:
-      user: SUBSCRIPTION_ID
+      sub_id: SUBSCRIPTION_ID
       tenant: TENANT_ID
       app_ident: CLIENT_ID
       password: CLIENT_SECRET
@@ -368,7 +383,7 @@ def get_provider_info(provider):
         return 'EC2', ['user', 'password', 'region']
 
     elif provider_name == 'azurerm':
-        return 'AzureRm', ['user', 'password', 'tenant', 'region', 'app_ident']
+        return 'AzureRm', ['user', 'password', 'tenant', 'region', 'app_ident', 'cloud', 'sub_id']
 
     elif provider_name == 'gce':
         return 'GCE', ['project', 'email', 'key_path', 'zone']
@@ -403,10 +418,12 @@ def main():
             email=dict(invisible=True),
             key_path=dict(invisible=True),
             zone=dict(invisible=True),
+            cloud=dict(invisible=True),
             ssl_verify_peer=dict(invisible=True),
             set_console_password=dict(invisible=True),
             keyboard_layout=dict(invisible=True),
             public_key=dict(invisible=True),
+            sub_id=dict(invisible=True),
         ),
         argument_spec=dict(
             provider_params=dict(type='dict', options=dict(
@@ -423,14 +440,18 @@ def main():
                 ovirt_quota=dict(),
                 project=dict(),
                 email=dict(),
-                key_path=dict(),
+                key_path=dict(no_log=False),
                 zone=dict(),
+                cloud=dict(choices=['azure', 'azureusgovernment', 'azurechina', 'azuregermancloud']),
                 ssl_verify_peer=dict(type='bool'),
                 set_console_password=dict(type='bool'),
                 keyboard_layout=dict(choices=['ar', 'de-ch', 'es', 'fo', 'fr-ca', 'hu', 'ja', 'mk', 'no', 'pt-br', 'sv', 'da', 'en-gb', 'et', 'fr', 'fr-ch',
                                               'is', 'lt', 'nl', 'pl', 'ru', 'th', 'de', 'en-us', 'fi', 'fr-be', 'hr', 'it', 'lv', 'nl-be', 'pt', 'sl', 'tr']),
                 public_key=dict(),
-            )),
+                sub_id=dict(),
+            ),
+                mutually_exclusive=[['user', 'sub_id']],
+            ),
             state=dict(type='str', default='present', choices=['present', 'absent', 'present_with_defaults']),
         ),
         required_if=(
@@ -443,6 +464,8 @@ def main():
             module.foreman_params['provider'], provider_param_keys = get_provider_info(provider=module.foreman_params['provider'])
             provider_params = module.foreman_params.pop('provider_params', {})
 
+            if module.foreman_params['provider'] == 'AzureRm' and 'user' in provider_params:
+                provider_params['sub_id'] = provider_params.pop('user')
             for key in provider_param_keys:
                 if key in provider_params:
                     module.foreman_params[key] = provider_params.pop(key)

@@ -1,0 +1,46 @@
+---
+- hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - name: drop existing test orgs
+      include_tasks: tasks/organization.yml
+      vars:
+        organization_name: "{{ item }}"
+        organization_state: "absent"
+      loop:
+        - "Test Organization One"
+        - "Test Organization Two"
+
+- hosts: tests
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  roles:
+    - role: organizations
+      vars:
+        satellite_organizations:
+          - name: "Test Organization One"
+          - name: "Test Organization Two"
+            description: "Two Two Two"
+
+- hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - name: drop existing test orgs
+      include_tasks: tasks/organization.yml
+      vars:
+        organization_name: "{{ item }}"
+        organization_state: "absent"
+      loop:
+        - "Test Organization One"
+        - "Test Organization Two"
