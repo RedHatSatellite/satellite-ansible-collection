@@ -15,7 +15,7 @@ The GitHub repository serves as the source for the release and should not be use
 ### Installation from Automation Hub
 
 You can install the collection with `ansible-galaxy collection install redhat.satellite` (Ansible 2.9 and later).
-You will require the `python2-apypie` RPM provided in the Red Hat Satellite repositories.
+You will require the `python-requests` RPM provided in the Red Hat Enterprise Linux repositories.
 
 ## Satellite Documentation
 
