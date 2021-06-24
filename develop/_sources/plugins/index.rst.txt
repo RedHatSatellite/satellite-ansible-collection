@@ -4,10 +4,11 @@
 Redhat.Satellite
 ================
 
-Collection version 2.1.0
+Collection version 2.1.1
 
 .. toctree::
     :maxdepth: 1
+
 
 Plugin Index
 ------------

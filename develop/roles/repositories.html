@@ -89,7 +89,6 @@
               <p class="caption"><span class="caption-text">User documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Red Hat Satellite Ansible Collection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Redhat.Satellite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Role Index</a></li>
@@ -101,6 +100,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html"><code class="docutils literal notranslate"><span class="pre">foreman_helper</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Foreman Ansible Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasing.html">Releasing the collection</a></li>
+</ul>
+<p class="caption"><span class="caption-text">General</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
 </ul>
 
             
@@ -179,7 +182,7 @@
 Each product is represented as a dictionary and can include <code class="docutils literal notranslate"><span class="pre">repository_sets</span></code> which represent Red Hat Repositories and should be used when the product name matches an existing Red Hat Product.
 Each element of <code class="docutils literal notranslate"><span class="pre">repository_sets</span></code> must have a <code class="docutils literal notranslate"><span class="pre">name</span></code> and should specify the <code class="docutils literal notranslate"><span class="pre">basearch</span></code> and/or <code class="docutils literal notranslate"><span class="pre">releasever</span></code> only when multiple versions are available for that Product.
 All repository sets for a Red Hat Product can be enabled by omitting <code class="docutils literal notranslate"><span class="pre">repository_sets</span></code> and instead specifying that the Product has <code class="docutils literal notranslate"><span class="pre">all_repositories:</span> <span class="pre">True</span></code>. When using this option it is also necessary to specify a list of repository <code class="docutils literal notranslate"><span class="pre">label</span></code>s for the Product (e.g. rhel-7-server-rpms). Be wary that this option can result in enabling a large number of unused repositories that, if added to sync plans, can greatly increase sync times and rapidly fill disk space.
-Custom (i.e. non Red Hat) Products can also be defined, with associated <code class="docutils literal notranslate"><span class="pre">repositories</span></code> which represent custom repositories, and are required to have a <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, and <code class="docutils literal notranslate"><span class="pre">content_type</span></code>; they may require additional fields and can take any parameter supported by <a class="reference external" href="https://theforeman.github.io/foreman-ansible-modules/develop/plugins/repository_module.html">redhat.satellite.repository</a>.
+Custom (i.e. non Red Hat) Products can also be defined, with associated <code class="docutils literal notranslate"><span class="pre">repositories</span></code> which represent custom repositories, and are required to have a <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, and <code class="docutils literal notranslate"><span class="pre">content_type</span></code>; they may require additional fields and can take any parameter supported by <a class="reference external" href="https://redhatsatellite.github.io/satellite-ansible-collection/develop/plugins/repository_module.html">redhat.satellite.repository</a>.
 A variety of examples are demonstrated in the data structure below:</p></li>
 </ul>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">satellite_products</span><span class="p">:</span>

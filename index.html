@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-  <title>Foreman Ansible Modules documentation index</title>
+  <title>Red Hat Satellite Ansible Collection documentation index</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" media="all" href="https://theforeman.org/static/css/bootstrap.min.css"/>
   <link rel="stylesheet" media="all" href="https://theforeman.org/static/css/bootstrap-responsive.min.css"/>
@@ -10,7 +10,7 @@
   </head>
 
   <body style="margin:0px 15px">
-    <h1>Foreman Ansible Modules</h1>
+    <h1>Red Hat Satellite Ansible Collection</h1>
 
     <hr />
 
