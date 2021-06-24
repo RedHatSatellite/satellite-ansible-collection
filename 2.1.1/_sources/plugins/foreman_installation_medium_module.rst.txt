@@ -1,0 +1,22 @@
+.. Document meta
+
+:orphan:
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_installation_medium_module:
+
+.. Title
+
+redhat.satellite.foreman_installation_medium
+++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.1).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_installation_medium`.
+
+- This is a redirect to the :ref:`installation_medium module <ansible_collections.installation_medium_module>`.
+- This redirect does **not** work with Ansible 2.9.
