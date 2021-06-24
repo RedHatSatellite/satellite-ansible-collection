@@ -174,8 +174,10 @@ class ParametersMixinBase(object):
     def validate_parameters(self):
         parameters = self.foreman_params.get('parameters')
         if parameters is not None:
-            if len(parameters) != len(set(param['name'] for param in parameters)):
-                self.fail_json(msg="There are duplicate keys in 'parameters'.")
+            parameter_names = [param['name'] for param in parameters]
+            duplicate_params = set([x for x in parameter_names if parameter_names.count(x) > 1])
+            if duplicate_params:
+                self.fail_json(msg="There are duplicate keys in 'parameters': {0}.".format(duplicate_params))
 
 
 class ParametersMixin(ParametersMixinBase):
@@ -311,13 +313,25 @@ class HostMixin(ParametersMixin):
         mutually_exclusive = kwargs.pop('mutually_exclusive', []) + [['medium', 'kickstart_repository']]
         super(HostMixin, self).__init__(foreman_spec=foreman_spec, required_plugins=required_plugins, mutually_exclusive=mutually_exclusive, **kwargs)
 
-        if 'activation_keys' in self.foreman_params:
-            if 'parameters' not in self.foreman_params:
-                self.foreman_params['parameters'] = []
-            ak_param = {'name': 'kt_activation_keys', 'parameter_type': 'string', 'value': self.foreman_params.pop('activation_keys')}
-            self.foreman_params['parameters'].append(ak_param)
+    def run(self, **kwargs):
+        entity = self.lookup_entity('entity')
+
+        if not self.desired_absent:
+            if 'activation_keys' in self.foreman_params:
+                if 'parameters' not in self.foreman_params:
+                    parameters = [param for param in (entity or {}).get('parameters', []) if param['name'] != 'kt_activation_keys']
+                else:
+                    parameters = self.foreman_params['parameters']
+                ak_param = {'name': 'kt_activation_keys', 'parameter_type': 'string', 'value': self.foreman_params.pop('activation_keys')}
+                self.foreman_params['parameters'] = parameters + [ak_param]
+            elif 'parameters' in self.foreman_params and entity is not None:
+                ak_param = next((param for param in entity.get('parameters') if param['name'] == 'kt_activation_keys'), None)
+                if ak_param:
+                    self.foreman_params['parameters'].append(ak_param)
 
         self.validate_parameters()
+
+        return super(HostMixin, self).run(**kwargs)
 
 
 class ForemanAnsibleModule(AnsibleModule):
