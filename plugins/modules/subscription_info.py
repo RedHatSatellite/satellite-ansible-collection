@@ -30,6 +30,7 @@ author:
   - "Evgeni Golov (@evgeni)"
 extends_documentation_fragment:
   - redhat.satellite.foreman
+  - redhat.satellite.foreman.katelloinfomodule
   - redhat.satellite.foreman.infomodule
 '''
 
@@ -62,16 +63,16 @@ subscriptions:
 '''
 
 from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import (
-    ForemanInfoAnsibleModule
+    KatelloInfoAnsibleModule
 )
 
 
-class ForemanSubscriptionInfo(ForemanInfoAnsibleModule):
+class KatelloSubscriptionInfo(KatelloInfoAnsibleModule):
     pass
 
 
 def main():
-    module = ForemanSubscriptionInfo()
+    module = KatelloSubscriptionInfo()
 
     with module.api_connection():
         module.run()
