@@ -70,11 +70,11 @@ interactions:
     uri: https://foreman.example.org/katello/api/organizations?search=name%3D%22Test+Organization%22&per_page=4294967296
   response:
     body:
-      string: "{\n  \"total\": 2,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+      string: "{\n  \"total\": 3,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
         : 4294967296,\n  \"search\": \"name=\\\"Test Organization\\\"\",\n  \"sort\"\
         : {\n    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"label\"\
-        :\"Test_Organization\",\"created_at\":\"2021-06-22 14:20:36 UTC\",\"updated_at\"\
-        :\"2021-06-22 14:20:38 UTC\",\"id\":4,\"name\":\"Test Organization\",\"title\"\
+        :\"Test_Organization\",\"created_at\":\"2021-06-29 08:33:23 UTC\",\"updated_at\"\
+        :\"2021-06-29 08:33:25 UTC\",\"id\":7,\"name\":\"Test Organization\",\"title\"\
         :\"Test Organization\",\"description\":\"A test organization\"}]\n}\n"
     headers:
       Cache-Control:
@@ -128,14 +128,24 @@ interactions:
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.org/katello/api/organizations/4/activation_keys?search=name%3D%22Test+Activation+Key%22&per_page=4294967296
+    uri: https://foreman.example.org/katello/api/organizations/7/content_views?search=name+~+cleanup&per_page=4294967296
   response:
     body:
-      string: '{"total":1,"subtotal":1,"page":1,"per_page":"4294967296","error":null,"search":"name=\"Test
-        Activation Key\"","sort":{"by":"name","order":"asc"},"results":[{"id":5,"name":"Test
-        Activation Key","description":null,"unlimited_hosts":true,"auto_attach":false,"content_view_id":null,"environment_id":null,"usage_count":0,"user_id":4,"max_hosts":null,"release_version":null,"purpose_usage":null,"purpose_role":null,"organization_id":4,"organization":{"name":"Test
-        Organization","label":"Test_Organization","id":4},"created_at":"2021-06-22
-        14:21:08 UTC","updated_at":"2021-06-22 14:21:08 UTC","content_view":null,"environment":null,"products":[],"host_collections":[],"purpose_addons":[],"permissions":{"view_activation_keys":true,"edit_activation_keys":true,"destroy_activation_keys":true}}]}
+      string: '{"total":3,"subtotal":2,"page":1,"per_page":"4294967296","error":null,"search":"name
+        ~ cleanup","sort":{"by":"name","order":"asc"},"results":[{"composite":true,"component_ids":[21],"default":false,"version_count":1,"latest_version":"5.0","latest_version_id":26,"auto_publish":false,"solve_dependencies":false,"import_only":false,"repository_ids":[],"id":10,"name":"cleanup-testccv","label":"cleanup-testccv","description":null,"organization_id":7,"organization":{"name":"Test
+        Organization","label":"Test_Organization","id":7},"created_at":"2021-06-29
+        08:33:29 UTC","updated_at":"2021-06-29 08:34:22 UTC","last_task":{"id":"23e7eca9-3adb-48a2-9778-a4f4e6db4435","result":"successful","last_sync_words":"1
+        minute"},"latest_version_environments":[{"id":6,"name":"Library","label":"Library"}],"environments":[{"id":6,"name":"Library","label":"Library","permissions":{"readable":true}}],"repositories":[],"versions":[{"id":26,"version":"5.0","published":"2021-06-29
+        08:34:22 UTC","environment_ids":[6]}],"components":[{"id":21,"name":"cleanup-testcv
+        5.0","content_view_id":9,"version":"5.0","environments":[{"id":6,"name":"Library","label":"Library"}],"content_view":{"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"next_version":6,"latest_version":"5.0"},"repositories":[]}],"content_view_components":[{"latest":true,"id":2,"created_at":"2021-06-29
+        08:33:29 UTC","updated_at":"2021-06-29 08:33:29 UTC","composite_content_view":{"id":10,"name":"cleanup-testccv","label":"cleanup-testccv","description":null,"next_version":6,"latest_version":"5.0","version_count":1},"content_view":{"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"next_version":6,"latest_version":"5.0","version_count":1},"content_view_version":{"id":21,"name":"cleanup-testcv
+        5.0","content_view_id":9,"version":"5.0","content_view":{"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null},"environments":[{"id":6,"name":"Library","label":"Library"}],"repositories":[]}}],"activation_keys":[],"hosts":[],"next_version":"6.0","last_published":"2021-06-29
+        08:34:22 UTC","permissions":{"view_content_views":true,"edit_content_views":true,"destroy_content_views":true,"publish_content_views":true,"promote_or_remove_content_views":true}},{"composite":false,"component_ids":[],"default":false,"version_count":1,"latest_version":"5.0","latest_version_id":21,"auto_publish":false,"solve_dependencies":false,"import_only":false,"repository_ids":[],"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"organization_id":7,"organization":{"name":"Test
+        Organization","label":"Test_Organization","id":7},"created_at":"2021-06-29
+        08:33:27 UTC","updated_at":"2021-06-29 08:33:54 UTC","last_task":{"id":"d23c2127-d267-416e-87bd-3d856a80fdd2","result":"successful","last_sync_words":"1
+        minute"},"latest_version_environments":[{"id":6,"name":"Library","label":"Library"}],"environments":[{"id":6,"name":"Library","label":"Library","permissions":{"readable":true}}],"repositories":[],"versions":[{"id":21,"version":"5.0","published":"2021-06-29
+        08:33:54 UTC","environment_ids":[6]}],"components":[],"content_view_components":[],"activation_keys":[],"hosts":[],"next_version":"6.0","last_published":"2021-06-29
+        08:33:54 UTC","permissions":{"view_content_views":true,"edit_content_views":true,"destroy_content_views":true,"publish_content_views":true,"promote_or_remove_content_views":true}}]}
 
         '
     headers:
@@ -154,7 +164,7 @@ interactions:
       Foreman_current_location:
       - ; ANY
       Foreman_current_organization:
-      - 4; Test Organization
+      - 7; Test Organization
       Foreman_version:
       - 2.5.0
       Keep-Alive:
@@ -174,74 +184,8 @@ interactions:
       X-XSS-Protection:
       - 1; mode=block
       content-length:
-      - '787'
+      - '3433'
     status:
       code: 200
       message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json;version=2
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '0'
-      User-Agent:
-      - apypie (https://github.com/Apipie/apypie)
-    method: DELETE
-    uri: https://foreman.example.org/katello/api/activation_keys/5
-  response:
-    body:
-      string: '  {"id":"765b6f07-cd91-437f-84ad-ceb69b7483c5","label":"Actions::Katello::ActivationKey::Destroy","pending":false,"action":"Delete
-        Activation Key activation key ''Test Activation Key''; organization ''Test
-        Organization''","username":"admin","started_at":"2021-06-22 14:21:10 UTC","ended_at":"2021-06-22
-        14:21:10 UTC","state":"stopped","result":"success","progress":1.0,"input":{"activation_key":{"id":5,"name":"Test
-        Activation Key"},"organization":{"id":4,"name":"Test Organization","label":"Test_Organization"},"services_checked":["candlepin","candlepin_auth"],"current_request_id":"bdb2f1ec-87df-49fa-8367-e53ab65efc11","current_timezone":"UTC","current_organization_id":null,"current_location_id":null,"current_user_id":4},"output":{},"humanized":{"action":"Delete
-        Activation Key","input":[["activation_key",{"text":"activation key ''Test
-        Activation Key''","link":"/activation_keys/5/info"}],["organization",{"text":"organization
-        ''Test Organization''","link":"/organizations/4/edit"}]],"output":"","errors":[]},"cli_example":null,"start_at":"2021-06-22
-        14:21:10 UTC","available_actions":{"cancellable":false,"resumable":false}}
-
-        '
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - Keep-Alive
-      Content-Security-Policy:
-      - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
-        img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
-        style-src ''unsafe-inline'' ''self'''
-      Content-Type:
-      - application/json; charset=utf-8
-      Foreman_api_version:
-      - '2'
-      Foreman_current_location:
-      - ; ANY
-      Foreman_current_organization:
-      - ; ANY
-      Foreman_version:
-      - 2.5.0
-      Keep-Alive:
-      - timeout=15, max=97
-      Strict-Transport-Security:
-      - max-age=631139040; includeSubdomains
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Frame-Options:
-      - sameorigin
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 202
-      message: Accepted
 version: 1

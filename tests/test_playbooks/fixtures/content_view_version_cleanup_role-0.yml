@@ -14,7 +14,7 @@ interactions:
     uri: https://foreman.example.org/api/status
   response:
     body:
-      string: '{"result":"ok","status":200,"version":"2.2.0","api_version":2}'
+      string: '{"result":"ok","status":200,"version":"2.5.0","api_version":2}'
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
@@ -33,7 +33,7 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 2.2.0
+      - 2.5.0
       Keep-Alive:
       - timeout=15, max=100
       Strict-Transport-Security:
@@ -70,11 +70,11 @@ interactions:
     uri: https://foreman.example.org/katello/api/organizations?search=name%3D%22Test+Organization%22&per_page=4294967296
   response:
     body:
-      string: "{\n  \"total\": 2,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
+      string: "{\n  \"total\": 3,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\"\
         : 4294967296,\n  \"search\": \"name=\\\"Test Organization\\\"\",\n  \"sort\"\
         : {\n    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"label\"\
-        :\"Test_Organization\",\"created_at\":\"2020-11-17 15:15:44 UTC\",\"updated_at\"\
-        :\"2020-11-17 15:15:44 UTC\",\"id\":4,\"name\":\"Test Organization\",\"title\"\
+        :\"Test_Organization\",\"created_at\":\"2021-06-29 08:33:23 UTC\",\"updated_at\"\
+        :\"2021-06-29 08:33:25 UTC\",\"id\":7,\"name\":\"Test Organization\",\"title\"\
         :\"Test Organization\",\"description\":\"A test organization\"}]\n}\n"
     headers:
       Cache-Control:
@@ -94,7 +94,7 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 2.2.0
+      - 2.5.0
       Keep-Alive:
       - timeout=15, max=99
       Strict-Transport-Security:
@@ -128,30 +128,32 @@ interactions:
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.org/katello/api/organizations/4/content_views?search=name+~+cleanup&per_page=4294967296
+    uri: https://foreman.example.org/katello/api/organizations/7/content_views?search=name+~+cleanup&per_page=4294967296
   response:
     body:
       string: '{"total":3,"subtotal":2,"page":1,"per_page":"4294967296","error":null,"search":"name
-        ~ cleanup","sort":{"by":"name","order":"asc"},"results":[{"composite":true,"component_ids":[18],"default":false,"force_puppet_environment":false,"version_count":5,"latest_version":"5.0","auto_publish":false,"solve_dependencies":false,"repository_ids":[],"id":9,"name":"cleanup-testccv","label":"cleanup-testccv","description":null,"organization_id":4,"organization":{"name":"Test
-        Organization","label":"Test_Organization","id":4},"created_at":"2020-11-24
-        11:44:00 UTC","updated_at":"2020-11-24 11:44:48 UTC","environments":[{"id":3,"name":"Library","label":"Library","permissions":{"readable":true}}],"repositories":[],"puppet_modules":[],"versions":[{"id":19,"version":"1.0","published":"2020-11-24
-        11:44:27 UTC","environment_ids":[]},{"id":20,"version":"2.0","published":"2020-11-24
-        11:44:33 UTC","environment_ids":[]},{"id":21,"version":"3.0","published":"2020-11-24
-        11:44:38 UTC","environment_ids":[]},{"id":22,"version":"4.0","published":"2020-11-24
-        11:44:43 UTC","environment_ids":[]},{"id":23,"version":"5.0","published":"2020-11-24
-        11:44:48 UTC","environment_ids":[3]}],"components":[{"id":18,"name":"cleanup-testcv
-        5.0","content_view_id":8,"version":"5.0","environments":[{"id":3,"name":"Library","label":"Library"}],"content_view":{"id":8,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"next_version":6,"latest_version":"5.0"},"repositories":[]}],"content_view_components":[{"latest":true,"id":2,"created_at":"2020-11-24
-        11:44:01 UTC","updated_at":"2020-11-24 11:44:01 UTC","composite_content_view":{"id":9,"name":"cleanup-testccv","label":"cleanup-testccv","description":null,"next_version":6,"latest_version":"5.0","version_count":5},"content_view":{"id":8,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"next_version":6,"latest_version":"5.0","version_count":5},"content_view_version":{"id":18,"name":"cleanup-testcv
-        5.0","content_view_id":8,"version":"5.0","content_view":{"id":8,"name":"cleanup-testcv","label":"cleanup-testcv","description":null},"environments":[{"id":3,"name":"Library","label":"Library"}],"repositories":[]}}],"activation_keys":[],"next_version":"6.0","last_published":"2020-11-24
-        11:44:48 UTC","permissions":{"view_content_views":true,"edit_content_views":true,"destroy_content_views":true,"publish_content_views":true,"promote_or_remove_content_views":true}},{"composite":false,"component_ids":[],"default":false,"force_puppet_environment":false,"version_count":5,"latest_version":"5.0","auto_publish":false,"solve_dependencies":false,"repository_ids":[],"id":8,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"organization_id":4,"organization":{"name":"Test
-        Organization","label":"Test_Organization","id":4},"created_at":"2020-11-24
-        11:44:00 UTC","updated_at":"2020-11-24 11:44:22 UTC","environments":[{"id":3,"name":"Library","label":"Library","permissions":{"readable":true}}],"repositories":[],"puppet_modules":[],"versions":[{"id":14,"version":"1.0","published":"2020-11-24
-        11:44:02 UTC","environment_ids":[]},{"id":15,"version":"2.0","published":"2020-11-24
-        11:44:07 UTC","environment_ids":[]},{"id":16,"version":"3.0","published":"2020-11-24
-        11:44:12 UTC","environment_ids":[]},{"id":17,"version":"4.0","published":"2020-11-24
-        11:44:17 UTC","environment_ids":[]},{"id":18,"version":"5.0","published":"2020-11-24
-        11:44:22 UTC","environment_ids":[3]}],"components":[],"content_view_components":[],"activation_keys":[],"next_version":"6.0","last_published":"2020-11-24
-        11:44:22 UTC","permissions":{"view_content_views":true,"edit_content_views":true,"destroy_content_views":true,"publish_content_views":true,"promote_or_remove_content_views":true}}]}
+        ~ cleanup","sort":{"by":"name","order":"asc"},"results":[{"composite":true,"component_ids":[21],"default":false,"version_count":5,"latest_version":"5.0","latest_version_id":26,"auto_publish":false,"solve_dependencies":false,"import_only":false,"repository_ids":[],"id":10,"name":"cleanup-testccv","label":"cleanup-testccv","description":null,"organization_id":7,"organization":{"name":"Test
+        Organization","label":"Test_Organization","id":7},"created_at":"2021-06-29
+        08:33:29 UTC","updated_at":"2021-06-29 08:34:22 UTC","last_task":{"id":"23e7eca9-3adb-48a2-9778-a4f4e6db4435","result":"successful","last_sync_words":"less
+        than a minute"},"latest_version_environments":[{"id":6,"name":"Library","label":"Library"}],"environments":[{"id":6,"name":"Library","label":"Library","permissions":{"readable":true}}],"repositories":[],"versions":[{"id":22,"version":"1.0","published":"2021-06-29
+        08:34:00 UTC","environment_ids":[]},{"id":23,"version":"2.0","published":"2021-06-29
+        08:34:05 UTC","environment_ids":[]},{"id":24,"version":"3.0","published":"2021-06-29
+        08:34:11 UTC","environment_ids":[]},{"id":25,"version":"4.0","published":"2021-06-29
+        08:34:16 UTC","environment_ids":[]},{"id":26,"version":"5.0","published":"2021-06-29
+        08:34:22 UTC","environment_ids":[6]}],"components":[{"id":21,"name":"cleanup-testcv
+        5.0","content_view_id":9,"version":"5.0","environments":[{"id":6,"name":"Library","label":"Library"}],"content_view":{"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"next_version":6,"latest_version":"5.0"},"repositories":[]}],"content_view_components":[{"latest":true,"id":2,"created_at":"2021-06-29
+        08:33:29 UTC","updated_at":"2021-06-29 08:33:29 UTC","composite_content_view":{"id":10,"name":"cleanup-testccv","label":"cleanup-testccv","description":null,"next_version":6,"latest_version":"5.0","version_count":5},"content_view":{"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"next_version":6,"latest_version":"5.0","version_count":5},"content_view_version":{"id":21,"name":"cleanup-testcv
+        5.0","content_view_id":9,"version":"5.0","content_view":{"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null},"environments":[{"id":6,"name":"Library","label":"Library"}],"repositories":[]}}],"activation_keys":[],"hosts":[],"next_version":"6.0","last_published":"2021-06-29
+        08:34:22 UTC","permissions":{"view_content_views":true,"edit_content_views":true,"destroy_content_views":true,"publish_content_views":true,"promote_or_remove_content_views":true}},{"composite":false,"component_ids":[],"default":false,"version_count":5,"latest_version":"5.0","latest_version_id":21,"auto_publish":false,"solve_dependencies":false,"import_only":false,"repository_ids":[],"id":9,"name":"cleanup-testcv","label":"cleanup-testcv","description":null,"organization_id":7,"organization":{"name":"Test
+        Organization","label":"Test_Organization","id":7},"created_at":"2021-06-29
+        08:33:27 UTC","updated_at":"2021-06-29 08:33:54 UTC","last_task":{"id":"d23c2127-d267-416e-87bd-3d856a80fdd2","result":"successful","last_sync_words":"1
+        minute"},"latest_version_environments":[{"id":6,"name":"Library","label":"Library"}],"environments":[{"id":6,"name":"Library","label":"Library","permissions":{"readable":true}}],"repositories":[],"versions":[{"id":17,"version":"1.0","published":"2021-06-29
+        08:33:31 UTC","environment_ids":[]},{"id":18,"version":"2.0","published":"2021-06-29
+        08:33:37 UTC","environment_ids":[]},{"id":19,"version":"3.0","published":"2021-06-29
+        08:33:43 UTC","environment_ids":[]},{"id":20,"version":"4.0","published":"2021-06-29
+        08:33:48 UTC","environment_ids":[]},{"id":21,"version":"5.0","published":"2021-06-29
+        08:33:54 UTC","environment_ids":[6]}],"components":[],"content_view_components":[],"activation_keys":[],"hosts":[],"next_version":"6.0","last_published":"2021-06-29
+        08:33:54 UTC","permissions":{"view_content_views":true,"edit_content_views":true,"destroy_content_views":true,"publish_content_views":true,"promote_or_remove_content_views":true}}]}
 
         '
     headers:
@@ -170,9 +172,9 @@ interactions:
       Foreman_current_location:
       - ; ANY
       Foreman_current_organization:
-      - 4; Test Organization
+      - 7; Test Organization
       Foreman_version:
-      - 2.2.0
+      - 2.5.0
       Keep-Alive:
       - timeout=15, max=98
       Strict-Transport-Security:
@@ -190,7 +192,7 @@ interactions:
       X-XSS-Protection:
       - 1; mode=block
       content-length:
-      - '3739'
+      - '4123'
     status:
       code: 200
       message: OK
