@@ -20,7 +20,7 @@ redhat.satellite.config_group -- Manage (Puppet) Config Groups
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.1).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.2).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 

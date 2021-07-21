@@ -20,7 +20,7 @@ redhat.satellite.subscription_info -- Fetch information about Subscriptions
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.1).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.2).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 
@@ -108,7 +108,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-organization" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                                    </div>
+                                                 / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
