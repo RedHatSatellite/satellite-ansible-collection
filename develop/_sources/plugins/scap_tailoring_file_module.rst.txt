@@ -20,7 +20,7 @@ redhat.satellite.scap_tailoring_file -- Manage SCAP Tailoring Files
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.1.2).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.2.0).
 
     To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
 

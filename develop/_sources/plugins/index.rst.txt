@@ -4,7 +4,7 @@
 Redhat.Satellite
 ================
 
-Collection version 2.1.2
+Collection version 2.2.0
 
 .. toctree::
     :maxdepth: 1
@@ -94,6 +94,7 @@ Modules
 * :ref:`templates_import <ansible_collections.redhat.satellite.templates_import_module>` -- Sync Templates from a repository
 * :ref:`user <ansible_collections.redhat.satellite.user_module>` -- Manage Users
 * :ref:`usergroup <ansible_collections.redhat.satellite.usergroup_module>` -- Manage User Groups
+
 
 
 .. seealso::
