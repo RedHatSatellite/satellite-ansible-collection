@@ -21,10 +21,10 @@
   roles:
     - role: convert2rhel
       vars:
-        foreman_organization: "Test Organization"
-        foreman_validate_certs: false
-        foreman_convert2rhel_manage_subscription: false
-        foreman_content_rhel_wait_for_syncs: false
-        foreman_content_rhel_enable_rhel7: true
-        foreman_content_rhel_enable_rhel8: false
-        foreman_convert2rhel_enable_oracle7: true
+        satellite_organization: "Test Organization"
+        satellite_validate_certs: false
+        satellite_convert2rhel_manage_subscription: false
+        satellite_content_rhel_wait_for_syncs: false
+        satellite_content_rhel_enable_rhel7: true
+        satellite_content_rhel_enable_rhel8: false
+        satellite_convert2rhel_enable_oracle7: true
