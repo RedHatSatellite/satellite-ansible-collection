@@ -15,4 +15,4 @@
     validate_certs: "{{ satellite_validate_certs | default(omit) }}"
     organization: "{{ satellite_organization }}"
     manifest_path: "{{ satellite_manifest_path }}"
-    state: present
+    state: "{{ satellite_manifest_state | default('present') }}"

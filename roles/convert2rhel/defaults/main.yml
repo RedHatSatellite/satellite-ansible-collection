@@ -1,0 +1,27 @@
+---
+satellite_convert2rhel_manage_subscription: true
+
+# Convert2RHEL Products & repos
+satellite_convert2rhel_rhel7_product: "Convert2RHEL7"
+satellite_convert2rhel_rhel7_repo: "Convert2RHEL7 main"
+satellite_convert2rhel_rhel8_product: "Convert2RHEL8"
+satellite_convert2rhel_rhel8_repo: "Convert2RHEL8 main"
+satellite_convert2rhel_oracle7_product: "Oracle Linux 7 Convert2RHEL"
+satellite_convert2rhel_oracle7_repo: "Oracle Linux 7 Convert2RHEL main"
+
+# Activation keys
+satellite_convert2rhel_key_centos7: "convert2rhel_centos7"
+satellite_convert2rhel_key_centos8: "convert2rhel_centos8"
+satellite_convert2rhel_key_oracle7: "convert2rhel_oracle7"
+satellite_convert2rhel_key_rhel7: "convert2rhel_rhel7"
+satellite_convert2rhel_key_rhel8: "convert2rhel_rhel8"
+satellite_convert2rhel_lifecycle_env: "Library"
+satellite_convert2rhel_content_view: "Default Organization View"
+
+# Host groups
+satellite_convert2rhel_hostgroup7: "CentOS 7 converting"
+satellite_convert2rhel_hostgroup8: "CentOS 8 converting"
+satellite_convert2rhel_hostgroup_oracle7: "Oracle Linux 7 converting"
+
+# Oracle Linux
+satellite_convert2rhel_enable_oracle7: false
