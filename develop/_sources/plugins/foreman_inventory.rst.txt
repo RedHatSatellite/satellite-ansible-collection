@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.redhat.satellite.foreman_inventory:
@@ -20,9 +30,13 @@ redhat.satellite.foreman -- Foreman inventory source
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.2.0).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.0.0).
 
-    To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman`.
 
@@ -79,12 +93,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">250</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Number of hosts per batch that will be retrieved from the Foreman API per individual call</div>
                                                         </td>
@@ -97,7 +112,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -108,12 +124,14 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [inventory]<br>cache = no
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_INVENTORY_CACHE
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Toggle to enable/disable the caching of the inventory&#x27;s source data, requires a cache plugin setup to work.</div>
                                                         </td>
@@ -126,25 +144,30 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                     <div> ini entries:
                                                                     <p>
                                         [defaults]<br>fact_caching_connection = None
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_connection = None
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN_CONNECTION
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_CONNECTION
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Cache connection data or path, read cache plugin documentation for specifics.</div>
                                                         </td>
@@ -157,7 +180,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"memory"</div>
                                     </td>
@@ -165,18 +189,22 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [defaults]<br>fact_caching = memory
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_plugin = memory
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_PLUGIN
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Cache plugin to use for the inventory&#x27;s source data.</div>
                                                         </td>
@@ -189,7 +217,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"ansible_inventory_"</div>
                                     </td>
@@ -197,18 +226,22 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [default]<br>fact_caching_prefix = ansible_inventory_
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_prefix = ansible_inventory_
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN_PREFIX
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_PLUGIN_PREFIX
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Prefix to use for cache plugin files/tables</div>
                                                         </td>
@@ -221,7 +254,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">3600</div>
                                     </td>
@@ -229,18 +263,22 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [defaults]<br>fact_caching_timeout = 3600
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_timeout = 3600
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN_TIMEOUT
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_TIMEOUT
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Cache duration in seconds</div>
                                                         </td>
@@ -253,12 +291,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">dictionary</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">{}</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Create vars from jinja2 expressions.</div>
                                                         </td>
@@ -271,11 +310,12 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Foreman server related configuration, deprecated.</div>
                                             <div>You can pass <em>use_reports_api</em> in this dict to enable the Reporting API.</div>
@@ -290,12 +330,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"foreman_"</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>prefix to apply to foreman groups</div>
                                                         </td>
@@ -308,12 +349,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">dictionary</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">{}</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Add hosts to group based on Jinja2 conditionals.</div>
                                                         </td>
@@ -326,11 +368,12 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>This can be used to restrict the list of returned host</div>
                                                         </td>
@@ -343,12 +386,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">["name"]</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A list of templates in order of precedence to compose inventory_hostname.</div>
                                             <div>If the template results in an empty string or None value it is ignored.</div>
@@ -362,12 +406,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">[]</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Add hosts to group based on the values of a variable.</div>
                                                         </td>
@@ -380,7 +425,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -388,7 +434,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the plugin will build legacy hostvars present in the foreman script</div>
                                             <div>Places hostvars in a dictionary with keys `foreman`, `foreman_facts`, and `foreman_params`</div>
@@ -402,12 +448,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">600</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Timeout before falling back to old host API when using report_data endpoint while polling.</div>
                                                         </td>
@@ -420,14 +467,16 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:FOREMAN_PASSWORD
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Password of the user accessing the Foreman server.</div>
                                                         </td>
@@ -440,14 +489,15 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>redhat.satellite.foreman</li>
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>token that ensures this is a source file for the <code>foreman</code> plugin.</div>
                                                         </td>
@@ -460,12 +510,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">10</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>The polling interval between 2 calls to the report_data endpoint while polling.</div>
                                                         </td>
@@ -478,11 +529,12 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">dictionary</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Report API specific configuration, deprecated.</div>
                                             <div>You can pass the Report API specific params as part of this dict, instead of the main configuration.</div>
@@ -497,7 +549,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -505,7 +558,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>If <code>yes</code> make invalid entries a fatal error, otherwise skip and continue.</div>
                                             <div>Since it is possible to use facts in the expressions they might not always be available and we ignore those errors by default.</div>
@@ -519,21 +572,25 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"http://localhost:3000"</div>
                                     </td>
                                                     <td>
                                                                             <div>
                                 env:FOREMAN_SERVER
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:FOREMAN_SERVER_URL
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:FOREMAN_URL
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>URL of the Foreman server.</div>
                                                         </td>
@@ -546,15 +603,16 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                                                                                                                                                                                <li>yes</li>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Use Reporting API.</div>
                                                         </td>
@@ -567,17 +625,20 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:FOREMAN_USER
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:FOREMAN_USERNAME
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Username accessing the Foreman server.</div>
                                                         </td>
@@ -590,18 +651,20 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                                                                                                                                                                                <li>yes</li>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
                                                                                     </ul>
                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:FOREMAN_VALIDATE_CERTS
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Whether or not to verify the TLS certificates of the Foreman server.</div>
                                                         </td>
@@ -614,12 +677,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"foreman_"</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>prefix to apply to host variables, does not include facts nor params</div>
                                                         </td>
@@ -632,7 +696,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -640,7 +705,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch content view details that the host is tied to.</div>
                                                         </td>
@@ -653,7 +718,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -661,7 +727,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if True the plugin will retrieve host facts from the server</div>
                                                         </td>
@@ -674,7 +740,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -682,7 +749,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch host_groups and create groupings for the same.</div>
                                                         </td>
@@ -695,7 +762,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -703,7 +771,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the plugin will create Ansible groups for host collections</div>
                                                         </td>
@@ -716,7 +784,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -724,7 +793,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch ipv4 address of the host.</div>
                                                         </td>
@@ -737,7 +806,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -745,7 +815,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch ipv6 address of the host.</div>
                                                         </td>
@@ -758,7 +828,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -766,7 +837,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch location the host belongs to and create groupings for the same.</div>
                                                         </td>
@@ -779,7 +850,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -787,7 +859,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch organization the host belongs to and create groupings for the same.</div>
                                                         </td>
@@ -800,7 +872,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -808,7 +881,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will retrieve &#x27;all_parameters&#x27; information as host vars</div>
                                                         </td>
@@ -821,7 +894,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -829,7 +903,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch smart proxy that the host is registered to.</div>
                                                         </td>
@@ -842,7 +916,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -850,7 +925,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch subnet.</div>
                                                         </td>
@@ -863,7 +938,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -871,13 +947,16 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Toggle, if true the inventory will fetch ipv6 subnet.</div>
                                                         </td>
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

@@ -14,7 +14,7 @@ redhat.satellite.foreman_job_template
 .. Collection note
 
 .. note::
-    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.2.0).
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.0.0).
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman_job_template`.
 

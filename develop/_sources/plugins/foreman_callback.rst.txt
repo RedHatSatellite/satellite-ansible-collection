@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.redhat.satellite.foreman_callback:
@@ -20,9 +30,13 @@ redhat.satellite.foreman -- Sends events to Foreman
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.2.0).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.0.0).
 
-    To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman`.
 
@@ -79,7 +93,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"/etc/foreman/client_cert.pem"</div>
                                     </td>
@@ -87,15 +102,18 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [callback_foreman]<br>ssl_cert = /etc/foreman/client_cert.pem
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                                     <p>
                                         [callback_foreman]<br>client_cert = /etc/foreman/client_cert.pem
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:FOREMAN_SSL_CERT
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>X509 certificate to authenticate to Foreman if https is used</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: ssl_cert</div>
@@ -109,7 +127,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"/etc/foreman/client_key.pem"</div>
                                     </td>
@@ -117,15 +136,18 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [callback_foreman]<br>ssl_key = /etc/foreman/client_key.pem
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                                     <p>
                                         [callback_foreman]<br>client_key = /etc/foreman/client_key.pem
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:FOREMAN_SSL_KEY
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>the corresponding private key</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: ssl_key</div>
@@ -139,7 +161,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">""</div>
                                     </td>
@@ -147,12 +170,14 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [callback_foreman]<br>dir_store = 
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:FOREMAN_DIR_STORE
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>When set, callback does not perform HTTP calls but stores results in a given directory.</div>
                                             <div>For each report, new file in the form of SEQ_NO-hostname.json is created.</div>
@@ -170,18 +195,77 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">0</div>
                                     </td>
                                                     <td>
                                                                             <div>
                                 env:FOREMAN_CALLBACK_DISABLE
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Toggle to make the callback plugin disable itself even if it is loaded.</div>
                                             <div>It can be set to &#x27;1&#x27; to prevent the plugin from being used even if it gets loaded.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-proxy_url"></div>
+                    <b>proxy_url</b>
+                    <a class="ansibleOptionLink" href="#parameter-proxy_url" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                    <div> ini entries:
+                                                                    <p>
+                                        [callback_foreman]<br>proxy_url = None
+                                                                                	
+                                    </p>
+                                                            </div>
+                                                                            <div>
+                                env:FOREMAN_PROXY_URL
+                                                                	
+                            </div>
+                                                                                            </td>
+                                                <td>
+                                            <div>URL of the Foreman Smart Proxy server.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-report_type"></div>
+                    <b>report_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-report_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                                    <b>Default:</b><br/><div style="color: blue">"foreman"</div>
+                                    </td>
+                                                    <td>
+                                                    <div> ini entries:
+                                                                    <p>
+                                        [callback_foreman]<br>report_type = foreman
+                                                                                	
+                                    </p>
+                                                            </div>
+                                                                            <div>
+                                env:FOREMAN_REPORT_TYPE
+                                                                	
+                            </div>
+                                                                                            </td>
+                                                <td>
+                                            <div>endpoint type for reports: foreman or proxy</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -192,26 +276,30 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                                    <b>Default:</b><br/><div style="color: blue">"http://localhost:3000"</div>
+                                                              	
                                     </td>
+                                <td>
+                                                                                                                                                            </td>
                                                     <td>
                                                     <div> ini entries:
                                                                     <p>
-                                        [callback_foreman]<br>url = http://localhost:3000
-                                                                                                                    </p>
+                                        [callback_foreman]<br>url = None
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:FOREMAN_URL
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:FOREMAN_SERVER_URL
-                                                                                            </div>
+                                                                	
+                            </div>
                                                     <div>
                                 env:FOREMAN_SERVER
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>URL of the Foreman server.</div>
                                                         </td>
@@ -224,7 +312,8 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                        </td>
+                                                              	
+                                    </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">1</div>
                                     </td>
@@ -232,12 +321,14 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [callback_foreman]<br>verify_certs = 1
-                                                                                                                    </p>
+                                                                                	
+                                    </p>
                                                             </div>
                                                                             <div>
                                 env:FOREMAN_SSL_VERIFY
-                                                                                            </div>
-                                                                    </td>
+                                                                	
+                            </div>
+                                                                                            </td>
                                                 <td>
                                             <div>Toggle to decide whether to verify the Foreman certificate.</div>
                                             <div>It can be set to &#x27;1&#x27; to verify SSL certificates using the installed CAs or to a path pointing to a CA bundle.</div>
@@ -246,6 +337,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

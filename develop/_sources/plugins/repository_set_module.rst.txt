@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.redhat.satellite.repository_set_module:
@@ -20,9 +30,13 @@ redhat.satellite.repository_set -- Enable/disable Red Hat Repositories available
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.2.0).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.0.0).
 
-    To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
 
     To use it in a playbook, specify: :code:`redhat.satellite.repository_set`.
 
@@ -180,7 +194,7 @@ Parameters
                                                                 <td>
                                             <div>Release version and base architecture of the repositories to enable.</div>
                                             <div>Some reposotory sets require only <em>basearch</em> or only <em>releasever</em> to be set.</div>
-                                            <div>See the examples how you can obtain this information using <span class='module'>redhat.satellite.resource_info</span>.</div>
+                                            <div>See the examples how you can obtain this information using <a href='../../redhat/satellite/resource_info_module.html' class='module'>redhat.satellite.resource_info</a>.</div>
                                             <div>Required when <em>all_repositories</em> is unset or <code>false</code>.</div>
                                                         </td>
             </tr>
@@ -290,6 +304,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -461,7 +478,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Final state of the affected entities grouped by their type.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -477,7 +494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of repository sets.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                     
                         </table>

@@ -4,7 +4,7 @@
 Redhat.Satellite
 ================
 
-Collection version 2.2.0
+Collection version 3.0.0
 
 .. toctree::
     :maxdepth: 1
@@ -64,6 +64,7 @@ Modules
 * :ref:`location <ansible_collections.redhat.satellite.location_module>` -- Manage Locations
 * :ref:`operatingsystem <ansible_collections.redhat.satellite.operatingsystem_module>` -- Manage Operating Systems
 * :ref:`organization <ansible_collections.redhat.satellite.organization_module>` -- Manage Organizations
+* :ref:`organization_info <ansible_collections.redhat.satellite.organization_info_module>` -- Get information about organization(s)
 * :ref:`os_default_template <ansible_collections.redhat.satellite.os_default_template_module>` -- Manage Default Template Associations To Operating Systems
 * :ref:`partition_table <ansible_collections.redhat.satellite.partition_table_module>` -- Manage Partition Table Templates
 * :ref:`product <ansible_collections.redhat.satellite.product_module>` -- Manage Products
@@ -142,6 +143,7 @@ Modules
     location_module
     operatingsystem_module
     organization_module
+    organization_info_module
     os_default_template_module
     partition_table_module
     product_module

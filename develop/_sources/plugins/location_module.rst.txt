@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.redhat.satellite.location_module:
@@ -20,9 +30,13 @@ redhat.satellite.location -- Manage Locations
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 2.2.0).
+    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.0.0).
 
-    To install it use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
 
     To use it in a playbook, specify: :code:`redhat.satellite.location`.
 
@@ -279,6 +293,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 
@@ -366,7 +383,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Final state of the affected entities grouped by their type.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -382,7 +399,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of locations.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                     
                         </table>
