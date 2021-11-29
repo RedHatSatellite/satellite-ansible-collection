@@ -1,0 +1,39 @@
+---
+- name: "Create '{{ satellite_convert2rhel_hostgroup7 }}' host group"
+  redhat.satellite.hostgroup:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    name: "{{ satellite_convert2rhel_hostgroup7 }}"
+    lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
+    content_view: "{{ satellite_convert2rhel_content_view }}"
+    activation_keys: "{{ satellite_convert2rhel_key_centos7 }}"
+  when: satellite_content_rhel_enable_rhel7
+
+- name: "Create '{{ satellite_convert2rhel_hostgroup8 }}' host group"
+  redhat.satellite.hostgroup:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    name: "{{ satellite_convert2rhel_hostgroup8 }}"
+    lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
+    content_view: "{{ satellite_convert2rhel_content_view }}"
+    activation_keys: "{{ satellite_convert2rhel_key_centos8 }}"
+  when: satellite_content_rhel_enable_rhel8
+
+- name: "Create '{{ satellite_convert2rhel_hostgroup_oracle7 }}' host group"
+  redhat.satellite.hostgroup:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    name: "{{ satellite_convert2rhel_hostgroup_oracle7 }}"
+    lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
+    content_view: "{{ satellite_convert2rhel_content_view }}"
+    activation_keys: "{{ satellite_convert2rhel_key_oracle7 }}"
+  when: satellite_convert2rhel_enable_oracle7

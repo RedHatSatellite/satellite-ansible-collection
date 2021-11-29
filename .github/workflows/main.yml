@@ -14,50 +14,26 @@ jobs:
       fail-fast: false
       matrix:
         python:
-          - "2.7"
-          - "3.6"
-          - "3.7"
           - "3.8"
-          - "3.9"
         ansible:
-          - stable-2.8
           - stable-2.9
           - stable-2.10
           - stable-2.11
+          - stable-2.12
           - devel
-        exclude:
-          - python: "2.7"
-            ansible: "stable-2.8"
-          - python: "2.7"
-            ansible: "stable-2.9"
-          - python: "2.7"
-            ansible: "stable-2.10"
+        include:
           - python: "2.7"
             ansible: "stable-2.11"
-          - python: "3.6"
-            ansible: "stable-2.8"
-          - python: "3.6"
-            ansible: "stable-2.9"
-          - python: "3.6"
-            ansible: "stable-2.10"
+          - python: "3.5"
+            ansible: "stable-2.11"
           - python: "3.6"
             ansible: "stable-2.11"
-          - python: "3.8"
-            ansible: "stable-2.8"
-          - python: "3.8"
-            ansible: "stable-2.9"
-          - python: "3.8"
-            ansible: "stable-2.10"
-          - python: "3.8"
+          - python: "3.7"
             ansible: "stable-2.11"
           - python: "3.9"
-            ansible: "stable-2.8"
-          - python: "3.9"
-            ansible: "stable-2.9"
-          - python: "3.9"
-            ansible: "stable-2.10"
-          - python: "3.9"
-            ansible: "stable-2.11"
+            ansible: "devel"
+          - python: "3.10"
+            ansible: "devel"
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -75,18 +51,13 @@ jobs:
         run: sudo apt-get install -y libyaml-dev
       - name: Install Ansible
         run: pip install --upgrade git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}
-      - name: Set Environment to use mazer
-        run: |
-          echo "COLLECTION_COMMAND=mazer" >> $GITHUB_ENV
-          pip install --upgrade mazer
-        if: matrix.ansible == 'stable-2.8'
       - name: Install dependencies
         run: make test-setup
-      - name: fake redhat-uep.pem for redhat_manifest module
-        run: sudo mkdir -p /etc/rhsm/ca/ && sudo touch /etc/rhsm/ca/redhat-uep.pem
+      - name: prepare a redhat-uep.pem, even if we run on Ubuntu
+        run: sudo mkdir -p /etc/rhsm/ca/ && sudo curl -o /etc/rhsm/ca/redhat-uep.pem https://ftp.redhat.com/redhat/convert2rhel/redhat-uep.pem
       - name: Install required collections for ansible-base (2.10+)
         run: ansible-galaxy collection install community.docker
-        if: matrix.ansible == 'devel' || matrix.ansible == 'stable-2.10' || matrix.ansible == 'stable-2.11'
+        if: matrix.ansible != 'stable-2.9'
       - name: Run crud tests
         run: make test-crud
       - name: Run other tests
@@ -95,7 +66,7 @@ jobs:
         run: make dist-test
       - name: Run sanity tests
         run: make SANITY_OPTS="--local" sanity
-        if: matrix.ansible == 'devel' || matrix.ansible == 'stable-2.10' || matrix.stable == 'stable-2.11'
+        if: matrix.ansible != 'stable-2.9'
 
   checkmode:
     runs-on: ubuntu-latest
@@ -104,7 +75,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.7"
+          python-version: "3.8"
       - name: Restore pip cache
         uses: actions/cache@v2.1.6
         with:
@@ -116,6 +87,8 @@ jobs:
         run: pip install --upgrade ansible
       - name: Install dependencies
         run: make test-setup
+      - name: prepare a redhat-uep.pem, even if we run on Ubuntu
+        run: sudo mkdir -p /etc/rhsm/ca/ && sudo curl -o /etc/rhsm/ca/redhat-uep.pem https://ftp.redhat.com/redhat/convert2rhel/redhat-uep.pem
       - name: Run check_mode tests
         run: make test-check-mode
 
@@ -126,7 +99,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.7"
+          python-version: "3.8"
       - name: Restore pip cache
         uses: actions/cache@v2.1.6
         with:
@@ -151,7 +124,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.7"
+          python-version: "3.8"
       - name: Restore pip cache
         uses: actions/cache@v2.1.6
         with:

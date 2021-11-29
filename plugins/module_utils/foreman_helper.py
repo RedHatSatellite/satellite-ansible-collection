@@ -931,7 +931,7 @@ class ForemanAnsibleModule(AnsibleModule):
     def auto_lookup_nested_entities(self):
         for key, entity_spec in self.foreman_spec.items():
             if entity_spec.get('type') in {'nested_list'}:
-                for nested_key, nested_spec in self.foreman_spec[key]['foreman_spec'].items():
+                for nested_key, nested_spec in entity_spec['foreman_spec'].items():
                     for item in self.foreman_params.get(key, []):
                         if (nested_key in item and nested_spec.get('resolve', True)
                                 and not _is_resolved(nested_spec, item[nested_key])):
@@ -1074,11 +1074,11 @@ class ForemanAnsibleModule(AnsibleModule):
         """
         payload = {}
         desired_entity = _flatten_entity(desired_entity, foreman_spec)
-        current_entity = _flatten_entity(current_entity, foreman_spec)
+        current_flat_entity = _flatten_entity(current_entity, foreman_spec)
         for key, value in desired_entity.items():
             foreman_type = foreman_spec[key].get('type', 'str')
             new_value = value
-            old_value = current_entity.get(key)
+            old_value = current_flat_entity.get(key)
             # String comparison needs extra care in face of unicode
             if foreman_type == 'str':
                 old_value = to_native(old_value)
@@ -1096,14 +1096,14 @@ class ForemanAnsibleModule(AnsibleModule):
             if new_value != old_value:
                 payload[key] = value
         if self._validate_supported_payload(resource, 'update', payload):
-            payload['id'] = current_entity['id']
+            payload['id'] = current_flat_entity['id']
             if not self.check_mode:
                 if params:
                     payload.update(params)
                 return self.resource_action(resource, 'update', payload)
             else:
                 # In check_mode we emulate the server updating the entity
-                fake_entity = current_entity.copy()
+                fake_entity = current_flat_entity.copy()
                 fake_entity.update(payload)
                 self.set_changed()
                 return fake_entity
@@ -1779,20 +1779,30 @@ def build_fqn(name, parent=None):
 
 # Helper for puppetclasses
 def ensure_puppetclasses(module, entity_type, entity, expected_puppetclasses=None):
-    puppetclasses_resource = '{0}_classes'.format(entity_type)
-    if expected_puppetclasses:
+    if expected_puppetclasses is not None:
+        puppetclasses_resource = '{0}_classes'.format(entity_type)
         expected_puppetclasses = module.find_puppetclasses(expected_puppetclasses, environment=entity['environment_id'], thin=True)
-    current_puppetclasses = entity.pop('puppetclass_ids', [])
-    if expected_puppetclasses:
+        current_puppetclasses = entity.get('puppetclasses', [])
+        current_puppetclass_ids = [pc['id'] for pc in current_puppetclasses]
+        previous_puppetclass_ids = current_puppetclass_ids[:]
         for puppetclass in expected_puppetclasses:
-            if puppetclass['id'] in current_puppetclasses:
-                current_puppetclasses.remove(puppetclass['id'])
+            if puppetclass['id'] in current_puppetclass_ids:
+                # Nothing to do, prevent removal
+                previous_puppetclass_ids.remove(puppetclass['id'])
             else:
                 payload = {'{0}_id'.format(entity_type): entity['id'], 'puppetclass_id': puppetclass['id']}
                 module.ensure_entity(puppetclasses_resource, {}, None, params=payload, state='present', foreman_spec={})
-        if len(current_puppetclasses) > 0:
-            for leftover_puppetclass in current_puppetclasses:
-                module.ensure_entity(puppetclasses_resource, {}, {'id': leftover_puppetclass}, {'hostgroup_id': entity['id']}, state='absent', foreman_spec={})
+                # Add to entity for reporting
+                current_puppetclass_ids.append(puppetclass['id'])
+
+        for leftover_puppetclass in previous_puppetclass_ids:
+            payload = {'{0}_id'.format(entity_type): entity['id']}
+            module.ensure_entity(
+                puppetclasses_resource, {}, {'id': leftover_puppetclass},
+                params=payload, state='absent', foreman_spec={},
+            )
+            current_puppetclass_ids.remove(leftover_puppetclass)
+        entity['puppetclass_ids'] = current_puppetclass_ids
 
 
 # Helper constants

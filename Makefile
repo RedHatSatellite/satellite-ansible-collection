@@ -93,25 +93,13 @@ dist-test: $(MANIFEST)
 	ansible-doc $(NAMESPACE).$(NAME).organization | grep -q "Manage Organization"
 
 $(MANIFEST): $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
-ifeq ($(COLLECTION_COMMAND),mazer)
-	# No idea, why this fails. But mazer is old and deprecated so unlikely to beeing fixed...
-	# mazer install --collections-path build/collections $<
-	-mkdir build/collections build/collections/ansible_collections build/collections/ansible_collections/$(NAMESPACE) build/collections/ansible_collections/$(NAMESPACE)/$(NAME)
-	tar xf $< -C build/collections/ansible_collections/$(NAMESPACE)/$(NAME)
-else
 	ansible-galaxy collection install -p build/collections $< --force
-endif
 
 build/src/%: %
 	install -m 644 -DT $< $@
 
 $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz: $(addprefix build/src/,$(DEPENDENCIES))
-ifeq ($(COLLECTION_COMMAND),mazer)
-	mazer build --collection-path=build/src
-	cp build/src/releases/$@ .
-else
 	ansible-galaxy collection build build/src --force
-endif
 
 dist: $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 
@@ -138,7 +126,7 @@ vendor:
 	python vendor.py build/apypie-git/apypie/*.py > plugins/module_utils/_apypie.py
 
 branding:
-	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml
+	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_callback.py tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml
 	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py docs/cvmanager.md roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman/foreman-ansible-modules#RedHatSatellite/satellite-ansible-collection#g' .github/workflows/*.yml
 	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml
@@ -147,7 +135,7 @@ branding:
 	sed -i '/FOREMAN_\w/ s/FOREMAN_/SATELLITE_/g' plugins/doc_fragments/foreman.py plugins/module_utils/foreman_helper.py Makefile
 	sed -i '/foreman_\w/ s/foreman_/satellite_/g' roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman.github.io/foreman-ansible-modules#redhatsatellite.github.io/satellite-ansible-collection#g' roles/*/README.md
-	sed -i '/foreman_\w.*:/ s/foreman_/satellite_/g' tests/test_playbooks/*_role.yml docs/cvmanager.md
+	sed -i '/foreman_\w.*:/ s/foreman_/satellite_/g' tests/test_playbooks/*_role.yml tests/test_playbooks/convert2rhel.yml docs/cvmanager.md
 	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
 	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot.py tests/fixtures/apidoc/snapshot.json
 
