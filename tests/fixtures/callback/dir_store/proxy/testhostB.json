@@ -6,7 +6,7 @@
       "total": 1
     }
   },
-  "reported_at": "2000-01-01 12:00:00.0000",
+  "reported_at": "2000-01-01 12:00:00+00:00",
   "results": [
     {
       "failed": false,
@@ -129,9 +129,13 @@
       }
     }
   ],
-  "status": {
-    "applied": 1,
-    "failed": 0,
-    "skipped": 1
+  "summary": {
+    "changed": 1,
+    "failures": 0,
+    "ignored": 1,
+    "ok": 3,
+    "rescued": 0,
+    "skipped": 1,
+    "unreachable": 0
   }
 }

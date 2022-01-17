@@ -1,0 +1,46 @@
+---
+- name: Setup
+  hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - include_tasks: tasks/setting.yml
+      vars:
+        setting_name: "destroy_vm_on_host_delete"
+    - include_tasks: tasks/setting.yml
+      vars:
+        setting_name: "clean_up_failed_deployment"
+
+- name: Tests
+  hosts: tests
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  roles:
+    - role: settings
+      vars:
+        satellite_settings:
+          - name: "destroy_vm_on_host_delete"
+            value: "true"
+          - name: "clean_up_failed_deployment"
+            value: "false"
+
+- name: Cleanup
+  hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - include_tasks: tasks/setting.yml
+      vars:
+        setting_name: "destroy_vm_on_host_delete"
+    - include_tasks: tasks/setting.yml
+      vars:
+        setting_name: "clean_up_failed_deployment"

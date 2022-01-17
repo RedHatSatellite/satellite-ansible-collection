@@ -1,0 +1,72 @@
+---
+- hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - name: ensure test organization
+      include_tasks: tasks/organization.yml
+      vars:
+        organization_name: "Test Organization"
+        organization_state: "present"
+    - name: ensure test location
+      include: tasks/location.yml
+      vars:
+        location_name: "Test Location"
+        location_state: present
+    - name: ensure operating system
+      include: tasks/operatingsystem.yml
+      vars:
+        operatingsystem_name: "RedHat-8.4"
+        operatingsystem_major: "8"
+        operatingsystem_family: Redhat
+        operatingsystem_state: present
+
+- hosts: tests
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  roles:
+    - role: compute_resources
+      vars:
+        satellite_organization: "Test Organization"
+        satellite_compute_resources:
+          - name: "libvirt-cr01"
+            description: 'Libvirt compute resource'
+            organizations:
+              - Test Organization
+            locations:
+              - Test Location
+            provider: 'libvirt'
+            provider_params:
+              url: qemu+ssh://root@libvirt.example.com/system
+            images:
+              - name: "RHEL-8.4"
+                operatingsystem: "RedHat-8.4"
+                architecture: "x86_64"
+                user_data: true
+                image_username: "root"
+                image_password: "changeme"
+                uuid: "rhel-8.4-template"
+            state: present
+        expected_change: true
+
+- hosts: localhost
+  collections:
+    - redhat.satellite
+  gather_facts: false
+  vars_files:
+    - vars/server.yml
+  tasks:
+    - include: tasks/organization.yml
+      vars:
+        organization_name: "Test Organization"
+        organization_state: absent
+    - include: tasks/location.yml
+      vars:
+        location_name: "Test Location"
+        location_state: absent
