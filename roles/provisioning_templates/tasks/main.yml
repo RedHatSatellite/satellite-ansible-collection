@@ -1,0 +1,18 @@
+---
+- name: 'Create Provisioning Templates'
+  redhat.satellite.provisioning_template:
+    username: "{{ satellite_username | default(omit) }}"
+    password: "{{ satellite_password | default(omit) }}"
+    server_url: "{{ satellite_server_url | default(omit) }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    name: "{{ item.name }}"
+    audit_comment: "{{ item.audit_comment | default(omit) }}"
+    file_name: "{{ item.file_name | default(omit) }}"
+    kind: "{{ item.bmc_proxy | default(omit) }}"
+    locations: "{{ item.locations | default(omit) }}"
+    locked: "{{ item.locked | default(omit) }}"
+    operatingsystems: "{{ item.operatingsystems | default(omit) }}"
+    organizations: "{{ item.organizations | default(omit) }}"
+    template: "{{ item.template | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ satellite_provisioning_templates }}"

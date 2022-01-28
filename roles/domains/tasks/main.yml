@@ -1,0 +1,13 @@
+---
+- name: 'Create Domains'
+  redhat.satellite.domain:
+    username: "{{ satellite_username | default(omit) }}"
+    password: "{{ satellite_password | default(omit) }}"
+    server_url: "{{ satellite_server_url | default(omit) }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    name: "{{ item.name }}"
+    locations: "{{ item.locations | default(omit) }}"
+    organizations: "{{ item.organizations | default(omit) }}"
+    parameters: "{{ item.parameters | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ satellite_domains }}"

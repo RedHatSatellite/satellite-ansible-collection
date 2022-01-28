@@ -1,6 +1,7 @@
-NAMESPACE := $(shell python -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))["namespace"])')
-NAME := $(shell python -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))["name"])')
-VERSION := $(shell python -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))["version"])')
+PYTHON_COMMAND ?= python
+NAMESPACE := $(shell $(PYTHON_COMMAND) -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))["namespace"])')
+NAME := $(shell $(PYTHON_COMMAND) -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))["name"])')
+VERSION := $(shell $(PYTHON_COMMAND) -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))["version"])')
 MANIFEST := build/collections/ansible_collections/$(NAMESPACE)/$(NAME)/MANIFEST.json
 
 ROLES := $(wildcard roles/*)
@@ -9,7 +10,7 @@ METADATA := galaxy.yml LICENSE README.md meta/runtime.yml requirements.txt chang
 $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__init__.py,$(wildcard plugins/$(PLUGIN_TYPE)/*.py))))
 DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md)
 
-PYTHON_VERSION = $(shell python -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
+PYTHON_VERSION = $(shell $(PYTHON_COMMAND) -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
 COLLECTION_COMMAND ?= ansible-galaxy
 SANITY_OPTS = --venv
 TEST =
@@ -45,6 +46,7 @@ lint: $(MANIFEST) | tests/test_playbooks/vars/server.yml
 	ansible-lint -v roles/*
 	ansible-playbook --syntax-check tests/test_playbooks/*.yml | grep -v '^$$'
 	flake8 --ignore=E402,W503 --max-line-length=160 plugins/ tests/
+	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 
 sanity: $(MANIFEST)
 	# Fake a fresh git repo for ansible-test
@@ -81,7 +83,7 @@ clean_%: FORCE $(MANIFEST)
 setup: test-setup
 
 test-setup: | tests/test_playbooks/vars/server.yml
-	pip install --upgrade 'pip<20'
+	pip install --upgrade pip
 	pip install --upgrade -r requirements-dev.txt
 
 tests/test_playbooks/vars/server.yml:
@@ -90,6 +92,7 @@ tests/test_playbooks/vars/server.yml:
 
 dist-test: $(MANIFEST)
 	SATELLITE_SERVER_URL=https://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost | grep -q "Failed to connect to Foreman server.*foreman.example.test"
+	SATELLITE_SERVER_URL=http://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost 2>&1| grep -q "You have configured a plain HTTP server URL."
 	ansible-doc $(NAMESPACE).$(NAME).organization | grep -q "Manage Organization"
 
 $(MANIFEST): $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz

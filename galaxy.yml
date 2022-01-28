@@ -65,19 +65,21 @@ authors:
   - "achevalet <anthony.chevalet@gmail.com>"
   - "calvingsmith <4283930+calvingsmith@users.noreply.github.com>"
   - "furhouse <furhouse@users.noreply.github.com>"
+  - "gardar <gardar@users.noreply.github.com>"
   - "igramic <36156377+igramic@users.noreply.github.com>"
   - "jerrejkw <43955357+jerrejkw@users.noreply.github.com>"
   - "marco <marco.markgraf@transporeon.com>"
   - "metalcated <mike.gomon@gmail.com>"
   - "russianguppie <46544650+russianguppie@users.noreply.github.com>"
   - "willtome <willtome@gmail.com>"
-version: "3.0.0"
+version: "3.1.0"
 license:
   - "GPL-3.0-or-later"
 tags:
   - foreman
   - katello
   - satellite
+  - infrastructure
 readme: "README.md"
 homepage: "https://access.redhat.com/products/red-hat-satellite"
 repository: "https://github.com/RedHatSatellite/satellite-ansible-collection"
