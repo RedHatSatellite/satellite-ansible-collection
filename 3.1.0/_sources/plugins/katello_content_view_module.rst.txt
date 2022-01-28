@@ -1,0 +1,22 @@
+.. Document meta
+
+:orphan:
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.katello_content_view_module:
+
+.. Title
+
+redhat.satellite.katello_content_view
++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.1.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.katello_content_view`.
+
+- This is a redirect to the :ref:`content_view module <ansible_collections.content_view_module>`.
+- This redirect does **not** work with Ansible 2.9.

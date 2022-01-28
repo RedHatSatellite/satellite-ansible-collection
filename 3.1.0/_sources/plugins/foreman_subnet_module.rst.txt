@@ -1,0 +1,22 @@
+.. Document meta
+
+:orphan:
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_subnet_module:
+
+.. Title
+
+redhat.satellite.foreman_subnet
++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.1.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_subnet`.
+
+- This is a redirect to the :ref:`subnet module <ansible_collections.subnet_module>`.
+- This redirect does **not** work with Ansible 2.9.
