@@ -36,13 +36,13 @@
 
 .. Title
 
-redhat.satellite.foreman -- Foreman inventory source
-++++++++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.foreman inventory -- Foreman inventory source
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.1.0).
+    This inventory plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1851,6 +1851,21 @@ Examples
 .. Authors
 
 
+.. hint::
+    Configuration entries for each entry type have a low to high priority order. For example, a variable that is lower in the list will override a variable that is higher up.
+
+.. Extra links
+
+Collection links
+~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+  <p class="ansible-links">
+    <a href="https://bugzilla.redhat.com" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
+    <a href="https://access.redhat.com/products/red-hat-satellite" aria-role="button" target="_blank" rel="noopener external">Homepage</a>
+    <a href="https://github.com/RedHatSatellite/satellite-ansible-collection" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
+  </p>
 
 .. Parsing errors
 

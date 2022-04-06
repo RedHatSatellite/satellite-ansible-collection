@@ -36,13 +36,13 @@
 
 .. Title
 
-redhat.satellite.content_upload -- Upload content to a repository
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.content_upload module -- Upload content to a repository
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.1.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -128,6 +128,42 @@ Parameters
         <div class="ansible-option-cell">
 
       Organization that the entity is in
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-ostree_repository_name"></div>
+
+      .. _ansible_collections.redhat.satellite.content_upload_module__parameter-ostree_repository_name:
+
+      .. rst-class:: ansible-option-title
+
+      **ostree_repository_name**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-ostree_repository_name" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`string`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Name of repository within the OSTree archive.
+
+      Required for OSTree uploads.
 
 
       .. raw:: html
@@ -307,7 +343,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      File to upload
+      File (on the remote/target machine) to upload
 
 
       .. raw:: html
@@ -403,8 +439,9 @@ Notes
 -----
 
 .. note::
-   - Currently only uploading to deb, RPM & file repositories is supported
+   - Currently only uploading to deb, RPM, OSTree & file repositories is supported
    - For anything but file repositories, a supporting library must be installed. See Requirements.
+   - OSTree content upload is not idempotent - running mutliple times will attempt to upload the content unit.
 
 .. Seealso
 
@@ -427,6 +464,17 @@ Examples
         product: "My Product"
         organization: "Default Organization"
 
+    - name: "Upload ostree-archive.tar"
+      redhat.satellite.content_upload:
+        username: "admin"
+        password: "changeme"
+        server_url: "https://satellite.example.com"
+        src: "ostree_archive.tar"
+        repository: "My OStree Repository"
+        product: "My Product"
+        organization: "Default Organization"
+        ostree_repository_name: "small"
+
 
 
 
@@ -447,6 +495,19 @@ Authors
 - Eric D Helms (@ehelms)
 
 
+
+.. Extra links
+
+Collection links
+~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+  <p class="ansible-links">
+    <a href="https://bugzilla.redhat.com" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
+    <a href="https://access.redhat.com/products/red-hat-satellite" aria-role="button" target="_blank" rel="noopener external">Homepage</a>
+    <a href="https://github.com/RedHatSatellite/satellite-ansible-collection" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
+  </p>
 
 .. Parsing errors
 

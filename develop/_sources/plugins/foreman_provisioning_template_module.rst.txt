@@ -8,13 +8,13 @@
 
 .. Title
 
-redhat.satellite.foreman_provisioning_template
-++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.foreman_provisioning_template module
++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.1.0).
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman_provisioning_template`.
 

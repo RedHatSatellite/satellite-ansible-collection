@@ -36,13 +36,13 @@
 
 .. Title
 
-redhat.satellite.os_default_template -- Manage Default Template Associations To Operating Systems
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.os_default_template module -- Manage Default Template Associations To Operating Systems
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.1.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -321,6 +321,7 @@ Parameters
       - :ansible-option-choices-entry:`Bootdisk`
       - :ansible-option-choices-entry:`cloud-init`
       - :ansible-option-choices-entry:`finish`
+      - :ansible-option-choices-entry:`host\_init\_config`
       - :ansible-option-choices-entry:`iPXE`
       - :ansible-option-choices-entry:`job\_template`
       - :ansible-option-choices-entry:`kexec`
@@ -570,6 +571,19 @@ Authors
 - Matthias M Dellweg (@mdellweg) ATIX AG
 
 
+
+.. Extra links
+
+Collection links
+~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+  <p class="ansible-links">
+    <a href="https://bugzilla.redhat.com" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
+    <a href="https://access.redhat.com/products/red-hat-satellite" aria-role="button" target="_blank" rel="noopener external">Homepage</a>
+    <a href="https://github.com/RedHatSatellite/satellite-ansible-collection" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
+  </p>
 
 .. Parsing errors
 

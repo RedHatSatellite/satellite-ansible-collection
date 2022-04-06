@@ -36,13 +36,13 @@
 
 .. Title
 
-redhat.satellite.auth_source_ldap -- Manage LDAP Authentication Sources
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.auth_source_ldap module -- Manage LDAP Authentication Sources
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.1.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1040,7 +1040,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: LDAP Authentication source
+    - name: Simple FreeIPA authentication source
       redhat.satellite.auth_source_ldap:
         name: "Example LDAP"
         host: "ldap.example.org"
@@ -1053,7 +1053,7 @@ Examples
         password: "changeme"
         state: present
 
-    - name: LDAP Authentication with automatic registration
+    - name: FreeIPA with automatic registration
       redhat.satellite.auth_source_ldap:
         name: "Example LDAP"
         host: "ldap.example.org"
@@ -1068,6 +1068,26 @@ Examples
         attr_lastname: sn
         attr_mail: mail
         attr_photo: jpegPhoto
+        server_url: "https://satellite.example.com"
+        username: "admin"
+        password: "changeme"
+        state: present
+
+    - name: Active Directory with automatic registration
+      redhat.satellite.auth_source_ldap:
+        name: "Example AD"
+        host: "ad.example.org"
+        onthefly_register: True
+        account: EXAMPLE\ansible
+        account_password: secret
+        base_dn: cn=Users,dc=example,dc=com
+        groups_base: cn=Users,dc=example,dc=com
+        server_type: active_directory
+        attr_login: sAMAccountName
+        attr_firstname: givenName
+        attr_lastname: sn
+        attr_mail: mail
+        ldap_filter: (memberOf=CN=Domain Users,CN=Users,DC=example,DC=com)
         server_url: "https://satellite.example.com"
         username: "admin"
         password: "changeme"
@@ -1188,6 +1208,19 @@ Authors
 - Christoffer Reijer (@ephracis) Basalt AB
 
 
+
+.. Extra links
+
+Collection links
+~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+  <p class="ansible-links">
+    <a href="https://bugzilla.redhat.com" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
+    <a href="https://access.redhat.com/products/red-hat-satellite" aria-role="button" target="_blank" rel="noopener external">Homepage</a>
+    <a href="https://github.com/RedHatSatellite/satellite-ansible-collection" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
+  </p>
 
 .. Parsing errors
 
