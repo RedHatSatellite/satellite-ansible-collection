@@ -1,0 +1,44 @@
+---
+- name: "Synchronize '{{ satellite_convert2rhel_rhel7_repo }}' repository"
+  redhat.satellite.repository_sync:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    repository: "{{ satellite_convert2rhel_rhel7_repo }}"
+    product: "{{ satellite_convert2rhel_rhel7_product }}"
+  when: satellite_content_rhel_enable_rhel7
+
+- name: "Synchronize '{{ satellite_convert2rhel_rhel8_repo }}' repository"
+  redhat.satellite.repository_sync:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    repository: "{{ satellite_convert2rhel_rhel8_repo }}"
+    product: "{{ satellite_convert2rhel_rhel8_product }}"
+  when: satellite_content_rhel_enable_rhel8
+
+- name: "Synchronize '{{ satellite_convert2rhel_oracle7_repo }}' repository"
+  redhat.satellite.repository_sync:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    repository: "{{ satellite_convert2rhel_oracle7_repo }}"
+    product: "{{ satellite_convert2rhel_oracle7_product }}"
+  when: satellite_convert2rhel_enable_oracle7
+
+- name: "Synchronize '{{ satellite_convert2rhel_oracle8_repo }}' repository"
+  redhat.satellite.repository_sync:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    repository: "{{ satellite_convert2rhel_oracle8_repo }}"
+    product: "{{ satellite_convert2rhel_oracle8_product }}"
+  when: satellite_convert2rhel_enable_oracle8

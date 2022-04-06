@@ -11,7 +11,6 @@
     {
       "failed": false,
       "result": {
-        "_ansible_no_log": false,
         "changed": true,
         "cmd": [
           "echo",
@@ -22,8 +21,7 @@
             "_raw_params": "echo foo",
             "_uses_shell": false,
             "stdin_add_newline": true,
-            "strip_empty_ends": true,
-            "warn": false
+            "strip_empty_ends": true
           }
         },
         "rc": 0,
@@ -58,7 +56,6 @@
     {
       "failed": false,
       "result": {
-        "_ansible_no_log": false,
         "changed": false,
         "cmd": [
           "echo",
@@ -69,8 +66,7 @@
             "_raw_params": "echo foo",
             "_uses_shell": false,
             "stdin_add_newline": true,
-            "strip_empty_ends": true,
-            "warn": false
+            "strip_empty_ends": true
           }
         },
         "rc": 0,
@@ -105,7 +101,6 @@
     {
       "failed": true,
       "result": {
-        "_ansible_no_log": false,
         "changed": false
       },
       "task": {
