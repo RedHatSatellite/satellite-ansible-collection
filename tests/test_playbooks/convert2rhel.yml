@@ -26,5 +26,6 @@
         satellite_convert2rhel_manage_subscription: false
         satellite_content_rhel_wait_for_syncs: false
         satellite_content_rhel_enable_rhel7: true
-        satellite_content_rhel_enable_rhel8: false
+        satellite_content_rhel_enable_rhel8: true
         satellite_convert2rhel_enable_oracle7: true
+        satellite_convert2rhel_enable_oracle8: true

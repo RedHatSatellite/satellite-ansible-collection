@@ -1,8 +1,11 @@
-import distutils.version
 import os
 import re
 import json
 
+try:
+    from ansible.module_utils.compat.version import LooseVersion
+except ImportError:
+    from distutils.version import LooseVersion
 import pytest
 
 from .conftest import run_playbook, get_ansible_version
@@ -13,7 +16,7 @@ def run_playbook_callback(tmpdir, report_type):
     ansible_version = get_ansible_version()
     if ansible_version is None:
         pytest.skip("Couldn't figure out Ansible version?!")
-    if distutils.version.LooseVersion(ansible_version) < distutils.version.LooseVersion('2.11'):
+    if LooseVersion(ansible_version) < LooseVersion('2.11'):
         extra_env['ANSIBLE_CALLBACK_WHITELIST'] = "redhat.satellite.foreman"
         extra_env['ANSIBLE_COMMAND_WARNINGS'] = "0"
     else:
@@ -45,7 +48,7 @@ def drop_incompatible_items(d):
         elif isinstance(v, (list, set, tuple)):
             dd[k] = type(v)(drop_incompatible_items(vv) if isinstance(vv, dict) else vv
                             for vv in v)
-        elif k not in ['msg', 'start', 'end', 'delta', 'uuid', 'timeout']:
+        elif k not in ['msg', 'start', 'end', 'delta', 'uuid', 'timeout', '_ansible_no_log', 'warn']:
             dd[k] = v
     return dd
 
@@ -62,6 +65,8 @@ def run_callback(tmpdir, report_type, vcrmode):
         if report_type == "foreman":
             # drop_incompatible_items cannot be used for the legacy format
             contents = re.sub(r", \\\"msg\\\": \\\"\\\"", "", contents)
+            contents = re.sub(r"\\\"_ansible_no_log\\\": [^,]+, ", "", contents)
+            contents = re.sub(r", \\\"warn\\\": false", "", contents)
         real_contents = json.loads(contents)
         if report_type == "foreman":
             real_contents['config_report']['metrics']['time']['total'] = 1

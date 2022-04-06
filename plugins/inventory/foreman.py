@@ -11,7 +11,6 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
     name: foreman
-    plugin_type: inventory
     short_description: Foreman inventory source
     requirements:
         - requests >= 1.1
@@ -149,6 +148,7 @@ DOCUMENTATION = '''
           - A list of templates in order of precedence to compose inventory_hostname.
           - If the template results in an empty string or None value it is ignored.
         type: list
+        elements: str
         default: ['name']
 '''
 
@@ -169,7 +169,7 @@ hostnames:
   - name.split('.')[0]
 '''
 import json
-from distutils.version import LooseVersion
+from ansible_collections.redhat.satellite.plugins.module_utils._version import LooseVersion
 from time import sleep
 from ansible.errors import AnsibleError
 from ansible.module_utils._text import to_bytes, to_native, to_text

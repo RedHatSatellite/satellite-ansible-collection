@@ -17,6 +17,9 @@
     satellite_convert2rhel_ol7_subs:
       - name: "Convert2RHEL7"
       - name: "{{ satellite_convert2rhel_oracle7_product }}"
+    satellite_convert2rhel_ol8_subs:
+      - name: "Convert2RHEL8"
+      - name: "{{ satellite_convert2rhel_oracle8_product }}"
   when: not satellite_convert2rhel_org_info['organization']['simple_content_access']
 
 - name: "Create '{{ satellite_convert2rhel_key_centos7 }}' activation key"
@@ -58,6 +61,19 @@
     content_view: "{{ satellite_convert2rhel_content_view }}"
     subscriptions: "{{ satellite_convert2rhel_org_info['organization']['simple_content_access'] | ternary(omit, satellite_convert2rhel_ol7_subs) }}"
   when: satellite_convert2rhel_enable_oracle7
+
+- name: "Create '{{ satellite_convert2rhel_key_oracle8 }}' activation key"
+  redhat.satellite.activation_key:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    name: "{{ satellite_convert2rhel_key_oracle8 }}"
+    lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
+    content_view: "{{ satellite_convert2rhel_content_view }}"
+    subscriptions: "{{ satellite_convert2rhel_org_info['organization']['simple_content_access'] | ternary(omit, satellite_convert2rhel_ol8_subs) }}"
+  when: satellite_convert2rhel_enable_oracle8
 
 - name: "Create '{{ satellite_convert2rhel_key_rhel7 }}' activation key"
   redhat.satellite.activation_key:
