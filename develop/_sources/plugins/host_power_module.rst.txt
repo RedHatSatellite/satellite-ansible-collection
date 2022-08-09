@@ -1,3 +1,4 @@
+
 .. Document meta
 
 :orphan:
@@ -84,10 +85,15 @@ The below requirements are needed on the host that executes this module.
 - requests
 
 
+
+
+
+
 .. Options
 
 Parameters
 ----------
+
 
 .. rst-class:: ansible-option-table
 
@@ -105,8 +111,8 @@ Parameters
         <div class="ansibleOptionAnchor" id="parameter-name"></div>
         <div class="ansibleOptionAnchor" id="parameter-hostname"></div>
 
-      .. _ansible_collections.redhat.satellite.host_power_module__parameter-name:
       .. _ansible_collections.redhat.satellite.host_power_module__parameter-hostname:
+      .. _ansible_collections.redhat.satellite.host_power_module__parameter-name:
 
       .. rst-class:: ansible-option-title
 

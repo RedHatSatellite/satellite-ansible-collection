@@ -1,3 +1,4 @@
+
 .. Document meta
 
 :orphan:
@@ -83,10 +84,15 @@ The below requirements are needed on the host that executes this module.
 - requests
 
 
+
+
+
+
 .. Options
 
 Parameters
 ----------
+
 
 .. rst-class:: ansible-option-table
 
@@ -144,8 +150,8 @@ Parameters
         <div class="ansibleOptionAnchor" id="parameter-dns_proxy"></div>
         <div class="ansibleOptionAnchor" id="parameter-dns"></div>
 
-      .. _ansible_collections.redhat.satellite.domain_module__parameter-dns_proxy:
       .. _ansible_collections.redhat.satellite.domain_module__parameter-dns:
+      .. _ansible_collections.redhat.satellite.domain_module__parameter-dns_proxy:
 
       .. rst-class:: ansible-option-title
 
@@ -412,7 +418,7 @@ Parameters
 
       .. rst-class:: ansible-option-type-line
 
-      :ansible-option-type:`raw` / :ansible-option-required:`required`
+      :ansible-option-type:`any` / :ansible-option-required:`required`
 
       .. raw:: html
 

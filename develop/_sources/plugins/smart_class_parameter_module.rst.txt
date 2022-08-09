@@ -1,3 +1,4 @@
+
 .. Document meta
 
 :orphan:
@@ -84,10 +85,15 @@ The below requirements are needed on the host that executes this module.
 - requests
 
 
+
+
+
+
 .. Options
 
 Parameters
 ----------
+
 
 .. rst-class:: ansible-option-table
 
@@ -157,7 +163,7 @@ Parameters
 
       .. rst-class:: ansible-option-type-line
 
-      :ansible-option-type:`raw`
+      :ansible-option-type:`any`
 
       .. raw:: html
 
@@ -575,7 +581,7 @@ Parameters
 
       .. rst-class:: ansible-option-type-line
 
-      :ansible-option-type:`raw`
+      :ansible-option-type:`any`
 
       .. raw:: html
 

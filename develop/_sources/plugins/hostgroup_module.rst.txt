@@ -1,3 +1,4 @@
+
 .. Document meta
 
 :orphan:
@@ -83,10 +84,15 @@ The below requirements are needed on the host that executes this module.
 - requests
 
 
+
+
+
+
 .. Options
 
 Parameters
 ----------
+
 
 .. rst-class:: ansible-option-table
 
@@ -601,8 +607,8 @@ Parameters
         <div class="ansibleOptionAnchor" id="parameter-medium"></div>
         <div class="ansibleOptionAnchor" id="parameter-media"></div>
 
-      .. _ansible_collections.redhat.satellite.hostgroup_module__parameter-medium:
       .. _ansible_collections.redhat.satellite.hostgroup_module__parameter-media:
+      .. _ansible_collections.redhat.satellite.hostgroup_module__parameter-medium:
 
       .. rst-class:: ansible-option-title
 
@@ -947,7 +953,7 @@ Parameters
 
       .. rst-class:: ansible-option-type-line
 
-      :ansible-option-type:`raw` / :ansible-option-required:`required`
+      :ansible-option-type:`any` / :ansible-option-required:`required`
 
       .. raw:: html
 
