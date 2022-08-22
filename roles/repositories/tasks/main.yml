@@ -39,6 +39,8 @@
     validate_certs: "{{ satellite_validate_certs | default(omit) }}"
     organization: "{{ satellite_organization }}"
     name: "{{ item.name }}"
+    label: "{{ item.label | default(omit) }}"
+    gpg_key: "{{ item.gpg_key | default(omit) }}"
     state: present
   with_items:
     - "{{ satellite_products | selectattr('repositories', 'defined') | list }}"
@@ -51,7 +53,7 @@
     validate_certs: "{{ satellite_validate_certs | default(omit) }}"
     organization: "{{ satellite_organization }}"
     name: "{{ item.1.name }}"
-    url: "{{ item.1.url }}"
+    url: "{{ item.1.url | default(omit) }}"
     product: "{{ item.0.name }}"
     auto_enabled: "{{ item.1.auto_enabled | default(omit) }}"
     checksum_type: "{{ item.1.checksum_type | default(omit) }}"

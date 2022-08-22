@@ -131,9 +131,19 @@ options:
   mirror_on_sync:
     description:
       - toggle "mirror on sync" where the state of the repository mirrors that of the upstream repository at sync time
-    default: true
+      - This is deprecated with Katello 4.3
+      - It has been superseeded by I(mirroring_policy=mirror_content_only)
     type: bool
     required: false
+  mirroring_policy:
+    description:
+      - Policy to set for mirroring content
+      - Supported since Katello 4.3
+    type: str
+    choices:
+      - additive
+      - mirror_content_only
+      - mirror_complete
   verify_ssl_on_sync:
     description:
       - verify the upstream certifcates are signed by a trusted CA
@@ -222,6 +232,7 @@ options:
       - rhel-6
       - rhel-7
       - rhel-8
+      - rhel-9
   arch:
     description:
       - Architecture of content in the repository
@@ -302,7 +313,8 @@ def main():
             ssl_client_key=dict(type='entity', resource_type='content_credentials', scope=['organization'], no_log=False),
             download_policy=dict(choices=['background', 'immediate', 'on_demand']),
             download_concurrency=dict(type='int'),
-            mirror_on_sync=dict(type='bool', default=True),
+            mirror_on_sync=dict(type='bool'),
+            mirroring_policy=dict(type='str', choices=['additive', 'mirror_content_only', 'mirror_complete']),
             verify_ssl_on_sync=dict(type='bool'),
             upstream_username=dict(),
             upstream_password=dict(no_log=True),
@@ -318,9 +330,12 @@ def main():
             ignorable_content=dict(type='list', elements='str'),
             ansible_collection_requirements=dict(),
             auto_enabled=dict(type='bool'),
-            os_versions=dict(type='list', elements='str', choices=['rhel-6', 'rhel-7', 'rhel-8']),
+            os_versions=dict(type='list', elements='str', choices=['rhel-6', 'rhel-7', 'rhel-8', 'rhel-9']),
             arch=dict(),
         ),
+        mutually_exclusive=[
+            ['mirror_on_sync', 'mirroring_policy']
+        ],
         argument_spec=dict(
             state=dict(default='present', choices=['present_with_defaults', 'present', 'absent']),
         ),
