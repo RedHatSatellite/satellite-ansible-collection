@@ -21,7 +21,6 @@ jobs:
           - stable-2.11
           - stable-2.12
           - stable-2.13
-          - devel
         include:
           - python: "2.7"
             ansible: "stable-2.11"
@@ -38,16 +37,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
-      - name: Restore pip cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
       - name: Install libyaml-dev for PyYAML
         run: sudo apt-get install -y libyaml-dev
       - name: Install Ansible
@@ -74,16 +68,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.8"
-      - name: Restore pip cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
       - name: Install Ansible
         run: pip install --upgrade ansible-core
       - name: Install dependencies
@@ -98,16 +87,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.8"
-      - name: Restore pip cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
       - name: Install dependencies
         run: make doc-setup
       - name: Build docs
@@ -123,16 +107,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.8"
-      - name: Restore pip cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
       - name: Install dependencies
         run: |
           pip install --upgrade ansible-core
@@ -144,3 +123,21 @@ jobs:
         with:
           name: collection
           path: redhat-satellite-*.tar.gz
+
+  execution_environment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
+      - name: Install dependencies
+        run: pip install --upgrade ansible-core ansible-builder ansible-navigator
+      - name: Build EE
+        run: ansible-builder build -v 3 -t test-ee:latest -f meta/execution-environment.yml
+      - name: Test EE
+        run: |
+          ansible-navigator --execution-environment-image test-ee:latest --pull-policy never --mode stdout doc theforeman.foreman.host

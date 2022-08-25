@@ -137,11 +137,16 @@ options:
           - plain
           - search
           - date
+          - resource
         type: str
       resource_type:
         description:
           - Type of the resource
         type: str
+      hidden_value:
+        description:
+          - The value contains sensitive information and should't be normally visible, useful e.g. for passwords
+        type: bool
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state_with_defaults
@@ -322,8 +327,10 @@ template_input_foreman_spec = {
         'plain',
         'search',
         'date',
+        'resource',
     ]),
     'resource_type': dict(),
+    'hidden_value': dict(type='bool'),
 }
 
 

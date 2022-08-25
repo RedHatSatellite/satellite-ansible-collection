@@ -218,6 +218,7 @@ from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper im
 try:
     import ipaddress
     HAS_IPADDRESS = True
+    IPADDRESS_IMP_ERR = None
 except ImportError:
     HAS_IPADDRESS = False
     IPADDRESS_IMP_ERR = traceback.format_exc()

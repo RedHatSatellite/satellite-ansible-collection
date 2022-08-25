@@ -121,7 +121,8 @@ options:
     version_added: 3.0.0
   download_policy:
     description:
-      - download policy for sync from upstream
+      - The download policy for sync from upstream.
+      - The download policy C(background) is deprecated and not available since Katello 4.3.
     choices:
       - background
       - immediate
@@ -155,7 +156,8 @@ options:
     type: str
   upstream_password:
     description:
-      - password to access upstream repository
+      - Password to access upstream repository.
+      - When this parameter is set, the module will not be idempotent.
     type: str
   docker_upstream_name:
     description:

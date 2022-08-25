@@ -1,5 +1,5 @@
 ---
-- name: "delete content view versions of {{ cv_name }}"
+- name: "Delete content view versions of {{ cv_name }}"
   redhat.satellite.content_view_version:
     server_url: "{{ satellite_server_url | default(omit) }}"
     username: "{{ satellite_username | default(omit) }}"
