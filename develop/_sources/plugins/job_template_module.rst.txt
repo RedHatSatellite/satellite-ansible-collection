@@ -43,13 +43,11 @@ redhat.satellite.job_template module -- Manage Job Templates
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
-
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.5.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You need further requirements to be able to use this module,
+    see :ref:`Requirements <ansible_collections.redhat.satellite.job_template_module_requirements>` for details.
 
     To use it in a playbook, specify: :code:`redhat.satellite.job_template`.
 
@@ -76,6 +74,8 @@ Synopsis
 
 
 .. Requirements
+
+.. _ansible_collections.redhat.satellite.job_template_module_requirements:
 
 Requirements
 ------------
@@ -310,8 +310,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`no` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-default-bold:`false` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -348,7 +348,7 @@ Parameters
 
       If omited, will be determined from the \ :literal:`name`\  header of the template or the filename (in that order).
 
-      The special value "*" can be used to perform bulk actions (modify, delete) on all existing templates.
+      The special value "\*" can be used to perform bulk actions (modify, delete) on all existing templates.
 
 
       .. raw:: html
@@ -529,8 +529,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -684,8 +684,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -756,6 +756,47 @@ Parameters
 
       Required when \ :emphasis:`input\_type=fact`\ .
 
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-indent"></div><div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-template_inputs/hidden_value"></div>
+
+      .. _ansible_collections.redhat.satellite.job_template_module__parameter-template_inputs/hidden_value:
+
+      .. rst-class:: ansible-option-title
+
+      **hidden_value**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-template_inputs/hidden_value" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`boolean`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-indent-desc"></div><div class="ansible-option-cell">
+
+      The value contains sensitive information and should't be normally visible, useful e.g. for passwords
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -978,8 +1019,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -1056,6 +1097,7 @@ Parameters
       - :ansible-option-choices-entry:`plain`
       - :ansible-option-choices-entry:`search`
       - :ansible-option-choices-entry:`date`
+      - :ansible-option-choices-entry:`resource`
 
       .. raw:: html
 
@@ -1170,8 +1212,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-default-bold:`yes` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
 
       .. raw:: html
 

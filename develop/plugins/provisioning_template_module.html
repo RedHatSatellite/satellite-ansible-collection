@@ -59,12 +59,15 @@
 <li class="toctree-l4"><a class="reference internal" href="compute_resource_module.html">redhat.satellite.compute_resource module – Manage Compute Resources</a></li>
 <li class="toctree-l4"><a class="reference internal" href="config_group_module.html">redhat.satellite.config_group module – Manage (Puppet) Config Groups</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_credential_module.html">redhat.satellite.content_credential module – Manage Content Credentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_export_info_module.html">redhat.satellite.content_export_info module – List pulp3 content exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_export_library_module.html">redhat.satellite.content_export_library module – Manage content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload module – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view module – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter module – Manage Content View Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_info_module.html">redhat.satellite.content_view_info module – Fetch information about Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_version_module.html">redhat.satellite.content_view_version module – Manage Content View Versions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_version_info_module.html">redhat.satellite.content_view_version_info module – Fetch information about Content Views</a></li>
+<li class="toctree-l4"><a class="reference internal" href="discovery_rule_module.html">redhat.satellite.discovery_rule module – Manage Host Discovery Rules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="domain_module.html">redhat.satellite.domain module – Manage Domains</a></li>
 <li class="toctree-l4"><a class="reference internal" href="domain_info_module.html">redhat.satellite.domain_info module – Fetch information about Domains</a></li>
 <li class="toctree-l4"><a class="reference internal" href="external_usergroup_module.html">redhat.satellite.external_usergroup module – Manage External User Groups</a></li>
@@ -167,11 +170,10 @@
 <h1>redhat.satellite.provisioning_template module – Manage Provisioning Templates<a class="headerlink" href="#redhat-satellite-provisioning-template-module-manage-provisioning-templates" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.3.0).</p>
-<p>You might already have this collection installed if you are using the <code class="docutils literal notranslate"><span class="pre">ansible</span></code> package.
-It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
-To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
-<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.5.0).</p>
+<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
+You need further requirements to be able to use this module,
+see <a class="reference internal" href="#ansible-collections-redhat-satellite-provisioning-template-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.provisioning_template</span></code>.</p>
 </div>
 <div class="versionadded">
@@ -193,7 +195,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </ul>
 </section>
 <section id="requirements">
-<h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<span id="ansible-collections-redhat-satellite-provisioning-template-module-requirements"></span><h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
 <p>The below requirements are needed on the host that executes this module.</p>
 <ul class="simple">
 <li><p>requests</p></li>
@@ -239,7 +241,6 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <li><p><span class="ansible-option-choices-entry">kexec</span></p></li>
 <li><p><span class="ansible-option-choices-entry">POAP</span></p></li>
 <li><p><span class="ansible-option-choices-entry">provision</span></p></li>
-<li><p><span class="ansible-option-choices-entry">ptable</span></p></li>
 <li><p><span class="ansible-option-choices-entry">PXEGrub</span></p></li>
 <li><p><span class="ansible-option-choices-entry">PXEGrub2</span></p></li>
 <li><p><span class="ansible-option-choices-entry">PXELinux</span></p></li>
@@ -265,8 +266,8 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <td><div class="ansible-option-cell"><p>Determines whether the template shall be locked</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">no</span></p></li>
-<li><p><span class="ansible-option-choices-entry">yes</span></p></li>
+<li><p><span class="ansible-option-choices-entry">false</span></p></li>
+<li><p><span class="ansible-option-choices-entry">true</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -356,8 +357,8 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_VALIDATE_CERTS</span></code> will be used instead.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">no</span></p></li>
-<li><p><span class="ansible-option-default-bold">yes</span> <span class="ansible-option-default">← (default)</span></p></li>
+<li><p><span class="ansible-option-choices-entry">false</span></p></li>
+<li><p><span class="ansible-option-default-bold">true</span> <span class="ansible-option-default">← (default)</span></p></li>
 </ul>
 </div></td>
 </tr>

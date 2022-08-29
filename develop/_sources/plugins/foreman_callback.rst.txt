@@ -43,13 +43,11 @@ redhat.satellite.foreman callback -- Sends events to Foreman
 .. Collection note
 
 .. note::
-    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
-
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.5.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You need further requirements to be able to use this callback plugin,
+    see :ref:`Requirements <ansible_collections.redhat.satellite.foreman_callback_requirements>` for details.
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman`.
 
@@ -75,6 +73,8 @@ Synopsis
 
 
 .. Requirements
+
+.. _ansible_collections.redhat.satellite.foreman_callback_requirements:
 
 Requirements
 ------------
@@ -274,9 +274,9 @@ Parameters
 
       When set, callback does not perform HTTP calls but stores results in a given directory.
 
-      For each report, new file in the form of SEQ_NO-hostname.json is created.
+      For each report, new file in the form of SEQ\_NO-hostname.json is created.
 
-      For each facts, new file in the form of SEQ_NO-hostname.json is created.
+      For each facts, new file in the form of SEQ\_NO-hostname.json is created.
 
       The value must be a valid directory.
 

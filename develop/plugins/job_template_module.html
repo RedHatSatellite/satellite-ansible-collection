@@ -59,12 +59,15 @@
 <li class="toctree-l4"><a class="reference internal" href="compute_resource_module.html">redhat.satellite.compute_resource module – Manage Compute Resources</a></li>
 <li class="toctree-l4"><a class="reference internal" href="config_group_module.html">redhat.satellite.config_group module – Manage (Puppet) Config Groups</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_credential_module.html">redhat.satellite.content_credential module – Manage Content Credentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_export_info_module.html">redhat.satellite.content_export_info module – List pulp3 content exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_export_library_module.html">redhat.satellite.content_export_library module – Manage content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload module – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view module – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter module – Manage Content View Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_info_module.html">redhat.satellite.content_view_info module – Fetch information about Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_version_module.html">redhat.satellite.content_view_version module – Manage Content View Versions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_version_info_module.html">redhat.satellite.content_view_version_info module – Fetch information about Content Views</a></li>
+<li class="toctree-l4"><a class="reference internal" href="discovery_rule_module.html">redhat.satellite.discovery_rule module – Manage Host Discovery Rules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="domain_module.html">redhat.satellite.domain module – Manage Domains</a></li>
 <li class="toctree-l4"><a class="reference internal" href="domain_info_module.html">redhat.satellite.domain_info module – Fetch information about Domains</a></li>
 <li class="toctree-l4"><a class="reference internal" href="external_usergroup_module.html">redhat.satellite.external_usergroup module – Manage External User Groups</a></li>
@@ -167,11 +170,10 @@
 <h1>redhat.satellite.job_template module – Manage Job Templates<a class="headerlink" href="#redhat-satellite-job-template-module-manage-job-templates" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.3.0).</p>
-<p>You might already have this collection installed if you are using the <code class="docutils literal notranslate"><span class="pre">ansible</span></code> package.
-It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
-To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
-<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.5.0).</p>
+<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
+You need further requirements to be able to use this module,
+see <a class="reference internal" href="#ansible-collections-redhat-satellite-job-template-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.job_template</span></code>.</p>
 </div>
 <div class="versionadded">
@@ -193,7 +195,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </ul>
 </section>
 <section id="requirements">
-<h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<span id="ansible-collections-redhat-satellite-job-template-module-requirements"></span><h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
 <p>The below requirements are needed on the host that executes this module.</p>
 <ul class="simple">
 <li><p>requests</p></li>
@@ -251,8 +253,8 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <td><div class="ansible-option-cell"><p>Determines whether the template shall be locked</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-default-bold">no</span> <span class="ansible-option-default">← (default)</span></p></li>
-<li><p><span class="ansible-option-choices-entry">yes</span></p></li>
+<li><p><span class="ansible-option-default-bold">false</span> <span class="ansible-option-default">← (default)</span></p></li>
+<li><p><span class="ansible-option-choices-entry">true</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -302,8 +304,8 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <td><div class="ansible-option-cell"><p>Determines whether the template shall be a snippet</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">no</span></p></li>
-<li><p><span class="ansible-option-choices-entry">yes</span></p></li>
+<li><p><span class="ansible-option-choices-entry">false</span></p></li>
+<li><p><span class="ansible-option-choices-entry">true</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -343,8 +345,8 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Template Input is advanced</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">no</span></p></li>
-<li><p><span class="ansible-option-choices-entry">yes</span></p></li>
+<li><p><span class="ansible-option-choices-entry">false</span></p></li>
+<li><p><span class="ansible-option-choices-entry">true</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -364,6 +366,18 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-template_inputs/hidden_value"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-hidden-value"><strong>hidden_value</strong></p>
+<a class="ansibleOptionLink" href="#parameter-template_inputs/hidden_value" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The value contains sensitive information and should’t be normally visible, useful e.g. for passwords</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><span class="ansible-option-choices-entry">false</span></p></li>
+<li><p><span class="ansible-option-choices-entry">true</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/input_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-input-type"><strong>input_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/input_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -377,21 +391,21 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>name of the Template Input</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/options"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-options"><strong>options</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/options" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=any</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Template values for user inputs. Must be an array of any type.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/puppet_class_name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-puppet-class-name"><strong>puppet_class_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/puppet_class_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -399,7 +413,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p>Required when <em>input_type=puppet_parameter</em>.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/puppet_parameter_name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-puppet-parameter-name"><strong>puppet_parameter_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/puppet_parameter_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -407,26 +421,26 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p>Required when <em>input_type=puppet_parameter</em>.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/required"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-required"><strong>required</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/required" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Is the input required</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">no</span></p></li>
-<li><p><span class="ansible-option-choices-entry">yes</span></p></li>
+<li><p><span class="ansible-option-choices-entry">false</span></p></li>
+<li><p><span class="ansible-option-choices-entry">true</span></p></li>
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/resource_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-resource-type"><strong>resource_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/resource_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Type of the resource</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/value_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-value-type"><strong>value_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/value_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -436,10 +450,11 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <li><p><span class="ansible-option-choices-entry">plain</span></p></li>
 <li><p><span class="ansible-option-choices-entry">search</span></p></li>
 <li><p><span class="ansible-option-choices-entry">date</span></p></li>
+<li><p><span class="ansible-option-choices-entry">resource</span></p></li>
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_inputs/variable_name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-template-inputs-variable-name"><strong>variable_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_inputs/variable_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -447,7 +462,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p>Required when <em>input_type=variable</em>.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-username"><strong>username</strong></p>
 <a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -455,7 +470,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USERNAME</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-validate_certs"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-job-template-module-parameter-validate-certs"><strong>validate_certs</strong></p>
 <a class="ansibleOptionLink" href="#parameter-validate_certs" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -463,8 +478,8 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_VALIDATE_CERTS</span></code> will be used instead.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">no</span></p></li>
-<li><p><span class="ansible-option-default-bold">yes</span> <span class="ansible-option-default">← (default)</span></p></li>
+<li><p><span class="ansible-option-choices-entry">false</span></p></li>
+<li><p><span class="ansible-option-default-bold">true</span> <span class="ansible-option-default">← (default)</span></p></li>
 </ul>
 </div></td>
 </tr>

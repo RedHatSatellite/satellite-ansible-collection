@@ -43,13 +43,11 @@ redhat.satellite.repository module -- Manage Repositories
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
-
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.5.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You need further requirements to be able to use this module,
+    see :ref:`Requirements <ansible_collections.redhat.satellite.repository_module_requirements>` for details.
 
     To use it in a playbook, specify: :code:`redhat.satellite.repository`.
 
@@ -76,6 +74,8 @@ Synopsis
 
 
 .. Requirements
+
+.. _ansible_collections.redhat.satellite.repository_module_requirements:
 
 Requirements
 ------------
@@ -208,8 +208,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -620,7 +620,9 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      download policy for sync from upstream
+      The download policy for sync from upstream.
+
+      The download policy \ :literal:`background`\  is deprecated and not available since Katello 4.3.
 
 
       .. rst-class:: ansible-option-line
@@ -821,8 +823,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -891,13 +893,61 @@ Parameters
 
       toggle "mirror on sync" where the state of the repository mirrors that of the upstream repository at sync time
 
+      This is deprecated with Katello 4.3
+
+      It has been superseeded by \ :emphasis:`mirroring\_policy=mirror\_content\_only`\ 
+
 
       .. rst-class:: ansible-option-line
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-default-bold:`yes` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-mirroring_policy"></div>
+
+      .. _ansible_collections.redhat.satellite.repository_module__parameter-mirroring_policy:
+
+      .. rst-class:: ansible-option-title
+
+      **mirroring_policy**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-mirroring_policy" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`string`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Policy to set for mirroring content
+
+      Supported since Katello 4.3
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry:`additive`
+      - :ansible-option-choices-entry:`mirror\_content\_only`
+      - :ansible-option-choices-entry:`mirror\_complete`
 
       .. raw:: html
 
@@ -1012,6 +1062,7 @@ Parameters
       - :ansible-option-choices-entry:`rhel-6`
       - :ansible-option-choices-entry:`rhel-7`
       - :ansible-option-choices-entry:`rhel-8`
+      - :ansible-option-choices-entry:`rhel-9`
 
       .. raw:: html
 
@@ -1303,8 +1354,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -1337,7 +1388,9 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      password to access upstream repository
+      Password to access upstream repository.
+
+      When this parameter is set, the module will not be idempotent.
 
 
       .. raw:: html
@@ -1484,8 +1537,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-default-bold:`yes` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
 
       .. raw:: html
 
@@ -1525,8 +1578,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 

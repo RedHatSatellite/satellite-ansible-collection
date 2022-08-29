@@ -43,11 +43,7 @@ redhat.satellite.redhat_manifest module -- Interact with a Red Hat Satellite Sub
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
-
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.5.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
 
@@ -270,7 +266,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Subscription pool_id
+      Subscription pool\_id
 
 
       .. raw:: html
@@ -383,7 +379,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      quantity of pool_id Subscriptions
+      quantity of pool\_id Subscriptions
 
 
       .. raw:: html
@@ -533,8 +529,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-default-bold:`yes` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
 
       .. raw:: html
 

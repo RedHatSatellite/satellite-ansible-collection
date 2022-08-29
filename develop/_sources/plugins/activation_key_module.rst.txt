@@ -43,13 +43,11 @@ redhat.satellite.activation_key module -- Manage Activation Keys
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.3.0).
-
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.5.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
+    You need further requirements to be able to use this module,
+    see :ref:`Requirements <ansible_collections.redhat.satellite.activation_key_module_requirements>` for details.
 
     To use it in a playbook, specify: :code:`redhat.satellite.activation_key`.
 
@@ -76,6 +74,8 @@ Synopsis
 
 
 .. Requirements
+
+.. _ansible_collections.redhat.satellite.activation_key_module_requirements:
 
 Requirements
 ------------
@@ -138,8 +138,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -172,7 +172,11 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      List of content overrides that include label and override state ('enabled', 'disabled' or 'default')
+      List of content overrides that include label and override state
+
+      Label refers to repository \ :literal:`content\_label`\ , e.g. rhel-7-server-rpms
+
+      Override state ('enabled', 'disabled', or 'default') sets initial state of repository for newly registered hosts
 
 
       .. raw:: html
@@ -206,7 +210,7 @@ Parameters
 
         <div class="ansible-option-indent-desc"></div><div class="ansible-option-cell">
 
-      Label of the content override
+      Repository \ :literal:`content\_label`\  to override when registering hosts with the activation key
 
 
       .. raw:: html
@@ -240,7 +244,7 @@ Parameters
 
         <div class="ansible-option-indent-desc"></div><div class="ansible-option-cell">
 
-      Override value
+      Override value to use for the repository when registering hosts with the activation key
 
 
       .. rst-class:: ansible-option-line
@@ -1012,8 +1016,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`yes`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
       .. raw:: html
 
@@ -1091,8 +1095,8 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-default-bold:`yes` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
 
       .. raw:: html
 

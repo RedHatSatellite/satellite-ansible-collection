@@ -6,7 +6,7 @@
 Redhat.Satellite
 ================
 
-Collection version 3.3.0
+Collection version 3.5.0
 
 .. contents::
    :local:
@@ -39,6 +39,7 @@ Ansible Modules to manage Satellite installations
 * Ethan <smithe2413@gmail.com>
 * Evgeni Golov <evgeni@golov.de>
 * Ewoud Kohl van Wijngaarden <ewoud@kohlvanwijngaarden.nl>
+* Gerald Vogt <gvde@users.noreply.github.com>
 * Greg Swift <gregswift@gmail.com>
 * Griffin Sullivan <gsulliva@redhat.com>
 * Hideki Saito <saito@fgrep.org>
@@ -48,6 +49,7 @@ Ansible Modules to manage Satellite installations
 * James Stuart <james@stuart.name>
 * Jeffrey van Pelt <jeff@vanpelt.one>
 * Jeremy Albinet <jalbinet@scaleway.com>
+* Jeremy Lenz <jlenz@redhat.com>
 * Jesper Reenberg <jesper.reenberg@gmail.com>
 * John Berninger <john.berninger@gmail.com>
 * Josh Swanson <jswanson@redhat.com>
@@ -55,6 +57,7 @@ Ansible Modules to manage Satellite installations
 * Kirill Shirinkin <fodojyko@gmail.com>
 * Leos Stejskal <lstejska@redhat.com>
 * Lester Claudio <claudiol@redhat.com>
+* Lucas Bickel <hairmare@rabe.ch>
 * Lukáš Zapletal <lzap+git@redhat.com>
 * Manisha Singhal <manisha1595@gmail.com>
 * Manuel Bonk <githubMB@bonkii.com>
@@ -63,6 +66,7 @@ Ansible Modules to manage Satellite installations
 * Mark Hlawatschek <hlawatschek@atix.de>
 * Markus Bucher <bucher@atix.de>
 * Matthias Dellweg <2500@gmx.de>
+* Miikka Joutsenvirta <miikka.joutsenvirta@dna.fi>
 * Nikhil Jain <jainnikhil30@gmail.com>
 * Olivier <oliverf1ca@yahoo.com>
 * Ondrej Prazak <oprazak@redhat.com>
@@ -82,10 +86,13 @@ Ansible Modules to manage Satellite installations
 * Sean O'Keeffe <seanokeeffe797@gmail.com>
 * Stoned Elipot <stoned.elipot@gmail.com>
 * TTherouanne <thomas@therouanne.com>
+* Thomas Mueller <thomas@chaschperli.ch>
 * William Bradford Clark <wclark@redhat.com>
 * Yifat Makias <ymakias@redhat.com>
 * achevalet <anthony.chevalet@gmail.com>
+* bob <57952350+TheRedGreek@users.noreply.github.com>
 * calvingsmith <4283930+calvingsmith@users.noreply.github.com>
+* divialth <65872926+divialth@users.noreply.github.com>
 * furhouse <furhouse@users.noreply.github.com>
 * gardar <gardar@users.noreply.github.com>
 * igramic <36156377+igramic@users.noreply.github.com>
@@ -127,12 +134,15 @@ Modules
 * :ref:`compute_resource module <ansible_collections.redhat.satellite.compute_resource_module>` -- Manage Compute Resources
 * :ref:`config_group module <ansible_collections.redhat.satellite.config_group_module>` -- Manage (Puppet) Config Groups
 * :ref:`content_credential module <ansible_collections.redhat.satellite.content_credential_module>` -- Manage Content Credentials
+* :ref:`content_export_info module <ansible_collections.redhat.satellite.content_export_info_module>` -- List pulp3 content exports
+* :ref:`content_export_library module <ansible_collections.redhat.satellite.content_export_library_module>` -- Manage content exports
 * :ref:`content_upload module <ansible_collections.redhat.satellite.content_upload_module>` -- Upload content to a repository
 * :ref:`content_view module <ansible_collections.redhat.satellite.content_view_module>` -- Manage Content Views
 * :ref:`content_view_filter module <ansible_collections.redhat.satellite.content_view_filter_module>` -- Manage Content View Filters
 * :ref:`content_view_info module <ansible_collections.redhat.satellite.content_view_info_module>` -- Fetch information about Content Views
 * :ref:`content_view_version module <ansible_collections.redhat.satellite.content_view_version_module>` -- Manage Content View Versions
 * :ref:`content_view_version_info module <ansible_collections.redhat.satellite.content_view_version_info_module>` -- Fetch information about Content Views
+* :ref:`discovery_rule module <ansible_collections.redhat.satellite.discovery_rule_module>` -- Manage Host Discovery Rules
 * :ref:`domain module <ansible_collections.redhat.satellite.domain_module>` -- Manage Domains
 * :ref:`domain_info module <ansible_collections.redhat.satellite.domain_info_module>` -- Fetch information about Domains
 * :ref:`external_usergroup module <ansible_collections.redhat.satellite.external_usergroup_module>` -- Manage External User Groups
@@ -218,12 +228,15 @@ Inventory Plugins
     compute_resource_module
     config_group_module
     content_credential_module
+    content_export_info_module
+    content_export_library_module
     content_upload_module
     content_view_module
     content_view_filter_module
     content_view_info_module
     content_view_version_module
     content_view_version_info_module
+    discovery_rule_module
     domain_module
     domain_info_module
     external_usergroup_module
