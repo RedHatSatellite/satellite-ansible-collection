@@ -1,6 +1,6 @@
 ---
 action_groups:
-  foreman:
+  satellite:
   - activation_key
   - architecture
   - auth_source_ldap

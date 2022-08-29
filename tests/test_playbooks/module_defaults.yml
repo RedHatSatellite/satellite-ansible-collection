@@ -16,7 +16,7 @@
   vars_files:
     - vars/server.yml
   module_defaults:
-    group/redhat.satellite.foreman:
+    group/redhat.satellite.satellite:
       username: "{{ foreman_username }}"
       password: "{{ foreman_password }}"
       server_url: "{{ foreman_server_url }}"

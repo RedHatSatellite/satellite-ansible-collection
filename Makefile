@@ -145,8 +145,12 @@ branding:
 	sed -i '/foreman_\w/ s/foreman_/satellite_/g' roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman.github.io/foreman-ansible-modules#redhatsatellite.github.io/satellite-ansible-collection#g' roles/*/README.md
 	sed -i '/foreman_\w.*:/ s/foreman_/satellite_/g' tests/test_playbooks/*_role.yml tests/test_playbooks/convert2rhel.yml docs/cvmanager.md
+	sed -i 's/foreman:/satellite:/' $(RUNTIME_YML)
+	sed -i 's/foreman/satellite/' generate_action_groups.py
+	sed -i '/group/ s/foreman/satellite/' tests/test_playbooks/module_defaults.yml
 	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
 	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot.py tests/fixtures/apidoc/snapshot.json
+	make $(RUNTIME_YML)
 
 FORCE:
 
