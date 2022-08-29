@@ -1,0 +1,23 @@
+
+.. Document meta
+
+:orphan:
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_compute_profile_module:
+
+.. Title
+
+redhat.satellite.foreman_compute_profile module
++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.5.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_compute_profile`.
+
+- This is a redirect to the :ref:`compute_profile module <ansible_collections.compute_profile_module>`.
+- This redirect does **not** work with Ansible 2.9.
