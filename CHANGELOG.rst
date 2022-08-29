@@ -6,6 +6,54 @@ redhat.satellite Release Notes
 
 This changelog describes changes after version 0.8.1.
 
+v3.5.0
+======
+
+Minor Changes
+-------------
+
+- add execution environment metadata
+- installation_medium, operatingsystem, partition_table - add ``Fcos``, ``Rhcos``, ``VRP`` OS families
+- job_template - add ``hidden_value`` to ``template_inputs`` parameters
+- job_template - allow ``value_type`` to be ``resource``
+- operatingsystems role - make ``provisioning_template`` parameter optional
+- repositories role - add ``ansible_collection_requirements``
+- repositories role - add ``arch`` and ``os_versions`` parameters
+- repositories role - support ``mirroring_policy``
+- repository, smart_proxy - document deprecation/removal status of ``download_policy=background``
+- setting - the ``foreman_setting`` return entry is deprecated and kept for backwards compatibility, please use ``entity`` as with any other module
+- smart_proxy - add ``inherit`` to possible values of ``download_policy`` (https://github.com/theforeman/foreman-ansible-modules/issues/1438)
+- smart_proxy - add ``streamed`` download policy
+- snapshot - add include_ram option when creating VMWare snapshot
+
+New Modules
+-----------
+
+- redhat.satellite.content_export_info - List pulp3 content exports
+- redhat.satellite.content_export_library - Manage content exports
+- redhat.satellite.discovery_rule - Manage Host Discovery Rules
+
+v3.4.0
+======
+
+Minor Changes
+-------------
+
+- add support for module defaults groups for Ansible core 2.12 (https://github.com/theforeman/foreman-ansible-modules/issues/1015)
+- all modules - report smaller diffs by dropping ``null`` values. This should result in not showing fields that were unset to begin with, and mark fields that were explicitly removed as "deleted" instead of "replaced by ``null``"
+- compute_resource - update libvirt examples (https://bugzilla.redhat.com/show_bug.cgi?id=1990119)
+- content_view - add support to set label during creation.
+- repository - add ``rhel-9`` to os version filter choices
+- repository - add support for ``mirroring_policy`` for Katello 4.4+ (https://github.com/theforeman/foreman-ansible-modules/issues/1388)
+
+Bugfixes
+--------
+
+- content_upload - properly detect SRPMs and ensure idempotency during uploads (https://github.com/theforeman/foreman-ansible-modules/issues/1274)
+- inventory plugin - fix caching for Report API (https://github.com/theforeman/foreman-ansible-modules/issues/1246)
+- operatingsystem - find operatingsystems by title or full (name,major,minor) tuple (https://github.com/theforeman/foreman-ansible-modules/issues/1401)
+- os_default_template, provisioning_template - don't document invalid template kind ``ptable`` (https://bugzilla.redhat.com/show_bug.cgi?id=1970132)
+
 v3.3.0
 ======
 

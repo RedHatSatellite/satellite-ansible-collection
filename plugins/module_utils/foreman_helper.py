@@ -37,6 +37,7 @@ try:
         from plugins.module_utils import _apypie as apypie
     import requests.exceptions
     HAS_APYPIE = True
+    APYPIE_IMP_ERR = None
     inflector = apypie.Inflector()
 except ImportError:
     HAS_APYPIE = False
@@ -45,6 +46,7 @@ except ImportError:
 try:
     import yaml
     HAS_PYYAML = True
+    PYYAML_IMP_ERR = None
 except ImportError:
     HAS_PYYAML = False
     PYYAML_IMP_ERR = traceback.format_exc()
@@ -946,10 +948,18 @@ class ForemanAnsibleModule(AnsibleModule):
                             item[nested_key] = self._lookup_entity(item[nested_key], nested_spec)
 
     def record_before(self, resource, entity):
-        self._before[resource].append(entity)
+        if isinstance(entity, dict):
+            to_record = _recursive_dict_without_none(entity)
+        else:
+            to_record = entity
+        self._before[resource].append(to_record)
 
     def record_after(self, resource, entity):
-        self._after[resource].append(entity)
+        if isinstance(entity, dict):
+            to_record = _recursive_dict_without_none(entity)
+        else:
+            to_record = entity
+        self._after[resource].append(to_record)
 
     def record_after_full(self, resource, entity):
         self._after_full[resource].append(entity)
@@ -1825,14 +1835,17 @@ OS_LIST = ['AIX',
            'Archlinux',
            'Coreos',
            'Debian',
+           'Fcos',
            'Freebsd',
            'Gentoo',
            'Junos',
            'NXOS',
            'Rancheros',
            'Redhat',
+           'Rhcos',
            'Solaris',
            'Suse',
+           'VRP',
            'Windows',
            'Xenserver',
            ]
@@ -1847,7 +1860,6 @@ TEMPLATE_KIND_LIST = [
     'kexec',
     'POAP',
     'provision',
-    'ptable',
     'PXEGrub',
     'PXEGrub2',
     'PXELinux',

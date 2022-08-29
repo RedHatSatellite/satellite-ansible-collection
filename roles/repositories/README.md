@@ -29,6 +29,7 @@ satellite_products:
         basearch: x86_64
       - name: Red Hat Enterprise Linux 7 Server - Optional (RPMs)
         basearch: x86_64
+        releasever: 7Server
   - name: Red Hat Software Collections (for RHEL Server)
     repository_sets:
       - name: Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server
@@ -47,14 +48,14 @@ satellite_products:
     all_repositories: True
     labels:
       - rhel-server-rhscl-7-rpms
-  - name: CentOS 8
+  - name: CentOS Stream 8
     repositories:
       - name: BaseOS x86_64
         content_type: yum
-        url: http://mirror.centos.org/centos/8/BaseOS/x86_64/os/
+        url: http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/
       - name: AppStream x86_64
         content_type: yum
-        url: http://mirror.centos.org/centos/8/AppStream/x86_64/os/
+        url: http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/
   - name: Debian 10
     repositories:
       - name: Debian 10 main
@@ -106,6 +107,7 @@ This example enables several Red Hat Repositories. There are a few important poi
                 basearch: x86_64
               - name: Red Hat Enterprise Linux 7 Server - Optional (RPMs)
                 basearch: x86_64
+                releasever: 7Server
           - name: Red Hat Enterprise Linux for x86_64
             repository_sets:
               - name: Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)

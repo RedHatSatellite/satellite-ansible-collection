@@ -21,8 +21,6 @@ def run_playbook_callback(tmpdir, report_type):
         extra_env['ANSIBLE_COMMAND_WARNINGS'] = "0"
     else:
         extra_env['ANSIBLE_CALLBACKS_ENABLED'] = "redhat.satellite.foreman"
-    extra_env['ANSIBLE_STDOUT_CALLBACK'] = "redhat.satellite.foreman"
-    extra_env['ANSIBLE_LOAD_CALLBACK_PLUGINS'] = "1"
     # No connection is actually performed during the test
     extra_env['FOREMAN_REPORT_TYPE'] = report_type
     extra_env['FOREMAN_URL'] = "http://localhost"
@@ -48,7 +46,7 @@ def drop_incompatible_items(d):
         elif isinstance(v, (list, set, tuple)):
             dd[k] = type(v)(drop_incompatible_items(vv) if isinstance(vv, dict) else vv
                             for vv in v)
-        elif k not in ['msg', 'start', 'end', 'delta', 'uuid', 'timeout', '_ansible_no_log', 'warn']:
+        elif k not in ['msg', 'start', 'end', 'delta', 'uuid', 'timeout', '_ansible_no_log', 'warn', 'connection', 'extended_allitems']:
             dd[k] = v
     return dd
 

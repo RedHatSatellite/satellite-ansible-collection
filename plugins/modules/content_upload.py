@@ -98,6 +98,7 @@ from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper im
 try:
     from debian import debfile
     HAS_DEBFILE = True
+    DEBFILE_IMP_ERR = None
 except ImportError:
     HAS_DEBFILE = False
     DEBFILE_IMP_ERR = traceback.format_exc()
@@ -105,6 +106,7 @@ except ImportError:
 try:
     import rpm
     HAS_RPM = True
+    RPM_IMP_ERR = None
 except ImportError:
     HAS_RPM = False
     RPM_IMP_ERR = traceback.format_exc()
@@ -136,6 +138,8 @@ def get_rpm_info(path):
     version = to_native(rpmhdr[rpm.RPMTAG_VERSION])
     release = to_native(rpmhdr[rpm.RPMTAG_RELEASE])
     arch = to_native(rpmhdr[rpm.RPMTAG_ARCH])
+    if arch == 'noarch' and rpmhdr[rpm.RPMTAG_SOURCEPACKAGE] == 1:
+        arch = 'src'
 
     return (name, epoch, version, release, arch)
 
