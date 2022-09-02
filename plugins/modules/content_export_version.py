@@ -21,14 +21,24 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
 ---
-module: content_export_library
-version_added: 3.5.0
-short_description: Manage library content exports
+module: content_export_version
+version_added: 3.6.0
+short_description: Manage content view version content exports
 description:
-    - Export library content to a directory.
+    - Export a content view version to a directory.
 author:
     - "Jeremy Lenz (@jeremylenz)"
 options:
+  content_view_version:
+    description:
+      - Content view version, e.g. "7.0"
+    required: true
+    type: str
+  content_view:
+    description:
+      - Content view name.
+    required: true
+    type: str
   destination_server:
     description:
       - Destination server name; optional parameter to differentiate between exports
@@ -41,7 +51,7 @@ options:
     type: int
   fail_on_missing_content:
     description:
-      - Fails if any of the repositories belonging to this organization are unexportable.
+      - Fails if any of the repositories belonging to this version are unexportable.
     required: false
     type: bool
   incremental:
@@ -55,58 +65,68 @@ options:
     required: false
     type: int
 extends_documentation_fragment:
-  - redhat.satellite.foreman
-  - redhat.satellite.foreman.organization
+  - theforeman.foreman.foreman
+  - theforeman.foreman.foreman.organization
 '''
 
 EXAMPLES = '''
-- name: "Export library content (full)"
-  content_export_library:
+- name: "Export content view version (full)"
+  content_export_version:
+    content_view: RHEL8
+    content_view_version: '1.0'
     username: "admin"
     password: "changeme"
-    server_url: "https://satellite.example.com"
+    server_url: "https://foreman.example.com"
     organization: "Default Organization"
     destination_server: "airgapped.example.com"
 
-- name: "Export library content (full) and fail if any repos are unexportable"
-  content_export_library:
+- name: "Export content view version (full) in chunks of 10 GB"
+  content_export_version:
+    content_view: RHEL8
+    content_view_version: '1.0'
     username: "admin"
     password: "changeme"
-    server_url: "https://satellite.example.com"
+    server_url: "https://foreman.example.com"
+    organization: "Default Organization"
+    destination_server: "airgapped.example.com"
+    chunk_size_gb: 10
+
+- name: "Export content view version (full) and fail if any repos are unexportable"
+  content_export_version:
+    content_view: RHEL8
+    content_view_version: '1.0'
+    username: "admin"
+    password: "changeme"
+    server_url: "https://foreman.example.com"
     organization: "Default Organization"
     destination_server: "airgapped.example.com"
     fail_on_missing_content: true
 
-- name: "Export library content (full) in chunks of 10 GB"
-  content_export_library:
-    username: "admin"
-    password: "changeme"
-    server_url: "https://satellite.example.com"
-    chunk_size_gb: 10
-    organization: "Default Organization"
-    destination_server: "airgapped.example.com"
+- name: "Export content view version (incremental) since the most recent export"
+  content_export_version:
+      content_view: RHEL8
+      content_view_version: '1.0'
+      username: "admin"
+      password: "changeme"
+      server_url: "https://foreman.example.com"
+      organization: "Default Organization"
+      destination_server: "airgapped.example.com"
+      incremental: true
 
-- name: "Export library content (incremental) since the most recent export"
-  content_export_library:
-    username: "admin"
-    password: "changeme"
-    server_url: "https://satellite.example.com"
-    organization: "Default Organization"
-    destination_server: "airgapped.example.com"
-    incremental: true
-
-- name: "Export library content (incremental) since a specific export"
-  content_export_library:
-    username: "admin"
-    password: "changeme"
-    server_url: "https://satellite.example.com"
-    organization: "Default Organization"
-    destination_server: "airgapped.example.com"
-    incremental: true
-    from_history_id: 12345
+- name: "Export content view version (incremental) since a specific export"
+  content_export_version:
+      content_view: RHEL8
+      content_view_version: '1.0'
+      username: "admin"
+      password: "changeme"
+      server_url: "https://foreman.example.com"
+      organization: "Default Organization"
+      destination_server: "airgapped.example.com"
+      incremental: true
+      from_history_id: 12345
 '''
 
-from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
+from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
 
 
 class KatelloContentExportModule(KatelloAnsibleModule):
@@ -116,6 +136,8 @@ class KatelloContentExportModule(KatelloAnsibleModule):
 def main():
     module = KatelloContentExportModule(
         foreman_spec=dict(
+            content_view_version=dict(type='entity', scope=['content_view'], search_by='version', flat_name='id', required=True),
+            content_view=dict(type='entity', scope=['organization'], required=True),
             destination_server=dict(required=False, type='str'),
             chunk_size_gb=dict(required=False, type='int'),
             fail_on_missing_content=dict(required=False, type='bool'),
@@ -125,6 +147,8 @@ def main():
             incremental=dict(required=False, type='bool'),
         ),
     )
+
+    module.task_timeout = 60 * 30
 
     with module.api_connection():
         module.auto_lookup_entities()
@@ -136,7 +160,7 @@ def main():
             module.fail_json(msg='from_history_id is only valid for incremental exports')
 
         payload = _flatten_entity(module.foreman_params, module.foreman_spec)
-        task = module.resource_action(endpoint, 'library', payload)
+        task = module.resource_action(endpoint, 'version', payload)
 
         module.exit_json(task=task)
 

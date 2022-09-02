@@ -21,29 +21,29 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
 ---
-module: content_export_library
-version_added: 3.5.0
-short_description: Manage library content exports
+module: content_export_repository
+version_added: 3.6.0
+short_description: Manage repository content exports
 description:
-    - Export library content to a directory.
+    - Export repository content to a directory.
 author:
     - "Jeremy Lenz (@jeremylenz)"
 options:
-  destination_server:
+  repository:
     description:
-      - Destination server name; optional parameter to differentiate between exports
-    required: false
+      - Name of the repository to export.
+    required: true
+    type: str
+  product:
+    description:
+      - Name of the product that the repository belongs to.
+    required: true
     type: str
   chunk_size_gb:
     description:
       - Split the exported content into archives no greater than the specified size in gigabytes.
     required: false
     type: int
-  fail_on_missing_content:
-    description:
-      - Fails if any of the repositories belonging to this organization are unexportable.
-    required: false
-    type: bool
   incremental:
     description:
       - Export only the content that has changed since the last export.
@@ -55,58 +55,49 @@ options:
     required: false
     type: int
 extends_documentation_fragment:
-  - redhat.satellite.foreman
-  - redhat.satellite.foreman.organization
+  - theforeman.foreman.foreman
+  - theforeman.foreman.foreman.organization
 '''
 
 EXAMPLES = '''
-- name: "Export library content (full)"
-  content_export_library:
+- name: "Export repository (full)"
+  content_export_repository:
+    id: 346
     username: "admin"
     password: "changeme"
-    server_url: "https://satellite.example.com"
+    server_url: "https://foreman.example.com"
     organization: "Default Organization"
-    destination_server: "airgapped.example.com"
 
-- name: "Export library content (full) and fail if any repos are unexportable"
-  content_export_library:
+- name: "Export repository (full) in chunks of 10 GB"
+  content_export_repository:
+    id: 346
     username: "admin"
     password: "changeme"
-    server_url: "https://satellite.example.com"
+    server_url: "https://foreman.example.com"
     organization: "Default Organization"
-    destination_server: "airgapped.example.com"
-    fail_on_missing_content: true
-
-- name: "Export library content (full) in chunks of 10 GB"
-  content_export_library:
-    username: "admin"
-    password: "changeme"
-    server_url: "https://satellite.example.com"
     chunk_size_gb: 10
-    organization: "Default Organization"
-    destination_server: "airgapped.example.com"
 
-- name: "Export library content (incremental) since the most recent export"
-  content_export_library:
-    username: "admin"
-    password: "changeme"
-    server_url: "https://satellite.example.com"
-    organization: "Default Organization"
-    destination_server: "airgapped.example.com"
-    incremental: true
+- name: "Export repository (incremental) since the most recent export"
+  content_export_repository:
+      id: 346
+      username: "admin"
+      password: "changeme"
+      server_url: "https://foreman.example.com"
+      organization: "Default Organization"
+      incremental: true
 
-- name: "Export library content (incremental) since a specific export"
-  content_export_library:
-    username: "admin"
-    password: "changeme"
-    server_url: "https://satellite.example.com"
-    organization: "Default Organization"
-    destination_server: "airgapped.example.com"
-    incremental: true
-    from_history_id: 12345
+- name: "Export repository (incremental) since a specific export"
+  content_export_repository:
+      id: 346
+      username: "admin"
+      password: "changeme"
+      server_url: "https://foreman.example.com"
+      organization: "Default Organization"
+      incremental: true
+      from_history_id: 12345
 '''
 
-from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
+from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
 
 
 class KatelloContentExportModule(KatelloAnsibleModule):
@@ -116,9 +107,9 @@ class KatelloContentExportModule(KatelloAnsibleModule):
 def main():
     module = KatelloContentExportModule(
         foreman_spec=dict(
-            destination_server=dict(required=False, type='str'),
+            repository=dict(type='entity', flat_name='id', scope=['product'], required=True),
+            product=dict(type='entity', scope=['organization'], required=True),
             chunk_size_gb=dict(required=False, type='int'),
-            fail_on_missing_content=dict(required=False, type='bool'),
             from_history_id=dict(required=False, type='int'),
         ),
         argument_spec=dict(
@@ -136,7 +127,7 @@ def main():
             module.fail_json(msg='from_history_id is only valid for incremental exports')
 
         payload = _flatten_entity(module.foreman_params, module.foreman_spec)
-        task = module.resource_action(endpoint, 'library', payload)
+        task = module.resource_action(endpoint, 'repository', payload)
 
         module.exit_json(task=task)
 
