@@ -12,8 +12,8 @@ v3.6.0
 New Modules
 -----------
 
-- theforeman.foreman.content_export_repository - Manage repository content exports
-- theforeman.foreman.content_export_version - Manage content view version content exports
+- redhat.satellite.content_export_repository - Manage repository content exports
+- redhat.satellite.content_export_version - Manage content view version content exports
 
 v3.5.0
 ======

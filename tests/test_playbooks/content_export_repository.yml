@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -21,7 +21,7 @@
       register: result
 - hosts: tests
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -45,7 +45,7 @@
         - not ansible_check_mode
 - hosts: localhost # Teardown
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml

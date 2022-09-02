@@ -65,8 +65,8 @@ options:
     required: false
     type: int
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.organization
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.organization
 '''
 
 EXAMPLES = '''
@@ -76,7 +76,7 @@ EXAMPLES = '''
     content_view_version: '1.0'
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     destination_server: "airgapped.example.com"
 
@@ -86,7 +86,7 @@ EXAMPLES = '''
     content_view_version: '1.0'
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     destination_server: "airgapped.example.com"
     chunk_size_gb: 10
@@ -97,7 +97,7 @@ EXAMPLES = '''
     content_view_version: '1.0'
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     destination_server: "airgapped.example.com"
     fail_on_missing_content: true
@@ -108,7 +108,7 @@ EXAMPLES = '''
       content_view_version: '1.0'
       username: "admin"
       password: "changeme"
-      server_url: "https://foreman.example.com"
+      server_url: "https://satellite.example.com"
       organization: "Default Organization"
       destination_server: "airgapped.example.com"
       incremental: true
@@ -119,14 +119,14 @@ EXAMPLES = '''
       content_view_version: '1.0'
       username: "admin"
       password: "changeme"
-      server_url: "https://foreman.example.com"
+      server_url: "https://satellite.example.com"
       organization: "Default Organization"
       destination_server: "airgapped.example.com"
       incremental: true
       from_history_id: 12345
 '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
 
 
 class KatelloContentExportModule(KatelloAnsibleModule):

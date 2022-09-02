@@ -55,8 +55,8 @@ options:
     required: false
     type: int
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.organization
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.organization
 '''
 
 EXAMPLES = '''
@@ -65,7 +65,7 @@ EXAMPLES = '''
     id: 346
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
 
 - name: "Export repository (full) in chunks of 10 GB"
@@ -73,7 +73,7 @@ EXAMPLES = '''
     id: 346
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     organization: "Default Organization"
     chunk_size_gb: 10
 
@@ -82,7 +82,7 @@ EXAMPLES = '''
       id: 346
       username: "admin"
       password: "changeme"
-      server_url: "https://foreman.example.com"
+      server_url: "https://satellite.example.com"
       organization: "Default Organization"
       incremental: true
 
@@ -91,13 +91,13 @@ EXAMPLES = '''
       id: 346
       username: "admin"
       password: "changeme"
-      server_url: "https://foreman.example.com"
+      server_url: "https://satellite.example.com"
       organization: "Default Organization"
       incremental: true
       from_history_id: 12345
 '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
 
 
 class KatelloContentExportModule(KatelloAnsibleModule):
