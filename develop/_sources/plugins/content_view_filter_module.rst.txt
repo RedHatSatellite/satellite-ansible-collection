@@ -43,7 +43,7 @@ redhat.satellite.content_view_filter module -- Manage Content View Filters
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.content_view_filter module -- Manage Content View Filters
 
 .. version_added
 
-.. versionadded:: 1.0.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 1.0.0
 
 .. contents::
    :local:
@@ -208,8 +210,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`issued`
-      - :ansible-option-default-bold:`updated` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"issued"`
+      - :ansible-option-default-bold:`"updated"` :ansible-option-default:`← (default)`
+
 
       .. raw:: html
 
@@ -351,8 +354,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`present` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`absent`
+      - :ansible-option-default-bold:`"present"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"absent"`
+
 
       .. raw:: html
 
@@ -392,10 +396,11 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`rpm`
-      - :ansible-option-choices-entry:`package\_group`
-      - :ansible-option-choices-entry:`erratum`
-      - :ansible-option-choices-entry:`docker`
+      - :ansible-option-choices-entry:`"rpm"`
+      - :ansible-option-choices-entry:`"package\_group"`
+      - :ansible-option-choices-entry:`"erratum"`
+      - :ansible-option-choices-entry:`"docker"`
+
 
       .. raw:: html
 
@@ -437,6 +442,7 @@ Parameters
 
       - :ansible-option-default-bold:`false` :ansible-option-default:`← (default)`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -615,6 +621,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -775,8 +782,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`present` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`absent`
+      - :ansible-option-default-bold:`"present"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"absent"`
+
 
       .. raw:: html
 
@@ -964,6 +972,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
+
 
       .. raw:: html
 

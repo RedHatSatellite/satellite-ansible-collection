@@ -6,7 +6,7 @@
 Redhat.Satellite
 ================
 
-Collection version 3.6.0
+Collection version 3.7.0
 
 .. contents::
    :local:
@@ -84,6 +84,7 @@ Ansible Modules to manage Satellite installations
 * Sam <samcalvert@me.com>
 * Samir Jha <sjha4@ncsu.edu>
 * Sean O'Keeffe <seanokeeffe797@gmail.com>
+* Sorin Sbarnea <sorin.sbarnea@gmail.com>
 * Stoned Elipot <stoned.elipot@gmail.com>
 * TTherouanne <thomas@therouanne.com>
 * Thomas Mueller <thomas@chaschperli.ch>

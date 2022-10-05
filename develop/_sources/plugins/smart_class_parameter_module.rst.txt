@@ -43,7 +43,7 @@ redhat.satellite.smart_class_parameter module -- Manage Smart Class Parameters
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.smart_class_parameter module -- Manage Smart Class Parameters
 
 .. version_added
 
-.. versionadded:: 1.0.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 1.0.0
 
 .. contents::
    :local:
@@ -141,6 +143,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -251,6 +254,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -292,6 +296,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -332,6 +337,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -376,6 +382,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -416,6 +423,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -560,6 +568,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -667,15 +676,16 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`string`
-      - :ansible-option-choices-entry:`boolean`
-      - :ansible-option-choices-entry:`integer`
-      - :ansible-option-choices-entry:`real`
-      - :ansible-option-choices-entry:`array`
-      - :ansible-option-choices-entry:`hash`
-      - :ansible-option-choices-entry:`yaml`
-      - :ansible-option-choices-entry:`json`
-      - :ansible-option-choices-entry:`none`
+      - :ansible-option-choices-entry:`"string"`
+      - :ansible-option-choices-entry:`"boolean"`
+      - :ansible-option-choices-entry:`"integer"`
+      - :ansible-option-choices-entry:`"real"`
+      - :ansible-option-choices-entry:`"array"`
+      - :ansible-option-choices-entry:`"hash"`
+      - :ansible-option-choices-entry:`"yaml"`
+      - :ansible-option-choices-entry:`"json"`
+      - :ansible-option-choices-entry:`"none"`
+
 
       .. raw:: html
 
@@ -788,6 +798,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -862,8 +873,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`present` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`present\_with\_defaults`
+      - :ansible-option-default-bold:`"present"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"present\_with\_defaults"`
+
 
       .. raw:: html
 
@@ -944,6 +956,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
 
+
       .. raw:: html
 
         </div>
@@ -1016,8 +1029,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`regexp`
-      - :ansible-option-choices-entry:`list`
+      - :ansible-option-choices-entry:`"regexp"`
+      - :ansible-option-choices-entry:`"list"`
+
 
       .. raw:: html
 

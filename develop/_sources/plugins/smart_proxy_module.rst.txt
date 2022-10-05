@@ -43,7 +43,7 @@ redhat.satellite.smart_proxy module -- Manage Smart Proxies
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.smart_proxy module -- Manage Smart Proxies
 
 .. version_added
 
-.. versionadded:: 1.4.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 1.4.0
 
 .. contents::
    :local:
@@ -144,11 +146,12 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`background`
-      - :ansible-option-choices-entry:`immediate`
-      - :ansible-option-choices-entry:`on\_demand`
-      - :ansible-option-choices-entry:`streamed`
-      - :ansible-option-choices-entry:`inherit`
+      - :ansible-option-choices-entry:`"background"`
+      - :ansible-option-choices-entry:`"immediate"`
+      - :ansible-option-choices-entry:`"on\_demand"`
+      - :ansible-option-choices-entry:`"streamed"`
+      - :ansible-option-choices-entry:`"inherit"`
+
 
       .. raw:: html
 
@@ -398,8 +401,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`present` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`absent`
+      - :ansible-option-default-bold:`"present"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"absent"`
+
 
       .. raw:: html
 
@@ -513,6 +517,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
+
 
       .. raw:: html
 

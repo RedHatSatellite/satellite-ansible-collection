@@ -43,7 +43,7 @@ redhat.satellite.content_export_version module -- Manage content view version co
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.content_export_version module -- Manage content view version co
 
 .. version_added
 
-.. versionadded:: 3.6.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 3.6.0
 
 .. contents::
    :local:
@@ -277,6 +279,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -351,6 +354,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -537,6 +541,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
 
+
       .. raw:: html
 
         </div>
@@ -560,7 +565,7 @@ Examples
 
     
     - name: "Export content view version (full)"
-      content_export_version:
+      redhat.satellite.content_export_version:
         content_view: RHEL8
         content_view_version: '1.0'
         username: "admin"
@@ -570,7 +575,7 @@ Examples
         destination_server: "airgapped.example.com"
 
     - name: "Export content view version (full) in chunks of 10 GB"
-      content_export_version:
+      redhat.satellite.content_export_version:
         content_view: RHEL8
         content_view_version: '1.0'
         username: "admin"
@@ -581,7 +586,7 @@ Examples
         chunk_size_gb: 10
 
     - name: "Export content view version (full) and fail if any repos are unexportable"
-      content_export_version:
+      redhat.satellite.content_export_version:
         content_view: RHEL8
         content_view_version: '1.0'
         username: "admin"
@@ -592,7 +597,7 @@ Examples
         fail_on_missing_content: true
 
     - name: "Export content view version (incremental) since the most recent export"
-      content_export_version:
+      redhat.satellite.content_export_version:
           content_view: RHEL8
           content_view_version: '1.0'
           username: "admin"
@@ -603,7 +608,7 @@ Examples
           incremental: true
 
     - name: "Export content view version (incremental) since a specific export"
-      content_export_version:
+      redhat.satellite.content_export_version:
           content_view: RHEL8
           content_view_version: '1.0'
           username: "admin"

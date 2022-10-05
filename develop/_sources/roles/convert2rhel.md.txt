@@ -36,7 +36,7 @@ Convert2RHEL
         satellite_manifest_path: "~/manifest.zip"
         satellite_content_rhel_enable_rhel7: true
         satellite_content_rhel_enable_rhel8: true
-        satellite_content_rhel_rhel8_releasever: 8.4
+        satellite_content_rhel_rhel8_releasever: 8.5
         satellite_content_rhel_wait_for_syncs: false
         satellite_convert2rhel_lifecycle_env: "Library"
         satellite_convert2rhel_content_view: "Default Organization View"

@@ -15,9 +15,9 @@ redhat.satellite.foreman_ptable module
 .. Collection note
 
 .. note::
-    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman_ptable`.
 
-- This is a redirect to the :ref:`partition_table module <ansible_collections.partition_table_module>`.
+- This is a redirect to the :ref:`redhat.satellite.partition_table module <ansible_collections.redhat.satellite.partition_table_module>`.
 - This redirect does **not** work with Ansible 2.9.

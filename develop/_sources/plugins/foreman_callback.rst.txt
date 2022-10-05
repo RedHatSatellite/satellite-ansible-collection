@@ -43,7 +43,7 @@ redhat.satellite.foreman callback -- Sends events to Foreman
 .. Collection note
 
 .. note::
-    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this callback plugin,
@@ -298,7 +298,7 @@ Parameters
         .. code-block::
 
           [callback_foreman]
-          dir_store = 
+          dir_store = ""
 
 
       - Environment variable: FOREMAN\_DIR\_STORE
@@ -400,7 +400,7 @@ Parameters
         .. code-block::
 
           [callback_foreman]
-          proxy_url = None
+          proxy_url = VALUE
 
 
       - Environment variable: FOREMAN\_PROXY\_URL
@@ -508,7 +508,7 @@ Parameters
         .. code-block::
 
           [callback_foreman]
-          url = None
+          url = VALUE
 
 
       - Environment variable: FOREMAN\_URL

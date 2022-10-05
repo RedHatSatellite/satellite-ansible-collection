@@ -43,7 +43,7 @@ redhat.satellite.hostgroup module -- Manage Hostgroups
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.hostgroup module -- Manage Hostgroups
 
 .. version_added
 
-.. versionadded:: 1.0.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 1.0.0
 
 .. contents::
    :local:
@@ -161,7 +163,7 @@ Parameters
 
       :ansible-option-type:`list` / :ansible-option-elements:`elements=string`
 
-      :ansible-option-versionadded:`added in 2.1.0 of redhat.satellite`
+      :ansible-option-versionadded:`added in redhat.satellite 2.1.0`
 
 
       .. raw:: html
@@ -923,14 +925,15 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`string` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`boolean`
-      - :ansible-option-choices-entry:`integer`
-      - :ansible-option-choices-entry:`real`
-      - :ansible-option-choices-entry:`array`
-      - :ansible-option-choices-entry:`hash`
-      - :ansible-option-choices-entry:`yaml`
-      - :ansible-option-choices-entry:`json`
+      - :ansible-option-default-bold:`"string"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"boolean"`
+      - :ansible-option-choices-entry:`"integer"`
+      - :ansible-option-choices-entry:`"real"`
+      - :ansible-option-choices-entry:`"array"`
+      - :ansible-option-choices-entry:`"hash"`
+      - :ansible-option-choices-entry:`"yaml"`
+      - :ansible-option-choices-entry:`"json"`
+
 
       .. raw:: html
 
@@ -1211,21 +1214,22 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`PXELinux BIOS`
-      - :ansible-option-choices-entry:`PXELinux UEFI`
-      - :ansible-option-choices-entry:`Grub UEFI`
-      - :ansible-option-choices-entry:`Grub2 BIOS`
-      - :ansible-option-choices-entry:`Grub2 ELF`
-      - :ansible-option-choices-entry:`Grub2 UEFI`
-      - :ansible-option-choices-entry:`Grub2 UEFI SecureBoot`
-      - :ansible-option-choices-entry:`Grub2 UEFI HTTP`
-      - :ansible-option-choices-entry:`Grub2 UEFI HTTPS`
-      - :ansible-option-choices-entry:`Grub2 UEFI HTTPS SecureBoot`
-      - :ansible-option-choices-entry:`iPXE Embedded`
-      - :ansible-option-choices-entry:`iPXE UEFI HTTP`
-      - :ansible-option-choices-entry:`iPXE Chain BIOS`
-      - :ansible-option-choices-entry:`iPXE Chain UEFI`
-      - :ansible-option-choices-entry:`None`
+      - :ansible-option-choices-entry:`"PXELinux BIOS"`
+      - :ansible-option-choices-entry:`"PXELinux UEFI"`
+      - :ansible-option-choices-entry:`"Grub UEFI"`
+      - :ansible-option-choices-entry:`"Grub2 BIOS"`
+      - :ansible-option-choices-entry:`"Grub2 ELF"`
+      - :ansible-option-choices-entry:`"Grub2 UEFI"`
+      - :ansible-option-choices-entry:`"Grub2 UEFI SecureBoot"`
+      - :ansible-option-choices-entry:`"Grub2 UEFI HTTP"`
+      - :ansible-option-choices-entry:`"Grub2 UEFI HTTPS"`
+      - :ansible-option-choices-entry:`"Grub2 UEFI HTTPS SecureBoot"`
+      - :ansible-option-choices-entry:`"iPXE Embedded"`
+      - :ansible-option-choices-entry:`"iPXE UEFI HTTP"`
+      - :ansible-option-choices-entry:`"iPXE Chain BIOS"`
+      - :ansible-option-choices-entry:`"iPXE Chain UEFI"`
+      - :ansible-option-choices-entry:`"None"`
+
 
       .. raw:: html
 
@@ -1371,8 +1375,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`present` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`absent`
+      - :ansible-option-default-bold:`"present"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"absent"`
+
 
       .. raw:: html
 
@@ -1554,6 +1559,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
+
 
       .. raw:: html
 

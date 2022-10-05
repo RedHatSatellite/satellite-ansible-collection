@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -172,15 +173,13 @@
 <h1>redhat.satellite.compute_resource module – Manage Compute Resources<a class="headerlink" href="#redhat-satellite-compute-resource-module-manage-compute-resources" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.6.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.7.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
 You need further requirements to be able to use this module,
 see <a class="reference internal" href="#ansible-collections-redhat-satellite-compute-resource-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.compute_resource</span></code>.</p>
 </div>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.0: </span>of redhat.satellite</p>
-</div>
+<p class="ansible-version-added">New in redhat.satellite 1.0.0</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
@@ -255,13 +254,13 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <td><div class="ansible-option-cell"><p>Compute resource provider. Required if <em>state=present_with_defaults</em>.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">vmware</span></p></li>
-<li><p><span class="ansible-option-choices-entry">libvirt</span></p></li>
-<li><p><span class="ansible-option-choices-entry">ovirt</span></p></li>
-<li><p><span class="ansible-option-choices-entry">proxmox</span></p></li>
-<li><p><span class="ansible-option-choices-entry">EC2</span></p></li>
-<li><p><span class="ansible-option-choices-entry">AzureRm</span></p></li>
-<li><p><span class="ansible-option-choices-entry">GCE</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“vmware”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“libvirt”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“ovirt”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“proxmox”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“EC2”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“AzureRm”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“GCE”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -294,15 +293,15 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-provider_params/cloud"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-compute-resource-module-parameter-provider-params-cloud"><strong>cloud</strong></p>
 <a class="ansibleOptionLink" href="#parameter-provider_params/cloud" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-<p><span class="ansible-option-versionadded">added in 2.1.0 of redhat.satellite</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 2.1.0</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>cloud for <em>provider=AzureRm</em></p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">azure</span></p></li>
-<li><p><span class="ansible-option-choices-entry">azureusgovernment</span></p></li>
-<li><p><span class="ansible-option-choices-entry">azurechina</span></p></li>
-<li><p><span class="ansible-option-choices-entry">azuregermancloud</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“azure”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“azureusgovernment”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“azurechina”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“azuregermancloud”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -337,44 +336,44 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-provider_params/keyboard_layout"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-compute-resource-module-parameter-provider-params-keyboard-layout"><strong>keyboard_layout</strong></p>
 <a class="ansibleOptionLink" href="#parameter-provider_params/keyboard_layout" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-<p><span class="ansible-option-versionadded">added in 2.0.0 of redhat.satellite</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 2.0.0</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Default VNC Keyboard for <em>provider=ovirt</em></p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">ar</span></p></li>
-<li><p><span class="ansible-option-choices-entry">da</span></p></li>
-<li><p><span class="ansible-option-choices-entry">de</span></p></li>
-<li><p><span class="ansible-option-choices-entry">de-ch</span></p></li>
-<li><p><span class="ansible-option-choices-entry">en-gb</span></p></li>
-<li><p><span class="ansible-option-choices-entry">en-us</span></p></li>
-<li><p><span class="ansible-option-choices-entry">es</span></p></li>
-<li><p><span class="ansible-option-choices-entry">et</span></p></li>
-<li><p><span class="ansible-option-choices-entry">fi</span></p></li>
-<li><p><span class="ansible-option-choices-entry">fo</span></p></li>
-<li><p><span class="ansible-option-choices-entry">fr</span></p></li>
-<li><p><span class="ansible-option-choices-entry">fr-be</span></p></li>
-<li><p><span class="ansible-option-choices-entry">fr-ca</span></p></li>
-<li><p><span class="ansible-option-choices-entry">fr-ch</span></p></li>
-<li><p><span class="ansible-option-choices-entry">hr</span></p></li>
-<li><p><span class="ansible-option-choices-entry">hu</span></p></li>
-<li><p><span class="ansible-option-choices-entry">is</span></p></li>
-<li><p><span class="ansible-option-choices-entry">it</span></p></li>
-<li><p><span class="ansible-option-choices-entry">ja</span></p></li>
-<li><p><span class="ansible-option-choices-entry">lt</span></p></li>
-<li><p><span class="ansible-option-choices-entry">lv</span></p></li>
-<li><p><span class="ansible-option-choices-entry">mk</span></p></li>
-<li><p><span class="ansible-option-choices-entry">nl</span></p></li>
-<li><p><span class="ansible-option-choices-entry">nl-be</span></p></li>
-<li><p><span class="ansible-option-choices-entry">no</span></p></li>
-<li><p><span class="ansible-option-choices-entry">pl</span></p></li>
-<li><p><span class="ansible-option-choices-entry">pt</span></p></li>
-<li><p><span class="ansible-option-choices-entry">pt-br</span></p></li>
-<li><p><span class="ansible-option-choices-entry">ru</span></p></li>
-<li><p><span class="ansible-option-choices-entry">sl</span></p></li>
-<li><p><span class="ansible-option-choices-entry">sv</span></p></li>
-<li><p><span class="ansible-option-choices-entry">th</span></p></li>
-<li><p><span class="ansible-option-choices-entry">tr</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“ar”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“da”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“de”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“de-ch”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“en-gb”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“en-us”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“es”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“et”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“fi”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“fo”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“fr”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“fr-be”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“fr-ca”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“fr-ch”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“hr”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“hu”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“is”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“it”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“ja”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“lt”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“lv”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“mk”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“nl”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“nl-be”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“no”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“pl”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“pt”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“pt-br”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“ru”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“sl”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“sv”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“th”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“tr”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -402,7 +401,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-provider_params/public_key"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-compute-resource-module-parameter-provider-params-public-key"><strong>public_key</strong></p>
 <a class="ansibleOptionLink" href="#parameter-provider_params/public_key" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-<p><span class="ansible-option-versionadded">added in 2.0.0 of redhat.satellite</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 2.0.0</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>X509 Certification Authorities, only valid for <em>provider=ovirt</em></p>
 </div></td>
@@ -417,7 +416,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-provider_params/set_console_password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-compute-resource-module-parameter-provider-params-set-console-password"><strong>set_console_password</strong></p>
 <a class="ansibleOptionLink" href="#parameter-provider_params/set_console_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
-<p><span class="ansible-option-versionadded">added in 2.0.0 of redhat.satellite</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 2.0.0</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Set a randomly generated password on the display connection for <em>provider=vmware</em> and <em>provider=libvirt</em></p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
@@ -442,7 +441,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-provider_params/sub_id"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-compute-resource-module-parameter-provider-params-sub-id"><strong>sub_id</strong></p>
 <a class="ansibleOptionLink" href="#parameter-provider_params/sub_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-<p><span class="ansible-option-versionadded">added in 2.1.0 of redhat.satellite</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 2.1.0</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Subscription ID for <em>provider=AzureRm</em></p>
 </div></td>
@@ -503,9 +502,9 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <p><code class="docutils literal notranslate"><span class="pre">present_with_defaults</span></code> will ensure the entity exists, but won’t update existing ones</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-default-bold">present</span> <span class="ansible-option-default">← (default)</span></p></li>
-<li><p><span class="ansible-option-choices-entry">present_with_defaults</span></p></li>
-<li><p><span class="ansible-option-choices-entry">absent</span></p></li>
+<li><p><span class="ansible-option-default-bold">“present”</span> <span class="ansible-option-default">← (default)</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“present_with_defaults”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“absent”</span></p></li>
 </ul>
 </div></td>
 </tr>

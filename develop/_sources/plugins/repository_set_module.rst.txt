@@ -43,7 +43,7 @@ redhat.satellite.repository_set module -- Enable/disable Red Hat Repositories av
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.repository_set module -- Enable/disable Red Hat Repositories av
 
 .. version_added
 
-.. versionadded:: 1.0.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 1.0.0
 
 .. contents::
    :local:
@@ -142,6 +144,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -498,8 +501,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`enabled` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`disabled`
+      - :ansible-option-default-bold:`"enabled"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"disabled"`
+
 
       .. raw:: html
 
@@ -579,6 +583,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
+
 
       .. raw:: html
 

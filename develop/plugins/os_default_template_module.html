@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -172,15 +173,13 @@
 <h1>redhat.satellite.os_default_template module – Manage Default Template Associations To Operating Systems<a class="headerlink" href="#redhat-satellite-os-default-template-module-manage-default-template-associations-to-operating-systems" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.6.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.7.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
 You need further requirements to be able to use this module,
 see <a class="reference internal" href="#ansible-collections-redhat-satellite-os-default-template-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.os_default_template</span></code>.</p>
 </div>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.0: </span>of redhat.satellite</p>
-</div>
+<p class="ansible-version-added">New in redhat.satellite 1.0.0</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
@@ -251,9 +250,9 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-os
 <p><code class="docutils literal notranslate"><span class="pre">present_with_defaults</span></code> will ensure the entity exists, but won’t update existing ones</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-default-bold">present</span> <span class="ansible-option-default">← (default)</span></p></li>
-<li><p><span class="ansible-option-choices-entry">present_with_defaults</span></p></li>
-<li><p><span class="ansible-option-choices-entry">absent</span></p></li>
+<li><p><span class="ansible-option-default-bold">“present”</span> <span class="ansible-option-default">← (default)</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“present_with_defaults”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“absent”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -264,22 +263,22 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-os
 <td><div class="ansible-option-cell"><p>name of the template kind</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">Bootdisk</span></p></li>
-<li><p><span class="ansible-option-choices-entry">cloud-init</span></p></li>
-<li><p><span class="ansible-option-choices-entry">finish</span></p></li>
-<li><p><span class="ansible-option-choices-entry">host_init_config</span></p></li>
-<li><p><span class="ansible-option-choices-entry">iPXE</span></p></li>
-<li><p><span class="ansible-option-choices-entry">job_template</span></p></li>
-<li><p><span class="ansible-option-choices-entry">kexec</span></p></li>
-<li><p><span class="ansible-option-choices-entry">POAP</span></p></li>
-<li><p><span class="ansible-option-choices-entry">provision</span></p></li>
-<li><p><span class="ansible-option-choices-entry">PXEGrub</span></p></li>
-<li><p><span class="ansible-option-choices-entry">PXEGrub2</span></p></li>
-<li><p><span class="ansible-option-choices-entry">PXELinux</span></p></li>
-<li><p><span class="ansible-option-choices-entry">registration</span></p></li>
-<li><p><span class="ansible-option-choices-entry">script</span></p></li>
-<li><p><span class="ansible-option-choices-entry">user_data</span></p></li>
-<li><p><span class="ansible-option-choices-entry">ZTP</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“Bootdisk”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“cloud-init”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“finish”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“host_init_config”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“iPXE”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“job_template”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“kexec”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“POAP”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“provision”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“PXEGrub”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“PXEGrub2”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“PXELinux”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“registration”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“script”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“user_data”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“ZTP”</span></p></li>
 </ul>
 </div></td>
 </tr>

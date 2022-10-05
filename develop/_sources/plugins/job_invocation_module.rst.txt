@@ -43,7 +43,7 @@ redhat.satellite.job_invocation module -- Invoke Remote Execution Jobs
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.job_invocation module -- Invoke Remote Execution Jobs
 
 .. version_added
 
-.. versionadded:: 1.4.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 1.4.0
 
 .. contents::
    :local:
@@ -449,6 +451,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -869,8 +872,9 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`static\_query` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`dynamic\_query`
+      - :ansible-option-default-bold:`"static\_query"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"dynamic\_query"`
+
 
       .. raw:: html
 
@@ -951,6 +955,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
 
+
       .. raw:: html
 
         </div>
@@ -975,7 +980,7 @@ Examples
     
 
     - name: "Run remote command on a single host once"
-      job_invocation:
+      redhat.satellite.job_invocation:
         search_query: "name ^ (satellite.example.com)"
         command: 'ls'
         job_template: "Run Command - SSH Default"
@@ -983,7 +988,7 @@ Examples
           effective_user: "tester"
 
     - name: "Run ansible command on active hosts once a day"
-      job_invocation:
+      redhat.satellite.job_invocation:
         bookmark: 'active'
         command: 'pwd'
         job_template: "Run Command - Ansible Default"

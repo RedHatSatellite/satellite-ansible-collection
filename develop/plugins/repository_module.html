@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -172,15 +173,13 @@
 <h1>redhat.satellite.repository module – Manage Repositories<a class="headerlink" href="#redhat-satellite-repository-module-manage-repositories" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.6.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.7.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
 You need further requirements to be able to use this module,
 see <a class="reference internal" href="#ansible-collections-redhat-satellite-repository-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.repository</span></code>.</p>
 </div>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.0: </span>of redhat.satellite</p>
-</div>
+<p class="ansible-version-added">New in redhat.satellite 1.0.0</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
@@ -247,8 +246,8 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <td><div class="ansible-option-cell"><p>Checksum of the repository</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">sha1</span></p></li>
-<li><p><span class="ansible-option-choices-entry">sha256</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“sha1”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“sha256”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -259,13 +258,13 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <td><div class="ansible-option-cell"><p>The content type of the repository</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">deb</span></p></li>
-<li><p><span class="ansible-option-choices-entry">docker</span></p></li>
-<li><p><span class="ansible-option-choices-entry">file</span></p></li>
-<li><p><span class="ansible-option-choices-entry">ostree</span></p></li>
-<li><p><span class="ansible-option-choices-entry">puppet</span></p></li>
-<li><p><span class="ansible-option-choices-entry">yum</span></p></li>
-<li><p><span class="ansible-option-choices-entry">ansible_collection</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“deb”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“docker”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“file”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“ostree”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“puppet”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“yum”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“ansible_collection”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -315,6 +314,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </div></td>
 <td><div class="ansible-option-cell"><p>list of tags to sync for Container Image repository</p>
 <p>only available for <em>content_type=docker</em></p>
+<p>Deprecated since Katello 4.4</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -328,7 +328,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-download_concurrency"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-download-concurrency"><strong>download_concurrency</strong></p>
 <a class="ansibleOptionLink" href="#parameter-download_concurrency" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
-<p><span class="ansible-option-versionadded">added in 3.0.0 of redhat.satellite</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 3.0.0</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>download concurrency for sync from upstream</p>
 <p>as the API does not return this value, this will break idempotence for this module</p>
@@ -342,20 +342,28 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>The download policy <code class="docutils literal notranslate"><span class="pre">background</span></code> is deprecated and not available since Katello 4.3.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">background</span></p></li>
-<li><p><span class="ansible-option-choices-entry">immediate</span></p></li>
-<li><p><span class="ansible-option-choices-entry">on_demand</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“background”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“immediate”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“on_demand”</span></p></li>
 </ul>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-exclude_tags"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-exclude-tags"><strong>exclude_tags</strong></p>
+<a class="ansibleOptionLink" href="#parameter-exclude_tags" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 3.7.0</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of tags to exclude when syncing a container image repository.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-gpg_key"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-gpg-key"><strong>gpg_key</strong></p>
 <a class="ansibleOptionLink" href="#parameter-gpg_key" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository GPG key</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-http_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-http-proxy"><strong>http_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-http_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -363,20 +371,20 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Should be combined with <em>http_proxy_policy=’use_selected_http_proxy’</em></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-http_proxy_policy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-http-proxy-policy"><strong>http_proxy_policy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-http_proxy_policy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Which proxy to use for content synching</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">global_default_http_proxy</span></p></li>
-<li><p><span class="ansible-option-choices-entry">none</span></p></li>
-<li><p><span class="ansible-option-choices-entry">use_selected_http_proxy</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“global_default_http_proxy”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“none”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“use_selected_http_proxy”</span></p></li>
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ignorable_content"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ignorable-content"><strong>ignorable_content</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ignorable_content" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
@@ -384,7 +392,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Must be subset of rpm,drpm,srpm,distribution,erratum.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ignore_global_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ignore-global-proxy"><strong>ignore_global_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ignore_global_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -396,6 +404,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <li><p><span class="ansible-option-choices-entry">false</span></p></li>
 <li><p><span class="ansible-option-choices-entry">true</span></p></li>
 </ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-include_tags"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-include-tags"><strong>include_tags</strong></p>
+<a class="ansibleOptionLink" href="#parameter-include_tags" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+<p><span class="ansible-option-versionadded">added in redhat.satellite 3.7.0</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of tags to sync for a container image repository.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -427,9 +443,9 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Supported since Katello 4.3</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">additive</span></p></li>
-<li><p><span class="ansible-option-choices-entry">mirror_content_only</span></p></li>
-<li><p><span class="ansible-option-choices-entry">mirror_complete</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“additive”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“mirror_content_only”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“mirror_complete”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -456,10 +472,10 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Set to <code class="docutils literal notranslate"><span class="pre">[]</span></code> to disable filtering again.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-choices-entry">rhel-6</span></p></li>
-<li><p><span class="ansible-option-choices-entry">rhel-7</span></p></li>
-<li><p><span class="ansible-option-choices-entry">rhel-8</span></p></li>
-<li><p><span class="ansible-option-choices-entry">rhel-9</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“rhel-6”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“rhel-7”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“rhel-8”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“rhel-9”</span></p></li>
 </ul>
 </div></td>
 </tr>
@@ -515,9 +531,9 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p><code class="docutils literal notranslate"><span class="pre">present_with_defaults</span></code> will ensure the entity exists, but won’t update existing ones</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><span class="ansible-option-default-bold">present</span> <span class="ansible-option-default">← (default)</span></p></li>
-<li><p><span class="ansible-option-choices-entry">present_with_defaults</span></p></li>
-<li><p><span class="ansible-option-choices-entry">absent</span></p></li>
+<li><p><span class="ansible-option-default-bold">“present”</span> <span class="ansible-option-default">← (default)</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“present_with_defaults”</span></p></li>
+<li><p><span class="ansible-option-choices-entry">“absent”</span></p></li>
 </ul>
 </div></td>
 </tr>

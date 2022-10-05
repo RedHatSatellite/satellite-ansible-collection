@@ -43,7 +43,7 @@ redhat.satellite.compute_resource module -- Manage Compute Resources
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.6.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -53,7 +53,9 @@ redhat.satellite.compute_resource module -- Manage Compute Resources
 
 .. version_added
 
-.. versionadded:: 1.0.0 of redhat.satellite
+.. rst-class:: ansible-version-added
+
+New in redhat.satellite 1.0.0
 
 .. contents::
    :local:
@@ -310,13 +312,14 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`vmware`
-      - :ansible-option-choices-entry:`libvirt`
-      - :ansible-option-choices-entry:`ovirt`
-      - :ansible-option-choices-entry:`proxmox`
-      - :ansible-option-choices-entry:`EC2`
-      - :ansible-option-choices-entry:`AzureRm`
-      - :ansible-option-choices-entry:`GCE`
+      - :ansible-option-choices-entry:`"vmware"`
+      - :ansible-option-choices-entry:`"libvirt"`
+      - :ansible-option-choices-entry:`"ovirt"`
+      - :ansible-option-choices-entry:`"proxmox"`
+      - :ansible-option-choices-entry:`"EC2"`
+      - :ansible-option-choices-entry:`"AzureRm"`
+      - :ansible-option-choices-entry:`"GCE"`
+
 
       .. raw:: html
 
@@ -427,6 +430,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -450,7 +454,7 @@ Parameters
 
       :ansible-option-type:`string`
 
-      :ansible-option-versionadded:`added in 2.1.0 of redhat.satellite`
+      :ansible-option-versionadded:`added in redhat.satellite 2.1.0`
 
 
       .. raw:: html
@@ -468,10 +472,11 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`azure`
-      - :ansible-option-choices-entry:`azureusgovernment`
-      - :ansible-option-choices-entry:`azurechina`
-      - :ansible-option-choices-entry:`azuregermancloud`
+      - :ansible-option-choices-entry:`"azure"`
+      - :ansible-option-choices-entry:`"azureusgovernment"`
+      - :ansible-option-choices-entry:`"azurechina"`
+      - :ansible-option-choices-entry:`"azuregermancloud"`
+
 
       .. raw:: html
 
@@ -632,7 +637,7 @@ Parameters
 
       :ansible-option-type:`string`
 
-      :ansible-option-versionadded:`added in 2.0.0 of redhat.satellite`
+      :ansible-option-versionadded:`added in redhat.satellite 2.0.0`
 
 
       .. raw:: html
@@ -650,39 +655,40 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-choices-entry:`ar`
-      - :ansible-option-choices-entry:`da`
-      - :ansible-option-choices-entry:`de`
-      - :ansible-option-choices-entry:`de-ch`
-      - :ansible-option-choices-entry:`en-gb`
-      - :ansible-option-choices-entry:`en-us`
-      - :ansible-option-choices-entry:`es`
-      - :ansible-option-choices-entry:`et`
-      - :ansible-option-choices-entry:`fi`
-      - :ansible-option-choices-entry:`fo`
-      - :ansible-option-choices-entry:`fr`
-      - :ansible-option-choices-entry:`fr-be`
-      - :ansible-option-choices-entry:`fr-ca`
-      - :ansible-option-choices-entry:`fr-ch`
-      - :ansible-option-choices-entry:`hr`
-      - :ansible-option-choices-entry:`hu`
-      - :ansible-option-choices-entry:`is`
-      - :ansible-option-choices-entry:`it`
-      - :ansible-option-choices-entry:`ja`
-      - :ansible-option-choices-entry:`lt`
-      - :ansible-option-choices-entry:`lv`
-      - :ansible-option-choices-entry:`mk`
-      - :ansible-option-choices-entry:`nl`
-      - :ansible-option-choices-entry:`nl-be`
-      - :ansible-option-choices-entry:`no`
-      - :ansible-option-choices-entry:`pl`
-      - :ansible-option-choices-entry:`pt`
-      - :ansible-option-choices-entry:`pt-br`
-      - :ansible-option-choices-entry:`ru`
-      - :ansible-option-choices-entry:`sl`
-      - :ansible-option-choices-entry:`sv`
-      - :ansible-option-choices-entry:`th`
-      - :ansible-option-choices-entry:`tr`
+      - :ansible-option-choices-entry:`"ar"`
+      - :ansible-option-choices-entry:`"da"`
+      - :ansible-option-choices-entry:`"de"`
+      - :ansible-option-choices-entry:`"de-ch"`
+      - :ansible-option-choices-entry:`"en-gb"`
+      - :ansible-option-choices-entry:`"en-us"`
+      - :ansible-option-choices-entry:`"es"`
+      - :ansible-option-choices-entry:`"et"`
+      - :ansible-option-choices-entry:`"fi"`
+      - :ansible-option-choices-entry:`"fo"`
+      - :ansible-option-choices-entry:`"fr"`
+      - :ansible-option-choices-entry:`"fr-be"`
+      - :ansible-option-choices-entry:`"fr-ca"`
+      - :ansible-option-choices-entry:`"fr-ch"`
+      - :ansible-option-choices-entry:`"hr"`
+      - :ansible-option-choices-entry:`"hu"`
+      - :ansible-option-choices-entry:`"is"`
+      - :ansible-option-choices-entry:`"it"`
+      - :ansible-option-choices-entry:`"ja"`
+      - :ansible-option-choices-entry:`"lt"`
+      - :ansible-option-choices-entry:`"lv"`
+      - :ansible-option-choices-entry:`"mk"`
+      - :ansible-option-choices-entry:`"nl"`
+      - :ansible-option-choices-entry:`"nl-be"`
+      - :ansible-option-choices-entry:`"no"`
+      - :ansible-option-choices-entry:`"pl"`
+      - :ansible-option-choices-entry:`"pt"`
+      - :ansible-option-choices-entry:`"pt-br"`
+      - :ansible-option-choices-entry:`"ru"`
+      - :ansible-option-choices-entry:`"sl"`
+      - :ansible-option-choices-entry:`"sv"`
+      - :ansible-option-choices-entry:`"th"`
+      - :ansible-option-choices-entry:`"tr"`
+
 
       .. raw:: html
 
@@ -809,7 +815,7 @@ Parameters
 
       :ansible-option-type:`string`
 
-      :ansible-option-versionadded:`added in 2.0.0 of redhat.satellite`
+      :ansible-option-versionadded:`added in redhat.satellite 2.0.0`
 
 
       .. raw:: html
@@ -880,7 +886,7 @@ Parameters
 
       :ansible-option-type:`boolean`
 
-      :ansible-option-versionadded:`added in 2.0.0 of redhat.satellite`
+      :ansible-option-versionadded:`added in redhat.satellite 2.0.0`
 
 
       .. raw:: html
@@ -900,6 +906,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -942,6 +949,7 @@ Parameters
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
 
+
       .. raw:: html
 
         </div>
@@ -965,7 +973,7 @@ Parameters
 
       :ansible-option-type:`string`
 
-      :ansible-option-versionadded:`added in 2.1.0 of redhat.satellite`
+      :ansible-option-versionadded:`added in redhat.satellite 2.1.0`
 
 
       .. raw:: html
@@ -1087,6 +1095,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
 
       .. raw:: html
 
@@ -1233,9 +1242,10 @@ Parameters
 
       :ansible-option-choices:`Choices:`
 
-      - :ansible-option-default-bold:`present` :ansible-option-default:`← (default)`
-      - :ansible-option-choices-entry:`present\_with\_defaults`
-      - :ansible-option-choices-entry:`absent`
+      - :ansible-option-default-bold:`"present"` :ansible-option-default:`← (default)`
+      - :ansible-option-choices-entry:`"present\_with\_defaults"`
+      - :ansible-option-choices-entry:`"absent"`
+
 
       .. raw:: html
 
@@ -1349,6 +1359,7 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-default-bold:`true` :ansible-option-default:`← (default)`
+
 
       .. raw:: html
 
