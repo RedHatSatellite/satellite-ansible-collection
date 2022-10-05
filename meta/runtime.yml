@@ -74,107 +74,107 @@ action_groups:
 plugin_routing:
   modules:
     foreman_architecture:
-      redirect: theforeman.foreman.architecture
+      redirect: redhat.satellite.architecture
     foreman_auth_source_ldap:
-      redirect: theforeman.foreman.auth_source_ldap
+      redirect: redhat.satellite.auth_source_ldap
     foreman_bookmark:
-      redirect: theforeman.foreman.bookmark
+      redirect: redhat.satellite.bookmark
     foreman_compute_attribute:
-      redirect: theforeman.foreman.compute_attribute
+      redirect: redhat.satellite.compute_attribute
     foreman_compute_profile:
-      redirect: theforeman.foreman.compute_profile
+      redirect: redhat.satellite.compute_profile
     foreman_compute_resource:
-      redirect: theforeman.foreman.compute_resource
+      redirect: redhat.satellite.compute_resource
     foreman_config_group:
-      redirect: theforeman.foreman.config_group
+      redirect: redhat.satellite.config_group
     foreman_domain:
-      redirect: theforeman.foreman.domain
+      redirect: redhat.satellite.domain
     foreman_environment:
-      redirect: theforeman.foreman.puppet_environment
+      redirect: redhat.satellite.puppet_environment
     foreman_external_usergroup:
-      redirect: theforeman.foreman.external_usergroup
+      redirect: redhat.satellite.external_usergroup
     foreman_global_parameter:
-      redirect: theforeman.foreman.global_parameter
+      redirect: redhat.satellite.global_parameter
     foreman_host:
-      redirect: theforeman.foreman.host
+      redirect: redhat.satellite.host
     foreman_host_power:
-      redirect: theforeman.foreman.host_power
+      redirect: redhat.satellite.host_power
     foreman_hostgroup:
-      redirect: theforeman.foreman.hostgroup
+      redirect: redhat.satellite.hostgroup
     foreman_image:
-      redirect: theforeman.foreman.image
+      redirect: redhat.satellite.image
     foreman_installation_medium:
-      redirect: theforeman.foreman.installation_medium
+      redirect: redhat.satellite.installation_medium
     foreman_job_template:
-      redirect: theforeman.foreman.job_template
+      redirect: redhat.satellite.job_template
     foreman_location:
-      redirect: theforeman.foreman.location
+      redirect: redhat.satellite.location
     foreman_model:
-      redirect: theforeman.foreman.hardware_model
+      redirect: redhat.satellite.hardware_model
     foreman_operatingsystem:
-      redirect: theforeman.foreman.operatingsystem
+      redirect: redhat.satellite.operatingsystem
     foreman_organization:
-      redirect: theforeman.foreman.organization
+      redirect: redhat.satellite.organization
     foreman_os_default_template:
-      redirect: theforeman.foreman.os_default_template
+      redirect: redhat.satellite.os_default_template
     foreman_provisioning_template:
-      redirect: theforeman.foreman.provisioning_template
+      redirect: redhat.satellite.provisioning_template
     foreman_ptable:
-      redirect: theforeman.foreman.partition_table
+      redirect: redhat.satellite.partition_table
     foreman_realm:
-      redirect: theforeman.foreman.realm
+      redirect: redhat.satellite.realm
     foreman_role:
-      redirect: theforeman.foreman.role
+      redirect: redhat.satellite.role
     foreman_scap_content:
-      redirect: theforeman.foreman.scap_content
+      redirect: redhat.satellite.scap_content
     foreman_scap_tailoring_file:
-      redirect: theforeman.foreman.scap_tailoring_file
+      redirect: redhat.satellite.scap_tailoring_file
     foreman_scc_account:
-      redirect: theforeman.foreman.scc_account
+      redirect: redhat.satellite.scc_account
     foreman_scc_product:
-      redirect: theforeman.foreman.scc_product
+      redirect: redhat.satellite.scc_product
     foreman_search_facts:
-      redirect: theforeman.foreman.resource_info
+      redirect: redhat.satellite.resource_info
     foreman_setting:
-      redirect: theforeman.foreman.setting
+      redirect: redhat.satellite.setting
     foreman_smart_class_parameter:
-      redirect: theforeman.foreman.smart_class_parameter
+      redirect: redhat.satellite.smart_class_parameter
     foreman_snapshot:
-      redirect: theforeman.foreman.snapshot
+      redirect: redhat.satellite.snapshot
     foreman_subnet:
-      redirect: theforeman.foreman.subnet
+      redirect: redhat.satellite.subnet
     foreman_templates_import:
-      redirect: theforeman.foreman.templates_import
+      redirect: redhat.satellite.templates_import
     foreman_user:
-      redirect: theforeman.foreman.user
+      redirect: redhat.satellite.user
     foreman_usergroup:
-      redirect: theforeman.foreman.usergroup
+      redirect: redhat.satellite.usergroup
     katello_activation_key:
-      redirect: theforeman.foreman.activation_key
+      redirect: redhat.satellite.activation_key
     katello_content_credential:
-      redirect: theforeman.foreman.content_credential
+      redirect: redhat.satellite.content_credential
     katello_content_view:
-      redirect: theforeman.foreman.content_view
+      redirect: redhat.satellite.content_view
     katello_content_view_filter:
-      redirect: theforeman.foreman.content_view_filter
+      redirect: redhat.satellite.content_view_filter
     katello_content_view_version:
-      redirect: theforeman.foreman.content_view_version
+      redirect: redhat.satellite.content_view_version
     katello_host_collection:
-      redirect: theforeman.foreman.host_collection
+      redirect: redhat.satellite.host_collection
     katello_lifecycle_environment:
-      redirect: theforeman.foreman.lifecycle_environment
+      redirect: redhat.satellite.lifecycle_environment
     katello_manifest:
-      redirect: theforeman.foreman.subscription_manifest
+      redirect: redhat.satellite.subscription_manifest
     katello_product:
-      redirect: theforeman.foreman.product
+      redirect: redhat.satellite.product
     katello_repository:
-      redirect: theforeman.foreman.repository
+      redirect: redhat.satellite.repository
     katello_repository_set:
-      redirect: theforeman.foreman.repository_set
+      redirect: redhat.satellite.repository_set
     katello_sync:
-      redirect: theforeman.foreman.repository_sync
+      redirect: redhat.satellite.repository_sync
     katello_sync_plan:
-      redirect: theforeman.foreman.sync_plan
+      redirect: redhat.satellite.sync_plan
     katello_upload:
-      redirect: theforeman.foreman.content_upload
+      redirect: redhat.satellite.content_upload
 requires_ansible: '>=2.9'
