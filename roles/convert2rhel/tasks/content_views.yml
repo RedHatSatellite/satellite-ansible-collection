@@ -1,0 +1,52 @@
+---
+- name: "Create a '{{ satellite_convert2rhel_key_centos7 }}' content view"
+  redhat.satellite.content_view:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    name: "{{ satellite_convert2rhel_key_centos7 }}"
+    repositories:
+      - name: '{{ satellite_convert2rhel_rhel7_repo }}'
+        product: '{{ satellite_convert2rhel_rhel7_product }}'
+  when: satellite_content_rhel_enable_rhel7
+
+- name: "Publish a '{{ satellite_convert2rhel_key_centos7 }}' content view"
+  redhat.satellite.content_view_version:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    content_view: "{{ satellite_convert2rhel_key_centos7 }}"
+    version: "1.0"
+    lifecycle_environments:
+      - "{{ satellite_convert2rhel_lifecycle_env }}"
+  when: satellite_content_rhel_enable_rhel7
+
+- name: "Create a '{{ satellite_convert2rhel_key_centos8 }}' content view"
+  redhat.satellite.content_view:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    name: "{{ satellite_convert2rhel_key_centos8 }}"
+    repositories:
+      - name: '{{ satellite_convert2rhel_rhel8_repo }}'
+        product: '{{ satellite_convert2rhel_rhel8_product }}'
+  when: satellite_content_rhel_enable_rhel8
+
+- name: "Publish a '{{ satellite_convert2rhel_key_centos8 }}' content view"
+  redhat.satellite.content_view_version:
+    username: "{{ satellite_username }}"
+    password: "{{ satellite_password }}"
+    server_url: "{{ satellite_server_url }}"
+    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
+    organization: "{{ satellite_organization }}"
+    content_view: "{{ satellite_convert2rhel_key_centos8 }}"
+    version: "1.0"
+    lifecycle_environments:
+      - "{{ satellite_convert2rhel_lifecycle_env }}"
+  when: satellite_content_rhel_enable_rhel8

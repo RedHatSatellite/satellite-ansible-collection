@@ -12,6 +12,7 @@ $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__
 DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md)
 
 PYTHON_VERSION = $(shell $(PYTHON_COMMAND) -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
+ANSIBLE_SUPPORTS_REDIRECTS = $(shell ansible --version | grep -q 'ansible 2.9' && echo 0 || echo 1)
 COLLECTION_COMMAND ?= ansible-galaxy
 SANITY_OPTS = --venv
 TEST =
@@ -95,6 +96,9 @@ tests/test_playbooks/vars/server.yml:
 
 dist-test: $(MANIFEST)
 	SATELLITE_SERVER_URL=https://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost | grep -q "Failed to connect to Foreman server.*foreman.example.test"
+ifeq ($(ANSIBLE_SUPPORTS_REDIRECTS),1)
+	SATELLITE_SERVER_URL=https://foreman.example.test ansible -m $(NAMESPACE).$(NAME).foreman_organization -a "username=admin password=changeme name=collectiontest" localhost | grep -q "Failed to connect to Foreman server.*foreman.example.test"
+endif
 	SATELLITE_SERVER_URL=http://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost 2>&1| grep -q "You have configured a plain HTTP server URL."
 	ansible-doc $(NAMESPACE).$(NAME).organization | grep -q "Manage Organization"
 
@@ -135,7 +139,7 @@ $(RUNTIME_YML): FORCE
 	$(PYTHON_COMMAND) generate_action_groups.py
 
 branding:
-	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_callback.py tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml
+	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_callback.py tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml $(RUNTIME_YML)
 	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py docs/cvmanager.md roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman/foreman-ansible-modules#RedHatSatellite/satellite-ansible-collection#g' .github/workflows/*.yml
 	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml

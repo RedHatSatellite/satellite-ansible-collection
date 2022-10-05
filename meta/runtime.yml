@@ -74,107 +74,107 @@ action_groups:
 plugin_routing:
   modules:
     foreman_architecture:
-      redirect: architecture
+      redirect: redhat.satellite.architecture
     foreman_auth_source_ldap:
-      redirect: auth_source_ldap
+      redirect: redhat.satellite.auth_source_ldap
     foreman_bookmark:
-      redirect: bookmark
+      redirect: redhat.satellite.bookmark
     foreman_compute_attribute:
-      redirect: compute_attribute
+      redirect: redhat.satellite.compute_attribute
     foreman_compute_profile:
-      redirect: compute_profile
+      redirect: redhat.satellite.compute_profile
     foreman_compute_resource:
-      redirect: compute_resource
+      redirect: redhat.satellite.compute_resource
     foreman_config_group:
-      redirect: config_group
+      redirect: redhat.satellite.config_group
     foreman_domain:
-      redirect: domain
+      redirect: redhat.satellite.domain
     foreman_environment:
-      redirect: puppet_environment
+      redirect: redhat.satellite.puppet_environment
     foreman_external_usergroup:
-      redirect: external_usergroup
+      redirect: redhat.satellite.external_usergroup
     foreman_global_parameter:
-      redirect: global_parameter
+      redirect: redhat.satellite.global_parameter
     foreman_host:
-      redirect: host
+      redirect: redhat.satellite.host
     foreman_host_power:
-      redirect: host_power
+      redirect: redhat.satellite.host_power
     foreman_hostgroup:
-      redirect: hostgroup
+      redirect: redhat.satellite.hostgroup
     foreman_image:
-      redirect: image
+      redirect: redhat.satellite.image
     foreman_installation_medium:
-      redirect: installation_medium
+      redirect: redhat.satellite.installation_medium
     foreman_job_template:
-      redirect: job_template
+      redirect: redhat.satellite.job_template
     foreman_location:
-      redirect: location
+      redirect: redhat.satellite.location
     foreman_model:
-      redirect: hardware_model
+      redirect: redhat.satellite.hardware_model
     foreman_operatingsystem:
-      redirect: operatingsystem
+      redirect: redhat.satellite.operatingsystem
     foreman_organization:
-      redirect: organization
+      redirect: redhat.satellite.organization
     foreman_os_default_template:
-      redirect: os_default_template
+      redirect: redhat.satellite.os_default_template
     foreman_provisioning_template:
-      redirect: provisioning_template
+      redirect: redhat.satellite.provisioning_template
     foreman_ptable:
-      redirect: partition_table
+      redirect: redhat.satellite.partition_table
     foreman_realm:
-      redirect: realm
+      redirect: redhat.satellite.realm
     foreman_role:
-      redirect: role
+      redirect: redhat.satellite.role
     foreman_scap_content:
-      redirect: scap_content
+      redirect: redhat.satellite.scap_content
     foreman_scap_tailoring_file:
-      redirect: scap_tailoring_file
+      redirect: redhat.satellite.scap_tailoring_file
     foreman_scc_account:
-      redirect: scc_account
+      redirect: redhat.satellite.scc_account
     foreman_scc_product:
-      redirect: scc_product
+      redirect: redhat.satellite.scc_product
     foreman_search_facts:
-      redirect: resource_info
+      redirect: redhat.satellite.resource_info
     foreman_setting:
-      redirect: setting
+      redirect: redhat.satellite.setting
     foreman_smart_class_parameter:
-      redirect: smart_class_parameter
+      redirect: redhat.satellite.smart_class_parameter
     foreman_snapshot:
-      redirect: snapshot
+      redirect: redhat.satellite.snapshot
     foreman_subnet:
-      redirect: subnet
+      redirect: redhat.satellite.subnet
     foreman_templates_import:
-      redirect: templates_import
+      redirect: redhat.satellite.templates_import
     foreman_user:
-      redirect: user
+      redirect: redhat.satellite.user
     foreman_usergroup:
-      redirect: usergroup
+      redirect: redhat.satellite.usergroup
     katello_activation_key:
-      redirect: activation_key
+      redirect: redhat.satellite.activation_key
     katello_content_credential:
-      redirect: content_credential
+      redirect: redhat.satellite.content_credential
     katello_content_view:
-      redirect: content_view
+      redirect: redhat.satellite.content_view
     katello_content_view_filter:
-      redirect: content_view_filter
+      redirect: redhat.satellite.content_view_filter
     katello_content_view_version:
-      redirect: content_view_version
+      redirect: redhat.satellite.content_view_version
     katello_host_collection:
-      redirect: host_collection
+      redirect: redhat.satellite.host_collection
     katello_lifecycle_environment:
-      redirect: lifecycle_environment
+      redirect: redhat.satellite.lifecycle_environment
     katello_manifest:
-      redirect: subscription_manifest
+      redirect: redhat.satellite.subscription_manifest
     katello_product:
-      redirect: product
+      redirect: redhat.satellite.product
     katello_repository:
-      redirect: repository
+      redirect: redhat.satellite.repository
     katello_repository_set:
-      redirect: repository_set
+      redirect: redhat.satellite.repository_set
     katello_sync:
-      redirect: repository_sync
+      redirect: redhat.satellite.repository_sync
     katello_sync_plan:
-      redirect: sync_plan
+      redirect: redhat.satellite.sync_plan
     katello_upload:
-      redirect: content_upload
+      redirect: redhat.satellite.content_upload
 requires_ansible: '>=2.9'

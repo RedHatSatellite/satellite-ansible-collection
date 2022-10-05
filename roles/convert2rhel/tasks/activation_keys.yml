@@ -31,8 +31,7 @@
     organization: "{{ satellite_organization }}"
     name: "{{ satellite_convert2rhel_key_centos7 }}"
     lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
-    content_view: "{{ satellite_convert2rhel_content_view }}"
-    subscriptions: "{{ satellite_convert2rhel_org_info['organization']['simple_content_access'] | ternary(omit, satellite_convert2rhel_centos7_subs) }}"
+    content_view: "{{ satellite_convert2rhel_key_centos7 }}"
   when: satellite_content_rhel_enable_rhel7
 
 - name: "Create '{{ satellite_convert2rhel_key_centos8 }}' activation key"
@@ -44,9 +43,7 @@
     organization: "{{ satellite_organization }}"
     name: "{{ satellite_convert2rhel_key_centos8 }}"
     lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
-    content_view: "{{ satellite_convert2rhel_content_view }}"
-    auto_attach: false
-    subscriptions: "{{ satellite_convert2rhel_org_info['organization']['simple_content_access'] | ternary(omit, satellite_convert2rhel_centos8_subs) }}"
+    content_view: "{{ satellite_convert2rhel_key_centos8 }}"
   when: satellite_content_rhel_enable_rhel8
 
 - name: "Create '{{ satellite_convert2rhel_key_oracle7 }}' activation key"
