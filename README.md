@@ -15,6 +15,9 @@ The GitHub repository serves as the source for the release and should not be use
 ### Installation from Automation Hub
 
 You can install the collection with `ansible-galaxy collection install redhat.satellite`.
+
+See the Ansible documentation how to configure `ansible-galaxy` to be able to [download a collection from Automation Hub](https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#downloading-a-collection-from-automation-hub).
+
 You will require the `python-requests` RPM provided in the Red Hat Enterprise Linux repositories.
 
 ### Installation via RPM
