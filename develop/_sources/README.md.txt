@@ -8,14 +8,21 @@ For support questions around this collection, please open a ticket on the [Red H
 
 ## Installation
 
-You can install this collection directly from Automation Hub.
+You can install this collection directly from Automation Hub or via RPMs provided by Red Hat.
 
 The GitHub repository serves as the source for the release and should not be used for direct installation and consumption of the collection.
 
 ### Installation from Automation Hub
 
-You can install the collection with `ansible-galaxy collection install redhat.satellite` (Ansible 2.9 and later).
-You will require the `python-requests` RPM provided in the Red Hat Enterprise Linux repositories.
+You can install the collection with `ansible-galaxy collection install redhat.satellite`.
+
+See the Ansible documentation how to configure `ansible-galaxy` to be able to [download a collection from Automation Hub](https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#downloading-a-collection-from-automation-hub).
+
+You will need to install the Python `requests` library manually, e.g. from the RPM provided by Red Hat (`python-requests` on Red Hat Enterprise Linux 7, `python3-requests` on Red Hat Enterprise Linux 8).
+
+### Installation via RPM
+
+The collection is also available as `ansible-collection-redhat-satellite` in the Satellite repository.
 
 ## Satellite Documentation
 

@@ -46,6 +46,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation-from-automation-hub">Installation from Automation Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-via-rpm">Installation via RPM</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#satellite-documentation">Satellite Documentation</a></li>
@@ -82,8 +83,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Red Hat Satellite Ansible Collection</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Red Hat Satellite Ansible Collection</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,12 +103,17 @@
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
-<p>You can install this collection directly from Automation Hub.</p>
+<p>You can install this collection directly from Automation Hub or via RPMs provided by Red Hat.</p>
 <p>The GitHub repository serves as the source for the release and should not be used for direct installation and consumption of the collection.</p>
 <section id="installation-from-automation-hub">
 <h3>Installation from Automation Hub<a class="headerlink" href="#installation-from-automation-hub" title="Permalink to this heading"></a></h3>
-<p>You can install the collection with <code class="docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code> (Ansible 2.9 and later).
-You will require the <code class="docutils literal notranslate"><span class="pre">python-requests</span></code> RPM provided in the Red Hat Enterprise Linux repositories.</p>
+<p>You can install the collection with <code class="docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.</p>
+<p>See the Ansible documentation how to configure <code class="docutils literal notranslate"><span class="pre">ansible-galaxy</span></code> to be able to <a class="reference external" href="https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#downloading-a-collection-from-automation-hub">download a collection from Automation Hub</a>.</p>
+<p>You will need to install the Python <code class="docutils literal notranslate"><span class="pre">requests</span></code> library manually, e.g. from the RPM provided by Red Hat (<code class="docutils literal notranslate"><span class="pre">python-requests</span></code> on Red Hat Enterprise Linux 7, <code class="docutils literal notranslate"><span class="pre">python3-requests</span></code> on Red Hat Enterprise Linux 8).</p>
+</section>
+<section id="installation-via-rpm">
+<h3>Installation via RPM<a class="headerlink" href="#installation-via-rpm" title="Permalink to this heading"></a></h3>
+<p>The collection is also available as <code class="docutils literal notranslate"><span class="pre">ansible-collection-redhat-satellite</span></code> in the Satellite repository.</p>
 </section>
 </section>
 <section id="satellite-documentation">
