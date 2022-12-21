@@ -1,5 +1,5 @@
 ---
-- name: 'Create Compute Profiles'
+- name: 'Create Compute Profiles'  # noqa: args[module]
   redhat.satellite.compute_profile:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

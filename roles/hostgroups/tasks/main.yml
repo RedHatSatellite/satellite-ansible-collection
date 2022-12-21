@@ -1,5 +1,5 @@
 ---
-- name: 'Create Hostgroups'
+- name: 'Create Hostgroups'  # noqa: args[module]
   redhat.satellite.hostgroup:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

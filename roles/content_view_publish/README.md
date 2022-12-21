@@ -18,7 +18,7 @@ Example Playbook
 ```yaml
 - hosts: localhost
   roles:
-    - role: redhat.satellite.content_view
+    - role: redhat.satellite.content_view_publish
       vars:
         satellite_server_url: https://satellite.example.com
         satellite_username: "admin"

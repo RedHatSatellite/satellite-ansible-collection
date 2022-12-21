@@ -1,5 +1,5 @@
 ---
-- name: 'Create Domains'
+- name: 'Create Domains'  # noqa: args[module]
   redhat.satellite.domain:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

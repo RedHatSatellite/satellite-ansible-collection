@@ -1,5 +1,5 @@
 ---
-- name: 'Create Operatingsystems'
+- name: 'Create Operatingsystems'  # noqa: args[module]
   redhat.satellite.operatingsystem:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

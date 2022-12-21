@@ -1,5 +1,5 @@
 ---
-- name: Create content view
+- name: Create content view  # noqa: args[module]
   redhat.satellite.content_view:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

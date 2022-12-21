@@ -1,5 +1,5 @@
 ---
-- name: 'Create Compute Resources'
+- name: 'Create Compute Resources'  # noqa: args[module]
   redhat.satellite.compute_resource:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

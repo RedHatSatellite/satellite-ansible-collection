@@ -9,7 +9,7 @@
   register: satellite_convert2rhel_org_info
 
 - name: "Set non SCA facts"
-  set_fact:
+  ansible.builtin.set_fact:
     satellite_convert2rhel_centos7_subs:
       - name: "Convert2RHEL7"
     satellite_convert2rhel_centos8_subs:
@@ -46,7 +46,7 @@
     content_view: "{{ satellite_convert2rhel_key_centos8 }}"
   when: satellite_content_rhel_enable_rhel8
 
-- name: "Create '{{ satellite_convert2rhel_key_oracle7 }}' activation key"
+- name: "Create '{{ satellite_convert2rhel_key_oracle7 }}' activation key"  # noqa: args[module]
   redhat.satellite.activation_key:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
@@ -59,7 +59,7 @@
     subscriptions: "{{ satellite_convert2rhel_org_info['organization']['simple_content_access'] | ternary(omit, satellite_convert2rhel_ol7_subs) }}"
   when: satellite_convert2rhel_enable_oracle7
 
-- name: "Create '{{ satellite_convert2rhel_key_oracle8 }}' activation key"
+- name: "Create '{{ satellite_convert2rhel_key_oracle8 }}' activation key"  # noqa: args[module]
   redhat.satellite.activation_key:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
