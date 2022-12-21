@@ -69,7 +69,6 @@ Minor Changes
 - setting - the ``foreman_setting`` return entry is deprecated and kept for backwards compatibility, please use ``entity`` as with any other module
 - smart_proxy - add ``inherit`` to possible values of ``download_policy`` (https://github.com/theforeman/foreman-ansible-modules/issues/1438)
 - smart_proxy - add ``streamed`` download policy
-- snapshot - add include_ram option when creating VMWare snapshot
 
 New Modules
 -----------
@@ -480,7 +479,6 @@ New Modules
 - redhat.satellite.scc_product - Subscribe SUSE Customer Center Account Products
 - redhat.satellite.setting - Manage Settings
 - redhat.satellite.smart_class_parameter - Manage Smart Class Parameters
-- redhat.satellite.snapshot - Manage Snapshots
 - redhat.satellite.subnet - Manage Subnets
 - redhat.satellite.subscription_manifest - Manage Subscription Manifests
 - redhat.satellite.sync_plan - Manage Sync Plans

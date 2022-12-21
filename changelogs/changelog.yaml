@@ -155,9 +155,6 @@ releases:
     - description: Manage Smart Class Parameters
       name: smart_class_parameter
       namespace: ''
-    - description: Manage Snapshots
-      name: snapshot
-      namespace: ''
     - description: Manage Subnets
       name: subnet
       namespace: ''
@@ -628,7 +625,6 @@ releases:
         backwards compatibility, please use ``entity`` as with any other module
       - smart_proxy - add ``inherit`` to possible values of ``download_policy`` (https://github.com/theforeman/foreman-ansible-modules/issues/1438)
       - smart_proxy - add ``streamed`` download policy
-      - snapshot - add include_ram option when creating VMWare snapshot
     fragments:
     - 1438-smart_proxy-download_policy-inherit.yml
     - setting-return-deprecate.yml
