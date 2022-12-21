@@ -153,7 +153,7 @@ branding:
 	sed -i 's/foreman/satellite/' generate_action_groups.py
 	sed -i '/group/ s/foreman/satellite/' tests/test_playbooks/module_defaults.yml
 	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
-	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot.py tests/fixtures/apidoc/snapshot.json
+	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot*.py tests/fixtures/apidoc/snapshot*.json
 	make $(RUNTIME_YML)
 
 FORCE:
