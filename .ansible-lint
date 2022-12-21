@@ -4,4 +4,4 @@ warn_list:
 enable_list:
   - only-builtins
 only_builtins_allow_collections:
-  - theforeman.foreman
+  - redhat.satellite
