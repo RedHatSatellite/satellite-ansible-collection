@@ -697,8 +697,4 @@ releases:
     - redhat_manifest-default_quantity.yml
     - redhat_manifest-uuid-search.yml
     - repository_sync-no-failsaife-repository.yml
-    modules:
-    - description: Fetch information about Foreman Snapshots
-      name: snapshot_info
-      namespace: ''
     release_date: '2022-12-20'

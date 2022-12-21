@@ -25,11 +25,6 @@ Bugfixes
 - redhat_manifest - properly report http errors (https://github.com/theforeman/foreman-ansible-modules/issues/1497)
 - repository_sync - report an error instead of syncing the whole product when the repository could not be found
 
-New Modules
------------
-
-- redhat.satellite.snapshot_info - Fetch information about Foreman Snapshots
-
 v3.7.0
 ======
 
