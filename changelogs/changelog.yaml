@@ -143,12 +143,6 @@ releases:
     - description: Manage SCAP Tailoring Files
       name: scap_tailoring_file
       namespace: ''
-    - description: Manage SUSE Customer Center Accounts
-      name: scc_account
-      namespace: ''
-    - description: Subscribe SUSE Customer Center Account Products
-      name: scc_product
-      namespace: ''
     - description: Manage Settings
       name: setting
       namespace: ''

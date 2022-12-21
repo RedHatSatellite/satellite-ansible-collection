@@ -475,8 +475,6 @@ New Modules
 - redhat.satellite.role - Manage Roles
 - redhat.satellite.scap_content - Manage SCAP content
 - redhat.satellite.scap_tailoring_file - Manage SCAP Tailoring Files
-- redhat.satellite.scc_account - Manage SUSE Customer Center Accounts
-- redhat.satellite.scc_product - Subscribe SUSE Customer Center Account Products
 - redhat.satellite.setting - Manage Settings
 - redhat.satellite.smart_class_parameter - Manage Smart Class Parameters
 - redhat.satellite.subnet - Manage Subnets
