@@ -143,20 +143,11 @@ releases:
     - description: Manage SCAP Tailoring Files
       name: scap_tailoring_file
       namespace: ''
-    - description: Manage SUSE Customer Center Accounts
-      name: scc_account
-      namespace: ''
-    - description: Subscribe SUSE Customer Center Account Products
-      name: scc_product
-      namespace: ''
     - description: Manage Settings
       name: setting
       namespace: ''
     - description: Manage Smart Class Parameters
       name: smart_class_parameter
-      namespace: ''
-    - description: Manage Snapshots
-      name: snapshot
       namespace: ''
     - description: Manage Subnets
       name: subnet
@@ -628,7 +619,6 @@ releases:
         backwards compatibility, please use ``entity`` as with any other module
       - smart_proxy - add ``inherit`` to possible values of ``download_policy`` (https://github.com/theforeman/foreman-ansible-modules/issues/1438)
       - smart_proxy - add ``streamed`` download policy
-      - snapshot - add include_ram option when creating VMWare snapshot
     fragments:
     - 1438-smart_proxy-download_policy-inherit.yml
     - setting-return-deprecate.yml
@@ -672,3 +662,29 @@ releases:
     - bz2118790.yml
     - repository-include-exclude-tags.yaml
     release_date: '2022-10-05'
+  3.8.0:
+    changes:
+      bugfixes:
+      - activation_key - properly fetch *all* repositories when managing content overrides
+        (https://bugzilla.redhat.com/show_bug.cgi?id=2134605)
+      - redhat_manifest - properly report http errors (https://github.com/theforeman/foreman-ansible-modules/issues/1497)
+      - repository_sync - report an error instead of syncing the whole product when
+        the repository could not be found
+      minor_changes:
+      - job_template - add ``default`` option to the ``template_inputs`` parameter
+      - location, organization - add ``ignore_types`` parameter to adjust automatic
+        association of resources
+      - redhat_manifest - Search by UUID on the server side if UUID is known. This
+        is faster and allows fetching of manifest in big accounts (>1000 allocations).
+      - redhat_manifest - return the UUID of the manifest so it can be reused later
+      - redhat_manifest - set default ``quantity`` to 1 (https://github.com/theforeman/foreman-ansible-modules/pull/1499)
+    fragments:
+    - 1497-redhat_manifest-report-error.yml
+    - 1509-taxonomy-ignore_types.yaml
+    - 1519-job_template-input-default.yml
+    - 2134605-ak-product_contents-per_page.yml
+    - manifest-uuid-return.yml
+    - redhat_manifest-default_quantity.yml
+    - redhat_manifest-uuid-search.yml
+    - repository_sync-no-failsaife-repository.yml
+    release_date: '2022-12-20'

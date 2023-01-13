@@ -12,7 +12,6 @@ Welcome to Red Hat Satellite Ansible Collection' documentation!
 
    README
    plugins/index
-   Filters <filters>
    roles/index
    cvmanager
 

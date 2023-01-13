@@ -12,9 +12,9 @@
   register: versions
 
 - name: "Delete unused content view versions of {{ cv.name }}"
-  include_tasks: delete_cv_versions.yml
+  ansible.builtin.include_tasks: delete_cv_versions.yml
   vars:
     cv_name: "{{ cv.name }}"
     cv_versions: "{{ (versions.resources | rejectattr('environments') | rejectattr('composite_content_view_ids') |
       rejectattr('published_in_composite_content_view_ids') | map(attribute='version') | map('float') | sort |
-      map('string') | reverse | list )[satellite_content_view_version_cleanup_keep:] }}"
+      map('string') | reverse | list)[satellite_content_view_version_cleanup_keep:] }}"

@@ -1,5 +1,5 @@
 ---
-- name: 'Create Subnets'
+- name: 'Create Subnets'  # noqa: args[module]
   redhat.satellite.subnet:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

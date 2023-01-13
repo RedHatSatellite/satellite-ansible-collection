@@ -1,5 +1,7 @@
 ---
 warn_list:
-  - fqcn-builtins
-  - jinja[spacing]
   - name[template]
+enable_list:
+  - only-builtins
+only_builtins_allow_collections:
+  - redhat.satellite

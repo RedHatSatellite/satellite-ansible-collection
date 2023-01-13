@@ -45,7 +45,7 @@
   with_items:
     - "{{ satellite_products | selectattr('repositories', 'defined') | list }}"
 
-- name: 'Create Repositories'
+- name: 'Create Repositories'   # noqa: args[module]
   redhat.satellite.repository:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

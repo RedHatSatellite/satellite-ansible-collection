@@ -8,7 +8,7 @@ ROLES := $(wildcard roles/*)
 PLUGIN_TYPES := $(filter-out __%,$(notdir $(wildcard plugins/*)))
 RUNTIME_YML := meta/runtime.yml
 METADATA := galaxy.yml LICENSE README.md $(RUNTIME_YML) requirements.txt changelogs/changelog.yaml CHANGELOG.rst bindep.txt PSF-license.txt meta/execution-environment.yml
-$(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__init__.py,$(wildcard plugins/$(PLUGIN_TYPE)/*.py))))
+$(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__init__.py,$(wildcard plugins/$(PLUGIN_TYPE)/*.py)) $(wildcard plugins/$(PLUGIN_TYPE)/*.yml)))
 DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md)
 
 PYTHON_VERSION = $(shell $(PYTHON_COMMAND) -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
@@ -17,7 +17,7 @@ COLLECTION_COMMAND ?= ansible-galaxy
 SANITY_OPTS = --venv
 TEST =
 FLAGS =
-PYTEST = pytest -n 4 --boxed -vv
+PYTEST = pytest -n 4 --forked -vv
 
 APIPIE_VERSION ?= v0.3.2
 
@@ -139,7 +139,7 @@ $(RUNTIME_YML): FORCE
 	$(PYTHON_COMMAND) generate_action_groups.py
 
 branding:
-	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_callback.py tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml $(RUNTIME_YML)
+	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_callback.py tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml $(RUNTIME_YML) .ansible-lint
 	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py docs/cvmanager.md roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman/foreman-ansible-modules#RedHatSatellite/satellite-ansible-collection#g' .github/workflows/*.yml
 	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml
@@ -153,7 +153,8 @@ branding:
 	sed -i 's/foreman/satellite/' generate_action_groups.py
 	sed -i '/group/ s/foreman/satellite/' tests/test_playbooks/module_defaults.yml
 	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
-	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot.py tests/fixtures/apidoc/snapshot.json
+	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot*.py tests/fixtures/apidoc/snapshot*.json
+	rm -rf tests/test_playbooks/*_deb.yml
 	make $(RUNTIME_YML)
 
 FORCE:

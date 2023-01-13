@@ -1,5 +1,5 @@
 ---
-- name: 'Create Provisioning Templates'
+- name: 'Create Provisioning Templates'  # noqa: args[module]
   redhat.satellite.provisioning_template:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"
