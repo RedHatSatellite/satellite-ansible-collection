@@ -1,0 +1,23 @@
+
+.. Document meta
+
+:orphan:
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.katello_upload_module:
+
+.. Title
+
+redhat.satellite.katello_upload module
+++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.8.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.katello_upload`.
+
+- This is a redirect to the :ref:`redhat.satellite.content_upload module <ansible_collections.redhat.satellite.content_upload_module>`.
+- This redirect does **not** work with Ansible 2.9.
