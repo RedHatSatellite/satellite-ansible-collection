@@ -7,7 +7,7 @@
   <title>Redhat.Satellite &mdash; Red Hat Satellite Ansible Collection  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/ansible-basic-sphinx-ext.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/antsibull-minimal.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="redhat.satellite.foreman callback – Sends events to Foreman" href="foreman_callback.html" />
+    <link rel="next" title="redhat.satellite.activation_key module – Manage Activation Keys" href="activation_key_module.html" />
     <link rel="prev" title="Red Hat Satellite Ansible Collection" href="../README.html" /> 
 </head>
 
@@ -48,11 +48,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#plugin-index">Plugin Index</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#modules">Modules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#callback-plugins">Callback Plugins</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#inventory-plugins">Inventory Plugins</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="foreman_callback.html">redhat.satellite.foreman callback – Sends events to Foreman</a></li>
-<li class="toctree-l4"><a class="reference internal" href="foreman_inventory.html">redhat.satellite.foreman inventory – Foreman inventory source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modules">Modules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="activation_key_module.html">redhat.satellite.activation_key module – Manage Activation Keys</a></li>
 <li class="toctree-l4"><a class="reference internal" href="architecture_module.html">redhat.satellite.architecture module – Manage Architectures</a></li>
 <li class="toctree-l4"><a class="reference internal" href="auth_source_ldap_module.html">redhat.satellite.auth_source_ldap module – Manage LDAP Authentication Sources</a></li>
@@ -126,11 +122,22 @@
 <li class="toctree-l4"><a class="reference internal" href="usergroup_module.html">redhat.satellite.usergroup module – Manage User Groups</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#callback-plugins">Callback Plugins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foreman_callback.html">redhat.satellite.foreman callback – Sends events to Foreman</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#filter-plugins">Filter Plugins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cp_label_filter.html">redhat.satellite.cp_label filter – Convert strings to Candlepin labels</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#inventory-plugins">Inventory Plugins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foreman_inventory.html">redhat.satellite.foreman inventory – Foreman inventory source</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../filters.html">Filters</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../roles/index.html">Role Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cvmanager.html">Migrating from <code class="docutils literal notranslate"><span class="pre">cvmanager</span></code> to Red Hat Satellite Ansible Collection</a></li>
 </ul>
@@ -172,7 +179,7 @@
              
   <section id="redhat-satellite">
 <span id="plugins-in-redhat-satellite"></span><h1>Redhat.Satellite<a class="headerlink" href="#redhat-satellite" title="Permalink to this heading"></a></h1>
-<p>Collection version 3.7.0</p>
+<p>Collection version 3.8.0</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
@@ -204,6 +211,7 @@
 <li><p>Ethan &lt;<a class="reference external" href="mailto:smithe2413&#37;&#52;&#48;gmail&#46;com">smithe2413<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Evgeni Golov &lt;<a class="reference external" href="mailto:evgeni&#37;&#52;&#48;golov&#46;de">evgeni<span>&#64;</span>golov<span>&#46;</span>de</a>&gt;</p></li>
 <li><p>Ewoud Kohl van Wijngaarden &lt;<a class="reference external" href="mailto:ewoud&#37;&#52;&#48;kohlvanwijngaarden&#46;nl">ewoud<span>&#64;</span>kohlvanwijngaarden<span>&#46;</span>nl</a>&gt;</p></li>
+<li><p>Felix Fontein &lt;<a class="reference external" href="mailto:felix&#37;&#52;&#48;fontein&#46;de">felix<span>&#64;</span>fontein<span>&#46;</span>de</a>&gt;</p></li>
 <li><p>Gerald Vogt &lt;<a class="reference external" href="mailto:gvde&#37;&#52;&#48;users&#46;noreply&#46;github&#46;com">gvde<span>&#64;</span>users<span>&#46;</span>noreply<span>&#46;</span>github<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Greg Swift &lt;<a class="reference external" href="mailto:gregswift&#37;&#52;&#48;gmail&#46;com">gregswift<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Griffin Sullivan &lt;<a class="reference external" href="mailto:gsulliva&#37;&#52;&#48;redhat&#46;com">gsulliva<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
@@ -230,6 +238,7 @@
 <li><p>Marek Czernek &lt;<a class="reference external" href="mailto:mczernek&#37;&#52;&#48;redhat&#46;com">mczernek<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Mark Hlawatschek &lt;<a class="reference external" href="mailto:hlawatschek&#37;&#52;&#48;atix&#46;de">hlawatschek<span>&#64;</span>atix<span>&#46;</span>de</a>&gt;</p></li>
 <li><p>Markus Bucher &lt;<a class="reference external" href="mailto:bucher&#37;&#52;&#48;atix&#46;de">bucher<span>&#64;</span>atix<span>&#46;</span>de</a>&gt;</p></li>
+<li><p>Martin Schlossarek &lt;<a class="reference external" href="mailto:martin&#46;schlossarek&#37;&#52;&#48;gmail&#46;com">martin<span>&#46;</span>schlossarek<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Matthias Dellweg &lt;<a class="reference external" href="mailto:2500&#37;&#52;&#48;gmx&#46;de">2500<span>&#64;</span>gmx<span>&#46;</span>de</a>&gt;</p></li>
 <li><p>Miikka Joutsenvirta &lt;<a class="reference external" href="mailto:miikka&#46;joutsenvirta&#37;&#52;&#48;dna&#46;fi">miikka<span>&#46;</span>joutsenvirta<span>&#64;</span>dna<span>&#46;</span>fi</a>&gt;</p></li>
 <li><p>Nikhil Jain &lt;<a class="reference external" href="mailto:jainnikhil30&#37;&#52;&#48;gmail&#46;com">jainnikhil30<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
@@ -357,22 +366,30 @@
 <li><p><a class="reference internal" href="user_module.html#ansible-collections-redhat-satellite-user-module"><span class="std std-ref">user module</span></a> – Manage Users</p></li>
 <li><p><a class="reference internal" href="usergroup_module.html#ansible-collections-redhat-satellite-usergroup-module"><span class="std std-ref">usergroup module</span></a> – Manage User Groups</p></li>
 </ul>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 <section id="callback-plugins">
 <h3>Callback Plugins<a class="headerlink" href="#callback-plugins" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="foreman_callback.html#ansible-collections-redhat-satellite-foreman-callback"><span class="std std-ref">foreman callback</span></a> – Sends events to Foreman</p></li>
 </ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="filter-plugins">
+<h3>Filter Plugins<a class="headerlink" href="#filter-plugins" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="cp_label_filter.html#ansible-collections-redhat-satellite-cp-label-filter"><span class="std std-ref">cp_label filter</span></a> – Convert strings to Candlepin labels</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 <section id="inventory-plugins">
 <h3>Inventory Plugins<a class="headerlink" href="#inventory-plugins" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="foreman_inventory.html#ansible-collections-redhat-satellite-foreman-inventory"><span class="std std-ref">foreman inventory</span></a> – Foreman inventory source</p></li>
 </ul>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>List of <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/index.html#list-of-collections" title="(in Ansible v6)"><span class="xref std std-ref">collections</span></a> with docs hosted here.</p>
-</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -384,13 +401,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../README.html" class="btn btn-neutral float-left" title="Red Hat Satellite Ansible Collection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="foreman_callback.html" class="btn btn-neutral float-right" title="redhat.satellite.foreman callback – Sends events to Foreman" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="activation_key_module.html" class="btn btn-neutral float-right" title="redhat.satellite.activation_key module – Manage Activation Keys" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Red Hat, Inc..</p>
+    <p>&#169; Copyright 2023, Red Hat, Inc..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -7,7 +7,7 @@
   <title>redhat.satellite.compute_profiles &mdash; Red Hat Satellite Ansible Collection  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/ansible-basic-sphinx-ext.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/antsibull-minimal.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -42,7 +42,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Red Hat Satellite Ansible Collection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Redhat.Satellite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Role Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cvmanager.html">Migrating from <code class="docutils literal notranslate"><span class="pre">cvmanager</span></code> to Red Hat Satellite Ansible Collection</a></li>
 </ul>
@@ -101,34 +100,34 @@
 <section id="example-playbooks">
 <h2>Example Playbooks<a class="headerlink" href="#example-playbooks" title="Permalink to this heading"></a></h2>
 <p>Create a compute profile named <code class="docutils literal notranslate"><span class="pre">1-Small</span></code> with a VMware spec of 1 single core CPU, 2 GiB of memory, 15 GiB of disk, and a VMXNET3 network card connected to <code class="docutils literal notranslate"><span class="pre">VM</span> <span class="pre">Network</span></code>:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
-<span class="w">  </span><span class="nt">roles</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat.satellite.compute_profiles</span><span class="w"></span>
-<span class="w">      </span><span class="nt">vars</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">satellite_server_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://satellite.example.com</span><span class="w"></span>
-<span class="w">        </span><span class="nt">satellite_username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="nt">satellite_password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;changeme&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="nt">satellite_organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Default</span><span class="nv"> </span><span class="s">Organization&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="nt">satellite_compute_profiles</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1-Small&quot;</span><span class="w"></span>
-<span class="w">            </span><span class="nt">compute_attributes</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VMware&quot;</span><span class="w"></span>
-<span class="w">                </span><span class="nt">vm_attrs</span><span class="p">:</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster01&quot;</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Datacenters/ha-datacenter/vm/</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">memoryHotAddEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">cpuHotAddEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">corespersocket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">memory_mb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">volumes_attributes</span><span class="p">:</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">0</span><span class="p">:</span><span class="w"></span>
-<span class="w">                      </span><span class="nt">datastore</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datastore1&quot;</span><span class="w"></span>
-<span class="w">                      </span><span class="nt">size_gb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w"></span>
-<span class="w">                  </span><span class="nt">interfaces_attributes</span><span class="p">:</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">0</span><span class="p">:</span><span class="w"></span>
-<span class="w">                      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VirtualVmxnet3&quot;</span><span class="w"></span>
-<span class="w">                      </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VM</span><span class="nv"> </span><span class="s">Network&quot;</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat.satellite.compute_profiles</span>
+<span class="w">      </span><span class="nt">vars</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">satellite_server_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://satellite.example.com</span>
+<span class="w">        </span><span class="nt">satellite_username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
+<span class="w">        </span><span class="nt">satellite_password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;changeme&quot;</span>
+<span class="w">        </span><span class="nt">satellite_organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Default</span><span class="nv"> </span><span class="s">Organization&quot;</span>
+<span class="w">        </span><span class="nt">satellite_compute_profiles</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1-Small&quot;</span>
+<span class="w">            </span><span class="nt">compute_attributes</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VMware&quot;</span>
+<span class="w">                </span><span class="nt">vm_attrs</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster01&quot;</span>
+<span class="w">                  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Datacenters/ha-datacenter/vm/</span>
+<span class="w">                  </span><span class="nt">memoryHotAddEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                  </span><span class="nt">cpuHotAddEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                  </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">                  </span><span class="nt">corespersocket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">                  </span><span class="nt">memory_mb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+<span class="w">                  </span><span class="nt">volumes_attributes</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">0</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">datastore</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datastore1&quot;</span>
+<span class="w">                      </span><span class="nt">size_gb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">                  </span><span class="nt">interfaces_attributes</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">0</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VirtualVmxnet3&quot;</span>
+<span class="w">                      </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VM</span><span class="nv"> </span><span class="s">Network&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -142,7 +141,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Red Hat, Inc..</p>
+    <p>&#169; Copyright 2023, Red Hat, Inc..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

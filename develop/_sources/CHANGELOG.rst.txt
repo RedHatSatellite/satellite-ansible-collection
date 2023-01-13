@@ -1,10 +1,29 @@
-================================
+==============================
 redhat.satellite Release Notes
-================================
+==============================
 
 .. contents:: Topics
 
 This changelog describes changes after version 0.8.1.
+
+v3.8.0
+======
+
+Minor Changes
+-------------
+
+- job_template - add ``default`` option to the ``template_inputs`` parameter
+- location, organization - add ``ignore_types`` parameter to adjust automatic association of resources
+- redhat_manifest - Search by UUID on the server side if UUID is known. This is faster and allows fetching of manifest in big accounts (>1000 allocations).
+- redhat_manifest - return the UUID of the manifest so it can be reused later
+- redhat_manifest - set default ``quantity`` to 1 (https://github.com/theforeman/foreman-ansible-modules/pull/1499)
+
+Bugfixes
+--------
+
+- activation_key - properly fetch *all* repositories when managing content overrides (https://bugzilla.redhat.com/show_bug.cgi?id=2134605)
+- redhat_manifest - properly report http errors (https://github.com/theforeman/foreman-ansible-modules/issues/1497)
+- repository_sync - report an error instead of syncing the whole product when the repository could not be found
 
 v3.7.0
 ======
@@ -50,7 +69,6 @@ Minor Changes
 - setting - the ``foreman_setting`` return entry is deprecated and kept for backwards compatibility, please use ``entity`` as with any other module
 - smart_proxy - add ``inherit`` to possible values of ``download_policy`` (https://github.com/theforeman/foreman-ansible-modules/issues/1438)
 - smart_proxy - add ``streamed`` download policy
-- snapshot - add include_ram option when creating VMWare snapshot
 
 New Modules
 -----------
@@ -457,11 +475,8 @@ New Modules
 - redhat.satellite.role - Manage Roles
 - redhat.satellite.scap_content - Manage SCAP content
 - redhat.satellite.scap_tailoring_file - Manage SCAP Tailoring Files
-- redhat.satellite.scc_account - Manage SUSE Customer Center Accounts
-- redhat.satellite.scc_product - Subscribe SUSE Customer Center Account Products
 - redhat.satellite.setting - Manage Settings
 - redhat.satellite.smart_class_parameter - Manage Smart Class Parameters
-- redhat.satellite.snapshot - Manage Snapshots
 - redhat.satellite.subnet - Manage Subnets
 - redhat.satellite.subscription_manifest - Manage Subscription Manifests
 - redhat.satellite.sync_plan - Manage Sync Plans

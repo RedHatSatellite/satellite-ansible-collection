@@ -6,7 +6,7 @@
 Redhat.Satellite
 ================
 
-Collection version 3.7.0
+Collection version 3.8.0
 
 .. contents::
    :local:
@@ -39,6 +39,7 @@ Ansible Modules to manage Satellite installations
 * Ethan <smithe2413@gmail.com>
 * Evgeni Golov <evgeni@golov.de>
 * Ewoud Kohl van Wijngaarden <ewoud@kohlvanwijngaarden.nl>
+* Felix Fontein <felix@fontein.de>
 * Gerald Vogt <gvde@users.noreply.github.com>
 * Greg Swift <gregswift@gmail.com>
 * Griffin Sullivan <gsulliva@redhat.com>
@@ -65,6 +66,7 @@ Ansible Modules to manage Satellite installations
 * Marek Czernek <mczernek@redhat.com>
 * Mark Hlawatschek <hlawatschek@atix.de>
 * Markus Bucher <bucher@atix.de>
+* Martin Schlossarek <martin.schlossarek@gmail.com>
 * Matthias Dellweg <2500@gmx.de>
 * Miikka Joutsenvirta <miikka.joutsenvirta@dna.fi>
 * Nikhil Jain <jainnikhil30@gmail.com>
@@ -202,30 +204,10 @@ Modules
 * :ref:`user module <ansible_collections.redhat.satellite.user_module>` -- Manage Users
 * :ref:`usergroup module <ansible_collections.redhat.satellite.usergroup_module>` -- Manage User Groups
 
-
-Callback Plugins
-~~~~~~~~~~~~~~~~
-
-* :ref:`foreman callback <ansible_collections.redhat.satellite.foreman_callback>` -- Sends events to Foreman
-
-
-Inventory Plugins
-~~~~~~~~~~~~~~~~~
-
-* :ref:`foreman inventory <ansible_collections.redhat.satellite.foreman_inventory>` -- Foreman inventory source
-
-
-
-.. seealso::
-
-    List of :ref:`collections <list_of_collections>` with docs hosted here.
-
 .. toctree::
     :maxdepth: 1
     :hidden:
 
-    foreman_callback
-    foreman_inventory
     activation_key_module
     architecture_module
     auth_source_ldap_module
@@ -297,3 +279,41 @@ Inventory Plugins
     templates_import_module
     user_module
     usergroup_module
+
+
+Callback Plugins
+~~~~~~~~~~~~~~~~
+
+* :ref:`foreman callback <ansible_collections.redhat.satellite.foreman_callback>` -- Sends events to Foreman
+
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    foreman_callback
+
+
+Filter Plugins
+~~~~~~~~~~~~~~
+
+* :ref:`cp_label filter <ansible_collections.redhat.satellite.cp_label_filter>` -- Convert strings to Candlepin labels
+
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    cp_label_filter
+
+
+Inventory Plugins
+~~~~~~~~~~~~~~~~~
+
+* :ref:`foreman inventory <ansible_collections.redhat.satellite.foreman_inventory>` -- Foreman inventory source
+
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    foreman_inventory
+
+

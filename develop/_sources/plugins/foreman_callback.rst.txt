@@ -42,7 +42,7 @@ redhat.satellite.foreman callback -- Sends events to Foreman
 .. Collection note
 
 .. note::
-    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.7.0).
+    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.8.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this callback plugin,
@@ -59,6 +59,12 @@ redhat.satellite.foreman callback -- Sends events to Foreman
 
 .. Deprecated
 
+
+Callback plugin
+---------------
+
+This plugin is a **notification callback**. It sends information for a playbook run to other applications, services, or systems.
+See :ref:`callback_plugins` for more information on callback plugins.
 
 Synopsis
 --------
@@ -165,7 +171,7 @@ Parameters
           client_cert = /etc/foreman/client_cert.pem
 
 
-      - Environment variable: FOREMAN\_SSL\_CERT
+      - Environment variable: :envvar:`FOREMAN\_SSL\_CERT`
 
 
       .. raw:: html
@@ -234,7 +240,7 @@ Parameters
           client_key = /etc/foreman/client_key.pem
 
 
-      - Environment variable: FOREMAN\_SSL\_KEY
+      - Environment variable: :envvar:`FOREMAN\_SSL\_KEY`
 
 
       .. raw:: html
@@ -300,7 +306,7 @@ Parameters
           dir_store = ""
 
 
-      - Environment variable: FOREMAN\_DIR\_STORE
+      - Environment variable: :envvar:`FOREMAN\_DIR\_STORE`
 
 
       .. raw:: html
@@ -350,7 +356,7 @@ Parameters
 
       :ansible-option-configuration:`Configuration:`
 
-      - Environment variable: FOREMAN\_CALLBACK\_DISABLE
+      - Environment variable: :envvar:`FOREMAN\_CALLBACK\_DISABLE`
 
 
       .. raw:: html
@@ -402,7 +408,7 @@ Parameters
           proxy_url = VALUE
 
 
-      - Environment variable: FOREMAN\_PROXY\_URL
+      - Environment variable: :envvar:`FOREMAN\_PROXY\_URL`
 
 
       .. raw:: html
@@ -458,7 +464,7 @@ Parameters
           report_type = foreman
 
 
-      - Environment variable: FOREMAN\_REPORT\_TYPE
+      - Environment variable: :envvar:`FOREMAN\_REPORT\_TYPE`
 
 
       .. raw:: html
@@ -510,11 +516,11 @@ Parameters
           url = VALUE
 
 
-      - Environment variable: FOREMAN\_URL
+      - Environment variable: :envvar:`FOREMAN\_URL`
 
-      - Environment variable: FOREMAN\_SERVER\_URL
+      - Environment variable: :envvar:`FOREMAN\_SERVER\_URL`
 
-      - Environment variable: FOREMAN\_SERVER
+      - Environment variable: :envvar:`FOREMAN\_SERVER`
 
 
       .. raw:: html
@@ -574,7 +580,7 @@ Parameters
           verify_certs = 1
 
 
-      - Environment variable: FOREMAN\_SSL\_VERIFY
+      - Environment variable: :envvar:`FOREMAN\_SSL\_VERIFY`
 
 
       .. raw:: html
