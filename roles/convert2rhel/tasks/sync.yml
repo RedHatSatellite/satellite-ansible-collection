@@ -1,5 +1,5 @@
 ---
-- name: "Synchronize '{{ satellite_convert2rhel_rhel7_repo }}' repository"
+- name: "Synchronize  repository '{{ satellite_convert2rhel_rhel7_repo }}'"
   redhat.satellite.repository_sync:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
@@ -10,7 +10,7 @@
     product: "{{ satellite_convert2rhel_rhel7_product }}"
   when: satellite_content_rhel_enable_rhel7
 
-- name: "Synchronize '{{ satellite_convert2rhel_rhel8_repo }}' repository"
+- name: "Synchronize  repository '{{ satellite_convert2rhel_rhel8_repo }}'"
   redhat.satellite.repository_sync:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
@@ -21,7 +21,7 @@
     product: "{{ satellite_convert2rhel_rhel8_product }}"
   when: satellite_content_rhel_enable_rhel8
 
-- name: "Synchronize '{{ satellite_convert2rhel_oracle7_repo }}' repository"
+- name: "Synchronize  repository '{{ satellite_convert2rhel_oracle7_repo }}'"
   redhat.satellite.repository_sync:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
@@ -32,7 +32,7 @@
     product: "{{ satellite_convert2rhel_oracle7_product }}"
   when: satellite_convert2rhel_enable_oracle7
 
-- name: "Synchronize '{{ satellite_convert2rhel_oracle8_repo }}' repository"
+- name: "Synchronize  repository '{{ satellite_convert2rhel_oracle8_repo }}'"
   redhat.satellite.repository_sync:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"

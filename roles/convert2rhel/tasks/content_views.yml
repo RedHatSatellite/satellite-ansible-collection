@@ -1,5 +1,5 @@
 ---
-- name: "Create a '{{ satellite_convert2rhel_key_centos7 }}' content view"
+- name: "Create content view '{{ satellite_convert2rhel_key_centos7 }}'"
   redhat.satellite.content_view:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
@@ -12,7 +12,7 @@
         product: '{{ satellite_convert2rhel_rhel7_product }}'
   when: satellite_content_rhel_enable_rhel7
 
-- name: "Publish a '{{ satellite_convert2rhel_key_centos7 }}' content view"
+- name: "Publish content view '{{ satellite_convert2rhel_key_centos7 }}'"
   redhat.satellite.content_view_version:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
@@ -25,7 +25,7 @@
       - "{{ satellite_convert2rhel_lifecycle_env }}"
   when: satellite_content_rhel_enable_rhel7
 
-- name: "Create a '{{ satellite_convert2rhel_key_centos8 }}' content view"
+- name: "Create content view '{{ satellite_convert2rhel_key_centos8 }}'"
   redhat.satellite.content_view:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
@@ -38,7 +38,7 @@
         product: '{{ satellite_convert2rhel_rhel8_product }}'
   when: satellite_content_rhel_enable_rhel8
 
-- name: "Publish a '{{ satellite_convert2rhel_key_centos8 }}' content view"
+- name: "Publish content view '{{ satellite_convert2rhel_key_centos8 }}'"
   redhat.satellite.content_view_version:
     username: "{{ satellite_username }}"
     password: "{{ satellite_password }}"
