@@ -42,7 +42,7 @@ redhat.satellite.repository module -- Manage Repositories
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.8.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.9.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -1711,7 +1711,7 @@ Examples
         organization: "Default Organization"
         url: "http://yum.theforeman.org/plugins/latest/el7/x86_64/"
         mirror_on_sync: true
-        download_policy: background
+        download_policy: immediate
 
     - name: "Create repository with content credentials"
       redhat.satellite.repository:
@@ -1724,7 +1724,7 @@ Examples
         product: "My Product"
         organization: "Default Organization"
         url: "http://yum.theforeman.org/releases/latest/el7/x86_64/"
-        download_policy: background
+        download_policy: on_demand
         mirror_on_sync: true
         gpg_key: RPM-GPG-KEY-my-product2
 

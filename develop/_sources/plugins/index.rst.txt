@@ -6,7 +6,7 @@
 Redhat.Satellite
 ================
 
-Collection version 3.8.0
+Collection version 3.9.0
 
 .. contents::
    :local:
@@ -19,6 +19,7 @@ Ansible Modules to manage Satellite installations
 
 **Authors:**
 
+* @lessfoobar <59063885+lessfoobar@users.noreply.github.com>
 * Adam Růžička <aruzicka@redhat.com>
 * AlanCoding <arominge@redhat.com>
 * Andrew Kofink <ajkofink@gmail.com>
@@ -76,7 +77,7 @@ Ansible Modules to manage Satellite installations
 * Ondřej Gajdušek <ogajduse@redhat.com>
 * Patrick C. F. Ernzer <pcfe@pcfe.net>
 * Patrick Creech <pcreech@redhat.com>
-* Paul Armstrong <parmstro@users.noreply.github.com>
+* Paul Armstrong <parmstro@redhat.com>
 * Paul Belanger <pabelanger@redhat.com>
 * Paul Gration <pmgration@gmail.com>
 * Peter Ondrejka <pondrejk@redhat.com>
@@ -148,6 +149,9 @@ Modules
 * :ref:`content_upload module <ansible_collections.redhat.satellite.content_upload_module>` -- Upload content to a repository
 * :ref:`content_view module <ansible_collections.redhat.satellite.content_view_module>` -- Manage Content Views
 * :ref:`content_view_filter module <ansible_collections.redhat.satellite.content_view_filter_module>` -- Manage Content View Filters
+* :ref:`content_view_filter_info module <ansible_collections.redhat.satellite.content_view_filter_info_module>` -- Fetch information about a Content View Filter
+* :ref:`content_view_filter_rule module <ansible_collections.redhat.satellite.content_view_filter_rule_module>` -- Manage content view filter rules
+* :ref:`content_view_filter_rule_info module <ansible_collections.redhat.satellite.content_view_filter_rule_info_module>` -- Fetch information about a Content View Filter Rule
 * :ref:`content_view_info module <ansible_collections.redhat.satellite.content_view_info_module>` -- Fetch information about Content Views
 * :ref:`content_view_version module <ansible_collections.redhat.satellite.content_view_version_module>` -- Manage Content View Versions
 * :ref:`content_view_version_info module <ansible_collections.redhat.satellite.content_view_version_info_module>` -- Fetch information about Content Views
@@ -163,6 +167,7 @@ Modules
 * :ref:`host_info module <ansible_collections.redhat.satellite.host_info_module>` -- Fetch information about Hosts
 * :ref:`host_power module <ansible_collections.redhat.satellite.host_power_module>` -- Manage Power State of Hosts
 * :ref:`hostgroup module <ansible_collections.redhat.satellite.hostgroup_module>` -- Manage Hostgroups
+* :ref:`hostgroup_info module <ansible_collections.redhat.satellite.hostgroup_info_module>` -- Get information about hostgroup(s)
 * :ref:`http_proxy module <ansible_collections.redhat.satellite.http_proxy_module>` -- Manage HTTP Proxies
 * :ref:`image module <ansible_collections.redhat.satellite.image_module>` -- Manage Images
 * :ref:`installation_medium module <ansible_collections.redhat.satellite.installation_medium_module>` -- Manage Installation Media
@@ -224,6 +229,9 @@ Modules
     content_upload_module
     content_view_module
     content_view_filter_module
+    content_view_filter_info_module
+    content_view_filter_rule_module
+    content_view_filter_rule_info_module
     content_view_info_module
     content_view_version_module
     content_view_version_info_module
@@ -239,6 +247,7 @@ Modules
     host_info_module
     host_power_module
     hostgroup_module
+    hostgroup_info_module
     http_proxy_module
     image_module
     installation_medium_module
