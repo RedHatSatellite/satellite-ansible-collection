@@ -6,6 +6,22 @@ redhat.satellite Release Notes
 
 This changelog describes changes after version 0.8.1.
 
+v3.9.0
+======
+
+Bugfixes
+--------
+
+- content_export_* - increase task timeout to 12h as export tasks can be time intensive (https://bugzilla.redhat.com/show_bug.cgi?id=2162678)
+
+New Modules
+-----------
+
+- redhat.satellite.content_view_filter_info - Fetch information about a Content View Filter
+- redhat.satellite.content_view_filter_rule - Manage content view filter rules
+- redhat.satellite.content_view_filter_rule_info - Fetch information about a Content View Filter Rule
+- redhat.satellite.hostgroup_info - Get information about hostgroup(s)
+
 v3.8.0
 ======
 
