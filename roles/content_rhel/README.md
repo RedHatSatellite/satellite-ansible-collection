@@ -58,7 +58,7 @@ This minimal example assumes the manifest has already been downloaded to ~/manif
         satellite_username: "admin"
         satellite_password: "changeme"
         satellite_organization: "ACME"
-        satellite_manifest_download: False
+        satellite_manifest_download: false
         satellite_manifest_path: "~/manifest.zip"
 ```
 
@@ -73,7 +73,7 @@ This example is identical to the above example, except instead of assuming the m
         satellite_username: "admin"
         satellite_password: "changeme"
         satellite_organization: "ACME"
-        satellite_manifest_download: True
+        satellite_manifest_download: true
         satellite_rhsm_username: "happycustomer"
         satellite_rhsm_password: "$ecur3p4$$w0rd"
         satellite_manifest_uuid: "01234567-89ab-cdef-0123-456789abcdef"
@@ -91,7 +91,7 @@ This example downloads a manifest with the provided UUID from the RHSM portal us
         satellite_username: "admin"
         satellite_password: "changeme"
         satellite_organization: "Default Organization"
-        satellite_manifest_download: True
+        satellite_manifest_download: true
         satellite_rhsm_username: "happycustomer"
         satellite_rhsm_password: "$ecur3p4$$w0rd"
         satellite_manifest_uuid: "01234567-89ab-cdef-0123-456789abcdef"
@@ -115,7 +115,7 @@ This example assumes the manifest has already been downloaded to ~/my_subscripti
         satellite_username: "admin"
         satellite_password: "changeme"
         satellite_organization: "ACME"
-        satellite_manifest_download: False
+        satellite_manifest_download: false
         satellite_manifest_path: "~/my_subscription_manifest.zip"
         satellite_content_rhel_enable_rhel8: false
         satellite_sync_plan_name: "RHEL Sync Plan"

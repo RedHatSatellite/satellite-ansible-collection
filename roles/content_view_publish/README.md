@@ -28,3 +28,38 @@ Example Playbook
           - RHEL 7 View
           - RHEL 8 View
 ```
+
+```yaml
+- hosts: localhost
+  roles:
+    - role: redhat.satellite.content_view_publish
+      vars:
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_organization: "Default Organization"
+        satellite_content_views:
+          - name: RHEL7
+            repositories:
+              - name: Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server
+                product: 'Red Hat Enterprise Linux Server'
+              - name: Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64
+                product: 'Red Hat Enterprise Linux Server'
+              - name: Red Hat Satellite Tools 6.8 (for RHEL 7 Server) (RPMs)
+                product: 'Red Hat Enterprise Linux Server'
+          - name: BearApp
+            repositories:
+              - name: MyApps
+                product: ACME
+            filters:
+              - name: "bear app"
+                filter_state: "present"
+                filter_type: "rpm"
+                rule_name: "bear"
+          - name: BearAppServer
+            components:
+              - content_view: RHEL7
+                latest: true
+              - content_view: BearApp
+                latest: true
+```
