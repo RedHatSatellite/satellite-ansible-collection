@@ -42,7 +42,7 @@ redhat.satellite.foreman callback -- Sends events to Foreman
 .. Collection note
 
 .. note::
-    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.9.0).
+    This callback plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.10.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this callback plugin,
@@ -97,7 +97,6 @@ The below requirements are needed on the local controller node that executes thi
 
 Parameters
 ----------
-
 
 .. rst-class:: ansible-option-table
 

@@ -6,7 +6,7 @@
 Redhat.Satellite
 ================
 
-Collection version 3.9.0
+Collection version 3.10.0
 
 .. contents::
    :local:
@@ -58,6 +58,7 @@ Ansible Modules to manage Satellite installations
 * Kenny Tordeurs <ktordeur@redhat.com>
 * Kirill Shirinkin <fodojyko@gmail.com>
 * Leos Stejskal <lstejska@redhat.com>
+* Lester Cheung <lcheung@threatmetrix.com>
 * Lester Claudio <claudiol@redhat.com>
 * Lucas Bickel <hairmare@rabe.ch>
 * Lukáš Zapletal <lzap+git@redhat.com>
@@ -88,6 +89,7 @@ Ansible Modules to manage Satellite installations
 * Samir Jha <sjha4@ncsu.edu>
 * Sean O'Keeffe <seanokeeffe797@gmail.com>
 * Sorin Sbarnea <sorin.sbarnea@gmail.com>
+* Steffen Frömer <knumskull@users.noreply.github.com>
 * Stoned Elipot <stoned.elipot@gmail.com>
 * TTherouanne <thomas@therouanne.com>
 * Thomas Mueller <thomas@chaschperli.ch>

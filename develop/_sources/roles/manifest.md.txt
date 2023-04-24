@@ -43,7 +43,7 @@ Download the Subscription Manifest from the Red Hat Customer Portal to localhost
         satellite_password: "changeme"
         satellite_organization: "Default Organization"
         satellite_manifest_path: "~/manifest.zip"
-        satellite_manifest_download: True
+        satellite_manifest_download: true
         satellite_rhsm_username: "happycustomer"
         satellite_rhsm_password: "$ecur3p4$$w0rd"
         satellite_manifest_uuid: "01234567-89ab-cdef-0123-456789abcdef"

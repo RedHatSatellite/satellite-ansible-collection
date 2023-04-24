@@ -42,7 +42,7 @@ redhat.satellite.cp_label filter -- Convert strings to Candlepin labels
 .. Collection note
 
 .. note::
-    This filter plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.9.0).
+    This filter plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.10.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
 
