@@ -49,6 +49,13 @@ options:
       - If the value is not specified in the task, the value of environment variable C(SATELLITE_VALIDATE_CERTS) will be used instead.
     default: true
     type: bool
+attributes:
+  check_mode:
+    description: Can run in check_mode and return changed status prediction without modifying the entity
+    support: full
+  diff_mode:
+    description: Will return details on what has changed (or possibly needs changing in check_mode), when in diff mode
+    support: full
 '''
 
     NESTED_PARAMETERS = '''
@@ -186,14 +193,14 @@ options:
     type: str
   architecture:
     description: Architecture name
-    required: False
+    required: false
     type: str
   medium:
     aliases: [ media ]
     description:
       - Medium name
       - Mutually exclusive with I(kickstart_repository).
-    required: False
+    required: false
     type: str
   pxe_loader:
     description: PXE Bootloader
@@ -217,7 +224,7 @@ options:
     type: str
   ptable:
     description: Partition table name
-    required: False
+    required: false
     type: str
   environment:
     description: Puppet environment name
@@ -326,7 +333,7 @@ options:
       - Operating systems are looked up by their title which is composed as "<name> <major>.<minor>".
       - You can omit the version part as long as you only have one operating system by that name.
     type: str
-    required: False
+    required: false
 '''
 
     INFOMODULE = '''

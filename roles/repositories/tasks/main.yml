@@ -90,3 +90,4 @@
   with_subelements:
     - "{{ satellite_products | selectattr('repositories', 'defined') | list }}"
     - repositories
+  no_log: "{{ item.1.upstream_password is defined }}"

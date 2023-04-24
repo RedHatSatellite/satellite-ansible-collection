@@ -72,7 +72,7 @@ EXAMPLES = '''
 - name: Create a user group
   redhat.satellite.usergroup:
     name: test
-    admin: no
+    admin: false
     roles:
       - Manager
     users:
