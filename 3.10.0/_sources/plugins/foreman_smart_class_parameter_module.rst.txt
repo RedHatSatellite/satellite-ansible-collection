@@ -1,0 +1,23 @@
+
+.. Document meta
+
+:orphan:
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_smart_class_parameter_module:
+
+.. Title
+
+redhat.satellite.foreman_smart_class_parameter module
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.10.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_smart_class_parameter`.
+
+- This is a redirect to the :ref:`redhat.satellite.smart_class_parameter module <ansible_collections.redhat.satellite.smart_class_parameter_module>`.
+- This redirect does **not** work with Ansible 2.9.
