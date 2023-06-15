@@ -5,6 +5,10 @@ on:
     branches-ignore:
       - '**'
 
+concurrency:
+  group: ${{ github.ref_name }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   release:
     runs-on: ubuntu-latest

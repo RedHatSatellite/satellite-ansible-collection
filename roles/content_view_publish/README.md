@@ -10,10 +10,12 @@ This role supports the [Common Role Variables](https://github.com/theforeman/for
 
 ### Required
 
-- `satellite_content_views`: List of content views to publish
+- `satellite_content_views`: List of Content Views to publish. It can be either a list of Content View names or a list of dictionaries with the parameters as accepted by the `content_view_version` module or the `content_views` role.
 
 Example Playbook
 ----------------
+
+### List of Content View names
 
 ```yaml
 - hosts: localhost
@@ -28,6 +30,26 @@ Example Playbook
           - RHEL 7 View
           - RHEL 8 View
 ```
+
+### List of dictionaries as accepted by the `content_view_version` module
+
+```yaml
+- hosts: localhost
+  roles:
+    - role: redhat.satellite.content_view_publish
+      vars:
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_organization: "Default Organization"
+        satellite_content_views:
+          - content_view: RHEL 7 View
+            description: "daily publish of RHEL 7 View"
+          - content_view: RHEL 8 View
+            description: "daily publish of RHEL 8 View"
+```
+
+### List of dictionaries as accepted by the `content_views` role
 
 ```yaml
 - hosts: localhost

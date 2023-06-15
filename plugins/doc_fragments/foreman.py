@@ -256,7 +256,7 @@ options:
     type: str
   content_source:
     description:
-      - Content source.
+      - Content Source (Smart Proxy with Content) name.
       - Only available for Katello installations.
     required: false
     type: str
@@ -385,4 +385,33 @@ options:
 options:
   organization:
     required: true
+'''
+
+    KATELLOEXPORT = '''
+options:
+  chunk_size_gb:
+    description:
+      - Split the exported content into archives no greater than the specified size in gigabytes.
+    required: false
+    type: int
+  format:
+    description:
+      - Export format.
+      - Choose C(syncable) if the exported content needs to be in a yum format.
+    required: false
+    type: str
+    choices:
+      - syncable
+      - importable
+    version_added: 3.10.0
+  incremental:
+    description:
+      - Export only the content that has changed since the last export.
+    required: false
+    type: bool
+  from_history_id:
+    description:
+      - Export history identifier used for incremental export. If not provided the most recent export history will be used.
+    required: false
+    type: int
 '''

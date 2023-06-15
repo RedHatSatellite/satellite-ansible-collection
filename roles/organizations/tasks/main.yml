@@ -9,6 +9,8 @@
     password: "{{ satellite_password | default(omit) }}"
     validate_certs: "{{ satellite_validate_certs | default(omit) }}"
     state: "{{ satellite_organizations_item.state | default(omit) }}"
+    ignore_types: "{{ satellite_organizations_item.ignore_types | default(omit) }}"
+    parameters: "{{ satellite_organizations_item.parameters | default(omit) }}"
   loop: "{{ satellite_organizations | default([]) }}"
   loop_control:
     loop_var: satellite_organizations_item

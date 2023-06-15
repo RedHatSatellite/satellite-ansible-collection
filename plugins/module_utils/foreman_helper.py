@@ -775,7 +775,8 @@ class ForemanAnsibleModule(AnsibleModule):
 
         # workaround for https://projects.theforeman.org/issues/31874
         if compute_resource['provider'].lower() == 'vmware':
-            cluster['_api_identifier'] = cluster['name']
+            path_or_name = cluster.get('full_path', cluster['name'])
+            cluster['_api_identifier'] = path_or_name
         else:
             cluster['_api_identifier'] = cluster['id']
 
@@ -799,11 +800,18 @@ class ForemanAnsibleModule(AnsibleModule):
 
         additional_params = {'id': compute_resource['id']}
         if cluster is not None:
-            additional_params['cluster_id'] = cluster['_api_identifier']
+            # apypie will quote the params for us, but we need to do it twice for the cluster_id
+            # see https://projects.theforeman.org/issues/35438
+            # and https://github.com/theforeman/hammer-cli-foreman/pull/604
+            # and https://github.com/theforeman/foreman/pull/9383
+            # and https://httpd.apache.org/docs/current/mod/core.html#allowencodedslashes
+            additional_params['cluster_id'] = six.moves.urllib.parse.quote(cluster['_api_identifier'], safe='')
         api_name = 'available_{0}'.format(part_name)
         available_parts = self.resource_action('compute_resources', api_name, params=additional_params,
                                                ignore_check_mode=True, record_change=False)['results']
-        part = next((part for part in available_parts if str(part['name']) == str(name) or str(part['id']) == str(name)), None)
+        part = next((part for part in available_parts
+                     if str(part['name']) == str(name) or str(part['id']) == str(name) or part.get('full_path') == str(name)),
+                    None)
         if part is None:
             err_msg = "Could not find {0} '{1}' on compute resource '{2}'.".format(part_name, name, compute_resource.get('name'))
             self.fail_json(msg=err_msg)
@@ -1530,6 +1538,43 @@ class KatelloEntityAnsibleModule(KatelloScopedMixin, ForemanEntityAnsibleModule)
     pass
 
 
+class KatelloContentExportBaseModule(KatelloAnsibleModule):
+
+    def __init__(self, **kwargs):
+        foreman_spec = dict(
+            chunk_size_gb=dict(required=False, type='int'),
+            format=dict(required=False, type='str', choices=['syncable', 'importable']),
+            from_history_id=dict(required=False, type='int'),
+        )
+        argument_spec = dict(
+            incremental=dict(required=False, type='bool'),
+        )
+
+        foreman_spec.update(kwargs.pop('foreman_spec', {}))
+        argument_spec.update(kwargs.pop('argument_spec', {}))
+
+        self.export_action = kwargs.pop('export_action')
+
+        super(KatelloContentExportBaseModule, self).__init__(foreman_spec=foreman_spec, argument_spec=argument_spec, **kwargs)
+
+        # needs to happen after super().__init__()
+        self.task_timeout = 12 * 60 * 60
+
+    def run(self, **kwargs):
+        incremental = self.params['incremental']
+        endpoint = 'content_export_incrementals' if incremental else 'content_exports'
+
+        if self.params.get('from_history_id') and incremental is not True:
+            self.fail_json(msg='from_history_id is only valid for incremental exports')
+
+        self.auto_lookup_entities()
+
+        payload = _flatten_entity(self.foreman_params, self.foreman_spec)
+        task = self.resource_action(endpoint, self.export_action, payload)
+
+        self.exit_json(task=task)
+
+
 def _foreman_spec_helper(spec):
     """Extend an entity spec by adding entries for all flat_names.
     Extract Ansible compatible argument_spec on the way.
@@ -1843,6 +1888,7 @@ interfaces_spec = dict(
     managed=dict(type='bool'),
     primary=dict(type='bool'),
     provision=dict(type='bool'),
+    execution=dict(type='bool'),
     username=dict(),
     password=dict(no_log=True),
     provider=dict(choices=['IPMI', 'Redfish', 'SSH']),

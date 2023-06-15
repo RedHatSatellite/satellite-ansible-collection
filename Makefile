@@ -8,8 +8,9 @@ ROLES := $(wildcard roles/*)
 PLUGIN_TYPES := $(filter-out __%,$(notdir $(wildcard plugins/*)))
 RUNTIME_YML := meta/runtime.yml
 METADATA := galaxy.yml LICENSE README.md $(RUNTIME_YML) requirements.txt changelogs/changelog.yaml CHANGELOG.rst bindep.txt PSF-license.txt meta/execution-environment.yml
+TESTDATA := Makefile pytest.ini $(shell find tests/ ! -type d ! -path '*/__pycache__/*' ! -path '*/test_playbooks/fixtures/*' ! -path '*/fixtures/apidoc/*')
 $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__init__.py,$(wildcard plugins/$(PLUGIN_TYPE)/*.py)) $(wildcard plugins/$(PLUGIN_TYPE)/*.yml)))
-DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md)
+DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md) $(TESTDATA)
 
 PYTHON_VERSION = $(shell $(PYTHON_COMMAND) -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
 ANSIBLE_SUPPORTS_REDIRECTS = $(shell ansible --version | grep -q 'ansible 2.9' && echo 0 || echo 1)
@@ -19,7 +20,7 @@ TEST =
 FLAGS =
 PYTEST = pytest -n 4 --forked -vv
 
-APIPIE_VERSION ?= v0.3.2
+APIPIE_VERSION ?= v0.4.0
 
 default: help
 help:
@@ -40,12 +41,12 @@ help:
 
 info:
 	@echo "Building collection $(NAMESPACE)-$(NAME)-$(VERSION)"
-	@echo "  roles:\n $(foreach ROLE,$(notdir $(ROLES)),   - $(ROLE)\n)"
-	@echo " $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES), $(PLUGIN_TYPE):\n $(foreach PLUGIN,$(basename $(notdir $(_$(PLUGIN_TYPE)))),   - $(PLUGIN)\n)\n)"
+	@echo -e "  roles:\n $(foreach ROLE,$(notdir $(ROLES)),   - $(ROLE)\n)"
+	@echo -e " $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES), $(PLUGIN_TYPE):\n $(foreach PLUGIN,$(basename $(notdir $(_$(PLUGIN_TYPE)))),   - $(PLUGIN)\n)\n)"
 
 lint: $(MANIFEST) $(RUNTIME_YML) | tests/test_playbooks/vars/server.yml
 	yamllint -f parsable tests/test_playbooks roles
-	ansible-lint -v roles/*
+	ansible-lint -v --offline roles/*
 	ansible-playbook --syntax-check tests/test_playbooks/*.yml | grep -v '^$$'
 	flake8 --ignore=E402,W503 --max-line-length=160 plugins/ tests/
 	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
@@ -87,7 +88,7 @@ clean_%: FORCE $(MANIFEST)
 setup: test-setup
 
 test-setup: | tests/test_playbooks/vars/server.yml
-	pip install --upgrade pip
+	pip install --upgrade --force-reinstall 'pip<23.1'
 	pip install --upgrade -r requirements-dev.txt
 
 tests/test_playbooks/vars/server.yml:
@@ -107,6 +108,9 @@ $(MANIFEST): $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 
 build/src/%: %
 	install -m 644 -DT $< $@
+
+build/src/tests/test_%.py: FORCE
+	install -m 644 -DT tests/test_$*.py $@
 
 $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz: $(addprefix build/src/,$(DEPENDENCIES))
 	ansible-galaxy collection build build/src --force

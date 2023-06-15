@@ -39,34 +39,10 @@ options:
       - Name of the product that the repository belongs to.
     required: true
     type: str
-  chunk_size_gb:
-    description:
-      - Split the exported content into archives no greater than the specified size in gigabytes.
-    required: false
-    type: int
-  format:
-    description:
-      - Export format.
-      - Choose C(syncable) if the exported content needs to be in a yum format.
-    required: false
-    type: str
-    choices:
-      - syncable
-      - importable
-    version_added: 3.10.0
-  incremental:
-    description:
-      - Export only the content that has changed since the last export.
-    required: false
-    type: bool
-  from_history_id:
-    description:
-      - Export history identifier used for incremental export. If not provided the most recent export history will be used.
-    required: false
-    type: int
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.organization
+  - redhat.satellite.foreman.katelloexport
 '''
 
 EXAMPLES = '''
@@ -111,10 +87,10 @@ EXAMPLES = '''
     from_history_id: 12345
 '''
 
-from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule, _flatten_entity
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import KatelloContentExportBaseModule
 
 
-class KatelloContentExportModule(KatelloAnsibleModule):
+class KatelloContentExportModule(KatelloContentExportBaseModule):
     pass
 
 
@@ -123,30 +99,12 @@ def main():
         foreman_spec=dict(
             repository=dict(type='entity', flat_name='id', scope=['product'], required=True),
             product=dict(type='entity', scope=['organization'], required=True),
-            chunk_size_gb=dict(required=False, type='int'),
-            format=dict(required=False, type='str', choices=['syncable', 'importable']),
-            from_history_id=dict(required=False, type='int'),
         ),
-        argument_spec=dict(
-            incremental=dict(required=False, type='bool'),
-        ),
+        export_action='repository',
     )
 
-    module.task_timeout = 12 * 60 * 60
-
     with module.api_connection():
-        module.auto_lookup_entities()
-
-        incremental = module.params['incremental']
-        endpoint = 'content_export_incrementals' if incremental else 'content_exports'
-
-        if module.params.get('from_history_id') and incremental is not True:
-            module.fail_json(msg='from_history_id is only valid for incremental exports')
-
-        payload = _flatten_entity(module.foreman_params, module.foreman_spec)
-        task = module.resource_action(endpoint, 'repository', payload)
-
-        module.exit_json(task=task)
+        module.run()
 
 
 if __name__ == '__main__':
