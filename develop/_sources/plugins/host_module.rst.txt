@@ -42,7 +42,7 @@ redhat.satellite.host module -- Manage Hosts
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.10.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.11.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -419,7 +419,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Content source.
+      Content Source (Smart Proxy with Content) name.
 
       Only available for Katello installations.
 
@@ -863,6 +863,50 @@ Parameters
       Domain name
 
       Required for primary interfaces on managed hosts.
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-indent"></div><div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-interfaces_attributes/execution"></div>
+
+      .. _ansible_collections.redhat.satellite.host_module__parameter-interfaces_attributes/execution:
+
+      .. rst-class:: ansible-option-title
+
+      **execution**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-interfaces_attributes/execution" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`boolean`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-indent-desc"></div><div class="ansible-option-cell">
+
+      Should this interface be used for Remote Execution?
+
+      Each managed hosts should have one remote execution interface.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
 
       .. raw:: html

@@ -12,6 +12,8 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
@@ -102,7 +104,7 @@
 <h1>redhat.satellite.foreman inventory – Foreman inventory source<a class="headerlink" href="#redhat-satellite-foreman-inventory-foreman-inventory-source" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This inventory plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.10.0).</p>
+<p>This inventory plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.11.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
 You need further requirements to be able to use this inventory plugin,
 see <a class="reference internal" href="#ansible-collections-redhat-satellite-foreman-inventory-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
@@ -165,7 +167,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-fo
 </pre></div>
 </div>
 </li>
-<li><p>Environment variable: <span class="target" id="index-0"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-0"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE</span></code></a></p></li>
 </ul>
 </div></td>
 </tr>
@@ -186,8 +188,8 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-fo
 </pre></div>
 </div>
 </li>
-<li><p>Environment variable: <span class="target" id="index-1"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN_CONNECTION" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN_CONNECTION</span></code></a></p></li>
-<li><p>Environment variable: <span class="target" id="index-2"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_CONNECTION" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_CONNECTION</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-1"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN_CONNECTION" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN_CONNECTION</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-2"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_CONNECTION" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_CONNECTION</span></code></a></p></li>
 </ul>
 </div></td>
 </tr>
@@ -209,8 +211,8 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-fo
 </pre></div>
 </div>
 </li>
-<li><p>Environment variable: <span class="target" id="index-3"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN</span></code></a></p></li>
-<li><p>Environment variable: <span class="target" id="index-4"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_PLUGIN" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_PLUGIN</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-3"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-4"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_PLUGIN" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_PLUGIN</span></code></a></p></li>
 </ul>
 </div></td>
 </tr>
@@ -239,8 +241,8 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-fo
 </pre></div>
 </div>
 </li>
-<li><p>Environment variable: <span class="target" id="index-5"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN_PREFIX" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN_PREFIX</span></code></a></p></li>
-<li><p>Environment variable: <span class="target" id="index-6"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_PLUGIN_PREFIX" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_PLUGIN_PREFIX</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-5"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN_PREFIX" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN_PREFIX</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-6"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_PLUGIN_PREFIX" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_PLUGIN_PREFIX</span></code></a></p></li>
 </ul>
 </div></td>
 </tr>
@@ -262,8 +264,8 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-fo
 </pre></div>
 </div>
 </li>
-<li><p>Environment variable: <span class="target" id="index-7"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN_TIMEOUT" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN_TIMEOUT</span></code></a></p></li>
-<li><p>Environment variable: <span class="target" id="index-8"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_TIMEOUT" title="(in Ansible v7)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_TIMEOUT</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-7"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_CACHE_PLUGIN_TIMEOUT" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_CACHE_PLUGIN_TIMEOUT</span></code></a></p></li>
+<li><p>Environment variable: <span class="target" id="index-8"></span><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_INVENTORY_CACHE_TIMEOUT" title="(in Ansible v8)"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSIBLE_INVENTORY_CACHE_TIMEOUT</span></code></a></p></li>
 </ul>
 </div></td>
 </tr>

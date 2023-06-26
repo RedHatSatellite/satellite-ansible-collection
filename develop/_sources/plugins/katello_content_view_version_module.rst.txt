@@ -15,7 +15,7 @@ redhat.satellite.katello_content_view_version module
 .. Collection note
 
 .. note::
-    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.10.0).
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.11.0).
 
     To use it in a playbook, specify: :code:`redhat.satellite.katello_content_view_version`.
 
