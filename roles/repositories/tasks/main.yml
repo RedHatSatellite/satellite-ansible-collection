@@ -43,7 +43,7 @@
     gpg_key: "{{ item.gpg_key | default(omit) }}"
     state: present
   with_items:
-    - "{{ satellite_products | selectattr('repositories', 'defined') | list }}"
+    - "{{ satellite_products | selectattr('repositories', 'defined') | map('combine', {'repositories': '[FILTERED]'}) | list }}"
 
 - name: 'Create Repositories'   # noqa: args[module]
   redhat.satellite.repository:
