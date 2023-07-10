@@ -1,0 +1,23 @@
+
+.. Document meta
+
+:orphan:
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_templates_import_module:
+
+.. Title
+
+redhat.satellite.foreman_templates_import module
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.11.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_templates_import`.
+
+- This is a redirect to the :ansplugin:`redhat.satellite.templates_import module <redhat.satellite.templates_import#module>`.
+- This redirect does **not** work with Ansible 2.9.
