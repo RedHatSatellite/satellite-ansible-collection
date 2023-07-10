@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
@@ -17,21 +17,21 @@
 
 - hosts: tests
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml
   roles:
     - role: locations
       vars:
-        foreman_locations:
+        satellite_locations:
           - name: "Test Location 1"
           - name: "Test Location 2"
             description: "2nd location"
 
 - hosts: localhost
   collections:
-    - theforeman.foreman
+    - redhat.satellite
   gather_facts: false
   vars_files:
     - vars/server.yml

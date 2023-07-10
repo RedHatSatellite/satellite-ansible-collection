@@ -1,14 +1,14 @@
-theforeman.foreman.locations
+redhat.satellite.locations
 ===================================
 
-This role creates and manages Foreman locations.
+This role creates and manages locations.
 
 Role Variables
 --------------
 
 This role supports the [Common Role Variables](https://github.com/theforeman/foreman-ansible-modules/blob/develop/README.md#common-role-variables).
 
-The main data structure for this role is the list of `foreman_locations`. Each `location` requires the following fields:
+The main data structure for this role is the list of `satellite_locations`. Each `location` requires the following fields:
 
 - `name`: The name of the location.
 
@@ -22,12 +22,12 @@ Create the 'UK' location and set its parent to EMEA.
 ```yaml
 - hosts: localhost
   roles:
-    - role: theforeman.foreman.locations
+    - role: redhat.satellite.locations
       vars:
-        foreman_server_url: https://foreman.example.com
-        foreman_username: "admin"
-        foreman_password: "changeme"
-        foreman_locations:
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_locations:
           - name: UK
             organisations: 
               - RedHat
