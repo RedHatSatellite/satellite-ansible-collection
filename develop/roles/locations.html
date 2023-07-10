@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>redhat.satellite.katello_content_view module &mdash; Red Hat Satellite Ansible Collection  documentation</title>
+  <title>redhat.satellite.locations &mdash; Red Hat Satellite Ansible Collection  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/antsibull-minimal.css" type="text/css" />
@@ -44,8 +44,8 @@
               <p class="caption" role="heading"><span class="caption-text">User documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Red Hat Satellite Ansible Collection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Redhat.Satellite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../roles/index.html">Role Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Redhat.Satellite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Role Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cvmanager.html">Migrating from <code class="docutils literal notranslate"><span class="pre">cvmanager</span></code> to Red Hat Satellite Ansible Collection</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer documentation</span></p>
@@ -74,9 +74,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">redhat.satellite.katello_content_view module</li>
+      <li class="breadcrumb-item active">redhat.satellite.locations</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/plugins/katello_content_view_module.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/roles/locations.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -84,17 +84,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-redhat-satellite-katello-content-view-module"></span><section id="redhat-satellite-katello-content-view-module">
-<h1>redhat.satellite.katello_content_view module<a class="headerlink" href="#redhat-satellite-katello-content-view-module" title="Permalink to this heading"></a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This redirect is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.12.0).</p>
-<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.katello_content_view</span></code>.</p>
-</div>
+  <section id="redhat-satellite-locations">
+<h1>redhat.satellite.locations<a class="headerlink" href="#redhat-satellite-locations" title="Permalink to this heading"></a></h1>
+<p>This role creates and manages locations.</p>
+<section id="role-variables">
+<h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this heading"></a></h2>
+<p>This role supports the <a class="reference external" href="https://github.com/theforeman/foreman-ansible-modules/blob/develop/README.md#common-role-variables">Common Role Variables</a>.</p>
+<p>The main data structure for this role is the list of <code class="docutils literal notranslate"><span class="pre">satellite_locations</span></code>. Each <code class="docutils literal notranslate"><span class="pre">location</span></code> requires the following fields:</p>
 <ul class="simple">
-<li><p>This is a redirect to the <a class="reference internal" href="content_view_module.html#ansible-collections-redhat-satellite-content-view-module"><span class="std std-ref">redhat.satellite.content_view module</span></a>.</p></li>
-<li><p>This redirect does <strong>not</strong> work with Ansible 2.9.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: The name of the location.</p></li>
 </ul>
+<p>For all other fields, see the <code class="docutils literal notranslate"><span class="pre">location</span></code> module.</p>
+</section>
+<section id="example-playbook">
+<h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Permalink to this heading"></a></h2>
+<p>Create the ‘UK’ location and set its parent to EMEA.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat.satellite.locations</span>
+<span class="w">      </span><span class="nt">vars</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">satellite_server_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://satellite.example.com</span>
+<span class="w">        </span><span class="nt">satellite_username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
+<span class="w">        </span><span class="nt">satellite_password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;changeme&quot;</span>
+<span class="w">        </span><span class="nt">satellite_locations</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UK</span>
+<span class="w">            </span><span class="nt">organisations</span><span class="p">:</span><span class="w"> </span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RedHat</span>
+<span class="w">            </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EMEA</span>
+<span class="w">            </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system_location</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UK</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

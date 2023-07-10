@@ -178,7 +178,7 @@
 <h1>redhat.satellite.job_template module – Manage Job Templates<a class="headerlink" href="#redhat-satellite-job-template-module-manage-job-templates" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.11.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.12.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
 You need further requirements to be able to use this module,
 see <a class="reference internal" href="#ansible-collections-redhat-satellite-job-template-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
@@ -200,6 +200,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-jo
 <ul class="simple">
 <li><p>Manage Remote Execution Job Templates</p></li>
 </ul>
+<p>Aliases: foreman_job_template</p>
 </section>
 <section id="requirements">
 <span id="ansible-collections-redhat-satellite-job-template-module-requirements"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
@@ -615,8 +616,8 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-jo
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SKARO</span>
 <span class="w">    </span><span class="nt">organizations</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DALEK INC</span>
-<span class="w">    </span><span class="nt">with_fileglob</span><span class="p">:</span>
-<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./arsenal_templates/*.erb&quot;</span>
+<span class="w">  </span><span class="nt">with_fileglob</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./arsenal_templates/*.erb&quot;</span>
 
 <span class="c1"># If the templates are stored locally and the ansible module is executed on a remote host</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure latest version of all your Job Templates</span>
@@ -626,6 +627,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-jo
 <span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;changeme&quot;</span>
 <span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
 <span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">lookup</span><span class="o">(</span><span class="s2">&quot;file&quot;</span><span class="o">,</span> <span class="nv">item.src</span><span class="o">)</span> <span class="cp">}}</span><span class="s">&#39;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.path</span> <span class="cp">}}</span><span class="s">&#39;</span>
 <span class="w">  </span><span class="nt">with_filetree</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/path/to/job/templates&#39;</span>
 <span class="w">  </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">item.state == &#39;file&#39;</span>
 

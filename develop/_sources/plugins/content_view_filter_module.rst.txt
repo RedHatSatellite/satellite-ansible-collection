@@ -30,10 +30,6 @@
 
 .. Anchors: short name for ansible.builtin
 
-.. Anchors: aliases
-
-
-
 .. Title
 
 redhat.satellite.content_view_filter module -- Manage Content View Filters
@@ -42,7 +38,7 @@ redhat.satellite.content_view_filter module -- Manage Content View Filters
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.11.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.12.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -73,6 +69,7 @@ Synopsis
 
 .. Aliases
 
+Aliases: katello_content_view_filter
 
 .. Requirements
 
@@ -399,6 +396,7 @@ Parameters
       - :ansible-option-choices-entry:`"erratum"`
       - :ansible-option-choices-entry:`"docker"`
       - :ansible-option-choices-entry:`"modulemd"`
+      - :ansible-option-choices-entry:`"deb"`
 
 
       .. raw:: html

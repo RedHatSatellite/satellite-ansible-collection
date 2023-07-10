@@ -30,10 +30,6 @@
 
 .. Anchors: short name for ansible.builtin
 
-.. Anchors: aliases
-
-
-
 .. Title
 
 redhat.satellite.cp_label filter -- Convert strings to Candlepin labels
@@ -42,7 +38,7 @@ redhat.satellite.cp_label filter -- Convert strings to Candlepin labels
 .. Collection note
 
 .. note::
-    This filter plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.11.0).
+    This filter plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.12.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
 

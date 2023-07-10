@@ -30,10 +30,6 @@
 
 .. Anchors: short name for ansible.builtin
 
-.. Anchors: aliases
-
-
-
 .. Title
 
 redhat.satellite.realm module -- Manage Realms
@@ -42,7 +38,7 @@ redhat.satellite.realm module -- Manage Realms
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.11.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.12.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -73,6 +69,7 @@ Synopsis
 
 .. Aliases
 
+Aliases: foreman_realm
 
 .. Requirements
 

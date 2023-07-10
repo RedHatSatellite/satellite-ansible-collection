@@ -15,9 +15,9 @@ redhat.satellite.katello_activation_key module
 .. Collection note
 
 .. note::
-    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.11.0).
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.12.0).
 
     To use it in a playbook, specify: :code:`redhat.satellite.katello_activation_key`.
 
-- This is a redirect to the :ref:`redhat.satellite.activation_key module <ansible_collections.redhat.satellite.activation_key_module>`.
+- This is a redirect to the :ansplugin:`redhat.satellite.activation_key module <redhat.satellite.activation_key#module>`.
 - This redirect does **not** work with Ansible 2.9.
