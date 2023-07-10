@@ -14,13 +14,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    container: ${{ matrix.container }}
     strategy:
       fail-fast: false
       matrix:
         python:
-          - "3.9"
+          - "3.10"
         ansible:
-          - stable-2.11
           - stable-2.12
           - stable-2.13
           - stable-2.14
@@ -33,14 +33,15 @@ jobs:
             ansible: "stable-2.10"
           - python: "2.7"
             ansible: "stable-2.11"
+            container: "python:2.7"
           - python: "3.5"
             ansible: "stable-2.11"
           - python: "3.6"
             ansible: "stable-2.11"
           - python: "3.7"
             ansible: "stable-2.11"
-          - python: "3.10"
-            ansible: "devel"
+          - python: "3.9"
+            ansible: "stable-2.11"
           - python: "3.11"
             ansible: "devel"
     steps:
@@ -51,8 +52,13 @@ jobs:
           python-version: ${{ matrix.python }}
           cache: 'pip'
           cache-dependency-path: '**/requirements*.txt'
-      - name: Install libyaml-dev for PyYAML
-        run: sudo apt-get install -y libyaml-dev
+        if: matrix.container == null
+      - name: Install sudo
+        run: apt-get update && apt-get install -y sudo
+        if: matrix.container != null
+      - name: Install system dependencies
+        # libyaml-dev for PyYAML, rpm for py-rpm-installer
+        run: sudo apt-get install -y libyaml-dev rpm
       - name: Install Ansible
         run: pip install --upgrade https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz
       - name: Install dependencies
@@ -69,7 +75,7 @@ jobs:
       - name: Run dist tests
         run: make dist-test
       - name: Run sanity tests
-        run: make SANITY_OPTS="--local" sanity
+        run: make SANITY_OPTS="--docker" sanity
         if: matrix.ansible != 'stable-2.9' && matrix.ansible != 'stable-2.10' && matrix.ansible != 'stable-2.11'
 
   checkmode:
@@ -79,7 +85,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: 'pip'
           cache-dependency-path: '**/requirements*.txt'
       - name: Install Ansible
@@ -98,7 +104,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: 'pip'
           cache-dependency-path: '**/requirements*.txt'
       - name: Install dependencies
@@ -120,7 +126,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: 'pip'
           cache-dependency-path: '**/requirements*.txt'
       - name: Install dependencies
@@ -142,7 +148,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: 'pip'
           cache-dependency-path: '**/requirements*.txt'
       - name: Install dependencies

@@ -243,8 +243,8 @@ EXAMPLES = '''
     - SKARO
     organizations:
     - DALEK INC
-    with_fileglob:
-     - "./arsenal_templates/*.erb"
+  with_fileglob:
+    - "./arsenal_templates/*.erb"
 
 # If the templates are stored locally and the ansible module is executed on a remote host
 - name: Ensure latest version of all your Job Templates
@@ -254,6 +254,7 @@ EXAMPLES = '''
     password: "changeme"
     state: present
     template: '{{ lookup("file", item.src) }}'
+    name: '{{ item.path }}'
   with_filetree: '/path/to/job/templates'
   when: item.state == 'file'
 
