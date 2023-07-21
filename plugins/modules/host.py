@@ -34,6 +34,12 @@ options:
       - Fully Qualified Domain Name of host
     required: true
     type: str
+  allow_short_name:
+    description:
+      - If present and true, bypass the FQDN check on name parameter.
+      - Workaround for https://access.redhat.com/solutions/6279971
+    required: false
+    type: bool
   hostgroup:
     description:
       - Title of related hostgroup
