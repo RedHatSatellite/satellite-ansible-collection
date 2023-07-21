@@ -435,6 +435,9 @@ class ForemanHostModule(HostMixin, ForemanEntityAnsibleModule):
 
 def main():
     module = ForemanHostModule(
+        argument_spec=dict(
+            allow_short_name=dict(type='bool')
+        ),
         foreman_spec=dict(
             name=dict(required=True),
             hostgroup=dict(type='entity'),
@@ -463,8 +466,9 @@ def main():
     )
 
     # additional param validation
-    if '.' not in module.foreman_params['name']:
-        module.fail_json(msg="The hostname must be FQDN")
+    if not ('allow_short_name' in module.foreman_params and module.foreman_params['allow_short_name']):
+        if '.' not in module.foreman_params['name']:
+            module.fail_json(msg="The hostname must be FQDN")
 
     if not module.desired_absent:
         if 'build' in module.foreman_params and module.foreman_params['build']:
