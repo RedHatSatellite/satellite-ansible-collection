@@ -1,0 +1,37 @@
+---
+- name: "Search for previously created task"
+  resource_info:
+    username: "{{ foreman_username }}"
+    password: "{{ foreman_password }}"
+    server_url: "{{ foreman_server_url }}"
+    validate_certs: "{{ foreman_validate_certs }}"
+    resource: foreman_tasks
+    search: "(label = Actions::Katello::Product::Destroy and action ~ 'Test Product' and state = running)"
+  register: tasks
+- assert:
+    fail_msg: "Verification that tasks are runing"
+    that: tasks.resources | length > 0
+
+- name: wait for the task to finish
+  wait_for_task:
+    username: "{{ foreman_username }}"
+    password: "{{ foreman_password }}"
+    server_url: "{{ foreman_server_url }}"
+    validate_certs: "{{ foreman_validate_certs }}"
+    task: "{{ item }}"
+    timeout: 900
+  loop: "{{ tasks.resources | map(attribute='id') | list }}"
+
+- name: "Search for previously created task"
+  resource_info:
+    username: "{{ foreman_username }}"
+    password: "{{ foreman_password }}"
+    server_url: "{{ foreman_server_url }}"
+    validate_certs: "{{ foreman_validate_certs }}"
+    resource: foreman_tasks
+    search: "(label = Actions::Katello::Product::Destroy and action ~ 'Test Product' and state = running)"
+  register: tasks
+- assert:
+    fail_msg: "Verification that no task is runing anymore"
+    that: tasks.resources | length == 0
+...
