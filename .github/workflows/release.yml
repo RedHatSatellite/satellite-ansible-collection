@@ -2,8 +2,8 @@ name: release
 
 on:
   push:
-    branches-ignore:
-      - '**'
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 concurrency:
   group: ${{ github.ref_name }}-${{ github.workflow }}
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'RedHatSatellite/satellite-ansible-collection'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -23,5 +23,7 @@ jobs:
         run: pip install --upgrade ansible py
       - name: Build Ansible Collection
         run: make dist
-      - name: Deploy Ansible Collection
-        run: make publish GALAXY_API_KEY=${{ secrets.GALAXY_API_KEY }}
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: redhat-satellite-*.tar.gz
