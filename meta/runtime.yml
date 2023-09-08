@@ -65,6 +65,7 @@ action_groups:
   - setting
   - setting_info
   - smart_class_parameter
+  - smart_class_parameter_override_value
   - smart_proxy
   - status_info
   - subnet
@@ -182,4 +183,4 @@ plugin_routing:
       redirect: redhat.satellite.sync_plan
     katello_upload:
       redirect: redhat.satellite.content_upload
-requires_ansible: '>=2.9'
+requires_ansible: '>=2.9.17'
