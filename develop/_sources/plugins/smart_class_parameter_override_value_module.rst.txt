@@ -26,14 +26,14 @@
 
 .. Anchors
 
-.. _ansible_collections.redhat.satellite.subnet_info_module:
+.. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module:
 
 .. Anchors: short name for ansible.builtin
 
 .. Title
 
-redhat.satellite.subnet_info module -- Fetch information about Subnets
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.smart_class_parameter_override_value module -- Manage Smart Class Parameter Override Values
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
@@ -42,15 +42,15 @@ redhat.satellite.subnet_info module -- Fetch information about Subnets
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
-    see :ref:`Requirements <ansible_collections.redhat.satellite.subnet_info_module_requirements>` for details.
+    see :ref:`Requirements <ansible_collections.redhat.satellite.smart_class_parameter_override_value_module_requirements>` for details.
 
-    To use it in a playbook, specify: :code:`redhat.satellite.subnet_info`.
+    To use it in a playbook, specify: :code:`redhat.satellite.smart_class_parameter_override_value`.
 
 .. version_added
 
 .. rst-class:: ansible-version-added
 
-New in redhat.satellite 2.1.0
+New in redhat.satellite 3.14.0
 
 .. contents::
    :local:
@@ -64,7 +64,7 @@ Synopsis
 
 .. Description
 
-- Fetch information about Subnets
+- Manage Smart Class Parameter Override Values
 
 
 .. Aliases
@@ -72,7 +72,7 @@ Synopsis
 
 .. Requirements
 
-.. _ansible_collections.redhat.satellite.subnet_info_module_requirements:
+.. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module_requirements:
 
 Requirements
 ------------
@@ -103,21 +103,21 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-location"></div>
+        <div class="ansibleOptionAnchor" id="parameter-match"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-location:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-match:
 
       .. rst-class:: ansible-option-title
 
-      **location**
+      **match**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#parameter-location" title="Permalink to this option"></a>
+        <a class="ansibleOptionLink" href="#parameter-match" title="Permalink to this option"></a>
 
       .. rst-class:: ansible-option-type-line
 
-      :ansible-option-type:`string`
+      :ansible-option-type:`string` / :ansible-option-required:`required`
 
       .. raw:: html
 
@@ -127,7 +127,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Label of the Location to scope the search for.
+      Override match
 
 
       .. raw:: html
@@ -137,21 +137,21 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-name"></div>
+        <div class="ansibleOptionAnchor" id="parameter-omit"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-name:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-omit:
 
       .. rst-class:: ansible-option-title
 
-      **name**
+      **omit**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
+        <a class="ansibleOptionLink" href="#parameter-omit" title="Permalink to this option"></a>
 
       .. rst-class:: ansible-option-type-line
 
-      :ansible-option-type:`string`
+      :ansible-option-type:`boolean`
 
       .. raw:: html
 
@@ -161,43 +161,15 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Name of the resource to fetch information for.
-
-      Mutually exclusive with \ :emphasis:`search`\ .
+      Foreman will not send this parameter in classification output
 
 
-      .. raw:: html
+      .. rst-class:: ansible-option-line
 
-        </div>
+      :ansible-option-choices:`Choices:`
 
-  * - .. raw:: html
-
-        <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-organization"></div>
-
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-organization:
-
-      .. rst-class:: ansible-option-title
-
-      **organization**
-
-      .. raw:: html
-
-        <a class="ansibleOptionLink" href="#parameter-organization" title="Permalink to this option"></a>
-
-      .. rst-class:: ansible-option-type-line
-
-      :ansible-option-type:`string`
-
-      .. raw:: html
-
-        </div>
-
-    - .. raw:: html
-
-        <div class="ansible-option-cell">
-
-      Name of the Organization to scope the search for.
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
 
       .. raw:: html
@@ -209,7 +181,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-password"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-password:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-password:
 
       .. rst-class:: ansible-option-title
 
@@ -243,21 +215,27 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-search"></div>
+        <div class="ansibleOptionAnchor" id="parameter-puppetclass"></div>
+        <div class="ansibleOptionAnchor" id="parameter-puppetclass_name"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-search:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-puppetclass:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-puppetclass_name:
 
       .. rst-class:: ansible-option-title
 
-      **search**
+      **puppetclass**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#parameter-search" title="Permalink to this option"></a>
+        <a class="ansibleOptionLink" href="#parameter-puppetclass" title="Permalink to this option"></a>
 
       .. rst-class:: ansible-option-type-line
 
-      :ansible-option-type:`string`
+      :ansible-option-aliases:`aliases: puppetclass_name`
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`string` / :ansible-option-required:`required`
 
       .. raw:: html
 
@@ -267,11 +245,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Search query to use
-
-      If None, and \ :emphasis:`name`\  is not set, all resources are returned.
-
-      Mutually exclusive with \ :emphasis:`name`\ .
+      Puppet Class the Smart Class Parameter belongs to
 
 
       .. raw:: html
@@ -283,7 +257,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-server_url"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-server_url:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-server_url:
 
       .. rst-class:: ansible-option-title
 
@@ -317,9 +291,91 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-smart_class_parameter"></div>
+        <div class="ansibleOptionAnchor" id="parameter-parameter"></div>
+
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-parameter:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-smart_class_parameter:
+
+      .. rst-class:: ansible-option-title
+
+      **smart_class_parameter**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-smart_class_parameter" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-aliases:`aliases: parameter`
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`string` / :ansible-option-required:`required`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Smart Class Parameter the Override Value belongs to
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-state"></div>
+
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-state:
+
+      .. rst-class:: ansible-option-title
+
+      **state**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`string`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      State of the entity
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry-default:`"present"` :ansible-option-choices-default-mark:`← (default)`
+      - :ansible-option-choices-entry:`"absent"`
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-username"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-username:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-username:
 
       .. rst-class:: ansible-option-title
 
@@ -355,7 +411,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-validate_certs"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__parameter-validate_certs:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-validate_certs:
 
       .. rst-class:: ansible-option-title
 
@@ -394,6 +450,40 @@ Parameters
 
         </div>
 
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-value"></div>
+
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__parameter-value:
+
+      .. rst-class:: ansible-option-title
+
+      **value**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-value" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`any`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Override value, required if omit is false
+
+
+      .. raw:: html
+
+        </div>
+
 
 .. Attributes
 
@@ -417,7 +507,7 @@ Attributes
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="attribute-check_mode"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__attribute-check_mode:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__attribute-check_mode:
 
       .. rst-class:: ansible-option-title
 
@@ -459,7 +549,7 @@ Attributes
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="attribute-diff_mode"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__attribute-diff_mode:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__attribute-diff_mode:
 
       .. rst-class:: ansible-option-title
 
@@ -511,19 +601,18 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: "Show a subnet"
-      redhat.satellite.subnet_info:
+    - name: Set ntp::servers override value
+      redhat.satellite.smart_class_parameter_override_value:
+        server_url: "https://satellite.example.com"
         username: "admin"
         password: "changeme"
-        server_url: "https://satellite.example.com"
-        name: "subnet.example.com"
-
-    - name: "Show all subnets with domain example.com"
-      redhat.satellite.subnet_info:
-        username: "admin"
-        password: "changeme"
-        server_url: "https://satellite.example.com"
-        search: "domain = example.com"
+        puppetclass: ntp
+        smart_class_parameter: servers
+        match: domain=example.org
+        value:
+          - ntp1.example.org
+          - ntp2.example.org
+        state: present
 
 
 
@@ -550,17 +639,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="return-subnet"></div>
+        <div class="ansibleOptionAnchor" id="return-entity"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__return-subnet:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__return-entity:
 
       .. rst-class:: ansible-option-title
 
-      **subnet**
+      **entity**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#return-subnet" title="Permalink to this return value"></a>
+        <a class="ansibleOptionLink" href="#return-entity" title="Permalink to this return value"></a>
 
       .. rst-class:: ansible-option-type-line
 
@@ -574,33 +663,33 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
         <div class="ansible-option-cell">
 
-      Details about the found subnet
+      Final state of the affected entities grouped by their type.
 
 
       .. rst-class:: ansible-option-line
 
-      :ansible-option-returned-bold:`Returned:` success and \ :emphasis:`name`\  was passed
+      :ansible-option-returned-bold:`Returned:` success
 
 
       .. raw:: html
 
         </div>
 
-
+    
   * - .. raw:: html
 
-        <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="return-subnets"></div>
+        <div class="ansible-option-indent"></div><div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="return-entity/override_values"></div>
 
-      .. _ansible_collections.redhat.satellite.subnet_info_module__return-subnets:
+      .. _ansible_collections.redhat.satellite.smart_class_parameter_override_value_module__return-entity/override_values:
 
       .. rst-class:: ansible-option-title
 
-      **subnets**
+      **override_values**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#return-subnets" title="Permalink to this return value"></a>
+        <a class="ansibleOptionLink" href="#return-entity/override_values" title="Permalink to this return value"></a>
 
       .. rst-class:: ansible-option-type-line
 
@@ -612,19 +701,20 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     - .. raw:: html
 
-        <div class="ansible-option-cell">
+        <div class="ansible-option-indent-desc"></div><div class="ansible-option-cell">
 
-      List of all found subnets and their details
+      List of override\_values.
 
 
       .. rst-class:: ansible-option-line
 
-      :ansible-option-returned-bold:`Returned:` success and \ :emphasis:`search`\  was passed
+      :ansible-option-returned-bold:`Returned:` success
 
 
       .. raw:: html
 
         </div>
+
 
 
 

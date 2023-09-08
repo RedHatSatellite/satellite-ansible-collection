@@ -6,7 +6,7 @@
 Redhat.Satellite
 ================
 
-Collection version 3.13.0
+Collection version 3.14.0
 
 .. contents::
    :local:
@@ -118,7 +118,7 @@ Ansible Modules to manage Satellite installations
 
 **Supported ansible-core versions:**
 
-* 2.9 or newer
+* 2.9.17 or newer
 
 .. raw:: html
 
@@ -208,6 +208,7 @@ Modules
 * :ansplugin:`setting module <redhat.satellite.setting#module>` -- Manage Settings
 * :ansplugin:`setting_info module <redhat.satellite.setting_info#module>` -- Fetch information about Settings
 * :ansplugin:`smart_class_parameter module <redhat.satellite.smart_class_parameter#module>` -- Manage Smart Class Parameters
+* :ansplugin:`smart_class_parameter_override_value module <redhat.satellite.smart_class_parameter_override_value#module>` -- Manage Smart Class Parameter Override Values
 * :ansplugin:`smart_proxy module <redhat.satellite.smart_proxy#module>` -- Manage Smart Proxies
 * :ansplugin:`status_info module <redhat.satellite.status_info#module>` -- Get status info
 * :ansplugin:`subnet module <redhat.satellite.subnet#module>` -- Manage Subnets
@@ -289,6 +290,7 @@ Modules
     setting_module
     setting_info_module
     smart_class_parameter_module
+    smart_class_parameter_override_value_module
     smart_proxy_module
     status_info_module
     subnet_module

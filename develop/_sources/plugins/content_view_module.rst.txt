@@ -38,7 +38,7 @@ redhat.satellite.content_view module -- Manage Content Views
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.13.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.14.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
@@ -368,6 +368,51 @@ Parameters
         <div class="ansible-option-cell">
 
       Description of the Content View
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-import_only"></div>
+
+      .. _ansible_collections.redhat.satellite.content_view_module__parameter-import_only:
+
+      .. rst-class:: ansible-option-title
+
+      **import_only**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-import_only" title="Permalink to this option"></a>
+
+      .. rst-class:: ansible-option-type-line
+
+      :ansible-option-type:`boolean`
+
+      :ansible-option-versionadded:`added in redhat.satellite 3.14.0`
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Designate this Content View for importing from upstream servers only.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
 
 
       .. raw:: html

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>redhat.satellite.organization module – Manage Organizations &mdash; Red Hat Satellite Ansible Collection  documentation</title>
+  <title>redhat.satellite.smart_class_parameter_override_value module – Manage Smart Class Parameter Override Values &mdash; Red Hat Satellite Ansible Collection  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/antsibull-minimal.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="redhat.satellite.organization_info module – Get information about organization(s)" href="organization_info_module.html" />
-    <link rel="prev" title="redhat.satellite.operatingsystem module – Manage Operating Systems" href="operatingsystem_module.html" /> 
+    <link rel="next" title="redhat.satellite.smart_proxy module – Manage Smart Proxies" href="smart_proxy_module.html" />
+    <link rel="prev" title="redhat.satellite.smart_class_parameter module – Manage Smart Class Parameters" href="smart_class_parameter_module.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -93,7 +93,7 @@
 <li class="toctree-l4"><a class="reference internal" href="lifecycle_environment_module.html">redhat.satellite.lifecycle_environment module – Manage Lifecycle Environments</a></li>
 <li class="toctree-l4"><a class="reference internal" href="location_module.html">redhat.satellite.location module – Manage Locations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="operatingsystem_module.html">redhat.satellite.operatingsystem module – Manage Operating Systems</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">redhat.satellite.organization module – Manage Organizations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="organization_module.html">redhat.satellite.organization module – Manage Organizations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="organization_info_module.html">redhat.satellite.organization_info module – Get information about organization(s)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="os_default_template_module.html">redhat.satellite.os_default_template module – Manage Default Template Associations To Operating Systems</a></li>
 <li class="toctree-l4"><a class="reference internal" href="partition_table_module.html">redhat.satellite.partition_table module – Manage Partition Table Templates</a></li>
@@ -115,7 +115,7 @@
 <li class="toctree-l4"><a class="reference internal" href="setting_module.html">redhat.satellite.setting module – Manage Settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="setting_info_module.html">redhat.satellite.setting_info module – Fetch information about Settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smart_class_parameter_module.html">redhat.satellite.smart_class_parameter module – Manage Smart Class Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="smart_class_parameter_override_value_module.html">redhat.satellite.smart_class_parameter_override_value module – Manage Smart Class Parameter Override Values</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">redhat.satellite.smart_class_parameter_override_value module – Manage Smart Class Parameter Override Values</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smart_proxy_module.html">redhat.satellite.smart_proxy module – Manage Smart Proxies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="status_info_module.html">redhat.satellite.status_info module – Get status info</a></li>
 <li class="toctree-l4"><a class="reference internal" href="subnet_module.html">redhat.satellite.subnet module – Manage Subnets</a></li>
@@ -166,9 +166,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Redhat.Satellite</a></li>
-      <li class="breadcrumb-item active">redhat.satellite.organization module – Manage Organizations</li>
+      <li class="breadcrumb-item active">redhat.satellite.smart_class_parameter_override_value module – Manage Smart Class Parameter Override Values</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/plugins/organization_module.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/plugins/smart_class_parameter_override_value_module.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -176,17 +176,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-redhat-satellite-organization-module"></span><section id="redhat-satellite-organization-module-manage-organizations">
-<h1>redhat.satellite.organization module – Manage Organizations<a class="headerlink" href="#redhat-satellite-organization-module-manage-organizations" title="Link to this heading"></a></h1>
+  <span class="target" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module"></span><section id="redhat-satellite-smart-class-parameter-override-value-module-manage-smart-class-parameter-override-values">
+<h1>redhat.satellite.smart_class_parameter_override_value module – Manage Smart Class Parameter Override Values<a class="headerlink" href="#redhat-satellite-smart-class-parameter-override-value-module-manage-smart-class-parameter-override-values" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/redhat/satellite">redhat.satellite collection</a> (version 3.14.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
 You need further requirements to be able to use this module,
-see <a class="reference internal" href="#ansible-collections-redhat-satellite-organization-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
-<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.organization</span></code>.</p>
+see <a class="reference internal" href="#ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-requirements"><span class="std std-ref">Requirements</span></a> for details.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">redhat.satellite.smart_class_parameter_override_value</span></code>.</p>
 </div>
-<p class="ansible-version-added">New in redhat.satellite 1.0.0</p>
+<p class="ansible-version-added">New in redhat.satellite 3.14.0</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
@@ -200,12 +200,11 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 <section id="synopsis">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Manage Organizations</p></li>
+<li><p>Manage Smart Class Parameter Override Values</p></li>
 </ul>
-<p>Aliases: foreman_organization</p>
 </section>
 <section id="requirements">
-<span id="ansible-collections-redhat-satellite-organization-module-requirements"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<span id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-requirements"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
 <p>The below requirements are needed on the host that executes this module.</p>
 <ul class="simple">
 <li><p>requests</p></li>
@@ -221,77 +220,26 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-description"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-description"><strong>description</strong></p>
-<a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-match"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-match"><strong>match</strong></p>
+<a class="ansibleOptionLink" href="#parameter-match" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Description of the Organization</p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ignore_types"></div>
-<div class="ansibleOptionAnchor" id="parameter-select_all_types"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-select-all-types"><span id="ansible-collections-redhat-satellite-organization-module-parameter-ignore-types"></span><strong>ignore_types</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ignore_types" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: select_all_types</span></p>
-<p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
-<p><span class="ansible-option-versionadded">added in redhat.satellite 3.8.0</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>List of resources types that will be automatically associated</p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-label"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-label"><strong>label</strong></p>
-<a class="ansibleOptionLink" href="#parameter-label" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Label of the Organization</p>
+<td><div class="ansible-option-cell"><p>Override match</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-name"><strong>name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<div class="ansibleOptionAnchor" id="parameter-omit"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-omit"><strong>omit</strong></p>
+<a class="ansibleOptionLink" href="#parameter-omit" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Name of the Organization</p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-parameters"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-parameters"><strong>parameters</strong></p>
-<a class="ansibleOptionLink" href="#parameter-parameters" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Entity domain specific host parameters</p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-parameters/name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-parameters-name"><strong>name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-parameters/name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Name of the parameter</p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-parameters/parameter_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-parameters-parameter-type"><strong>parameter_type</strong></p>
-<a class="ansibleOptionLink" href="#parameter-parameters/parameter_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Type of the parameter</p>
+<td><div class="ansible-option-cell"><p>Foreman will not send this parameter in classification output</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
-<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;boolean&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;integer&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;real&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;array&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;hash&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;yaml&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;json&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-parameters/value"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-parameters-value"><strong>value</strong></p>
-<a class="ansibleOptionLink" href="#parameter-parameters/value" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">any</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Value of the parameter</p>
-</div></td>
-</tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-password"><strong>password</strong></p>
+<div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-password"><strong>password</strong></p>
 <a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password of the user accessing the Foreman server.</p>
@@ -299,15 +247,33 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-server-url"><strong>server_url</strong></p>
+<div class="ansibleOptionAnchor" id="parameter-puppetclass"></div>
+<div class="ansibleOptionAnchor" id="parameter-puppetclass_name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-puppetclass-name"><span id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-puppetclass"></span><strong>puppetclass</strong></p>
+<a class="ansibleOptionLink" href="#parameter-puppetclass" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: puppetclass_name</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Puppet Class the Smart Class Parameter belongs to</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-server-url"><strong>server_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-server_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>URL of the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_SERVER_URL</span></code> will be used instead.</p>
 </div></td>
 </tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-smart_class_parameter"></div>
+<div class="ansibleOptionAnchor" id="parameter-parameter"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-smart-class-parameter"><span id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-parameter"></span><strong>smart_class_parameter</strong></p>
+<a class="ansibleOptionLink" href="#parameter-smart_class_parameter" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: parameter</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Smart Class Parameter the Override Value belongs to</p>
+</div></td>
+</tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-state"><strong>state</strong></p>
+<div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>State of the entity</p>
@@ -319,7 +285,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-username"><strong>username</strong></p>
+<div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-username"><strong>username</strong></p>
 <a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username accessing the Foreman server.</p>
@@ -327,7 +293,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-validate_certs"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-parameter-validate-certs"><strong>validate_certs</strong></p>
+<div class="ansibleOptionAnchor" id="parameter-validate_certs"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-validate-certs"><strong>validate_certs</strong></p>
 <a class="ansibleOptionLink" href="#parameter-validate_certs" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Whether or not to verify the TLS certificates of the Foreman server.</p>
@@ -337,6 +303,13 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">true</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
 </ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-value"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-parameter-value"><strong>value</strong></p>
+<a class="ansibleOptionLink" href="#parameter-value" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">any</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Override value, required if omit is false</p>
 </div></td>
 </tr>
 </tbody>
@@ -353,7 +326,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="attribute-check_mode"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-attribute-check-mode"><strong>check_mode</strong></p>
+<div class="ansibleOptionAnchor" id="attribute-check_mode"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-attribute-check-mode"><strong>check_mode</strong></p>
 <a class="ansibleOptionLink" href="#attribute-check_mode" title="Permalink to this attribute"></a></div></td>
 <td><div class="ansible-option-cell"><p><span class="ansible-attribute-support-label">Support: </span><span class="ansible-attribute-support-full">full</span></p>
 </div></td>
@@ -361,7 +334,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="attribute-diff_mode"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-attribute-diff-mode"><strong>diff_mode</strong></p>
+<div class="ansibleOptionAnchor" id="attribute-diff_mode"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-attribute-diff-mode"><strong>diff_mode</strong></p>
 <a class="ansibleOptionLink" href="#attribute-diff_mode" title="Permalink to this attribute"></a></div></td>
 <td><div class="ansible-option-cell"><p><span class="ansible-attribute-support-label">Support: </span><span class="ansible-attribute-support-full">full</span></p>
 </div></td>
@@ -373,12 +346,17 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </section>
 <section id="examples">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
-<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Create</span><span class="nv"> </span><span class="s">CI</span><span class="nv"> </span><span class="s">Organization&quot;</span>
-<span class="w">  </span><span class="nt">redhat.satellite.organization</span><span class="p">:</span>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set ntp::servers override value</span>
+<span class="w">  </span><span class="nt">redhat.satellite.smart_class_parameter_override_value</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">server_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://satellite.example.com&quot;</span>
 <span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
 <span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;changeme&quot;</span>
-<span class="w">    </span><span class="nt">server_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://satellite.example.com&quot;</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">Cool</span><span class="nv"> </span><span class="s">New</span><span class="nv"> </span><span class="s">Organization&quot;</span>
+<span class="w">    </span><span class="nt">puppetclass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ntp</span>
+<span class="w">    </span><span class="nt">smart_class_parameter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">servers</span>
+<span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain=example.org</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ntp1.example.org</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ntp2.example.org</span>
 <span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
 </pre></div>
 </div>
@@ -394,7 +372,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="return-entity"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-return-entity"><strong>entity</strong></p>
+<div class="ansibleOptionAnchor" id="return-entity"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-return-entity"><strong>entity</strong></p>
 <a class="ansibleOptionLink" href="#return-entity" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Final state of the affected entities grouped by their type.</p>
@@ -402,10 +380,10 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="return-entity/organizations"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-organization-module-return-entity-organizations"><strong>organizations</strong></p>
-<a class="ansibleOptionLink" href="#return-entity/organizations" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
+<div class="ansibleOptionAnchor" id="return-entity/override_values"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-smart-class-parameter-override-value-module-return-entity-override-values"><strong>override_values</strong></p>
+<a class="ansibleOptionLink" href="#return-entity/override_values" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
 </div></td>
-<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>List of organizations.</p>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>List of override_values.</p>
 <p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> success</p>
 </div></td>
 </tr>
@@ -414,8 +392,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
 <section id="authors">
 <h3>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h3>
 <ul class="simple">
-<li><p>Eric D Helms (&#64;ehelms)</p></li>
-<li><p>Matthias M Dellweg (&#64;mdellweg) ATIX AG</p></li>
+<li><p>Evgeni Golov (&#64;evgeni)</p></li>
 </ul>
 </section>
 <section id="collection-links">
@@ -432,8 +409,8 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-or
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="operatingsystem_module.html" class="btn btn-neutral float-left" title="redhat.satellite.operatingsystem module – Manage Operating Systems" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="organization_info_module.html" class="btn btn-neutral float-right" title="redhat.satellite.organization_info module – Get information about organization(s)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="smart_class_parameter_module.html" class="btn btn-neutral float-left" title="redhat.satellite.smart_class_parameter module – Manage Smart Class Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="smart_proxy_module.html" class="btn btn-neutral float-right" title="redhat.satellite.smart_proxy module – Manage Smart Proxies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

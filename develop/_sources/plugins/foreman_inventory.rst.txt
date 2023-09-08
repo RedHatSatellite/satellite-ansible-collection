@@ -38,7 +38,7 @@ redhat.satellite.foreman inventory -- Foreman inventory source
 .. Collection note
 
 .. note::
-    This inventory plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.13.0).
+    This inventory plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/redhat/satellite>`_ (version 3.14.0).
 
     To install it, use: :code:`ansible-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this inventory plugin,
