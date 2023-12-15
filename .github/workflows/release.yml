@@ -3,7 +3,7 @@ name: release
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
+      - v[0-9]+.[0-9]+.[0-9]+
 
 concurrency:
   group: ${{ github.ref_name }}-${{ github.workflow }}
@@ -20,10 +20,15 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install Ansible
-        run: pip install --upgrade ansible py
+        run: pip install --upgrade ansible py antsibull-changelog
       - name: Build Ansible Collection
         run: make dist
+      - name: Build Changelog
+        run: antsibull-changelog generate --output release-changelog.txt --only-latest
+      - name: Deploy Ansible Collection
+        run: make publish GALAXY_API_KEY=${{ secrets.GALAXY_API_KEY }}
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: redhat-satellite-*.tar.gz
+          body_path: release-changelog.txt
