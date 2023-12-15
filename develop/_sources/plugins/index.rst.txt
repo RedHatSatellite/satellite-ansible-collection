@@ -1,12 +1,15 @@
 
 
+.. meta::
+  :antsibull-docs: 2.6.0
+
 
 .. _plugins_in_redhat.satellite:
 
 Redhat.Satellite
 ================
 
-Collection version 3.14.0
+Collection version 3.15.0
 
 .. contents::
    :local:
@@ -110,6 +113,7 @@ Ansible Modules to manage Satellite installations
 * gardar <gardar@users.noreply.github.com>
 * igramic <36156377+igramic@users.noreply.github.com>
 * jerrejkw <43955357+jerrejkw@users.noreply.github.com>
+* linuxonfire <jaimescampositzel@gmail.com>
 * marco <marco.markgraf@transporeon.com>
 * metalcated <mike.gomon@gmail.com>
 * russianguppie <46544650+russianguppie@users.noreply.github.com>
@@ -118,15 +122,20 @@ Ansible Modules to manage Satellite installations
 
 **Supported ansible-core versions:**
 
-* 2.9.17 or newer
+* 2.14 or newer
 
-.. raw:: html
+.. ansible-links::
 
-  <p class="ansible-links">
-    <a href="https://bugzilla.redhat.com" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
-    <a href="https://access.redhat.com/products/red-hat-satellite" aria-role="button" target="_blank" rel="noopener external">Homepage</a>
-    <a href="https://github.com/RedHatSatellite/satellite-ansible-collection" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
-  </p>
+  - title: "Issue Tracker"
+    url: "https://bugzilla.redhat.com"
+    external: true
+  - title: "Homepage"
+    url: "https://access.redhat.com/products/red-hat-satellite"
+    external: true
+  - title: "Repository (Sources)"
+    url: "https://github.com/RedHatSatellite/satellite-ansible-collection"
+    external: true
+
 
 
 
