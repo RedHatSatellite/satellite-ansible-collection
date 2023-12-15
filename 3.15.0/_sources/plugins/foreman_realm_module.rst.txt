@@ -1,0 +1,26 @@
+
+.. Document meta
+
+:orphan:
+
+.. meta::
+  :antsibull-docs: 2.6.0
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_realm_module:
+
+.. Title
+
+redhat.satellite.foreman_realm module
++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 3.15.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_realm`.
+
+- This is a redirect to the :ansplugin:`redhat.satellite.realm module <redhat.satellite.realm#module>`.
+- This redirect does **not** work with Ansible 2.9.

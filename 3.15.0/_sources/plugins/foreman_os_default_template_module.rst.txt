@@ -1,0 +1,26 @@
+
+.. Document meta
+
+:orphan:
+
+.. meta::
+  :antsibull-docs: 2.6.0
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_os_default_template_module:
+
+.. Title
+
+redhat.satellite.foreman_os_default_template module
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 3.15.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_os_default_template`.
+
+- This is a redirect to the :ansplugin:`redhat.satellite.os_default_template module <redhat.satellite.os_default_template#module>`.
+- This redirect does **not** work with Ansible 2.9.
