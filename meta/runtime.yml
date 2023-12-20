@@ -183,4 +183,4 @@ plugin_routing:
       redirect: redhat.satellite.sync_plan
     katello_upload:
       redirect: redhat.satellite.content_upload
-requires_ansible: '>=2.14'
+requires_ansible: '>=2.14.0'
