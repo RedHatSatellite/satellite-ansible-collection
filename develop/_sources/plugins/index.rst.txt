@@ -1,7 +1,7 @@
 
 
 .. meta::
-  :antsibull-docs: 2.6.0
+  :antsibull-docs: 2.6.1
 
 
 .. _plugins_in_redhat.satellite:
@@ -122,7 +122,7 @@ Ansible Modules to manage Satellite installations
 
 **Supported ansible-core versions:**
 
-* 2.14 or newer
+* 2.14.0 or newer
 
 .. ansible-links::
 
