@@ -108,6 +108,7 @@
 <li class="toctree-l4"><a class="reference internal" href="puppetclasses_import_module.html">redhat.satellite.puppetclasses_import module – Import Puppet Classes from a Proxy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="realm_module.html">redhat.satellite.realm module – Manage Realms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="redhat_manifest_module.html">redhat.satellite.redhat_manifest module – Interact with a Red Hat Satellite Subscription Manifest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="registration_command_module.html">redhat.satellite.registration_command module – Manage Registration Command</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_module.html">redhat.satellite.repository module – Manage Repositories</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_info_module.html">redhat.satellite.repository_info module – Fetch information about Repositories</a></li>
 <li class="toctree-l4"><a class="reference internal" href="repository_set_module.html">redhat.satellite.repository_set module – Enable/disable Red Hat Repositories available through subscriptions</a></li>
@@ -132,6 +133,7 @@
 <li class="toctree-l4"><a class="reference internal" href="user_module.html">redhat.satellite.user module – Manage Users</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usergroup_module.html">redhat.satellite.usergroup module – Manage User Groups</a></li>
 <li class="toctree-l4"><a class="reference internal" href="wait_for_task_module.html">redhat.satellite.wait_for_task module – Wait for a task</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webhook_module.html">redhat.satellite.webhook module – Manage Webhooks</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#callback-plugins">Callback Plugins</a><ul>
@@ -191,7 +193,7 @@
              
   <section id="redhat-satellite">
 <span id="plugins-in-redhat-satellite"></span><h1>Redhat.Satellite<a class="headerlink" href="#redhat-satellite" title="Link to this heading"></a></h1>
-<p>Collection version 3.15.0</p>
+<p>Collection version 4.0.0</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
@@ -227,6 +229,7 @@
 <li><p>Evgeni Golov &lt;<a class="reference external" href="mailto:evgeni&#37;&#52;&#48;golov&#46;de">evgeni<span>&#64;</span>golov<span>&#46;</span>de</a>&gt;</p></li>
 <li><p>Ewoud Kohl van Wijngaarden &lt;<a class="reference external" href="mailto:ewoud&#37;&#52;&#48;kohlvanwijngaarden&#46;nl">ewoud<span>&#64;</span>kohlvanwijngaarden<span>&#46;</span>nl</a>&gt;</p></li>
 <li><p>Felix Fontein &lt;<a class="reference external" href="mailto:felix&#37;&#52;&#48;fontein&#46;de">felix<span>&#64;</span>fontein<span>&#46;</span>de</a>&gt;</p></li>
+<li><p>Francesco Trentini &lt;<a class="reference external" href="mailto:francesco&#46;trentini&#37;&#52;&#48;ris&#46;bz&#46;it">francesco<span>&#46;</span>trentini<span>&#64;</span>ris<span>&#46;</span>bz<span>&#46;</span>it</a>&gt;</p></li>
 <li><p>Gerald Vogt &lt;<a class="reference external" href="mailto:gvde&#37;&#52;&#48;users&#46;noreply&#46;github&#46;com">gvde<span>&#64;</span>users<span>&#46;</span>noreply<span>&#46;</span>github<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Greg Swift &lt;<a class="reference external" href="mailto:gregswift&#37;&#52;&#48;gmail&#46;com">gregswift<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Griffin Sullivan &lt;<a class="reference external" href="mailto:gsulliva&#37;&#52;&#48;redhat&#46;com">gsulliva<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
@@ -235,6 +238,7 @@
 <li><p>Jameer Pathan &lt;<a class="reference external" href="mailto:jpathan&#37;&#52;&#48;redhat&#46;com">jpathan<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>James Jeffers &lt;<a class="reference external" href="mailto:jjeffers&#37;&#52;&#48;redhat&#46;com">jjeffers<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>James Stuart &lt;<a class="reference external" href="mailto:james&#37;&#52;&#48;stuart&#46;name">james<span>&#64;</span>stuart<span>&#46;</span>name</a>&gt;</p></li>
+<li><p>Jan Jansky &lt;<a class="reference external" href="mailto:jjansky&#37;&#52;&#48;redhat&#46;com">jjansky<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Jeffrey van Pelt &lt;<a class="reference external" href="mailto:jeff&#37;&#52;&#48;vanpelt&#46;one">jeff<span>&#64;</span>vanpelt<span>&#46;</span>one</a>&gt;</p></li>
 <li><p>Jeremy Albinet &lt;<a class="reference external" href="mailto:jalbinet&#37;&#52;&#48;scaleway&#46;com">jalbinet<span>&#64;</span>scaleway<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Jeremy Lenz &lt;<a class="reference external" href="mailto:jlenz&#37;&#52;&#48;redhat&#46;com">jlenz<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
@@ -248,6 +252,7 @@
 <li><p>Lester Cheung &lt;<a class="reference external" href="mailto:lcheung&#37;&#52;&#48;threatmetrix&#46;com">lcheung<span>&#64;</span>threatmetrix<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Lester Claudio &lt;<a class="reference external" href="mailto:claudiol&#37;&#52;&#48;redhat&#46;com">claudiol<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Lucas Bickel &lt;<a class="reference external" href="mailto:hairmare&#37;&#52;&#48;rabe&#46;ch">hairmare<span>&#64;</span>rabe<span>&#46;</span>ch</a>&gt;</p></li>
+<li><p>Lukas Kallies &lt;<a class="reference external" href="mailto:kallies&#37;&#52;&#48;puzzle-itc&#46;de">kallies<span>&#64;</span>puzzle-itc<span>&#46;</span>de</a>&gt;</p></li>
 <li><p>Lukas Magauer &lt;<a class="reference external" href="mailto:Lukas&#46;Magauer&#37;&#52;&#48;engel&#46;at">Lukas<span>&#46;</span>Magauer<span>&#64;</span>engel<span>&#46;</span>at</a>&gt;</p></li>
 <li><p>Lukáš Zapletal &lt;<a class="reference external" href="mailto:lzap+git&#37;&#52;&#48;redhat&#46;com">lzap+git<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Manisha Singhal &lt;<a class="reference external" href="mailto:manisha1595&#37;&#52;&#48;gmail&#46;com">manisha1595<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
@@ -279,6 +284,7 @@
 <li><p>Sean O’Keeffe &lt;<a class="reference external" href="mailto:seanokeeffe797&#37;&#52;&#48;gmail&#46;com">seanokeeffe797<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Sorin Sbarnea &lt;<a class="reference external" href="mailto:sorin&#46;sbarnea&#37;&#52;&#48;gmail&#46;com">sorin<span>&#46;</span>sbarnea<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Steffen Frömer &lt;<a class="reference external" href="mailto:knumskull&#37;&#52;&#48;users&#46;noreply&#46;github&#46;com">knumskull<span>&#64;</span>users<span>&#46;</span>noreply<span>&#46;</span>github<span>&#46;</span>com</a>&gt;</p></li>
+<li><p>Steffen Scheib &lt;<a class="reference external" href="mailto:steffen&#37;&#52;&#48;scheib&#46;me">steffen<span>&#64;</span>scheib<span>&#46;</span>me</a>&gt;</p></li>
 <li><p>Stoned Elipot &lt;<a class="reference external" href="mailto:stoned&#46;elipot&#37;&#52;&#48;gmail&#46;com">stoned<span>&#46;</span>elipot<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Sven Meeus &lt;<a class="reference external" href="mailto:sven&#46;meeus&#37;&#52;&#48;scarlet&#46;be">sven<span>&#46;</span>meeus<span>&#64;</span>scarlet<span>&#46;</span>be</a>&gt;</p></li>
 <li><p>TTherouanne &lt;<a class="reference external" href="mailto:thomas&#37;&#52;&#48;therouanne&#46;com">thomas<span>&#64;</span>therouanne<span>&#46;</span>com</a>&gt;</p></li>
@@ -372,6 +378,7 @@
 <li><p><a class="reference internal" href="puppetclasses_import_module.html#ansible-collections-redhat-satellite-puppetclasses-import-module"><span class="std std-ref">puppetclasses_import module</span></a> – Import Puppet Classes from a Proxy</p></li>
 <li><p><a class="reference internal" href="realm_module.html#ansible-collections-redhat-satellite-realm-module"><span class="std std-ref">realm module</span></a> – Manage Realms</p></li>
 <li><p><a class="reference internal" href="redhat_manifest_module.html#ansible-collections-redhat-satellite-redhat-manifest-module"><span class="std std-ref">redhat_manifest module</span></a> – Interact with a Red Hat Satellite Subscription Manifest</p></li>
+<li><p><a class="reference internal" href="registration_command_module.html#ansible-collections-redhat-satellite-registration-command-module"><span class="std std-ref">registration_command module</span></a> – Manage Registration Command</p></li>
 <li><p><a class="reference internal" href="repository_module.html#ansible-collections-redhat-satellite-repository-module"><span class="std std-ref">repository module</span></a> – Manage Repositories</p></li>
 <li><p><a class="reference internal" href="repository_info_module.html#ansible-collections-redhat-satellite-repository-info-module"><span class="std std-ref">repository_info module</span></a> – Fetch information about Repositories</p></li>
 <li><p><a class="reference internal" href="repository_set_module.html#ansible-collections-redhat-satellite-repository-set-module"><span class="std std-ref">repository_set module</span></a> – Enable/disable Red Hat Repositories available through subscriptions</p></li>
@@ -396,6 +403,7 @@
 <li><p><a class="reference internal" href="user_module.html#ansible-collections-redhat-satellite-user-module"><span class="std std-ref">user module</span></a> – Manage Users</p></li>
 <li><p><a class="reference internal" href="usergroup_module.html#ansible-collections-redhat-satellite-usergroup-module"><span class="std std-ref">usergroup module</span></a> – Manage User Groups</p></li>
 <li><p><a class="reference internal" href="wait_for_task_module.html#ansible-collections-redhat-satellite-wait-for-task-module"><span class="std std-ref">wait_for_task module</span></a> – Wait for a task</p></li>
+<li><p><a class="reference internal" href="webhook_module.html#ansible-collections-redhat-satellite-webhook-module"><span class="std std-ref">webhook module</span></a> – Manage Webhooks</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
