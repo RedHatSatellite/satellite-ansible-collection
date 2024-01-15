@@ -1,5 +1,5 @@
 ---
-- name: 'Create Content Crendentials'
+- name: 'Create Content Credentials'
   redhat.satellite.content_credential:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"

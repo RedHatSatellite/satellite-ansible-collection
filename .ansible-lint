@@ -6,3 +6,6 @@ enable_list:
   - only-builtins
 only_builtins_allow_collections:
   - redhat.satellite
+exclude_paths:
+  - changelogs/changelog.yml
+  - tests/
