@@ -1,0 +1,26 @@
+
+.. Document meta
+
+:orphan:
+
+.. meta::
+  :antsibull-docs: 2.6.1
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.katello_host_collection_module:
+
+.. Title
+
+redhat.satellite.katello_host_collection module
++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.0.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.katello_host_collection`.
+
+- This is a redirect to the :ansplugin:`redhat.satellite.host_collection module <redhat.satellite.host_collection#module>`.
+- This redirect does **not** work with Ansible 2.9.

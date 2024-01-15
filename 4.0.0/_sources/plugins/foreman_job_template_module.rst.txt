@@ -1,0 +1,26 @@
+
+.. Document meta
+
+:orphan:
+
+.. meta::
+  :antsibull-docs: 2.6.1
+
+.. Anchors
+
+.. _ansible_collections.redhat.satellite.foreman_job_template_module:
+
+.. Title
+
+redhat.satellite.foreman_job_template module
+++++++++++++++++++++++++++++++++++++++++++++
+
+.. Collection note
+
+.. note::
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.0.0).
+
+    To use it in a playbook, specify: :code:`redhat.satellite.foreman_job_template`.
+
+- This is a redirect to the :ansplugin:`redhat.satellite.job_template module <redhat.satellite.job_template#module>`.
+- This redirect does **not** work with Ansible 2.9.
