@@ -34,6 +34,12 @@ options:
       - Fully Qualified Domain Name of host
     required: true
     type: str
+  allow_short_name:
+    description:
+      - If present and true, bypass the FQDN check on name parameter.
+      - Workaround for https://access.redhat.com/solutions/6279971
+    required: false
+    type: bool
   hostgroup:
     description:
       - Title of related hostgroup
@@ -435,6 +441,9 @@ class ForemanHostModule(HostMixin, ForemanEntityAnsibleModule):
 
 def main():
     module = ForemanHostModule(
+        argument_spec=dict(
+            allow_short_name=dict(type='bool')
+        ),
         foreman_spec=dict(
             name=dict(required=True),
             hostgroup=dict(type='entity'),
@@ -463,8 +472,9 @@ def main():
     )
 
     # additional param validation
-    if '.' not in module.foreman_params['name']:
-        module.fail_json(msg="The hostname must be FQDN")
+    if not ('allow_short_name' in module.foreman_params and module.foreman_params['allow_short_name']):
+        if '.' not in module.foreman_params['name']:
+            module.fail_json(msg="The hostname must be FQDN")
 
     if not module.desired_absent:
         if 'build' in module.foreman_params and module.foreman_params['build']:
