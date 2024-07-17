@@ -23,7 +23,7 @@ redhat.satellite.content_export_version module -- Manage content view version co
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.0.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.1.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -728,26 +728,26 @@ Examples
 
     - name: "Export content view version (incremental) since the most recent export"
       redhat.satellite.content_export_version:
-          content_view: RHEL8
-          content_view_version: '1.0'
-          username: "admin"
-          password: "changeme"
-          server_url: "https://satellite.example.com"
-          organization: "Default Organization"
-          destination_server: "airgapped.example.com"
-          incremental: true
+        content_view: RHEL8
+        content_view_version: '1.0'
+        username: "admin"
+        password: "changeme"
+        server_url: "https://satellite.example.com"
+        organization: "Default Organization"
+        destination_server: "airgapped.example.com"
+        incremental: true
 
     - name: "Export content view version (incremental) since a specific export"
       redhat.satellite.content_export_version:
-          content_view: RHEL8
-          content_view_version: '1.0'
-          username: "admin"
-          password: "changeme"
-          server_url: "https://satellite.example.com"
-          organization: "Default Organization"
-          destination_server: "airgapped.example.com"
-          incremental: true
-          from_history_id: 12345
+        content_view: RHEL8
+        content_view_version: '1.0'
+        username: "admin"
+        password: "changeme"
+        server_url: "https://satellite.example.com"
+        organization: "Default Organization"
+        destination_server: "airgapped.example.com"
+        incremental: true
+        from_history_id: 12345
 
 
 

@@ -23,7 +23,7 @@ redhat.satellite.activation_key module -- Manage Activation Keys
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.0.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.1.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -868,6 +868,8 @@ Parameters
 
       Pool IDs are preferred since Names and Upstream Pool IDs are not guaranteed to be unique. The module will fail if it finds more than one match.
 
+      This parameter is not supported in SCA mode.
+
 
       .. raw:: html
 
@@ -1262,15 +1264,11 @@ Examples
         lifecycle_environment: "Library"
         content_view: 'client content view'
         host_collections:
-            - rhel7-servers
-            - rhel7-production
-        subscriptions:
-          - pool_id: "8a88e9826db22df5016dd018abdd029b"
-          - pool_id: "8a88e9826db22df5016dd01a23270344"
-          - name: "Red Hat Enterprise Linux"
+          - rhel7-servers
+          - rhel7-production
         content_overrides:
-            - label: rhel-7-server-optional-rpms
-              override: enabled
+          - label: rhel-7-server-optional-rpms
+            override: enabled
         auto_attach: false
         release_version: 7Server
         service_level: Standard

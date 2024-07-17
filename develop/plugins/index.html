@@ -68,6 +68,10 @@
 <li class="toctree-l4"><a class="reference internal" href="content_export_library_module.html">redhat.satellite.content_export_library module – Manage library content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_repository_module.html">redhat.satellite.content_export_repository module – Manage repository content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_version_module.html">redhat.satellite.content_export_version module – Manage content view version content exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_info_module.html">redhat.satellite.content_import_info module – List content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_library_module.html">redhat.satellite.content_import_library module – Manage library content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_repository_module.html">redhat.satellite.content_import_repository module – Manage repository content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_version_module.html">redhat.satellite.content_import_version module – Manage content view version content imports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload module – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view module – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter module – Manage Content View Filters</a></li>
@@ -193,7 +197,7 @@
              
   <section id="redhat-satellite">
 <span id="plugins-in-redhat-satellite"></span><h1>Redhat.Satellite<a class="headerlink" href="#redhat-satellite" title="Link to this heading"></a></h1>
-<p>Collection version 4.0.0</p>
+<p>Collection version 4.1.0</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
@@ -216,6 +220,7 @@
 <li><p>Baptiste Agasse &lt;<a class="reference external" href="mailto:baptiste&#46;agasse&#37;&#52;&#48;gmail&#46;com">baptiste<span>&#46;</span>agasse<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Bernhard Hopfenmüller &lt;<a class="reference external" href="mailto:hopfenmueller&#37;&#52;&#48;atix&#46;de">hopfenmueller<span>&#64;</span>atix<span>&#46;</span>de</a>&gt;</p></li>
 <li><p>Bernhard Suttner &lt;<a class="reference external" href="mailto:sbernhard&#37;&#52;&#48;users&#46;noreply&#46;github&#46;com">sbernhard<span>&#64;</span>users<span>&#46;</span>noreply<span>&#46;</span>github<span>&#46;</span>com</a>&gt;</p></li>
+<li><p>Bilhan Karaören &lt;<a class="reference external" href="mailto:bkaraoren&#37;&#52;&#48;redhat&#46;com">bkaraoren<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Bryan Kearney &lt;<a class="reference external" href="mailto:bkearney&#37;&#52;&#48;redhat&#46;com">bkearney<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Chris Forkner &lt;<a class="reference external" href="mailto:gen2fish&#37;&#52;&#48;gmail&#46;com">gen2fish<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Chris Hindman &lt;<a class="reference external" href="mailto:chindman&#37;&#52;&#48;chindman&#46;remote&#46;csb">chindman<span>&#64;</span>chindman<span>&#46;</span>remote<span>&#46;</span>csb</a>&gt;</p></li>
@@ -269,6 +274,7 @@
 <li><p>Ondrej Prazak &lt;<a class="reference external" href="mailto:oprazak&#37;&#52;&#48;redhat&#46;com">oprazak<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Ondřej Ezr &lt;<a class="reference external" href="mailto:oezr&#37;&#52;&#48;redhat&#46;com">oezr<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Ondřej Gajdušek &lt;<a class="reference external" href="mailto:ogajduse&#37;&#52;&#48;redhat&#46;com">ogajduse<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
+<li><p>Partha Aji &lt;<a class="reference external" href="mailto:parthaa&#37;&#52;&#48;gmail&#46;com">parthaa<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Patrick C. F. Ernzer &lt;<a class="reference external" href="mailto:pcfe&#37;&#52;&#48;pcfe&#46;net">pcfe<span>&#64;</span>pcfe<span>&#46;</span>net</a>&gt;</p></li>
 <li><p>Patrick Creech &lt;<a class="reference external" href="mailto:pcreech&#37;&#52;&#48;redhat&#46;com">pcreech<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
 <li><p>Paul Armstrong &lt;<a class="reference external" href="mailto:parmstro&#37;&#52;&#48;redhat&#46;com">parmstro<span>&#64;</span>redhat<span>&#46;</span>com</a>&gt;</p></li>
@@ -309,7 +315,7 @@
 </ul>
 <p><strong>Supported ansible-core versions:</strong></p>
 <ul class="simple">
-<li><p>2.14.0 or newer</p></li>
+<li><p>2.15.0 or newer</p></li>
 </ul>
 <ul class="ansible-links">
 <li><span><a aria-role="button" class="ansible-link reference external" href="https://bugzilla.redhat.com" rel="noopener external" target="_blank">Issue Tracker</a></span></li>
@@ -338,6 +344,10 @@
 <li><p><a class="reference internal" href="content_export_library_module.html#ansible-collections-redhat-satellite-content-export-library-module"><span class="std std-ref">content_export_library module</span></a> – Manage library content exports</p></li>
 <li><p><a class="reference internal" href="content_export_repository_module.html#ansible-collections-redhat-satellite-content-export-repository-module"><span class="std std-ref">content_export_repository module</span></a> – Manage repository content exports</p></li>
 <li><p><a class="reference internal" href="content_export_version_module.html#ansible-collections-redhat-satellite-content-export-version-module"><span class="std std-ref">content_export_version module</span></a> – Manage content view version content exports</p></li>
+<li><p><a class="reference internal" href="content_import_info_module.html#ansible-collections-redhat-satellite-content-import-info-module"><span class="std std-ref">content_import_info module</span></a> – List content imports</p></li>
+<li><p><a class="reference internal" href="content_import_library_module.html#ansible-collections-redhat-satellite-content-import-library-module"><span class="std std-ref">content_import_library module</span></a> – Manage library content imports</p></li>
+<li><p><a class="reference internal" href="content_import_repository_module.html#ansible-collections-redhat-satellite-content-import-repository-module"><span class="std std-ref">content_import_repository module</span></a> – Manage repository content imports</p></li>
+<li><p><a class="reference internal" href="content_import_version_module.html#ansible-collections-redhat-satellite-content-import-version-module"><span class="std std-ref">content_import_version module</span></a> – Manage content view version content imports</p></li>
 <li><p><a class="reference internal" href="content_upload_module.html#ansible-collections-redhat-satellite-content-upload-module"><span class="std std-ref">content_upload module</span></a> – Upload content to a repository</p></li>
 <li><p><a class="reference internal" href="content_view_module.html#ansible-collections-redhat-satellite-content-view-module"><span class="std std-ref">content_view module</span></a> – Manage Content Views</p></li>
 <li><p><a class="reference internal" href="content_view_filter_module.html#ansible-collections-redhat-satellite-content-view-filter-module"><span class="std std-ref">content_view_filter module</span></a> – Manage Content View Filters</p></li>

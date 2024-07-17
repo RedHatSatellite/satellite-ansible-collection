@@ -66,6 +66,10 @@
 <li class="toctree-l4"><a class="reference internal" href="content_export_library_module.html">redhat.satellite.content_export_library module – Manage library content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_repository_module.html">redhat.satellite.content_export_repository module – Manage repository content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_version_module.html">redhat.satellite.content_export_version module – Manage content view version content exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_info_module.html">redhat.satellite.content_import_info module – List content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_library_module.html">redhat.satellite.content_import_library module – Manage library content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_repository_module.html">redhat.satellite.content_import_repository module – Manage repository content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_version_module.html">redhat.satellite.content_import_version module – Manage content view version content imports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload module – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view module – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter module – Manage Content View Filters</a></li>
@@ -185,7 +189,7 @@
 <h1>redhat.satellite.repository_set module – Enable/disable Red Hat Repositories available through subscriptions<a class="headerlink" href="#redhat-satellite-repository-set-module-enable-disable-red-hat-repositories-available-through-subscriptions" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 4.0.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 4.1.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -384,14 +388,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <span class="w">    </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Default</span><span class="nv"> </span><span class="s">Organization&quot;</span>
 <span class="w">    </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Red</span><span class="nv"> </span><span class="s">Hat</span><span class="nv"> </span><span class="s">Enterprise</span><span class="nv"> </span><span class="s">Linux</span><span class="nv"> </span><span class="s">Server&quot;</span>
 <span class="w">    </span><span class="nt">repositories</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.0&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.1&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.2&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.3&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.0&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.1&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.2&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.3&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
 <span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Enable</span><span class="nv"> </span><span class="s">RHEL</span><span class="nv"> </span><span class="s">7</span><span class="nv"> </span><span class="s">RPMs</span><span class="nv"> </span><span class="s">repositories</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">label&quot;</span>
@@ -402,14 +406,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <span class="w">    </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Default</span><span class="nv"> </span><span class="s">Organization&quot;</span>
 <span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rhel-7-server-rpms</span>
 <span class="w">    </span><span class="nt">repositories</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.0&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.1&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.2&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.3&quot;</span>
-<span class="w">      </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.0&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.1&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.2&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">releasever</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.3&quot;</span>
+<span class="w">        </span><span class="nt">basearch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;x86_64&quot;</span>
 <span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Disable</span><span class="nv"> </span><span class="s">RHEL</span><span class="nv"> </span><span class="s">7</span><span class="nv"> </span><span class="s">Extras</span><span class="nv"> </span><span class="s">RPMs</span><span class="nv"> </span><span class="s">repository&quot;</span>

@@ -23,7 +23,7 @@ redhat.satellite.content_view_filter_rule module -- Manage content view filter r
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.0.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.1.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -959,6 +959,8 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    # the examples assume that the content view filters have been already created
+    # e.g. by the redhat.satellite.content_view_filter module
 
     - name: "Include errata by date"
       redhat.satellite.content_view_filter_rule:
@@ -969,7 +971,6 @@ Examples
         content_view: "Standard Operating Environment"
         content_view_filter: "errata_by_date"
         state: present
-        inclusion: true
         date_type: updated
         types:
           - bugfix
@@ -978,7 +979,7 @@ Examples
         end_date: "2022-05-25"
 
     - name: "Exclude csh versions 6.20 and older"
-      redhat.satellite.content_view_filter:
+      redhat.satellite.content_view_filter_rule:
         username: "admin"
         password: "changeme"
         server_url: "https://satellite.example.com"
@@ -989,7 +990,7 @@ Examples
         max_version: "6.20.00"
 
     - name: "Exclude csh version 6.23 due to example policy"
-      redhat.satellite.content_view_filter:
+      redhat.satellite.content_view_filter_rule:
         username: "admin"
         password: "changeme"
         server_url: "https://satellite.example.com"
@@ -1000,7 +1001,7 @@ Examples
         version: "6.23.00"
 
     - name: "Content View Filter Rule for 389"
-      content_view_filter_rule:
+      redhat.satellite.content_view_filter_rule:
         username: "admin"
         password: "changeme"
         server_url: "https://satellite.example.com"

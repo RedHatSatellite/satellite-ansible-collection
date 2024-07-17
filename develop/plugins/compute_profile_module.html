@@ -66,6 +66,10 @@
 <li class="toctree-l4"><a class="reference internal" href="content_export_library_module.html">redhat.satellite.content_export_library module – Manage library content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_repository_module.html">redhat.satellite.content_export_repository module – Manage repository content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_version_module.html">redhat.satellite.content_export_version module – Manage content view version content exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_info_module.html">redhat.satellite.content_import_info module – List content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_library_module.html">redhat.satellite.content_import_library module – Manage library content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_repository_module.html">redhat.satellite.content_import_repository module – Manage repository content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_version_module.html">redhat.satellite.content_import_version module – Manage content view version content imports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload module – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view module – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter module – Manage Content View Filters</a></li>
@@ -185,7 +189,7 @@
 <h1>redhat.satellite.compute_profile module – Manage Compute Profiles<a class="headerlink" href="#redhat-satellite-compute-profile-module-manage-compute-profiles" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 4.0.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 4.1.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -359,11 +363,11 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <span class="w">  </span><span class="nt">redhat.satellite.compute_profile</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">another_example_compute_profile</span>
 <span class="w">    </span><span class="nt">compute_attributes</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ovirt_compute_resource1</span>
-<span class="w">      </span><span class="nt">vm_attrs</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;a96d44a4-f14a-1015-82c6-f80354acdf01&#39;</span>
-<span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;c88af4b7-a24a-453b-9ac2-bc647ca2ef99&#39;</span>
-<span class="w">        </span><span class="nt">instance_type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;cb8927e7-a404-40fb-a6c1-06cbfc92e077&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ovirt_compute_resource1</span>
+<span class="w">        </span><span class="nt">vm_attrs</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;a96d44a4-f14a-1015-82c6-f80354acdf01&#39;</span>
+<span class="w">          </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;c88af4b7-a24a-453b-9ac2-bc647ca2ef99&#39;</span>
+<span class="w">          </span><span class="nt">instance_type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;cb8927e7-a404-40fb-a6c1-06cbfc92e077&#39;</span>
 <span class="w">    </span><span class="nt">server_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://satellite.example.com&quot;</span>
 <span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
 <span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;changeme&quot;</span>
@@ -373,41 +377,41 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <span class="w">  </span><span class="nt">redhat.satellite.compute_profile</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_compute_profile2</span>
 <span class="w">    </span><span class="nt">compute_attributes</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ovirt_compute_resource01</span>
-<span class="w">      </span><span class="nt">vm_attrs</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a96d44a4-f14a-1015-82c6-f80354acdf01</span>
-<span class="w">        </span><span class="nt">cores</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">        </span><span class="nt">sockets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1073741824</span>
-<span class="w">        </span><span class="nt">ha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="nt">interfaces_attributes</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">0</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">            </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">390666e1-dab3-4c99-9f96-006b2e2fd801</span>
-<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio</span>
-<span class="w">        </span><span class="nt">volumes_attributes</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">0</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">size_gb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
-<span class="w">            </span><span class="nt">storage_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19c50090-1ab4-4023-a63f-75ee1018ed5e</span>
-<span class="w">            </span><span class="nt">preallocate</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span>
-<span class="w">            </span><span class="nt">wipe_after_delete</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0&#39;</span>
-<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio_scsi</span>
-<span class="w">            </span><span class="nt">bootable</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">libvirt_compute_resource03</span>
-<span class="w">      </span><span class="nt">vm_attrs</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2147483648</span>
-<span class="w">        </span><span class="nt">nics_attributes</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">0</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
-<span class="w">            </span><span class="nt">bridge</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">            </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio</span>
-<span class="w">        </span><span class="nt">volumes_attributes</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">0</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">pool_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-<span class="w">            </span><span class="nt">capacity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16G</span>
-<span class="w">            </span><span class="nt">allocation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16G</span>
-<span class="w">            </span><span class="nt">format_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raw</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ovirt_compute_resource01</span>
+<span class="w">        </span><span class="nt">vm_attrs</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a96d44a4-f14a-1015-82c6-f80354acdf01</span>
+<span class="w">          </span><span class="nt">cores</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">          </span><span class="nt">sockets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1073741824</span>
+<span class="w">          </span><span class="nt">ha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">          </span><span class="nt">interfaces_attributes</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">0</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">390666e1-dab3-4c99-9f96-006b2e2fd801</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio</span>
+<span class="w">          </span><span class="nt">volumes_attributes</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">0</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">size_gb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">              </span><span class="nt">storage_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19c50090-1ab4-4023-a63f-75ee1018ed5e</span>
+<span class="w">              </span><span class="nt">preallocate</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span>
+<span class="w">              </span><span class="nt">wipe_after_delete</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0&#39;</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio_scsi</span>
+<span class="w">              </span><span class="nt">bootable</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">compute_resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">libvirt_compute_resource03</span>
+<span class="w">        </span><span class="nt">vm_attrs</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2147483648</span>
+<span class="w">          </span><span class="nt">nics_attributes</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">0</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
+<span class="w">              </span><span class="nt">bridge</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio</span>
+<span class="w">          </span><span class="nt">volumes_attributes</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">0</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">pool_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">              </span><span class="nt">capacity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16G</span>
+<span class="w">              </span><span class="nt">allocation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16G</span>
+<span class="w">              </span><span class="nt">format_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raw</span>
 <span class="w">    </span><span class="nt">server_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://satellite.example.com&quot;</span>
 <span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
 <span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;changeme&quot;</span>

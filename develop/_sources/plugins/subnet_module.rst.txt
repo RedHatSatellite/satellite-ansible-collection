@@ -23,7 +23,7 @@ redhat.satellite.subnet module -- Manage Subnets
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.0.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.1.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -1625,12 +1625,12 @@ Examples
         vlanid: 452
         mtu: 9000
         domains:
-        - "foo.example.com"
-        - "bar.example.com"
+          - "foo.example.com"
+          - "bar.example.com"
         organizations:
-        - "Example Org"
+          - "Example Org"
         locations:
-        - "Toulouse"
+          - "Toulouse"
         server_url: "https://satellite.example.com"
         username: "admin"
         password: "changeme"

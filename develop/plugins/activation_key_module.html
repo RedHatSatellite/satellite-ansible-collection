@@ -66,6 +66,10 @@
 <li class="toctree-l4"><a class="reference internal" href="content_export_library_module.html">redhat.satellite.content_export_library module – Manage library content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_repository_module.html">redhat.satellite.content_export_repository module – Manage repository content exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_export_version_module.html">redhat.satellite.content_export_version module – Manage content view version content exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_info_module.html">redhat.satellite.content_import_info module – List content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_library_module.html">redhat.satellite.content_import_library module – Manage library content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_repository_module.html">redhat.satellite.content_import_repository module – Manage repository content imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content_import_version_module.html">redhat.satellite.content_import_version module – Manage content view version content imports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_upload_module.html">redhat.satellite.content_upload module – Upload content to a repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_module.html">redhat.satellite.content_view module – Manage Content Views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="content_view_filter_module.html">redhat.satellite.content_view_filter module – Manage Content View Filters</a></li>
@@ -185,7 +189,7 @@
 <h1>redhat.satellite.activation_key module – Manage Activation Keys<a class="headerlink" href="#redhat-satellite-activation-key-module-manage-activation-keys" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 4.0.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 4.1.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -404,6 +408,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ac
 </div></td>
 <td><div class="ansible-option-cell"><p>List of subscriptions that include either Name, Pool ID, or Upstream Pool ID.</p>
 <p>Pool IDs are preferred since Names and Upstream Pool IDs are not guaranteed to be unique. The module will fail if it finds more than one match.</p>
+<p>This parameter is not supported in SCA mode.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
@@ -510,15 +515,11 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ac
 <span class="w">    </span><span class="nt">lifecycle_environment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Library&quot;</span>
 <span class="w">    </span><span class="nt">content_view</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;client</span><span class="nv"> </span><span class="s">content</span><span class="nv"> </span><span class="s">view&#39;</span>
 <span class="w">    </span><span class="nt">host_collections</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rhel7-servers</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rhel7-production</span>
-<span class="w">    </span><span class="nt">subscriptions</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pool_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8a88e9826db22df5016dd018abdd029b&quot;</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pool_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8a88e9826db22df5016dd01a23270344&quot;</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Red</span><span class="nv"> </span><span class="s">Hat</span><span class="nv"> </span><span class="s">Enterprise</span><span class="nv"> </span><span class="s">Linux&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rhel7-servers</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rhel7-production</span>
 <span class="w">    </span><span class="nt">content_overrides</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rhel-7-server-optional-rpms</span>
-<span class="w">          </span><span class="nt">override</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rhel-7-server-optional-rpms</span>
+<span class="w">        </span><span class="nt">override</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
 <span class="w">    </span><span class="nt">auto_attach</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">    </span><span class="nt">release_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7Server</span>
 <span class="w">    </span><span class="nt">service_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Standard</span>

@@ -9,7 +9,7 @@
 Redhat.Satellite
 ================
 
-Collection version 4.0.0
+Collection version 4.1.0
 
 .. contents::
    :local:
@@ -33,6 +33,7 @@ Ansible Modules to manage Satellite installations
 * Baptiste Agasse <baptiste.agasse@gmail.com>
 * Bernhard Hopfenmüller <hopfenmueller@atix.de>
 * Bernhard Suttner <sbernhard@users.noreply.github.com>
+* Bilhan Karaören <bkaraoren@redhat.com>
 * Bryan Kearney <bkearney@redhat.com>
 * Chris Forkner <gen2fish@gmail.com>
 * Chris Hindman <chindman@chindman.remote.csb>
@@ -86,6 +87,7 @@ Ansible Modules to manage Satellite installations
 * Ondrej Prazak <oprazak@redhat.com>
 * Ondřej Ezr <oezr@redhat.com>
 * Ondřej Gajdušek <ogajduse@redhat.com>
+* Partha Aji <parthaa@gmail.com>
 * Patrick C. F. Ernzer <pcfe@pcfe.net>
 * Patrick Creech <pcreech@redhat.com>
 * Paul Armstrong <parmstro@redhat.com>
@@ -126,7 +128,7 @@ Ansible Modules to manage Satellite installations
 
 **Supported ansible-core versions:**
 
-* 2.14.0 or newer
+* 2.15.0 or newer
 
 .. ansible-links::
 
@@ -168,6 +170,10 @@ Modules
 * :ansplugin:`content_export_library module <redhat.satellite.content_export_library#module>` -- Manage library content exports
 * :ansplugin:`content_export_repository module <redhat.satellite.content_export_repository#module>` -- Manage repository content exports
 * :ansplugin:`content_export_version module <redhat.satellite.content_export_version#module>` -- Manage content view version content exports
+* :ansplugin:`content_import_info module <redhat.satellite.content_import_info#module>` -- List content imports
+* :ansplugin:`content_import_library module <redhat.satellite.content_import_library#module>` -- Manage library content imports
+* :ansplugin:`content_import_repository module <redhat.satellite.content_import_repository#module>` -- Manage repository content imports
+* :ansplugin:`content_import_version module <redhat.satellite.content_import_version#module>` -- Manage content view version content imports
 * :ansplugin:`content_upload module <redhat.satellite.content_upload#module>` -- Upload content to a repository
 * :ansplugin:`content_view module <redhat.satellite.content_view#module>` -- Manage Content Views
 * :ansplugin:`content_view_filter module <redhat.satellite.content_view_filter#module>` -- Manage Content View Filters
@@ -252,6 +258,10 @@ Modules
     content_export_library_module
     content_export_repository_module
     content_export_version_module
+    content_import_info_module
+    content_import_library_module
+    content_import_repository_module
+    content_import_version_module
     content_upload_module
     content_view_module
     content_view_filter_module
