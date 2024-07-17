@@ -1,7 +1,7 @@
 
 
 .. meta::
-  :antsibull-docs: 2.6.1
+  :antsibull-docs: 2.12.0
 
 
 .. _plugins_in_redhat.satellite:
@@ -145,7 +145,6 @@ Ansible Modules to manage Satellite installations
 
 .. toctree::
     :maxdepth: 1
-
 
 Plugin Index
 ------------

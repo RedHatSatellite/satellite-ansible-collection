@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Red Hat Satellite Ansible Collection &mdash; Red Hat Satellite Ansible Collection  documentation</title>
@@ -17,7 +17,7 @@
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,14 +48,19 @@
               <p class="caption" role="heading"><span class="caption-text">User documentation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Red Hat Satellite Ansible Collection</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation-from-automation-hub">Installation from Automation Hub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation-via-rpm">Installation via RPM</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#satellite-documentation">Satellite Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#upstream">Upstream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-notes-and-roadmap">Release Notes and Roadmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#related-information">Related Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license-information">License Information</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Redhat.Satellite</a></li>
@@ -100,34 +105,74 @@
              
   <section id="red-hat-satellite-ansible-collection">
 <h1>Red Hat Satellite Ansible Collection<a class="headerlink" href="#red-hat-satellite-ansible-collection" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>Ansible modules for interacting with the Satellite API.</p>
-<section id="support">
-<h2>Support<a class="headerlink" href="#support" title="Link to this heading"></a></h2>
-<p>For support questions around this collection, please open a ticket on the <a class="reference external" href="https://access.redhat.com">Red Hat Customer Portal</a>.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/PyYAML/"><code class="docutils literal notranslate"><span class="pre">PyYAML</span></code></a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/requests/"><code class="docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
+<li><p>The Python <code class="docutils literal notranslate"><span class="pre">rpm</span></code> bindings for the RPM support in the <code class="docutils literal notranslate"><span class="pre">content_upload</span></code> module</p></li>
+</ul>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>You can install this collection directly from Automation Hub or via RPMs provided by Red Hat.</p>
+<p>Before using this collection, you need to install it, either directly from Automation Hub or via RPMs provided by Red Hat.</p>
 <p>The GitHub repository serves as the source for the release and should not be used for direct installation and consumption of the collection.</p>
 <section id="installation-from-automation-hub">
 <h3>Installation from Automation Hub<a class="headerlink" href="#installation-from-automation-hub" title="Link to this heading"></a></h3>
-<p>You can install the collection with <code class="docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.</p>
-<p>See the Ansible documentation how to configure <code class="docutils literal notranslate"><span class="pre">ansible-galaxy</span></code> to be able to <a class="reference external" href="https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#downloading-a-collection-from-automation-hub">download a collection from Automation Hub</a>.</p>
-<p>You will need to install the Python <code class="docutils literal notranslate"><span class="pre">requests</span></code> library manually, e.g. from the RPM provided by Red Hat (<code class="docutils literal notranslate"><span class="pre">python-requests</span></code> on Red Hat Enterprise Linux 7, <code class="docutils literal notranslate"><span class="pre">python3-requests</span></code> on Red Hat Enterprise Linux 8).</p>
+<p>To install it with the Ansible Galaxy command-line tool:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">ansible-galaxy collection install redhat.satellite</span>
+</pre></div>
+</div>
+<p>You can also include it in a requirements.yml file and install it with <code class="docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.yml</span></code>, using the format:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">collections</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat.satellite</span>
+</pre></div>
+</div>
+<p>Note that if you install any collections from Ansible Galaxy, they will not be upgraded automatically when you upgrade the Ansible package.
+To upgrade the collection to the latest available version, run the following command:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">ansible-galaxy collection install redhat.satellite --upgrade</span>
+</pre></div>
+</div>
+<p>You can also install a specific version of the collection, for example, if you need to downgrade when something is broken in the latest version (please report an issue in this repository). Use the following syntax to install version 1.0.0:</p>
+<div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">ansible-galaxy collection install redhat.satellite:==1.0.0</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://docs.ansible.com/ansible/devel/user_guide/collections_using.html">using Ansible collections</a> for more details.</p>
 </section>
 <section id="installation-via-rpm">
 <h3>Installation via RPM<a class="headerlink" href="#installation-via-rpm" title="Link to this heading"></a></h3>
 <p>The collection is also available as <code class="docutils literal notranslate"><span class="pre">ansible-collection-redhat-satellite</span></code> in the Satellite repository.</p>
 </section>
 </section>
-<section id="satellite-documentation">
-<h2>Satellite Documentation<a class="headerlink" href="#satellite-documentation" title="Link to this heading"></a></h2>
-<p>The official Satellite documentation can be found in the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_satellite/">Product Documentation section of the Red Hat Customer Portal</a>.</p>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>This collection is tested against all currently maintained Ansible versions and with all currently supported (by Ansible on the target node) Python versions.
+You can find the list of maintained Ansible versions and their respective Python versions on <a class="reference external" href="https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html">docs.ansible.com</a>.</p>
 </section>
-<section id="upstream">
-<h2>Upstream<a class="headerlink" href="#upstream" title="Link to this heading"></a></h2>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
 <p>This collection is based on the <a class="reference external" href="https://github.com/theforeman/foreman-ansible-modules"><code class="docutils literal notranslate"><span class="pre">theforeman.foreman</span></code></a> community collection for Foreman and Katello.
 If possible, any contributions should go directly to <code class="docutils literal notranslate"><span class="pre">theforeman.foreman</span></code> from where they will flow back into this collection.</p>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading"></a></h2>
+<p>For support questions around this collection, please open a ticket on the <a class="reference external" href="https://access.redhat.com">Red Hat Customer Portal</a>.</p>
+</section>
+<section id="release-notes-and-roadmap">
+<h2>Release Notes and Roadmap<a class="headerlink" href="#release-notes-and-roadmap" title="Link to this heading"></a></h2>
+<p>Please see the <a class="reference external" href="CHANGELOG.rst">changelog</a>.</p>
+</section>
+<section id="related-information">
+<h2>Related Information<a class="headerlink" href="#related-information" title="Link to this heading"></a></h2>
+<p>The official Satellite documentation can be found in the <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_satellite/">Product Documentation section of the Red Hat Customer Portal</a>.</p>
+</section>
+<section id="license-information">
+<h2>License Information<a class="headerlink" href="#license-information" title="Link to this heading"></a></h2>
+<p>This collection is licensed under the <a class="reference external" href="LICENSE">GNU GPL v3</a>.</p>
 </section>
 </section>
 
