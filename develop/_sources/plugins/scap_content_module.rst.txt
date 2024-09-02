@@ -1,4 +1,3 @@
-
 .. Document meta
 
 :orphan:
@@ -7,7 +6,7 @@
     :trim:
 
 .. meta::
-  :antsibull-docs: 2.12.0
+  :antsibull-docs: 2.13.1
 
 .. Anchors
 
@@ -23,7 +22,7 @@ redhat.satellite.scap_content module -- Manage SCAP content
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.1.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.2.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -187,7 +186,7 @@ Parameters
 
       Original file name of the XML file.
 
-      If unset, the filename of \ :emphasis:`scap\_file`\  will be used.
+      If unset, the filename of :emphasis:`scap\_file` will be used.
 
 
       .. raw:: html
@@ -223,7 +222,7 @@ Parameters
 
       Password of the user accessing the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_PASSWORD`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_PASSWORD` will be used instead.
 
 
       .. raw:: html
@@ -295,7 +294,7 @@ Parameters
 
       URL of the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_SERVER\_URL`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_SERVER\_URL` will be used instead.
 
 
       .. raw:: html
@@ -443,7 +442,7 @@ Parameters
 
       Username accessing the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_USERNAME`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_USERNAME` will be used instead.
 
 
       .. raw:: html
@@ -479,7 +478,7 @@ Parameters
 
       Whether or not to verify the TLS certificates of the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_VALIDATE\_CERTS`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_VALIDATE\_CERTS` will be used instead.
 
 
       .. rst-class:: ansible-option-line
@@ -611,7 +610,6 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
     - name: Create SCAP content
       redhat.satellite.scap_content:
         title: "Red Hat firefox default content"
@@ -650,7 +648,6 @@ Examples
         username: "admin"
         password: "changeme"
         state: absent
-
 
 
 
@@ -713,7 +710,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
         </div>
 
-    
+
   * - .. raw:: html
 
         <div class="ansible-option-indent"></div><div class="ansible-option-cell">
@@ -795,4 +792,3 @@ Collection links
 
 
 .. Parsing errors
-

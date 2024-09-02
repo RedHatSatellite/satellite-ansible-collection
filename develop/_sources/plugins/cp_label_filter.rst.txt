@@ -1,4 +1,3 @@
-
 .. Document meta
 
 :orphan:
@@ -7,7 +6,7 @@
     :trim:
 
 .. meta::
-  :antsibull-docs: 2.12.0
+  :antsibull-docs: 2.13.1
 
 .. Anchors
 
@@ -23,7 +22,7 @@ redhat.satellite.cp_label filter -- Convert strings to Candlepin labels
 .. Collection note
 
 .. note::
-    This filter plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.1.0).
+    This filter plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.2.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -144,7 +143,6 @@ Examples
 
 
 
-
 .. Facts
 
 
@@ -238,4 +236,3 @@ Collection links
 
 
 .. Parsing errors
-

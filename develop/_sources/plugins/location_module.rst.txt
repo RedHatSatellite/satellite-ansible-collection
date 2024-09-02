@@ -1,4 +1,3 @@
-
 .. Document meta
 
 :orphan:
@@ -7,7 +6,7 @@
     :trim:
 
 .. meta::
-  :antsibull-docs: 2.12.0
+  :antsibull-docs: 2.13.1
 
 .. Anchors
 
@@ -23,7 +22,7 @@ redhat.satellite.location module -- Manage Locations
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.1.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.2.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -89,6 +88,43 @@ Parameters
 
   * - Parameter
     - Comments
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-description"></div>
+
+      .. _ansible_collections.redhat.satellite.location_module__parameter-description:
+
+      .. rst-class:: ansible-option-title
+
+      **description**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+      :ansible-option-versionadded:`added in redhat.satellite 4.2.0`
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Description of the Location
+
+
+      .. raw:: html
+
+        </div>
 
   * - .. raw:: html
 
@@ -232,7 +268,7 @@ Parameters
       .. raw:: html
 
         </div>
-    
+
   * - .. raw:: html
 
         <div class="ansible-option-indent"></div><div class="ansible-option-cell">
@@ -437,7 +473,7 @@ Parameters
 
       Password of the user accessing the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_PASSWORD`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_PASSWORD` will be used instead.
 
 
       .. raw:: html
@@ -473,7 +509,7 @@ Parameters
 
       URL of the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_SERVER\_URL`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_SERVER\_URL` will be used instead.
 
 
       .. raw:: html
@@ -551,7 +587,7 @@ Parameters
 
       Username accessing the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_USERNAME`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_USERNAME` will be used instead.
 
 
       .. raw:: html
@@ -587,7 +623,7 @@ Parameters
 
       Whether or not to verify the TLS certificates of the Foreman server.
 
-      If the value is not specified in the task, the value of environment variable \ :literal:`SATELLITE\_VALIDATE\_CERTS`\  will be used instead.
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_VALIDATE\_CERTS` will be used instead.
 
 
       .. rst-class:: ansible-option-line
@@ -719,7 +755,6 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
     # Create a simple location
     - name: "Create CI Location"
       redhat.satellite.location:
@@ -759,7 +794,6 @@ Examples
         name: "My Cool New Location/New nested location"
         parent: "My Cool New Location/My Nested location"
         state: present
-
 
 
 
@@ -822,7 +856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
         </div>
 
-    
+
   * - .. raw:: html
 
         <div class="ansible-option-indent"></div><div class="ansible-option-cell">
@@ -904,4 +938,3 @@ Collection links
 
 
 .. Parsing errors
-
