@@ -145,10 +145,10 @@ $(RUNTIME_YML): FORCE
 	$(PYTHON_COMMAND) generate_action_groups.py
 
 branding:
-	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_callback.py tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml $(RUNTIME_YML) .ansible-lint
+	sed -i 's/theforeman\.foreman/redhat.satellite/g' plugins/*/*.py tests/inventory/*.foreman.yml tests/test_callback.py tests/test_module_state.py tests/test_playbooks/*.yml changelogs/config.yaml changelogs/changelog.yaml CHANGELOG.rst roles/*/README.md roles/*/*/*.yml docs/cvmanager.md tests/test_playbooks/fixtures/*.yml $(RUNTIME_YML) .ansible-lint .packit.yaml
 	sed -i 's/foreman.example.com/satellite.example.com/g' plugins/*/*.py docs/cvmanager.md roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman/foreman-ansible-modules#RedHatSatellite/satellite-ansible-collection#g' .github/workflows/*.yml
-	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml
+	sed -i 's/theforeman-foreman/redhat-satellite/g' .github/workflows/*.yml .packit.yaml
 	sed -i 's/Foreman Ansible Modules/Red Hat Satellite Ansible Collection/g' docs/index.rst docs/conf.py docs/cvmanager.md docs/_gh_include/*.inc
 	sed -i 's/The Foreman Project/Red Hat, Inc./g' docs/conf.py
 	sed -i '/FOREMAN_\w/ s/FOREMAN_/SATELLITE_/g' plugins/doc_fragments/foreman.py plugins/module_utils/foreman_helper.py Makefile
@@ -158,6 +158,7 @@ branding:
 	sed -i 's/foreman:/satellite:/' $(RUNTIME_YML)
 	sed -i 's/foreman/satellite/' generate_action_groups.py .ansible-lint
 	sed -i '/group/ s/foreman/satellite/' tests/test_playbooks/module_defaults.yml
+	sed -i 's#packages/plugins#packages/satellite#' .packit.yaml
 	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
 	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot*.py tests/fixtures/apidoc/snapshot*.json
 	rm -rf tests/test_playbooks/*_deb.yml
