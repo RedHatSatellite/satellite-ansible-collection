@@ -162,7 +162,6 @@ branding:
 	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot*.py tests/fixtures/apidoc/snapshot*.json
 	rm -rf tests/test_playbooks/*_deb.yml
 	rm -rf tests/test_playbooks/*_ostree.yml
-	rm -rf .packit.yaml
 	make $(RUNTIME_YML)
 
 FORCE:
