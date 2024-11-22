@@ -13,14 +13,17 @@ $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__
 DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md) $(TESTDATA)
 
 PYTHON_VERSION = $(shell $(PYTHON_COMMAND) -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
-ANSIBLE_SUPPORTS_REDIRECTS = $(shell ansible --version | grep -q 'ansible 2.9' && echo 0 || echo 1)
 COLLECTION_COMMAND ?= ansible-galaxy
 SANITY_OPTS = --venv
 TEST =
 FLAGS =
-PYTEST = pytest -n 4 --forked -vv
+PYTEST_COMMAND ?= pytest
+PYTEST = $(PYTEST_COMMAND) -n 4 --forked
+# PYTEST_ADDOPTS is exported to sub-shells and picked up by *all* pytest invocations
+PYTEST_ADDOPTS ?= -vv
+export PYTEST_ADDOPTS
 
-APIPIE_VERSION ?= v0.4.0
+APIPIE_VERSION ?= v0.5.0
 
 default: help
 help:
@@ -72,17 +75,17 @@ test-other:
 	$(PYTEST) -k 'not test_crud.py'
 
 livetest: $(MANIFEST) | tests/test_playbooks/vars/server.yml
-	pytest -vv 'tests/test_crud.py::test_crud' --vcrmode live $(FLAGS)
+	$(PYTEST_COMMAND) 'tests/test_crud.py::test_crud' --vcrmode live $(FLAGS)
 
 test_%: FORCE $(MANIFEST) | tests/test_playbooks/vars/server.yml
-	pytest -vv 'tests/test_crud.py::test_crud[$*]' 'tests/test_crud.py::test_check_mode[$*]' $(FLAGS)
+	$(PYTEST_COMMAND) 'tests/test_crud.py::test_crud[$*]' 'tests/test_crud.py::test_check_mode[$*]' $(FLAGS)
 
 livetest_%: FORCE $(MANIFEST) | tests/test_playbooks/vars/server.yml
-	pytest -vv 'tests/test_crud.py::test_crud[$*]' --vcrmode live $(FLAGS)
+	$(PYTEST_COMMAND) 'tests/test_crud.py::test_crud[$*]' --vcrmode live $(FLAGS)
 
 record_%: FORCE $(MANIFEST)
 	$(RM) tests/test_playbooks/fixtures/$*-*.yml
-	pytest -vv 'tests/test_crud.py::test_crud[$*]' --vcrmode record $(FLAGS)
+	$(PYTEST_COMMAND) 'tests/test_crud.py::test_crud[$*]' --vcrmode record $(FLAGS)
 
 clean_%: FORCE $(MANIFEST)
 	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/test_playbooks/$*.yml'
@@ -99,9 +102,7 @@ tests/test_playbooks/vars/server.yml:
 
 dist-test: $(MANIFEST)
 	SATELLITE_SERVER_URL=https://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost | grep -q "Failed to connect to Foreman server.*foreman.example.test"
-ifeq ($(ANSIBLE_SUPPORTS_REDIRECTS),1)
 	SATELLITE_SERVER_URL=https://foreman.example.test ansible -m $(NAMESPACE).$(NAME).foreman_organization -a "username=admin password=changeme name=collectiontest" localhost | grep -q "Failed to connect to Foreman server.*foreman.example.test"
-endif
 	SATELLITE_SERVER_URL=http://foreman.example.test ansible -m $(NAMESPACE).$(NAME).organization -a "username=admin password=changeme name=collectiontest" localhost 2>&1| grep -q "You have configured a plain HTTP server URL."
 	ansible-doc $(NAMESPACE).$(NAME).organization | grep -q "Manage Organization"
 
