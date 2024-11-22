@@ -48,3 +48,24 @@ Download the Subscription Manifest from the Red Hat Customer Portal to localhost
         satellite_rhsm_password: "$ecur3p4$$w0rd"
         satellite_manifest_uuid: "01234567-89ab-cdef-0123-456789abcdef"
 ```
+
+Download the Subscription Manifest from the Red Hat Customer Portal, via a proxy, to localhost before uploading to Foreman server:
+
+```yaml
+- hosts: localhost
+  roles:
+    - role: redhat.satellite.manifest
+      environment:
+        https_proxy: "http://proxy.example.com:3128"
+        no_proxy: "satellite.example.com"
+      vars:
+        satellite_server_url: https://satellite.example.com
+        satellite_username: "admin"
+        satellite_password: "changeme"
+        satellite_organization: "Default Organization"
+        satellite_manifest_path: "~/manifest.zip"
+        satellite_manifest_download: true
+        satellite_rhsm_username: "happycustomer"
+        satellite_rhsm_password: "$ecur3p4$$w0rd"
+        satellite_manifest_uuid: "01234567-89ab-cdef-0123-456789abcdef"
+```

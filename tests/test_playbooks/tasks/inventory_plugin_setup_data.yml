@@ -1,0 +1,54 @@
+---
+- name: create test hostgroups
+  hostgroup:
+    username: "{{ inventory_username }}"
+    password: "{{ inventory_password }}"
+    server_url: "{{ inventory_foreman_url }}"
+    validate_certs: false
+    name: "{{ item.name }}"
+    parent: "{{ item.parent | default(omit) }}"
+    organizations:
+      - Default Organization
+    locations:
+      - Default Location
+  with_items: "{{ foreman_groups }}"
+
+- name: create test hosts
+  host:
+    username: "{{ inventory_username }}"
+    password: "{{ inventory_password }}"
+    server_url: "{{ inventory_foreman_url }}"
+    validate_certs: false
+    name: "{{ item.key }}"
+    hostgroup: "{{ item.value }}"
+    build: false
+    organization: Default Organization
+    location: Default Location
+    managed: false
+    parameters:
+      - name: testparam1
+        value: testvalue1
+      - name: testparam2
+        value: testvalue2
+  with_dict: "{{ foreman_hosts }}"
+
+- name: submit facts for hosts
+  uri:
+    url: "{{ inventory_foreman_url }}/api/hosts/facts"
+    url_username: "{{ inventory_username }}"
+    url_password: "{{ inventory_password }}"
+    validate_certs: false
+    method: POST
+    body:
+      name: "{{ item.key }}"
+      facts:
+        fqdn: "{{ item.key }}"
+        domain: example.com
+        famtesthost: true
+        operatingsystem: CentOS
+        operatingsystemrelease: "7.7"
+    force_basic_auth: true
+    status_code: 201
+    body_format: json
+  with_dict: "{{ foreman_hosts }}"
+  ignore_errors: true

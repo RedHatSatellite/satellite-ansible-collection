@@ -99,6 +99,22 @@
     - include_tasks: tasks/hostgroup.yml
       vars:
         hostgroup_state: absent
+    - include_tasks: tasks/hostgroup.yml
+      vars:
+        hostgroup_state: absent
+        hostgroup_name: "{{ item }}"
+      loop:
+        - "Nested New host group"
+        - "New host group/Nested New host group 1"
+        - "New host group/Nested New host group 10"
+        - "New host group/Nested New host group 2"
+        - "New host group/Nested New host group/New host group with nested parent"
+        - "New host group/Whatever Child"
+        - "New host group"
+        - "New host group with nested parent"
+        - "New host group with puppet classes"
+        - "Super New host group"
+        - "Super New host group 2"
 
 - hosts: tests
   collections:
@@ -132,6 +148,12 @@
             value: value1
           - name: subnet_param2
             value: value2
+          - name: hidden_secret
+            value: super_secret
+            hidden_value: true
+          - name: excplicit_text
+            value: not_secret
+            hidden_value: false
         hostgroup_state: present
         expected_change: true
 
@@ -161,6 +183,12 @@
             value: value1
           - name: subnet_param2
             value: value2
+          - name: hidden_secret
+            value: super_secret
+            hidden_value: true
+          - name: excplicit_text
+            value: not_secret
+            hidden_value: false
         hostgroup_state: present
         expected_change: true
 
@@ -189,6 +217,12 @@
             value: value1
           - name: subnet_param2
             value: value2
+          - name: hidden_secret
+            value: super_secret
+            hidden_value: true
+          - name: excplicit_text
+            value: not_secret
+            hidden_value: false
         hostgroup_state: present
         expected_change: false
 
@@ -218,6 +252,12 @@
             value: value1
           - name: subnet_param2
             value: value2
+          - name: hidden_secret
+            value: super_secret
+            hidden_value: true
+          - name: excplicit_text
+            value: not_secret
+            hidden_value: false
         hostgroup_state: present
         expected_change: true
 
@@ -246,6 +286,12 @@
             value: value1
           - name: subnet_param2
             value: value2
+          - name: hidden_secret
+            value: super_secret
+            hidden_value: true
+          - name: excplicit_text
+            value: not_secret
+            hidden_value: false
         hostgroup_state: present
         expected_change: true
 
@@ -274,6 +320,12 @@
             value: value1
           - name: subnet_param2
             value: value2
+          - name: hidden_secret
+            value: super_secret
+            hidden_value: true
+          - name: excplicit_text
+            value: not_secret
+            hidden_value: false
         hostgroup_state: present
         expected_change: false
 
@@ -302,6 +354,12 @@
             value: value1
           - name: subnet_param2
             value: value2
+          - name: hidden_secret
+            value: super_secret
+            hidden_value: true
+          - name: excplicit_text
+            value: not_secret
+            hidden_value: false
         hostgroup_state: absent
         expected_change: true
 
@@ -575,6 +633,22 @@
     - vars/server.yml
     - vars/hostgroup.yml
   tasks:
+    - include_tasks: tasks/hostgroup.yml
+      vars:
+        hostgroup_state: absent
+        hostgroup_name: "{{ item }}"
+      loop:
+        - "Nested New host group"
+        - "New host group/Nested New host group 1"
+        - "New host group/Nested New host group 10"
+        - "New host group/Nested New host group 2"
+        - "New host group/Nested New host group/New host group with nested parent"
+        - "New host group/Whatever Child"
+        - "New host group"
+        - "New host group with nested parent"
+        - "New host group with puppet classes"
+        - "Super New host group"
+        - "Super New host group 2"
     - include_tasks: tasks/config_group.yml
       vars:
         config_group_name: "{{ item }}"
