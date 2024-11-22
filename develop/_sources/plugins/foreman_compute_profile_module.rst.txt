@@ -3,7 +3,7 @@
 :orphan:
 
 .. meta::
-  :antsibull-docs: 2.15.0
+  :antsibull-docs: 2.16.1
 
 .. Anchors
 
@@ -17,7 +17,7 @@ redhat.satellite.foreman_compute_profile module
 .. Collection note
 
 .. note::
-    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 4.2.0).
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.0.0).
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman_compute_profile`.
 
