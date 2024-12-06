@@ -187,7 +187,7 @@
 <h1>redhat.satellite.templates_import module – Sync Templates from a repository<a class="headerlink" href="#redhat-satellite-templates-import-module-sync-templates-from-a-repository" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.0.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.1.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -275,6 +275,29 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-te
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-http_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-templates-import-module-parameter-http-proxy"><strong>http_proxy</strong></p>
+<a class="ansibleOptionLink" href="#parameter-http_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>HTTP proxy to use for template sync.</p>
+<p>Use this parameter together with <code class="docutils literal notranslate"><span class="pre">http_proxy_policy=selected</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-http_proxy_policy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-templates-import-module-parameter-http-proxy-policy"><strong>http_proxy_policy</strong></p>
+<a class="ansibleOptionLink" href="#parameter-http_proxy_policy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>HTTP proxy policy for template sync.</p>
+<p>You can choose no HTTP proxy, global HTTP proxy, or a custom HTTP proxy (<code class="docutils literal notranslate"><span class="pre">selected</span></code>)</p>
+<p>If you choose ‘selected’, provide the <code class="docutils literal notranslate"><span class="pre">http_proxy</span></code> parameter.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;global&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;selected&quot;</span></code></p></li>
 </ul>
 </div></td>
 </tr>

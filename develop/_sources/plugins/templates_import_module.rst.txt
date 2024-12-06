@@ -22,7 +22,7 @@ redhat.satellite.templates_import module -- Sync Templates from a repository
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.0.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.1.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -273,6 +273,89 @@ Parameters
 
       - :ansible-option-choices-entry:`false`
       - :ansible-option-choices-entry:`true`
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-http_proxy"></div>
+
+      .. _ansible_collections.redhat.satellite.templates_import_module__parameter-http_proxy:
+
+      .. rst-class:: ansible-option-title
+
+      **http_proxy**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-http_proxy" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      HTTP proxy to use for template sync.
+
+      Use this parameter together with :literal:`http\_proxy\_policy=selected`
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-http_proxy_policy"></div>
+
+      .. _ansible_collections.redhat.satellite.templates_import_module__parameter-http_proxy_policy:
+
+      .. rst-class:: ansible-option-title
+
+      **http_proxy_policy**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-http_proxy_policy" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      HTTP proxy policy for template sync.
+
+      You can choose no HTTP proxy, global HTTP proxy, or a custom HTTP proxy (\ :literal:`selected`\ )
+
+      If you choose 'selected', provide the :literal:`http\_proxy` parameter.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry:`"none"`
+      - :ansible-option-choices-entry:`"global"`
+      - :ansible-option-choices-entry:`"selected"`
 
 
       .. raw:: html
