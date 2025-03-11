@@ -1,5 +1,5 @@
 .. meta::
-  :antsibull-docs: 2.16.1
+  :antsibull-docs: 2.16.3
 
 
 .. _plugins_in_redhat.satellite:
@@ -7,7 +7,7 @@
 Redhat.Satellite
 ================
 
-Collection version 5.1.0
+Collection version 5.2.0
 
 .. contents::
    :local:
@@ -98,6 +98,7 @@ Ansible Modules to manage Satellite installations
 * Richard J Osborne <20555769+rjo-uk@users.noreply.github.com>
 * Richard Stempfl <richielatk@gmail.com>
 * Richard Waax <40852459+riwael@users.noreply.github.com>
+* Ruediger Pluem <ruediger.pluem@vodafone.com>
 * Sam <samcalvert@me.com>
 * Samir Jha <sjha4@ncsu.edu>
 * Sean O'Keeffe <seanokeeffe797@gmail.com>
