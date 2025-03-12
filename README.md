@@ -70,7 +70,7 @@ For support questions around this collection, please open a ticket on the [Red H
 
 ## Release Notes and Roadmap
 
-Please see the [changelog](CHANGELOG.rst).
+Please see the [changelog](https://github.com/RedHatSatellite/satellite-ansible-collection/blob/develop/CHANGELOG.rst).
 
 
 ## Related Information
@@ -80,4 +80,4 @@ The official Satellite documentation can be found in the [Product Documentation 
 
 ## License Information
 
-This collection is licensed under the [GNU GPL v3](LICENSE).
+This collection is licensed under the [GNU GPL v3](https://github.com/RedHatSatellite/satellite-ansible-collection/blob/develop/LICENSE).
