@@ -155,7 +155,7 @@ branding:
 	sed -i '/FOREMAN_\w/ s/FOREMAN_/SATELLITE_/g' plugins/doc_fragments/foreman.py plugins/module_utils/foreman_helper.py Makefile
 	sed -i '/foreman_\w/ s/foreman_/satellite_/g' roles/*/README.md roles/*/*/*.yml
 	sed -i 's#theforeman.github.io/foreman-ansible-modules#redhatsatellite.github.io/satellite-ansible-collection#g' roles/*/README.md
-	sed -i '/foreman_\w.*:/ s/foreman_/satellite_/g' tests/test_playbooks/*_role.yml tests/test_playbooks/convert2rhel.yml docs/cvmanager.md
+	sed -i '/foreman_\w.*:/ s/foreman_/satellite_/g' tests/test_playbooks/*_role.yml tests/test_playbooks/convert2rhel.yml tests/test_playbooks/repository_set_info.yml docs/cvmanager.md
 	sed -i 's/foreman:/satellite:/' $(RUNTIME_YML)
 	sed -i 's/foreman/satellite/' generate_action_groups.py .ansible-lint
 	sed -i '/group/ s/foreman/satellite/' tests/test_playbooks/module_defaults.yml
