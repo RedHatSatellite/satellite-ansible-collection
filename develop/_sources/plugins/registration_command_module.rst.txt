@@ -819,7 +819,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Name of Smart Proxy.
+      Name of Capsule.
 
       This Proxy must have both the :literal:`Templates` and :literal:`Registration` features enabled.
 

@@ -16,8 +16,8 @@
 
 .. Title
 
-redhat.satellite.smart_proxy module -- Manage Smart Proxies
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.smart_proxy module -- Manage Capsules
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
@@ -51,7 +51,7 @@ Synopsis
 
 .. Description
 
-- Create, update and delete Smart Proxies
+- Create, update and delete Capsules
 
 
 .. Aliases
@@ -115,7 +115,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      The download policy for the Smart Proxy
+      The download policy for the Capsule
 
       Only available for Katello installations.
 
@@ -166,7 +166,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Lifecycle Environments synced to the Smart Proxy.
+      Lifecycle Environments synced to the Capsule.
 
       Only available for Katello installations.
 
@@ -236,7 +236,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Name of the Smart Proxy
+      Name of the Capsule
 
 
       .. raw:: html
@@ -418,7 +418,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      URL of the Smart Proxy
+      URL of the Capsule
 
 
       .. raw:: html
@@ -615,9 +615,9 @@ Notes
 -----
 
 .. note::
-   - Even with :emphasis:`state=present` this module does not install a new Smart Proxy.
-   - It can only associate an existing Smart Proxy listening at the specified :emphasis:`url`.
-   - Consider using :emphasis:`foreman-installer` to create Smart Proxies.
+   - Even with :emphasis:`state=present` this module does not install a new Capsule.
+   - It can only associate an existing Capsule listening at the specified :emphasis:`url`.
+   - Consider using :emphasis:`foreman-installer` to create Capsules.
 
 .. Seealso
 
@@ -629,8 +629,8 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    # Create a local Smart Proxy
-    - name: "Create Smart Proxy"
+    # Create a local Capsule
+    - name: "Create Capsule"
       redhat.satellite.smart_proxy:
         username: "admin"
         password: "changeme"

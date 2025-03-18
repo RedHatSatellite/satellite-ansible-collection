@@ -329,7 +329,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Content Source (Smart Proxy with Content) name.
+      Content Source (Capsule with Content) name.
 
       Only available for Katello installations.
 

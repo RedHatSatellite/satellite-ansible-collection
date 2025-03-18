@@ -232,7 +232,7 @@ Modules
 * :ansplugin:`setting_info module <redhat.satellite.setting_info#module>` -- Fetch information about Settings
 * :ansplugin:`smart_class_parameter module <redhat.satellite.smart_class_parameter#module>` -- Manage Smart Class Parameters
 * :ansplugin:`smart_class_parameter_override_value module <redhat.satellite.smart_class_parameter_override_value#module>` -- Manage Smart Class Parameter Override Values
-* :ansplugin:`smart_proxy module <redhat.satellite.smart_proxy#module>` -- Manage Smart Proxies
+* :ansplugin:`smart_proxy module <redhat.satellite.smart_proxy#module>` -- Manage Capsules
 * :ansplugin:`status_info module <redhat.satellite.status_info#module>` -- Get status info
 * :ansplugin:`subnet module <redhat.satellite.subnet#module>` -- Manage Subnets
 * :ansplugin:`subnet_info module <redhat.satellite.subnet_info#module>` -- Fetch information about Subnets

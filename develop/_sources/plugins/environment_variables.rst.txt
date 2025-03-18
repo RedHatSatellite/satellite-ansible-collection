@@ -49,7 +49,7 @@ Environment variables used by the ansible-core configuration are documented in :
     :ansplugin:`redhat.satellite.foreman inventory plugin <redhat.satellite.foreman#inventory>`
 .. envvar:: FOREMAN_PROXY_URL
 
-    URL of the Foreman Smart Proxy server.
+    URL of the Capsule server.
 
     *Used by:*
     :ansplugin:`redhat.satellite.foreman callback plugin <redhat.satellite.foreman#callback>`

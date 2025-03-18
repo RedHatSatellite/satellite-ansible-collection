@@ -264,7 +264,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Smart Proxy to import Puppet Classes from
+      Capsule to import Puppet Classes from
 
 
       .. raw:: html
