@@ -41,7 +41,7 @@ DOCUMENTATION = '''
             key: url
       proxy_url:
         description:
-          - URL of the Foreman Smart Proxy server.
+          - URL of the Capsule server.
         env:
           - name: FOREMAN_PROXY_URL
         ini:
@@ -293,7 +293,7 @@ class CallbackModule(CallbackBase):
 
     def send_reports_proxy_host_report(self, stats):
         """
-        Send reports to Foreman Smart Proxy running Host Reports
+        Send reports to Capsule running Host Reports
         plugin. The format is native Ansible report without any
         changes.
         """
