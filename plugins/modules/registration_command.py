@@ -112,7 +112,7 @@ options:
     type: bool
   smart_proxy:
     description:
-    - Name of Smart Proxy.
+    - Name of Capsule.
     - This Proxy must have both the C(Templates) and C(Registration) features enabled.
     required: false
     type: str

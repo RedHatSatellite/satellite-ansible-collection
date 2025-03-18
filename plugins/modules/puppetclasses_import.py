@@ -31,7 +31,7 @@ author:
 options:
   smart_proxy:
     description:
-      - Smart Proxy to import Puppet Classes from
+      - Capsule to import Puppet Classes from
     required: true
     type: str
   environment:

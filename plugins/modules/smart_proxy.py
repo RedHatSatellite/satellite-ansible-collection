@@ -22,9 +22,9 @@ DOCUMENTATION = '''
 ---
 module: smart_proxy
 version_added: 1.4.0
-short_description: Manage Smart Proxies
+short_description: Manage Capsules
 description:
-  - Create, update and delete Smart Proxies
+  - Create, update and delete Capsules
 author:
   - "James Stuart (@jstuart)"
   - "Matthias M Dellweg (@mdellweg)"
@@ -32,24 +32,24 @@ author:
 options:
   name:
     description:
-      - Name of the Smart Proxy
+      - Name of the Capsule
     required: true
     type: str
   lifecycle_environments:
     description:
-      - Lifecycle Environments synced to the Smart Proxy.
+      - Lifecycle Environments synced to the Capsule.
       - Only available for Katello installations.
     required: false
     elements: str
     type: list
   url:
     description:
-      - URL of the Smart Proxy
+      - URL of the Capsule
     required: true
     type: str
   download_policy:
     description:
-      - The download policy for the Smart Proxy
+      - The download policy for the Capsule
       - Only available for Katello installations.
       - The download policy C(background) is deprecated and not available since Katello 4.3.
       - The download policy C(streamed) is available since Katello 4.5.
@@ -62,9 +62,9 @@ options:
     required: false
     type: str
 notes:
-  - Even with I(state=present) this module does not install a new Smart Proxy.
-  - It can only associate an existing Smart Proxy listening at the specified I(url).
-  - Consider using I(foreman-installer) to create Smart Proxies.
+  - Even with I(state=present) this module does not install a new Capsule.
+  - It can only associate an existing Capsule listening at the specified I(url).
+  - Consider using I(foreman-installer) to create Capsules.
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state
@@ -72,8 +72,8 @@ extends_documentation_fragment:
 '''
 
 EXAMPLES = '''
-# Create a local Smart Proxy
-- name: "Create Smart Proxy"
+# Create a local Capsule
+- name: "Create Capsule"
   redhat.satellite.smart_proxy:
     username: "admin"
     password: "changeme"
