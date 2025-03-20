@@ -187,7 +187,7 @@
 <h1>redhat.satellite.hostgroup module – Manage Hostgroups<a class="headerlink" href="#redhat-satellite-hostgroup-module-manage-hostgroups" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.2.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.3.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -255,27 +255,35 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ca_path"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-ca-path"><strong>ca_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ca_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">path</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>PEM formatted file that contains a CA certificate to be used for validation.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_CA_PATH</span></code> will be used instead.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-compute_profile"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-compute-profile"><strong>compute_profile</strong></p>
 <a class="ansibleOptionLink" href="#parameter-compute_profile" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Compute profile name</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-compute_resource"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-compute-resource"><strong>compute_resource</strong></p>
 <a class="ansibleOptionLink" href="#parameter-compute_resource" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Compute resource name</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-config_groups"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-config-groups"><strong>config_groups</strong></p>
 <a class="ansibleOptionLink" href="#parameter-config_groups" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Config groups list</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-content_source"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-content-source"><strong>content_source</strong></p>
 <a class="ansibleOptionLink" href="#parameter-content_source" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -283,7 +291,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>Only available for Katello installations.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-content_view"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-content-view"><strong>content_view</strong></p>
 <a class="ansibleOptionLink" href="#parameter-content_view" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -291,28 +299,28 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>Only available for Katello installations.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-description"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-description"><strong>description</strong></p>
 <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Description of hostgroup</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-domain"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-domain"><strong>domain</strong></p>
 <a class="ansibleOptionLink" href="#parameter-domain" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Domain name</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-environment"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-environment"><strong>environment</strong></p>
 <a class="ansibleOptionLink" href="#parameter-environment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Puppet environment name</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-kickstart_repository"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-kickstart-repository"><strong>kickstart_repository</strong></p>
 <a class="ansibleOptionLink" href="#parameter-kickstart_repository" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -322,7 +330,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>Only available for Katello installations.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-lifecycle_environment"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-lifecycle-environment"><strong>lifecycle_environment</strong></p>
 <a class="ansibleOptionLink" href="#parameter-lifecycle_environment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -330,14 +338,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>Only available for Katello installations.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-locations"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-locations"><strong>locations</strong></p>
 <a class="ansibleOptionLink" href="#parameter-locations" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of locations the entity should be assigned to</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-medium"></div>
 <div class="ansibleOptionAnchor" id="parameter-media"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-medium"><span id="ansible-collections-redhat-satellite-hostgroup-module-parameter-media"></span><strong>medium</strong></p>
 <a class="ansibleOptionLink" href="#parameter-medium" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: media</span></p>
@@ -347,14 +355,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>Mutually exclusive with <em>kickstart_repository</em>.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of hostgroup</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-openscap_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-openscap-proxy"><strong>openscap_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-openscap_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -362,7 +370,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>Only available when the OpenSCAP plugin is installed.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-operatingsystem"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-operatingsystem"><strong>operatingsystem</strong></p>
 <a class="ansibleOptionLink" href="#parameter-operatingsystem" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -370,7 +378,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>You can omit the version part as long as you only have one operating system by that name.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-organization"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-organization"><strong>organization</strong></p>
 <a class="ansibleOptionLink" href="#parameter-organization" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -379,21 +387,21 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>This organization will implicitly be added to the <em>organizations</em> parameter if needed.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-organizations"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-organizations"><strong>organizations</strong></p>
 <a class="ansibleOptionLink" href="#parameter-organizations" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of organizations the entity should be assigned to</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-parameters"><strong>parameters</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Hostgroup specific host parameters</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/hidden_value"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-parameters-hidden-value"><strong>hidden_value</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/hidden_value" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -405,14 +413,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-parameters-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Name of the parameter</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/parameter_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-parameters-parameter-type"><strong>parameter_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/parameter_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -430,57 +438,57 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/value"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-parameters-value"><strong>value</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/value" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">any</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Value of the parameter</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parent"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-parent"><strong>parent</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parent" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Hostgroup parent name</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-password"><strong>password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password of the user accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_PASSWORD</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ptable"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-ptable"><strong>ptable</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ptable" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Partition table name</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-puppet_ca_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-puppet-ca-proxy"><strong>puppet_ca_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-puppet_ca_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Puppet CA proxy name</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-puppet_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-puppet-proxy"><strong>puppet_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-puppet_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Puppet server proxy name</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-puppetclasses"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-puppetclasses"><strong>puppetclasses</strong></p>
 <a class="ansibleOptionLink" href="#parameter-puppetclasses" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of puppet classes to include in this host group. Must exist for hostgroup’s puppet environment.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-pxe_loader"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-pxe-loader"><strong>pxe_loader</strong></p>
 <a class="ansibleOptionLink" href="#parameter-pxe_loader" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -505,14 +513,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-realm"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-realm"><strong>realm</strong></p>
 <a class="ansibleOptionLink" href="#parameter-realm" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Realm name</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-root_pass"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-root-pass"><strong>root_pass</strong></p>
 <a class="ansibleOptionLink" href="#parameter-root_pass" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -520,7 +528,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>Will result in the entity always being updated, as the current password cannot be retrieved.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-server-url"><strong>server_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-server_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -528,7 +536,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_SERVER_URL</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -540,30 +548,44 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-ho
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-subnet"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-subnet"><strong>subnet</strong></p>
 <a class="ansibleOptionLink" href="#parameter-subnet" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>IPv4 Subnet name</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-subnet6"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-subnet6"><strong>subnet6</strong></p>
 <a class="ansibleOptionLink" href="#parameter-subnet6" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>IPv6 Subnet name</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-updated_name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-updated-name"><strong>updated_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-updated_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>New name of hostgroup. When this parameter is set, the module will not be idempotent.</p>
 </div></td>
 </tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-use-gssapi"><strong>use_gssapi</strong></p>
+<a class="ansibleOptionLink" href="#parameter-use_gssapi" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.</p>
+<p>Requires the Python library <a class="reference external" href="https://github.com/pythongssapi/requests-gssapi">requests-gssapi</a> to be installed.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USE_GSSAPI</span></code> will be used instead.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-hostgroup-module-parameter-username"><strong>username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USERNAME</span></code> will be used instead.</p>

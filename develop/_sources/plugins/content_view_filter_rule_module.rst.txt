@@ -22,7 +22,7 @@ redhat.satellite.content_view_filter_rule module -- Manage content view filter r
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.2.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.3.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -120,6 +120,42 @@ Parameters
         <div class="ansible-option-cell">
 
       set package, module\_stream, etc. architecture that the rule applies to
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-ca_path"></div>
+
+      .. _ansible_collections.redhat.satellite.content_view_filter_rule_module__parameter-ca_path:
+
+      .. rst-class:: ansible-option-title
+
+      **ca_path**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-ca_path" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`path`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      PEM formatted file that contains a CA certificate to be used for validation.
+
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_CA\_PATH` will be used instead.
 
 
       .. raw:: html
@@ -515,7 +551,7 @@ Parameters
 
       .. ansible-option-type-line::
 
-        :ansible-option-type:`string` / :ansible-option-required:`required`
+        :ansible-option-type:`string`
 
       .. raw:: html
 
@@ -729,6 +765,52 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div>
+
+      .. _ansible_collections.redhat.satellite.content_view_filter_rule_module__parameter-use_gssapi:
+
+      .. rst-class:: ansible-option-title
+
+      **use_gssapi**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-use_gssapi" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`boolean`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.
+
+      Requires the Python library \ `requests-gssapi <https://github.com/pythongssapi/requests-gssapi>`__ to be installed.
+
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_USE\_GSSAPI` will be used instead.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry-default:`false` :ansible-option-choices-default-mark:`← (default)`
+      - :ansible-option-choices-entry:`true`
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-username"></div>
 
       .. _ansible_collections.redhat.satellite.content_view_filter_rule_module__parameter-username:
@@ -743,7 +825,7 @@ Parameters
 
       .. ansible-option-type-line::
 
-        :ansible-option-type:`string` / :ansible-option-required:`required`
+        :ansible-option-type:`string`
 
       .. raw:: html
 

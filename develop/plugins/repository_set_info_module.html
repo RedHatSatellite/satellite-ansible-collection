@@ -187,7 +187,7 @@
 <h1>redhat.satellite.repository_set_info module – Fetch information about Red Hat Repositories<a class="headerlink" href="#redhat-satellite-repository-set-info-module-fetch-information-about-red-hat-repositories" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.2.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.3.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -229,13 +229,21 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ca_path"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-ca-path"><strong>ca_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ca_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">path</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>PEM formatted file that contains a CA certificate to be used for validation.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_CA_PATH</span></code> will be used instead.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-location"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-location"><strong>location</strong></p>
 <a class="ansibleOptionLink" href="#parameter-location" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Label of the Location to scope the search for.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -243,29 +251,29 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Mutually exclusive with <em>search</em>.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-organization"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-organization"><strong>organization</strong></p>
 <a class="ansibleOptionLink" href="#parameter-organization" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the Organization to scope the search for.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-password"><strong>password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password of the user accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_PASSWORD</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-product"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-product"><strong>product</strong></p>
 <a class="ansibleOptionLink" href="#parameter-product" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the parent product</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-search"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-search"><strong>search</strong></p>
 <a class="ansibleOptionLink" href="#parameter-search" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -274,7 +282,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Mutually exclusive with <em>name</em>.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-server-url"><strong>server_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-server_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -282,9 +290,23 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_SERVER_URL</span></code> will be used instead.</p>
 </div></td>
 </tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-use-gssapi"><strong>use_gssapi</strong></p>
+<a class="ansibleOptionLink" href="#parameter-use_gssapi" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.</p>
+<p>Requires the Python library <a class="reference external" href="https://github.com/pythongssapi/requests-gssapi">requests-gssapi</a> to be installed.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USE_GSSAPI</span></code> will be used instead.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-set-info-module-parameter-username"><strong>username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USERNAME</span></code> will be used instead.</p>

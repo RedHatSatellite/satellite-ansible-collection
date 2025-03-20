@@ -187,7 +187,7 @@
 <h1>redhat.satellite.content_view_version module – Manage Content View Versions<a class="headerlink" href="#redhat-satellite-content-view-version-module-manage-content-view-versions" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.2.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.3.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -231,13 +231,21 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ca_path"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-ca-path"><strong>ca_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ca_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">path</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>PEM formatted file that contains a CA certificate to be used for validation.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_CA_PATH</span></code> will be used instead.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-content_view"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-content-view"><strong>content_view</strong></p>
 <a class="ansibleOptionLink" href="#parameter-content_view" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the content view</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-current_lifecycle_environment"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-current-lifecycle-environment"><strong>current_lifecycle_environment</strong></p>
 <a class="ansibleOptionLink" href="#parameter-current_lifecycle_environment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -245,14 +253,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <p>Helpful for promoting a content view version</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-description"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-description"><strong>description</strong></p>
 <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Description of the Content View Version</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-force_promote"></div>
 <div class="ansibleOptionAnchor" id="parameter-force"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-force-promote"><span id="ansible-collections-redhat-satellite-content-view-version-module-parameter-force"></span><strong>force_promote</strong></p>
 <a class="ansibleOptionLink" href="#parameter-force_promote" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: force</span></p>
@@ -266,7 +274,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-force_yum_metadata_regeneration"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-force-yum-metadata-regeneration"><strong>force_yum_metadata_regeneration</strong></p>
 <a class="ansibleOptionLink" href="#parameter-force_yum_metadata_regeneration" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -278,29 +286,29 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-lifecycle_environments"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-lifecycle-environments"><strong>lifecycle_environments</strong></p>
 <a class="ansibleOptionLink" href="#parameter-lifecycle_environments" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The lifecycle environments the Content View Version should be in.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-organization"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-organization"><strong>organization</strong></p>
 <a class="ansibleOptionLink" href="#parameter-organization" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Organization that the entity is in</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-password"><strong>password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password of the user accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_PASSWORD</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-server-url"><strong>server_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-server_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -308,7 +316,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_SERVER_URL</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -320,9 +328,23 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-co
 </ul>
 </div></td>
 </tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-use-gssapi"><strong>use_gssapi</strong></p>
+<a class="ansibleOptionLink" href="#parameter-use_gssapi" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.</p>
+<p>Requires the Python library <a class="reference external" href="https://github.com/pythongssapi/requests-gssapi">requests-gssapi</a> to be installed.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USE_GSSAPI</span></code> will be used instead.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-content-view-version-module-parameter-username"><strong>username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USERNAME</span></code> will be used instead.</p>

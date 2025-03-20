@@ -8,7 +8,7 @@ Role Variables
 
 This role supports the [Common Role Variables](https://github.com/theforeman/foreman-ansible-modules/blob/develop/README.md#common-role-variables).
 
-- `satellite_content_credentials`: List of content credentials to create. Each content credential is represented as a dictionary which specifies the `name`, `content_type` (which can be `gpg_key` or `cert`) and `content` of the content credential.
+- `satellite_content_credentials`: List of content credentials to create. Each content credential is represented as a dictionary which specifies the `name`, `content_type` (which can be `gpg_key` or `cert`) and `content` of the content credential. The `organization` field can be specified for a content credential. The `organization` field defaults to `satellite_organization` variable.
 
 ```yaml
 satellite_content_credentials:
@@ -18,6 +18,7 @@ satellite_content_credentials:
   - name: RPM-GPG-KEY-my-repo
     content_type: gpg_key
     content: "{{ lookup('file', '/etc/pki/rpm-gpg/RPM-GPG-KEY-my-repo') }}"
+    organization: "ACME"
   - name: RPM-GPG-KEY-my-repo2
     content_type: gpg_key
     content: |

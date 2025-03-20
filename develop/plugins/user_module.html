@@ -187,7 +187,7 @@
 <h1>redhat.satellite.user module – Manage Users<a class="headerlink" href="#redhat-satellite-user-module-manage-users" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.2.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.3.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -249,41 +249,49 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ca_path"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-ca-path"><strong>ca_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ca_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">path</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>PEM formatted file that contains a CA certificate to be used for validation.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_CA_PATH</span></code> will be used instead.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-default_location"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-default-location"><strong>default_location</strong></p>
 <a class="ansibleOptionLink" href="#parameter-default_location" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The location that the user uses by default</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-default_organization"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-default-organization"><strong>default_organization</strong></p>
 <a class="ansibleOptionLink" href="#parameter-default_organization" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The organization that the user uses by default</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-description"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-description"><strong>description</strong></p>
 <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Description of the user</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-firstname"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-firstname"><strong>firstname</strong></p>
 <a class="ansibleOptionLink" href="#parameter-firstname" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>First name of the user</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-lastname"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-lastname"><strong>lastname</strong></p>
 <a class="ansibleOptionLink" href="#parameter-lastname" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Last name of the user</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-locale"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-locale"><strong>locale</strong></p>
 <a class="ansibleOptionLink" href="#parameter-locale" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -310,14 +318,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-locations"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-locations"><strong>locations</strong></p>
 <a class="ansibleOptionLink" href="#parameter-locations" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of locations the entity should be assigned to</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-login"></div>
 <div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-name"><span id="ansible-collections-redhat-satellite-user-module-parameter-login"></span><strong>login</strong></p>
 <a class="ansibleOptionLink" href="#parameter-login" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: name</span></p>
@@ -326,7 +334,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 <td><div class="ansible-option-cell"><p>Name of the user</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-mail"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-mail"><strong>mail</strong></p>
 <a class="ansibleOptionLink" href="#parameter-mail" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -334,29 +342,29 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 <p>Required when creating a new user</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-organizations"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-organizations"><strong>organizations</strong></p>
 <a class="ansibleOptionLink" href="#parameter-organizations" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of organizations the entity should be assigned to</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-password"><strong>password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password of the user accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_PASSWORD</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-roles"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-roles"><strong>roles</strong></p>
 <a class="ansibleOptionLink" href="#parameter-roles" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of roles assigned to the user</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-server-url"><strong>server_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-server_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -364,7 +372,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_SERVER_URL</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -376,7 +384,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-timezone"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-timezone"><strong>timezone</strong></p>
 <a class="ansibleOptionLink" href="#parameter-timezone" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -538,6 +546,20 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 </ul>
 </div></td>
 </tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-use-gssapi"><strong>use_gssapi</strong></p>
+<a class="ansibleOptionLink" href="#parameter-use_gssapi" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.</p>
+<p>Requires the Python library <a class="reference external" href="https://github.com/pythongssapi/requests-gssapi">requests-gssapi</a> to be installed.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USE_GSSAPI</span></code> will be used instead.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-user_password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-user-password"><strong>user_password</strong></p>
 <a class="ansibleOptionLink" href="#parameter-user_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
@@ -548,7 +570,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-us
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-user-module-parameter-username"><strong>username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USERNAME</span></code> will be used instead.</p>

@@ -187,7 +187,7 @@
 <h1>redhat.satellite.subnet module – Manage Subnets<a class="headerlink" href="#redhat-satellite-subnet-module-manage-subnets" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.2.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.3.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -250,27 +250,35 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ca_path"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-ca-path"><strong>ca_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ca_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">path</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>PEM formatted file that contains a CA certificate to be used for validation.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_CA_PATH</span></code> will be used instead.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-cidr"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-cidr"><strong>cidr</strong></p>
 <a class="ansibleOptionLink" href="#parameter-cidr" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>CIDR prefix length; Required if <em>network_type=IPv4</em> and no <em>mask</em> provided</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-description"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-description"><strong>description</strong></p>
 <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Description of the subnet</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-dhcp_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-dhcp-proxy"><strong>dhcp_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-dhcp_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>DHCP Smart proxy for this subnet</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-discovery_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-discovery-proxy"><strong>discovery_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-discovery_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -278,35 +286,35 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 <p>This option is only available if the discovery plugin is installed.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-dns_primary"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-dns-primary"><strong>dns_primary</strong></p>
 <a class="ansibleOptionLink" href="#parameter-dns_primary" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Primary DNS server for this subnet</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-dns_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-dns-proxy"><strong>dns_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-dns_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Reverse DNS Smart proxy for this subnet</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-dns_secondary"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-dns-secondary"><strong>dns_secondary</strong></p>
 <a class="ansibleOptionLink" href="#parameter-dns_secondary" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Secondary DNS server for this subnet</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-domains"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-domains"><strong>domains</strong></p>
 <a class="ansibleOptionLink" href="#parameter-domains" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of DNS domains the subnet should assigned to</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-externalipam_group"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-externalipam-group"><strong>externalipam_group</strong></p>
 <a class="ansibleOptionLink" href="#parameter-externalipam_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 <p><em class="ansible-option-versionadded">added in redhat.satellite 1.5.0</em></p>
@@ -315,7 +323,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 <p>Only relevant if <em>ipam=External IPAM</em>.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-externalipam_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-externalipam-proxy"><strong>externalipam_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-externalipam_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -323,28 +331,28 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 <p>Only relevant if <em>ipam=External IPAM</em>.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-from_ip"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-from-ip"><strong>from_ip</strong></p>
 <a class="ansibleOptionLink" href="#parameter-from_ip" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>First IP address of the host IP allocation pool</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-gateway"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-gateway"><strong>gateway</strong></p>
 <a class="ansibleOptionLink" href="#parameter-gateway" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Subnet gateway IP address</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-httpboot_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-httpboot-proxy"><strong>httpboot_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-httpboot_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>HTTP Boot Smart proxy for this subnet</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ipam"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-ipam"><strong>ipam</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ipam" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -360,42 +368,42 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-locations"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-locations"><strong>locations</strong></p>
 <a class="ansibleOptionLink" href="#parameter-locations" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of locations the entity should be assigned to</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-mask"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-mask"><strong>mask</strong></p>
 <a class="ansibleOptionLink" href="#parameter-mask" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Subnet netmask. Required if <em>network_type=IPv4</em> and no <em>cidr</em> prefix length provided</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-mtu"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-mtu"><strong>mtu</strong></p>
 <a class="ansibleOptionLink" href="#parameter-mtu" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>MTU</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Subnet name</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-network"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-network"><strong>network</strong></p>
 <a class="ansibleOptionLink" href="#parameter-network" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Subnet IP address</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-network_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-network-type"><strong>network_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-network_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -407,21 +415,21 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-organizations"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-organizations"><strong>organizations</strong></p>
 <a class="ansibleOptionLink" href="#parameter-organizations" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of organizations the entity should be assigned to</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-parameters"><strong>parameters</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Subnet specific host parameters</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/hidden_value"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-parameters-hidden-value"><strong>hidden_value</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/hidden_value" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -433,14 +441,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-parameters-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Name of the parameter</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/parameter_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-parameters-parameter-type"><strong>parameter_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/parameter_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -458,22 +466,22 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-parameters/value"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-parameters-value"><strong>value</strong></p>
 <a class="ansibleOptionLink" href="#parameter-parameters/value" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">any</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Value of the parameter</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-password"><strong>password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password of the user accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_PASSWORD</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-remote_execution_proxies"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-remote-execution-proxies"><strong>remote_execution_proxies</strong></p>
 <a class="ansibleOptionLink" href="#parameter-remote_execution_proxies" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
@@ -482,7 +490,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 <p>This will always report <em>changed=true</em> when used with <em>remote_execution &lt; 4.1.0</em>, due to a bug in the plugin.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-server-url"><strong>server_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-server_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -490,7 +498,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_SERVER_URL</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -502,37 +510,51 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-su
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-template_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-template-proxy"><strong>template_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-template_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Template Smart proxy for this subnet</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-tftp_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-tftp-proxy"><strong>tftp_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-tftp_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>TFTP Smart proxy for this subnet</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-to_ip"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-to-ip"><strong>to_ip</strong></p>
 <a class="ansibleOptionLink" href="#parameter-to_ip" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Last IP address of the host IP allocation pool</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-updated_name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-updated-name"><strong>updated_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-updated_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>New subnet name. When this parameter is set, the module will not be idempotent.</p>
 </div></td>
 </tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-use-gssapi"><strong>use_gssapi</strong></p>
+<a class="ansibleOptionLink" href="#parameter-use_gssapi" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.</p>
+<p>Requires the Python library <a class="reference external" href="https://github.com/pythongssapi/requests-gssapi">requests-gssapi</a> to be installed.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USE_GSSAPI</span></code> will be used instead.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-subnet-module-parameter-username"><strong>username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USERNAME</span></code> will be used instead.</p>

@@ -13,6 +13,7 @@ This role supports the [Common Role Variables](https://github.com/theforeman/for
   Each element of `repository_sets` must have a `name` and should specify the `basearch` and/or `releasever` only when multiple versions are available for that Product.
   All repository sets for a Red Hat Product can be enabled by omitting `repository_sets` and instead specifying that the Product has `all_repositories: true`. When using this option it is also necessary to specify a list of repository `label`s for the Product (e.g. rhel-7-server-rpms). Be wary that this option can result in enabling a large number of unused repositories that, if added to sync plans, can greatly increase sync times and rapidly fill disk space.
   Custom (i.e. non Red Hat) Products can also be defined, with associated `repositories` which represent custom repositories, and are required to have a `name`, `url`, and `content_type`; they may require additional fields and can take any parameter supported by [redhat.satellite.repository](https://redhatsatellite.github.io/satellite-ansible-collection/develop/plugins/repository_module.html).
+  The `organization` field can be specified for a product and repositories. The `organization` field defaults to `satellite_organization` variable for a product and defaults to the `organization` field of the product for repositories.
   A variety of examples are demonstrated in the data structure below:
 
 ```yaml
@@ -84,6 +85,7 @@ This example enables several Red Hat Repositories. There are a few important poi
 - RHEL 8 repos have a different product name than previous RHEL versions.
 - The RHEL 8 product already contains the `basearch` so it should not be specified on the RHEL 8 `repository_sets`, and the naming convention for `releasever` changed with RHEL 8 since system purpose removes the need for separate distributions like `Server` and `Workstation`.
 - The optional and extras repositories do not have point releases so `releasever` should be omitted.
+- The second Product is explicitly specified for "Other Organization" and thereby overwrites the default value of `satellite_organization`.
 
 ```yaml
 - hosts: localhost
@@ -109,6 +111,7 @@ This example enables several Red Hat Repositories. There are a few important poi
                 basearch: x86_64
                 releasever: 7Server
           - name: Red Hat Enterprise Linux for x86_64
+            organization: "Other Organization"
             repository_sets:
               - name: Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)
                 releasever: 8

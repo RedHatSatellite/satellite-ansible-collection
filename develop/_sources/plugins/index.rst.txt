@@ -7,7 +7,7 @@
 Redhat.Satellite
 ================
 
-Collection version 5.2.0
+Collection version 5.3.0
 
 .. contents::
    :local:
@@ -51,6 +51,7 @@ Ansible Modules to manage Satellite installations
 * Griffin Sullivan <gsulliva@redhat.com>
 * Hideki Saito <saito@fgrep.org>
 * Ismael Puerto <ismaelpuerto@users.noreply.github.com>
+* Jakob Oettinger <jakob.oettinger@zeiss.com>
 * Jameer Pathan <jpathan@redhat.com>
 * James Jeffers <jjeffers@redhat.com>
 * James Stuart <james@stuart.name>

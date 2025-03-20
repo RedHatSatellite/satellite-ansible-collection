@@ -17,6 +17,10 @@ The main data structure for this role is the list of `satellite_lifecycle_enviro
   the environments are listed in the order the path would exist. It can't be
   changed after the lifecycle environment has been created.
 
+The following fields are required for a lifecycle environment but have defaults which make them optional for this role:
+
+- `organization`: Organization to create thw lifecycle environment for. Defaults to `satellite_organization` variable.
+
 The following fields are optional and will be omitted by default:
 
 - `description`: Description of the lifecycle environment
@@ -68,8 +72,11 @@ Create two lifecycle environment paths: Library -> Dev -> Test -> Prod and Libra
 
           - name: "QA"
             prior: "Library"
+            organization: ACME
           - name: "Stage"
             prior: "QA"
+            organization: ACME
           - name: "Prod"
             prior: "Stage"
+            organization: ACME
 ```

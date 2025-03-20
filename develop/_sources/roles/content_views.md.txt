@@ -12,6 +12,10 @@ The main data structure for this role is the list of `satellite_content_views`. 
 
 - `name` - the name of the content view
 
+The following fields are required for a content view but have defaults which make them optional for this role:
+
+- `organization`: Organization to create thw cxontent view for. Defaults to `satellite_organization` variable.
+
 Each content view also requires either a list of repositories or components (for a composite content view):
 - `repositories` - List of repositories to add to the content view. Each repository requires the following fields:
   - `name` - The name of the repository
@@ -53,6 +57,7 @@ Example Playbooks
               - name: Red Hat Satellite Tools 6.8 (for RHEL 7 Server) (RPMs)
                 product: 'Red Hat Enterprise Linux Server'
           - name: BearApp
+            organization: ACME
             repositories:
               - name: MyApps
                 product: ACME

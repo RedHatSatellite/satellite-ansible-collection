@@ -187,7 +187,7 @@
 <h1>redhat.satellite.repository module – Manage Repositories<a class="headerlink" href="#redhat-satellite-repository-module-manage-repositories" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.2.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/redhat/satellite/">redhat.satellite collection</a> (version 5.3.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">redhat.satellite</span></code>.
@@ -258,6 +258,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ca_path"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ca-path"><strong>ca_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ca_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">path</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>PEM formatted file that contains a CA certificate to be used for validation.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_CA_PATH</span></code> will be used instead.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-checksum_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-checksum-type"><strong>checksum_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-checksum_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -269,7 +277,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-content_type"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-content-type"><strong>content_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-content_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -286,7 +294,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-deb_architectures"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-deb-architectures"><strong>deb_architectures</strong></p>
 <a class="ansibleOptionLink" href="#parameter-deb_architectures" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -294,7 +302,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>only available for <em>content_type=deb</em></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-deb_components"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-deb-components"><strong>deb_components</strong></p>
 <a class="ansibleOptionLink" href="#parameter-deb_components" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -302,7 +310,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>only available for <em>content_type=deb</em></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-deb_errata_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-deb-errata-url"><strong>deb_errata_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-deb_errata_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -311,7 +319,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>only available for <em>content_type=deb</em></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-deb_releases"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-deb-releases"><strong>deb_releases</strong></p>
 <a class="ansibleOptionLink" href="#parameter-deb_releases" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -319,14 +327,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>only available for <em>content_type=deb</em></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-description"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-description"><strong>description</strong></p>
 <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Description of the repository</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-docker_tags_whitelist"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-docker-tags-whitelist"><strong>docker_tags_whitelist</strong></p>
 <a class="ansibleOptionLink" href="#parameter-docker_tags_whitelist" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
@@ -335,7 +343,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Deprecated since Katello 4.4</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-docker_upstream_name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-docker-upstream-name"><strong>docker_upstream_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-docker_upstream_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -343,7 +351,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>only available for <em>content_type=docker</em></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-download_concurrency"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-download-concurrency"><strong>download_concurrency</strong></p>
 <a class="ansibleOptionLink" href="#parameter-download_concurrency" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 <p><em class="ansible-option-versionadded">added in redhat.satellite 3.0.0</em></p>
@@ -352,7 +360,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>as the API does not return this value, this will break idempotence for this module</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-download_policy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-download-policy"><strong>download_policy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-download_policy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -366,7 +374,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-exclude_tags"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-exclude-tags"><strong>exclude_tags</strong></p>
 <a class="ansibleOptionLink" href="#parameter-exclude_tags" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 <p><em class="ansible-option-versionadded">added in redhat.satellite 3.7.0</em></p>
@@ -374,14 +382,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <td><div class="ansible-option-cell"><p>List of tags to exclude when syncing a container image repository.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-gpg_key"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-gpg-key"><strong>gpg_key</strong></p>
 <a class="ansibleOptionLink" href="#parameter-gpg_key" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository GPG key</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-http_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-http-proxy"><strong>http_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-http_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -389,7 +397,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Should be combined with <em>http_proxy_policy=’use_selected_http_proxy’</em></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-http_proxy_policy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-http-proxy-policy"><strong>http_proxy_policy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-http_proxy_policy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -402,7 +410,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ignorable_content"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ignorable-content"><strong>ignorable_content</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ignorable_content" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
@@ -410,7 +418,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>Must be subset of rpm,drpm,srpm,distribution,erratum.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ignore_global_proxy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ignore-global-proxy"><strong>ignore_global_proxy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ignore_global_proxy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -424,7 +432,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-include_tags"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-include-tags"><strong>include_tags</strong></p>
 <a class="ansibleOptionLink" href="#parameter-include_tags" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 <p><em class="ansible-option-versionadded">added in redhat.satellite 3.7.0</em></p>
@@ -432,14 +440,14 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <td><div class="ansible-option-cell"><p>List of tags to sync for a container image repository.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-label"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-label"><strong>label</strong></p>
 <a class="ansibleOptionLink" href="#parameter-label" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>label of the repository</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-mirror_on_sync"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-mirror-on-sync"><strong>mirror_on_sync</strong></p>
 <a class="ansibleOptionLink" href="#parameter-mirror_on_sync" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -453,7 +461,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-mirroring_policy"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-mirroring-policy"><strong>mirroring_policy</strong></p>
 <a class="ansibleOptionLink" href="#parameter-mirroring_policy" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -467,21 +475,21 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the repository</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-organization"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-organization"><strong>organization</strong></p>
 <a class="ansibleOptionLink" href="#parameter-organization" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Organization that the entity is in</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-os_versions"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-os-versions"><strong>os_versions</strong></p>
 <a class="ansibleOptionLink" href="#parameter-os_versions" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
@@ -497,22 +505,22 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-password"><strong>password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password of the user accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_PASSWORD</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-product"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-product"><strong>product</strong></p>
 <a class="ansibleOptionLink" href="#parameter-product" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Product to which the repository lives in</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-server_url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-server-url"><strong>server_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-server_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -520,28 +528,28 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_SERVER_URL</span></code> will be used instead.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ssl_ca_cert"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ssl-ca-cert"><strong>ssl_ca_cert</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ssl_ca_cert" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository SSL CA certificate</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ssl_client_cert"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ssl-client-cert"><strong>ssl_client_cert</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ssl_client_cert" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository SSL client certificate</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ssl_client_key"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-ssl-client-key"><strong>ssl_client_key</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ssl_client_key" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository SSL client private key</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -555,7 +563,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-unprotected"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-unprotected"><strong>unprotected</strong></p>
 <a class="ansibleOptionLink" href="#parameter-unprotected" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -567,7 +575,7 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-upstream_password"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-upstream-password"><strong>upstream_password</strong></p>
 <a class="ansibleOptionLink" href="#parameter-upstream_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -575,23 +583,37 @@ see <a class="reference internal" href="#ansible-collections-redhat-satellite-re
 <p>When this parameter is set, the module will not be idempotent.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-upstream_username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-upstream-username"><strong>upstream_username</strong></p>
 <a class="ansibleOptionLink" href="#parameter-upstream_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>username to access upstream repository</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-url"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-url"><strong>url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository URL to sync from</p>
 </div></td>
 </tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-use-gssapi"><strong>use_gssapi</strong></p>
+<a class="ansibleOptionLink" href="#parameter-use_gssapi" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.</p>
+<p>Requires the Python library <a class="reference external" href="https://github.com/pythongssapi/requests-gssapi">requests-gssapi</a> to be installed.</p>
+<p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USE_GSSAPI</span></code> will be used instead.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-redhat-satellite-repository-module-parameter-username"><strong>username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username accessing the Foreman server.</p>
 <p>If the value is not specified in the task, the value of environment variable <code class="docutils literal notranslate"><span class="pre">SATELLITE_USERNAME</span></code> will be used instead.</p>

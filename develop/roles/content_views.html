@@ -94,6 +94,10 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> - the name of the content view</p></li>
 </ul>
+<p>The following fields are required for a content view but have defaults which make them optional for this role:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">organization</span></code>: Organization to create thw cxontent view for. Defaults to <code class="docutils literal notranslate"><span class="pre">satellite_organization</span></code> variable.</p></li>
+</ul>
 <p>Each content view also requires either a list of repositories or components (for a composite content view):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">repositories</span></code> - List of repositories to add to the content view. Each repository requires the following fields:</p>
@@ -142,6 +146,7 @@
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Red Hat Satellite Tools 6.8 (for RHEL 7 Server) (RPMs)</span>
 <span class="w">                </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Red</span><span class="nv"> </span><span class="s">Hat</span><span class="nv"> </span><span class="s">Enterprise</span><span class="nv"> </span><span class="s">Linux</span><span class="nv"> </span><span class="s">Server&#39;</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BearApp</span>
+<span class="w">            </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ACME</span>
 <span class="w">            </span><span class="nt">repositories</span><span class="p">:</span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyApps</span>
 <span class="w">                </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ACME</span>
