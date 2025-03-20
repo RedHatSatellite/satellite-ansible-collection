@@ -368,17 +368,21 @@ class ForemanAnsibleModule(AnsibleModule):
         self.foreman_spec, gen_args = _foreman_spec_helper(kwargs.pop('foreman_spec', {}))
         argument_spec = dict(
             server_url=dict(required=True, fallback=(env_fallback, ['SATELLITE_SERVER_URL', 'SATELLITE_SERVER', 'SATELLITE_URL'])),
-            username=dict(required=True, fallback=(env_fallback, ['SATELLITE_USERNAME', 'SATELLITE_USER'])),
-            password=dict(required=True, no_log=True, fallback=(env_fallback, ['SATELLITE_PASSWORD'])),
+            username=dict(required=False, fallback=(env_fallback, ['SATELLITE_USERNAME', 'SATELLITE_USER'])),
+            password=dict(required=False, no_log=True, fallback=(env_fallback, ['SATELLITE_PASSWORD'])),
             validate_certs=dict(type='bool', default=True, fallback=(env_fallback, ['SATELLITE_VALIDATE_CERTS'])),
+            use_gssapi=dict(type='bool', default=False, fallback=(env_fallback, ['SATELLITE_USE_GSSAPI'])),
+            ca_path=dict(type='path', default=None, fallback=(env_fallback, ['SATELLITE_CA_PATH'])),
         )
         argument_spec.update(gen_args)
         argument_spec.update(kwargs.pop('argument_spec', {}))
         supports_check_mode = kwargs.pop('supports_check_mode', True)
+        required_if = kwargs.pop('required_if', [])
+        required_if.append(('use_gssapi', False, ('username', 'password')))
 
         self.required_plugins = kwargs.pop('required_plugins', [])
 
-        super(ForemanAnsibleModule, self).__init__(argument_spec=argument_spec, supports_check_mode=supports_check_mode, **kwargs)
+        super(ForemanAnsibleModule, self).__init__(argument_spec=argument_spec, supports_check_mode=supports_check_mode, required_if=required_if, **kwargs)
 
         aliases = {alias for arg in argument_spec.values() for alias in arg.get('aliases', [])}
         self.foreman_params = _recursive_dict_without_none(self.params, aliases)
@@ -386,9 +390,11 @@ class ForemanAnsibleModule(AnsibleModule):
         self.check_requirements()
 
         self._foremanapi_server_url = self.foreman_params.pop('server_url')
-        self._foremanapi_username = self.foreman_params.pop('username')
-        self._foremanapi_password = self.foreman_params.pop('password')
+        self._foremanapi_username = self.foreman_params.pop('username', None)
+        self._foremanapi_password = self.foreman_params.pop('password', None)
         self._foremanapi_validate_certs = self.foreman_params.pop('validate_certs')
+        self._foremanapi_ca_path = self.foreman_params.pop('ca_path', None)
+        self._foremanapi_use_gssapi = self.foreman_params.pop('use_gssapi')
 
         if self._foremanapi_server_url.lower().startswith('http://'):
             self.warn("You have configured a plain HTTP server URL. All communication will happen unencrypted.")
@@ -606,11 +612,13 @@ class ForemanAnsibleModule(AnsibleModule):
         that are required by the module.
         """
 
+        verify_ssl = self._foremanapi_ca_path if (self._foremanapi_validate_certs and self._foremanapi_ca_path) else self._foremanapi_validate_certs
         self.foremanapi = apypie.ForemanApi(
             uri=self._foremanapi_server_url,
             username=to_bytes(self._foremanapi_username),
             password=to_bytes(self._foremanapi_password),
-            verify_ssl=self._foremanapi_validate_certs,
+            verify_ssl=verify_ssl,
+            kerberos=self._foremanapi_use_gssapi,
             task_timeout=self.task_timeout,
         )
 
