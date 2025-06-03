@@ -5,15 +5,41 @@ on: [push, pull_request]
 env:
   COLORTERM: 'yes'
   TERM: 'xterm-256color'
-  PYTEST_ADDOPTS: '--color=yes'
+  PYTEST_ADDOPTS: '-vv --color=yes'
 
 concurrency:
   group: ${{ github.ref_name }}-${{ github.workflow }}
   cancel-in-progress: true
 
 jobs:
+  sanity:
+    name: Sanity (Ⓐ${{ matrix.ansible }})
+    strategy:
+      matrix:
+        ansible:
+          - stable-2.15
+          - stable-2.16
+          - stable-2.17
+          - stable-2.18
+          - devel
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      # Run sanity tests inside a Docker container.
+      # The docker container has all the pinned dependencies that are
+      # required and all Python versions Ansible supports.
+      - name: Perform sanity testing
+        uses: ansible-community/ansible-test-gh-action@release/v1
+        with:
+          ansible-core-version: ${{ matrix.ansible }}
+          testing-type: sanity
+          pull-request-change-detection: false
+          pre-test-cmd: rm -rf tests/fixtures tests/test_playbooks/fixtures
+          coverage: never
+
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     container: ${{ matrix.container }}
     strategy:
       fail-fast: false
@@ -25,6 +51,7 @@ jobs:
           - stable-2.15
           - stable-2.16
           - stable-2.17
+          - stable-2.18
           - devel
         include:
           - python: "3.8"
@@ -39,8 +66,10 @@ jobs:
             container: "python:3.5"
           - python: "3.6"
             ansible: "stable-2.11"
+            container: "python:3.6"
           - python: "3.7"
             ansible: "stable-2.11"
+            container: "python:3.7"
           - python: "3.9"
             ansible: "stable-2.11"
           - python: "3.10"
@@ -48,6 +77,8 @@ jobs:
           - python: "3.10"
             ansible: "stable-2.13"
           - python: "3.12"
+            ansible: "devel"
+          - python: "3.13"
             ansible: "devel"
     steps:
       - uses: actions/checkout@v4
@@ -69,7 +100,6 @@ jobs:
           for file in /usr/lib/python3/dist-packages/rpm/_rpm*.cpython-*.so; do
             sudo ln -s ${file} $(echo ${file} | sed 's/\.cpython[^.]*//');
           done
-        if: matrix.container == null
       - name: Install Ansible
         run: pip install --upgrade https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz
       - name: Ensure Jinja version is old enough for Ansible 2.9
@@ -82,18 +112,18 @@ jobs:
       - name: Install required collections for ansible-base (2.10+)
         run: ansible-galaxy collection install https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/community-docker-3.12.0.tar.gz
         if: matrix.ansible != 'v2.9.17'
+      - name: Install required collections for ansible 2.9
+        run: ansible-galaxy collection install https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/community-docker-2.7.12.tar.gz
+        if: matrix.ansible == 'v2.9.17'
       - name: Run crud tests
         run: make test-crud
       - name: Run other tests
         run: make test-other
       - name: Run dist tests
         run: make dist-test
-      - name: Run sanity tests
-        run: make SANITY_OPTS="--docker" sanity
-        if: matrix.ansible != 'v2.9.17' && matrix.ansible != 'stable-2.10' && matrix.ansible != 'stable-2.11' && matrix.ansible != 'stable-2.12' && matrix.ansible != 'stable-2.13' && matrix.ansible != 'stable-2.14'
 
   checkmode:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -120,7 +150,7 @@ jobs:
         run: make test-check-mode
 
   docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -142,7 +172,7 @@ jobs:
           path: docs/_build/html/
 
   galaxy-importer:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -157,7 +187,7 @@ jobs:
         run: make galaxy-importer
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -179,7 +209,7 @@ jobs:
           path: redhat-satellite-*.tar.gz
 
   execution_environment:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python

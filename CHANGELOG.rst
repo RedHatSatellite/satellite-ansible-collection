@@ -6,6 +6,14 @@ redhat.satellite Release Notes
 
 This changelog describes changes after version 0.8.1.
 
+v4.2.1
+======
+
+Bugfixes
+--------
+
+- host - ensure LCE and CV are always sent together when updating one of them
+
 v4.2.0
 ======
 

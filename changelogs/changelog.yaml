@@ -915,3 +915,10 @@ releases:
       - 1769-callback-vault-facts.yml
       - lce-role-state.yml
     release_date: '2024-08-30'
+  4.2.1:
+    changes:
+      bugfixes:
+        - host - ensure LCE and CV are always sent together when updating one of them
+    fragments:
+      - 1867-host-always-send-lce-cv.yml
+    release_date: '2025-06-03'
