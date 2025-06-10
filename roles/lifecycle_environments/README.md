@@ -19,7 +19,7 @@ The main data structure for this role is the list of `satellite_lifecycle_enviro
 
 The following fields are required for a lifecycle environment but have defaults which make them optional for this role:
 
-- `organization`: Organization to create thw lifecycle environment for. Defaults to `satellite_organization` variable.
+- `organization`: Organization to create the lifecycle environment for. Defaults to `satellite_organization` variable.
 
 The following fields are optional and will be omitted by default:
 

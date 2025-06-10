@@ -80,7 +80,7 @@
   ansible.builtin.async_status:
     jid: "{{ __satellite_rhel7_sync.ansible_job_id }}"
   register: __satellite_rhel7_job_result
-  until: __satellite_rhel7_job_result.finished
+  until: __satellite_rhel7_job_result is finished
   retries: 99999
   delay: 10
   when: satellite_content_rhel_enable_rhel7 and satellite_content_rhel_sync_now and satellite_content_rhel_wait_for_syncs
@@ -89,7 +89,7 @@
   ansible.builtin.async_status:
     jid: "{{ __satellite_rhel8_sync.ansible_job_id }}"
   register: __satellite_rhel8_job_result
-  until: __satellite_rhel8_job_result.finished
+  until: __satellite_rhel8_job_result is finished
   retries: 99999
   delay: 10
   when: satellite_content_rhel_enable_rhel8 and satellite_content_rhel_sync_now and satellite_content_rhel_wait_for_syncs

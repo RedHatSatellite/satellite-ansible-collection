@@ -11,7 +11,7 @@
       content_view_id: "{{ satellite_cv.id }}"
   register: __satellite_versions
 
-- name: "Delete unused content view versions of {{ satellite_cv.name }}"
+- name: "Delete unused content view versions of {{ satellite_cv.name }}"  # noqa: jinja[spacing]
   ansible.builtin.include_tasks: delete_cv_versions.yml
   vars:
     satellite_cv_name: "{{ satellite_cv.name }}"
