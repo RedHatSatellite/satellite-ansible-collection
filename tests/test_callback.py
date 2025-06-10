@@ -9,10 +9,11 @@ except ImportError:
 
 from .conftest import run_playbook, get_ansible_version, assert_no_warnings
 
+ansible_version = get_ansible_version()
+
 
 def run_playbook_callback(tmpdir, report_type):
     extra_env = {}
-    ansible_version = get_ansible_version()
     if LooseVersion(ansible_version) < LooseVersion('2.11'):
         extra_env['ANSIBLE_CALLBACK_WHITELIST'] = "redhat.satellite.foreman"
         extra_env['ANSIBLE_COMMAND_WARNINGS'] = "0"
@@ -41,7 +42,7 @@ def drop_incompatible_items(d):
     for k, v in d.items():
         if k in ['msg', 'start', 'end', 'delta', 'uuid', 'timeout', '_ansible_no_log', 'warn', 'connection',
                  'extended_allitems', 'loop_control', 'expand_argument_vars', 'retries', 'parent', 'parent_type', 'finalized', 'squashed', 'no_log',
-                 'listen', '_ansible_internal_redirect_list']:
+                 'listen', '_ansible_internal_redirect_list', 'exception', 'resolved_action', 'delay']:
             continue
 
         if isinstance(v, dict):
@@ -73,6 +74,8 @@ def run_callback(tmpdir, report_type, vcrmode):
             contents = re.sub(r"\\\"_ansible_no_log\\\": [^,]+, ", "", contents)
             contents = re.sub(r", \\\"warn\\\": false", "", contents)
             contents = re.sub(r", \\\"expand_argument_vars\\\": true", "", contents)
+            contents = re.sub(r", \\\"cmd\\\": null", "", contents)
+            contents = re.sub(r", \\\"exception\\\": [^,]+", "", contents)
         real_contents = json.loads(contents)
         if report_type == "foreman":
             try:
@@ -90,7 +93,10 @@ def run_callback(tmpdir, report_type, vcrmode):
                 json.dump(real_contents, f, indent=2, sort_keys=True)
         else:
             with open(fixture, 'r') as f:
-                expected_contents = json.load(f)
+                fixture_data = f.read()
+                if LooseVersion(ansible_version) >= LooseVersion('2.19'):
+                    fixture_data = fixture_data.replace('ENCRYPTED_VAULT_VALUE_NOT_REPORTED', 'admin')
+                expected_contents = json.loads(fixture_data)
                 expected_contents = drop_incompatible_items(expected_contents)
                 real_contents = drop_incompatible_items(real_contents)
                 assert expected_contents == real_contents, "Fixture {fixture_name} differs, run with -vvvv to see the diff".format(fixture_name=fixture_name)

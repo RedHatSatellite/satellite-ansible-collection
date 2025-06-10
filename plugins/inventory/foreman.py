@@ -180,13 +180,9 @@ plugin: redhat.satellite.foreman
 url: https://satellite.example.com
 user: ansibleinventory
 password: changeme
+# Only fetch hosts in the Web Engineering organization
 host_filters: 'organization="Web Engineering"'
-
-# shortname.foreman.yml
-plugin: redhat.satellite.foreman
-url: https://satellite.example.com
-user: ansibleinventory
-password: changeme
+# Use short names (not FQDN) for the hosts in the intentory
 hostnames:
   - name.split('.')[0]
 '''
@@ -677,6 +673,8 @@ class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
     def parse(self, inventory, loader, path, cache=True):
 
         super(InventoryModule, self).parse(inventory, loader, path)
+
+        self.load_cache_plugin()
 
         # read config from file, this sets 'options'
         self._read_config_data(path)

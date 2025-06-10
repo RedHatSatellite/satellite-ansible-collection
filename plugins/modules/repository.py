@@ -236,6 +236,7 @@ options:
       - rhel-7
       - rhel-8
       - rhel-9
+      - rhel-10
   arch:
     description:
       - Architecture of content in the repository
@@ -256,6 +257,18 @@ options:
     elements: str
     required: false
     version_added: 3.7.0
+  retain_package_versions_count:
+    description:
+      - The maximum number of versions of each package to keep.
+    type: int
+    required: false
+    version_added: 5.4.0
+  metadata_expire:
+    description:
+      - Set the metadata expiration time (in seconds) for a yum repository.
+    type: int
+    required: false
+    version_added: 5.4.0
 extends_documentation_fragment:
   - redhat.satellite.foreman
   - redhat.satellite.foreman.entity_state_with_defaults
@@ -347,10 +360,12 @@ def main():
             ignorable_content=dict(type='list', elements='str'),
             ansible_collection_requirements=dict(),
             auto_enabled=dict(type='bool'),
-            os_versions=dict(type='list', elements='str', choices=['rhel-6', 'rhel-7', 'rhel-8', 'rhel-9']),
+            os_versions=dict(type='list', elements='str', choices=['rhel-6', 'rhel-7', 'rhel-8', 'rhel-9', 'rhel-10']),
             arch=dict(),
             include_tags=dict(type='list', elements='str'),
             exclude_tags=dict(type='list', elements='str'),
+            retain_package_versions_count=dict(type='int'),
+            metadata_expire=dict(type="int"),
         ),
         mutually_exclusive=[
             ['mirror_on_sync', 'mirroring_policy']
@@ -381,7 +396,7 @@ def main():
             module.fail_json(msg="({0}) can only be used with content_type 'ansible_collection'".format(",".join(invalid_list)))
 
     if module.foreman_params['content_type'] != 'yum':
-        invalid_list = [key for key in ['ignorable_content', 'os_versions'] if key in module.foreman_params]
+        invalid_list = [key for key in ['ignorable_content', 'os_versions', 'metadata_expire'] if key in module.foreman_params]
         if invalid_list:
             module.fail_json(msg="({0}) can only be used with content_type 'yum'".format(",".join(invalid_list)))
 
