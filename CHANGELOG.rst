@@ -6,6 +6,14 @@ redhat.satellite Release Notes
 
 This changelog describes changes after version 0.8.1.
 
+v5.1.2
+======
+
+Bugfixes
+--------
+
+- content_upload - lower chunk size to 1MB to avoid generating too big requests (https://github.com/theforeman/foreman-ansible-modules/issues/1862)
+
 v5.1.1
 ======
 

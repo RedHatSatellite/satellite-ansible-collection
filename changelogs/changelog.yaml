@@ -946,3 +946,11 @@ releases:
     fragments:
       - 1867-host-always-send-lce-cv.yml
     release_date: '2025-06-03'
+  5.1.2:
+    changes:
+      bugfixes:
+        - content_upload - lower chunk size to 1MB to avoid generating too big requests
+          (https://github.com/theforeman/foreman-ansible-modules/issues/1862)
+    fragments:
+      - 1862-content-upload-chunk-size.yml
+    release_date: '2025-06-13'
