@@ -1,5 +1,5 @@
 .. meta::
-  :antsibull-docs: 2.17.0
+  :antsibull-docs: 2.20.0
 
 
 .. _plugins_in_redhat.satellite:
@@ -7,7 +7,7 @@
 Redhat.Satellite
 ================
 
-Collection version 5.4.0
+Collection version 5.5.0
 
 .. contents::
    :local:
@@ -40,6 +40,7 @@ Ansible Modules to manage Satellite installations
 * Christoffer Reijer <ephracis@gmail.com>
 * Dave Thomas <11580510+dthomastx@users.noreply.github.com>
 * Deric Crago <deric.crago@gmail.com>
+* Dirk Goetz <dirk.goetz@netways.de>
 * Eric D. Helms <ericdhelms@gmail.com>
 * Eric L <ericzolf@users.noreply.github.com>
 * Ethan <smithe2413@gmail.com>
@@ -83,11 +84,14 @@ Ansible Modules to manage Satellite installations
 * Matthias Cotting <35720842+DaTurr3t@users.noreply.github.com>
 * Matthias Dellweg <2500@gmx.de>
 * Miikka Joutsenvirta <miikka.joutsenvirta@dna.fi>
+* Mike <mike@hulsman.net>
 * Nikhil Jain <jainnikhil30@gmail.com>
 * Olivier <oliverf1ca@yahoo.com>
 * Ondrej Prazak <oprazak@redhat.com>
 * Ondřej Ezr <oezr@redhat.com>
 * Ondřej Gajdušek <ogajduse@redhat.com>
+* Ottavia Balducci <balducci@atix.de>
+* Pablo Méndez Hernández <pablomh@redhat.com>
 * Partha Aji <parthaa@gmail.com>
 * Patrick C. F. Ernzer <pcfe@pcfe.net>
 * Patrick Creech <pcreech@redhat.com>
@@ -112,6 +116,7 @@ Ansible Modules to manage Satellite installations
 * Sven Meeus <sven.meeus@scarlet.be>
 * TTherouanne <thomas@therouanne.com>
 * Thomas Mueller <thomas@chaschperli.ch>
+* Waldirio M Pinheiro <waldirio@gmail.com>
 * William Bradford Clark <wclark@redhat.com>
 * Yifat Makias <ymakias@redhat.com>
 * ab <abradshaw@users.noreply.github.com>
@@ -155,11 +160,14 @@ Ansible Modules to manage Satellite installations
 .. toctree::
     :maxdepth: 1
 
+.. _plugin_index_for_redhat.satellite:
+
 Plugin Index
 ------------
 
 These are the plugins in the redhat.satellite collection:
 
+.. _module_plugins_in_redhat.satellite:
 
 Modules
 ~~~~~~~
@@ -194,6 +202,9 @@ Modules
 * :ansplugin:`domain module <redhat.satellite.domain#module>` -- Manage Domains
 * :ansplugin:`domain_info module <redhat.satellite.domain_info#module>` -- Fetch information about Domains
 * :ansplugin:`external_usergroup module <redhat.satellite.external_usergroup#module>` -- Manage External User Groups
+* :ansplugin:`flatpak_remote module <redhat.satellite.flatpak_remote#module>` -- Manage Flatpak Remotes
+* :ansplugin:`flatpak_remote_repository_mirror module <redhat.satellite.flatpak_remote_repository_mirror#module>` -- Mirror a Flatpak Remote Repository
+* :ansplugin:`flatpak_remote_scan module <redhat.satellite.flatpak_remote_scan#module>` -- Scan a Flatpak Remote
 * :ansplugin:`global_parameter module <redhat.satellite.global_parameter#module>` -- Manage Global Parameters
 * :ansplugin:`hardware_model module <redhat.satellite.hardware_model#module>` -- Manage Hardware Models
 * :ansplugin:`host module <redhat.satellite.host#module>` -- Manage Hosts
@@ -282,6 +293,9 @@ Modules
     domain_module
     domain_info_module
     external_usergroup_module
+    flatpak_remote_module
+    flatpak_remote_repository_mirror_module
+    flatpak_remote_scan_module
     global_parameter_module
     hardware_model_module
     host_module
@@ -336,6 +350,7 @@ Modules
     wait_for_task_module
     webhook_module
 
+.. _callback_plugins_in_redhat.satellite:
 
 Callback Plugins
 ~~~~~~~~~~~~~~~~
@@ -348,6 +363,7 @@ Callback Plugins
 
     foreman_callback
 
+.. _filter_plugins_in_redhat.satellite:
 
 Filter Plugins
 ~~~~~~~~~~~~~~
@@ -360,6 +376,7 @@ Filter Plugins
 
     cp_label_filter
 
+.. _inventory_plugins_in_redhat.satellite:
 
 Inventory Plugins
 ~~~~~~~~~~~~~~~~~

@@ -3,7 +3,7 @@
 :orphan:
 
 .. meta::
-  :antsibull-docs: 2.17.0
+  :antsibull-docs: 2.20.0
 
 .. Anchors
 
@@ -17,7 +17,7 @@ redhat.satellite.foreman_environment module
 .. Collection note
 
 .. note::
-    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.4.0).
+    This redirect is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.5.0).
 
     To use it in a playbook, specify: :code:`redhat.satellite.foreman_environment`.
 

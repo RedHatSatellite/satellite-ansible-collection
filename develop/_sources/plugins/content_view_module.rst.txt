@@ -6,7 +6,7 @@
     :trim:
 
 .. meta::
-  :antsibull-docs: 2.17.0
+  :antsibull-docs: 2.20.0
 
 .. Anchors
 
@@ -22,7 +22,7 @@ redhat.satellite.content_view module -- Manage Content Views
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.4.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.5.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -727,6 +727,51 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-rolling"></div>
+
+      .. _ansible_collections.redhat.satellite.content_view_module__parameter-rolling:
+
+      .. rst-class:: ansible-option-title
+
+      **rolling**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-rolling" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`boolean`
+
+      :ansible-option-versionadded:`added in redhat.satellite 5.5.0`
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      A rolling content view contains latest synced state of repositories.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry:`true`
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-server_url"></div>
 
       .. _ansible_collections.redhat.satellite.content_view_module__parameter-server_url:
@@ -1116,6 +1161,18 @@ Examples
           - content_view: Internal CV
             latest: true
 
+    - name: "Create or update rolling content view"
+      redhat.satellite.content_view:
+        username: "admin"
+        password: "changeme"
+        server_url: "https://satellite.example.com"
+        name: "Fedora RCV"
+        organization: "My Cool new Organization"
+        rolling: true
+        repositories:
+          - name: 'Fedora 26'
+            product: 'Fedora'
+
 
 
 .. Facts
@@ -1237,7 +1294,6 @@ Authors
 ~~~~~~~
 
 - Eric D Helms (@ehelms)
-
 
 
 .. Extra links
