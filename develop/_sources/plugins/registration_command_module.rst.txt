@@ -6,7 +6,7 @@
     :trim:
 
 .. meta::
-  :antsibull-docs: 2.20.0
+  :antsibull-docs: 2.21.0
 
 .. Anchors
 
@@ -22,7 +22,7 @@ redhat.satellite.registration_command module -- Manage Registration Command
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.5.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.6.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -1153,13 +1153,16 @@ Examples
 
 .. code-block:: yaml+jinja
 
+    # This needs to run on a host with API access
     - name: "Generate registration command"
       redhat.satellite.registration_command:
         username: "admin"
         password: "changeme"
         server_url: "https://satellite.example.com"
       register: command
+      delegate_to: localhost
 
+    # This needs to run on the host being registered
     - name: "Perform registration"
       ansible.builtin.shell:
         cmd: "{{ command.registration_command }}"
