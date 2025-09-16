@@ -17,7 +17,7 @@ COLLECTION_COMMAND ?= ansible-galaxy
 SANITY_OPTS = --venv
 TEST =
 FLAGS =
-PYTEST_COMMAND ?= pytest
+PYTEST_COMMAND ?= $(PYTHON_COMMAND) -m pytest
 PYTEST = $(PYTEST_COMMAND) -n 4 --forked
 # PYTEST_ADDOPTS is exported to sub-shells and picked up by *all* pytest invocations
 PYTEST_ADDOPTS ?= -vv
@@ -36,6 +36,7 @@ help:
 	@echo "  sanity           to run santy tests"
 	@echo "  setup            to set up test, lint"
 	@echo "  test-setup       to install test dependencies"
+	@echo "  lint-setup       to install lint dependencies"
 	@echo "  test_<test>      to run a specific unittest"
 	@echo "  livetest_<test>  to run a specific unittest live (without vcr)"
 	@echo "  record_<test>    to (re-)record the server answers for a specific test"
@@ -56,7 +57,7 @@ lint: $(MANIFEST) $(RUNTIME_YML) | tests/test_playbooks/vars/server.yml
 	git diff --exit-code $(RUNTIME_YML)
 
 galaxy-importer: $(MANIFEST)
-	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
+	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg $(PYTHON_COMMAND) -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 
 sanity: $(MANIFEST)
 	# Fake a fresh git repo for ansible-test
@@ -92,9 +93,13 @@ clean_%: FORCE $(MANIFEST)
 
 setup: test-setup
 
+lint-setup: | tests/test_playbooks/vars/server.yml
+	$(PYTHON_COMMAND) -m pip install --upgrade pip
+	$(PYTHON_COMMAND) -m pip install --upgrade -r requirements-lint.txt
+
 test-setup: | tests/test_playbooks/vars/server.yml
-	pip install --upgrade pip
-	pip install --upgrade -r requirements-dev.txt
+	$(PYTHON_COMMAND) -m pip install --upgrade pip
+	$(PYTHON_COMMAND) -m pip install --upgrade -r requirements-dev.txt
 
 tests/test_playbooks/vars/server.yml:
 	cp $@.example $@
@@ -127,7 +132,7 @@ clean:
 	rm -rf build docs/plugins
 
 doc-setup:
-	pip install --upgrade -r docs/requirements.txt
+	$(PYTHON_COMMAND) -m pip install --upgrade -r docs/requirements.txt
 doc: $(MANIFEST)
 	mkdir -p ./docs/plugins ./docs/roles
 	cat ./docs/roles.rst.template > ./docs/roles/index.rst
@@ -140,7 +145,7 @@ doc: $(MANIFEST)
 
 vendor:
 	git clone --depth=1 --branch=$(APIPIE_VERSION) https://github.com/Apipie/apypie/ build/apypie-git
-	python vendor.py build/apypie-git/apypie/*.py > plugins/module_utils/_apypie.py
+	$(PYTHON_COMMAND) vendor.py build/apypie-git/apypie/*.py > plugins/module_utils/_apypie.py
 
 $(RUNTIME_YML): FORCE
 	$(PYTHON_COMMAND) generate_action_groups.py
@@ -170,4 +175,4 @@ branding:
 
 FORCE:
 
-.PHONY: help dist lint sanity test test-crud test-check-mode test-other livetest setup test-setup doc-setup doc publish FORCE
+.PHONY: help dist lint sanity test test-crud test-check-mode test-other livetest setup test-setup lint-setup doc-setup doc publish FORCE
