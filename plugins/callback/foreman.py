@@ -117,8 +117,8 @@ try:
 except ImportError:
     HAS_REQUESTS = False
 
-from ansible.module_utils._text import to_text
 from ansible.module_utils.common.json import AnsibleJSONEncoder
+from ansible.module_utils.common.text.converters import to_text
 from ansible.module_utils.parsing.convert_bool import boolean as to_bool
 from ansible.plugins.callback import CallbackBase
 
@@ -373,7 +373,10 @@ class CallbackModule(CallbackBase):
 
     def append_result(self, result, failed=False):
         result_info = result._result
-        task_info = result._task.serialize()
+        if hasattr(result._task, 'serialize'):
+            task_info = result._task.serialize()
+        else:
+            task_info = result._task.dump_attrs()
         task_info['args'] = None
         value = {}
         value['result'] = result_info
