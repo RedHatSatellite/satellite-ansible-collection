@@ -1,5 +1,5 @@
 ---
-- name: 'Create Lifecycle Environments'
+- name: 'Create or Delete Lifecycle Environments'
   redhat.satellite.lifecycle_environment:
     username: "{{ satellite_username | default(omit) }}"
     password: "{{ satellite_password | default(omit) }}"
