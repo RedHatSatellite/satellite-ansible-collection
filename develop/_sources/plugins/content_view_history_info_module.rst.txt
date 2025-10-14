@@ -10,14 +10,14 @@
 
 .. Anchors
 
-.. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module:
+.. _ansible_collections.redhat.satellite.content_view_history_info_module:
 
 .. Anchors: short name for ansible.builtin
 
 .. Title
 
-redhat.satellite.flatpak_remote_repository_mirror module -- Mirror a Flatpak Remote Repository
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+redhat.satellite.content_view_history_info module -- Fetch history of a Content View
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
@@ -29,15 +29,15 @@ redhat.satellite.flatpak_remote_repository_mirror module -- Mirror a Flatpak Rem
 
     To install it, use: :code:`ansible\-galaxy collection install redhat.satellite`.
     You need further requirements to be able to use this module,
-    see :ref:`Requirements <ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module_requirements>` for details.
+    see :ref:`Requirements <ansible_collections.redhat.satellite.content_view_history_info_module_requirements>` for details.
 
-    To use it in a playbook, specify: :code:`redhat.satellite.flatpak_remote_repository_mirror`.
+    To use it in a playbook, specify: :code:`redhat.satellite.content_view_history_info`.
 
 .. version_added
 
 .. rst-class:: ansible-version-added
 
-New in redhat.satellite 5.5.0
+New in redhat.satellite 5.7.0
 
 .. contents::
    :local:
@@ -51,7 +51,7 @@ Synopsis
 
 .. Description
 
-- Mirror a Flatpak Remote Repository to a Product
+- Fetch history of a Content View
 
 
 .. Aliases
@@ -59,7 +59,7 @@ Synopsis
 
 .. Requirements
 
-.. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module_requirements:
+.. _ansible_collections.redhat.satellite.content_view_history_info_module_requirements:
 
 Requirements
 ------------
@@ -93,7 +93,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-ca_path"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-ca_path:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-ca_path:
 
       .. rst-class:: ansible-option-title
 
@@ -127,17 +127,17 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-flatpak_remote"></div>
+        <div class="ansibleOptionAnchor" id="parameter-content_view"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-flatpak_remote:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-content_view:
 
       .. rst-class:: ansible-option-title
 
-      **flatpak_remote**
+      **content_view**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#parameter-flatpak_remote" title="Permalink to this option"></a>
+        <a class="ansibleOptionLink" href="#parameter-content_view" title="Permalink to this option"></a>
 
       .. ansible-option-type-line::
 
@@ -151,7 +151,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Flatpak remote
+      Content view to get the history for
 
 
       .. raw:: html
@@ -161,21 +161,21 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-flatpak_remote_repository"></div>
+        <div class="ansibleOptionAnchor" id="parameter-location"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-flatpak_remote_repository:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-location:
 
       .. rst-class:: ansible-option-title
 
-      **flatpak_remote_repository**
+      **location**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#parameter-flatpak_remote_repository" title="Permalink to this option"></a>
+        <a class="ansibleOptionLink" href="#parameter-location" title="Permalink to this option"></a>
 
       .. ansible-option-type-line::
 
-        :ansible-option-type:`string` / :ansible-option-required:`required`
+        :ansible-option-type:`string`
 
       .. raw:: html
 
@@ -185,7 +185,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Flatpak remote repository
+      Label of the Location to scope the search for.
 
 
       .. raw:: html
@@ -197,7 +197,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-organization"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-organization:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-organization:
 
       .. rst-class:: ansible-option-title
 
@@ -219,7 +219,7 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Organization that the entity is in
+      Name of the Organization to scope the search for.
 
 
       .. raw:: html
@@ -231,7 +231,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-password"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-password:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-password:
 
       .. rst-class:: ansible-option-title
 
@@ -265,21 +265,21 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-product"></div>
+        <div class="ansibleOptionAnchor" id="parameter-search"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-product:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-search:
 
       .. rst-class:: ansible-option-title
 
-      **product**
+      **search**
 
       .. raw:: html
 
-        <a class="ansibleOptionLink" href="#parameter-product" title="Permalink to this option"></a>
+        <a class="ansibleOptionLink" href="#parameter-search" title="Permalink to this option"></a>
 
       .. ansible-option-type-line::
 
-        :ansible-option-type:`string` / :ansible-option-required:`required`
+        :ansible-option-type:`string`
 
       .. raw:: html
 
@@ -289,7 +289,9 @@ Parameters
 
         <div class="ansible-option-cell">
 
-      Product to mirror the remote repository to
+      Search query to use
+
+      If None, all resources are returned.
 
 
       .. raw:: html
@@ -301,7 +303,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-server_url"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-server_url:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-server_url:
 
       .. rst-class:: ansible-option-title
 
@@ -337,7 +339,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-use_gssapi"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-use_gssapi:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-use_gssapi:
 
       .. rst-class:: ansible-option-title
 
@@ -383,7 +385,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-username"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-username:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-username:
 
       .. rst-class:: ansible-option-title
 
@@ -419,7 +421,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-validate_certs"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__parameter-validate_certs:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__parameter-validate_certs:
 
       .. rst-class:: ansible-option-title
 
@@ -482,7 +484,7 @@ Attributes
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="attribute-check_mode"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__attribute-check_mode:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__attribute-check_mode:
 
       .. rst-class:: ansible-option-title
 
@@ -524,7 +526,7 @@ Attributes
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="attribute-diff_mode"></div>
 
-      .. _ansible_collections.redhat.satellite.flatpak_remote_repository_mirror_module__attribute-diff_mode:
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__attribute-diff_mode:
 
       .. rst-class:: ansible-option-title
 
@@ -575,15 +577,13 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    - name: "Mirror flatpak remote repository into product"
-      redhat.satellite.flatpak_remote_repository_mirror:
+    - name: "Show history of CentOS Stream CV"
+      redhat.satellite.content_view_history_info:
         username: "admin"
         password: "changeme"
         server_url: "https://satellite.example.com"
         organization: "Default Organization"
-        product: "My Product"
-        flatpak_remote: "rhel"
-        flatpak_remote_repository: "rhel9/flatpak-runtime"
+        content_view: "CentOS Stream"
 
 
 
@@ -591,6 +591,61 @@ Examples
 
 
 .. Return values
+
+Return Values
+-------------
+Common return values are documented :ref:`here <common_return_values>`, the following are the fields unique to this module:
+
+.. tabularcolumns:: \X{1}{3}\X{2}{3}
+
+.. list-table::
+  :width: 100%
+  :widths: auto
+  :header-rows: 1
+  :class: longtable ansible-option-table
+
+  * - Key
+    - Description
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="return-content_view_histories"></div>
+
+      .. _ansible_collections.redhat.satellite.content_view_history_info_module__return-content_view_histories:
+
+      .. rst-class:: ansible-option-title
+
+      **content_view_histories**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#return-content_view_histories" title="Permalink to this return value"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`list` / :ansible-option-elements:`elements=dictionary`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      History of the Content View
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-returned-bold:`Returned:` success
+
+
+      .. raw:: html
+
+        </div>
+
 
 
 ..  Status (Presently only deprecated)
