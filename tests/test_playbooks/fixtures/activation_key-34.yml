@@ -73,7 +73,7 @@ interactions:
       string: "{\n  \"total\": 2,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
         4294967296,\n  \"search\": \"name=\\\"Test Organization\\\"\",\n  \"sort\":
         {\n    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"label\":\"Test_Organization\",\"created_at\":\"2025-12-13
-        22:57:39 UTC\",\"updated_at\":\"2025-12-13 22:57:43 UTC\",\"id\":5,\"name\":\"Test
+        23:32:34 UTC\",\"updated_at\":\"2025-12-13 23:32:36 UTC\",\"id\":6,\"name\":\"Test
         Organization\",\"title\":\"Test Organization\",\"description\":\"A test organization\"}]\n}\n"
     headers:
       Cache-Control:
@@ -127,11 +127,17 @@ interactions:
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.org/katello/api/organizations/5/products?search=name%3D%22Oracle+Linux+8+Convert2RHEL%22&per_page=4294967296
+    uri: https://foreman.example.org/katello/api/organizations/6/activation_keys?search=name%3D%22Test+Activation+Key%22&per_page=4294967296
   response:
     body:
-      string: '{"total":3,"subtotal":0,"selectable":0,"page":1,"per_page":4294967296,"error":null,"search":"name=\"Oracle
-        Linux 8 Convert2RHEL\"","sort":{"by":"name","order":"asc"},"results":[]}
+      string: '{"total":1,"subtotal":1,"selectable":1,"page":1,"per_page":4294967296,"error":null,"search":"name=\"Test
+        Activation Key\"","sort":{"by":"name","order":"asc"},"results":[{"id":30,"name":"Test
+        Activation Key","description":null,"unlimited_hosts":true,"content_view_environment_labels":"Dev/Test_Content_View_1,Test/Test_Content_View_2","usage_count":0,"user_id":4,"max_hosts":null,"release_version":null,"purpose_usage":null,"purpose_role":null,"organization_id":6,"organization":{"name":"Test
+        Organization","label":"Test_Organization","id":6},"created_at":"2025-12-13
+        23:35:12 UTC","updated_at":"2025-12-13 23:35:12 UTC","content_view_environments":[{"content_view":{"id":10,"name":"Test
+        Content View 1","composite":false,"rolling":false,"content_view_version":"1.0","content_view_version_id":10,"content_view_version_latest":true,"content_view_default":false,"content_view_environment_id":11},"lifecycle_environment":{"id":6,"name":"Dev","lifecycle_environment_library":false},"label":"Dev/Test_Content_View_1"},{"content_view":{"id":11,"name":"Test
+        Content View 2","composite":false,"rolling":false,"content_view_version":"1.0","content_view_version_id":11,"content_view_version_latest":true,"content_view_default":false,"content_view_environment_id":16},"lifecycle_environment":{"id":7,"name":"Test","lifecycle_environment_library":false},"label":"Test/Test_Content_View_2"}],"products":[],"host_collections":[],"multi_content_view_environment":true,"content_view_id":10,"content_view":{"id":10,"name":"Test
+        Content View 1"},"environment_id":6,"environment":{"id":6,"name":"Dev"},"permissions":{"view_activation_keys":true,"edit_activation_keys":true,"destroy_activation_keys":true}}]}
 
         '
     headers:
@@ -140,7 +146,7 @@ interactions:
       Connection:
       - Keep-Alive
       Content-Length:
-      - '180'
+      - '1688'
       Content-Type:
       - application/json; charset=utf-8
       Foreman_api_version:
@@ -148,7 +154,7 @@ interactions:
       Foreman_current_location:
       - ; ANY
       Foreman_current_organization:
-      - 5; Test Organization
+      - 6; Test Organization
       Foreman_version:
       - 3.18.0-develop
       Keep-Alive:
@@ -175,7 +181,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"organization_id": 5, "name": "Oracle Linux 8 Convert2RHEL"}'
+    body: null
     headers:
       Accept:
       - application/json;version=2
@@ -184,28 +190,29 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '61'
-      Content-Type:
-      - application/json
+      - '0'
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
-    method: POST
-    uri: https://foreman.example.org/katello/api/products
+    method: DELETE
+    uri: https://foreman.example.org/katello/api/activation_keys/30
   response:
     body:
-      string: '  {"sync_state_aggregated":null,"redhat":false,"id":9,"cp_id":"380210074378","name":"Oracle
-        Linux 8 Convert2RHEL","label":"Oracle_Linux_8_Convert2RHEL","description":null,"provider_id":7,"sync_plan_id":null,"sync_summary":{},"gpg_key_id":null,"ssl_ca_cert_id":null,"ssl_client_cert_id":null,"ssl_client_key_id":null,"sync_state":null,"last_sync":null,"last_sync_words":null,"organization_id":5,"organization":{"name":"Test
-        Organization","label":"Test_Organization","id":5},"sync_plan":null,"repository_count":0,"created_at":"2025-12-13
-        22:58:06 UTC","updated_at":"2025-12-13 22:58:06 UTC","product_content":[],"available_content":[],"repositories":[],"provider":{"name":"Anonymous"},"sync_status":{"id":null,"product_id":null,"progress":null,"sync_id":null,"state":null,"raw_state":null,"start_time":null,"finish_time":null,"duration":null,"display_size":null,"size":null,"is_running":null,"error_details":null},"permissions":{"view_products":true,"edit_products":true,"destroy_products":true,"sync_products":true},"published_content_view_ids":[],"has_last_affected_repo_in_filter":false,"active_task_count":0}
+      string: '  {"id":"f2abcc5e-bb4f-4844-a209-e4f87b67c39c","label":"Actions::Katello::ActivationKey::Destroy","pending":false,"action":"Delete
+        Activation Key activation key ''Test Activation Key''; organization ''Test
+        Organization''","username":"admin","started_at":"2025-12-13 23:35:21 UTC","ended_at":"2025-12-13
+        23:35:21 UTC","state":"stopped","result":"success","progress":1.0,"input":{"activation_key":{"id":30,"name":"Test
+        Activation Key"},"organization":{"id":6,"name":"Test Organization","label":"Test_Organization"},"services_checked":["candlepin","candlepin_auth"],"current_request_id":"aaf6fe25-03bb-451e-8472-e54d226bce94","current_timezone":"UTC","current_organization_id":null,"current_location_id":null,"current_user_id":4},"output":{},"humanized":{"action":"Delete
+        Activation Key","input":[["activation_key",{"text":"activation key ''Test
+        Activation Key''","link":"/activation_keys/30/info"}],["organization",{"text":"organization
+        ''Test Organization''","link":"/organizations/6/edit"}]],"output":"","errors":[]},"cli_example":null,"start_at":"2025-12-13
+        23:35:21 UTC","available_actions":{"cancellable":false,"resumable":false}}
 
         '
     headers:
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - no-cache
       Connection:
       - Keep-Alive
-      Content-Length:
-      - '1111'
       Content-Type:
       - application/json; charset=utf-8
       Foreman_api_version:
@@ -213,13 +220,15 @@ interactions:
       Foreman_current_location:
       - ; ANY
       Foreman_current_organization:
-      - 5; Test Organization
+      - ; ANY
       Foreman_version:
       - 3.18.0-develop
       Keep-Alive:
       - timeout=15, max=97
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Transfer-Encoding:
+      - chunked
       content-security-policy:
       - 'default-src ''self''; child-src ''self''; connect-src ''self'' ws: wss:;
         img-src ''self'' data:; script-src ''unsafe-eval'' ''unsafe-inline'' ''self'';
@@ -237,6 +246,6 @@ interactions:
       x-xss-protection:
       - '0'
     status:
-      code: 201
-      message: Created
+      code: 202
+      message: Accepted
 version: 1
