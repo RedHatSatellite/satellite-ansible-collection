@@ -6,7 +6,7 @@
     :trim:
 
 .. meta::
-  :antsibull-docs: 2.21.0
+  :antsibull-docs: 2.24.0
 
 .. Anchors
 
@@ -22,7 +22,7 @@ redhat.satellite.activation_key module -- Manage Activation Keys
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.7.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.8.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -117,6 +117,8 @@ Parameters
         <div class="ansible-option-cell">
 
       Set Auto\-Attach on or off
+
+      The :literal:`auto\_attach` parameter is deprecated since Katello 4.13 and not available after Katello 4.19
 
 
       .. rst-class:: ansible-option-line
@@ -331,6 +333,45 @@ Parameters
         <div class="ansible-option-cell">
 
       Name of the content view
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-content_view_environments"></div>
+
+      .. _ansible_collections.redhat.satellite.activation_key_module__parameter-content_view_environments:
+
+      .. rst-class:: ansible-option-title
+
+      **content_view_environments**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-content_view_environments" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`list` / :ansible-option-elements:`elements=string`
+
+      :ansible-option-versionadded:`added in redhat.satellite 5.8.0`
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      List of content view environments to add to activation key.
+
+      Mutually exclusive with :literal:`content\_view` and :literal:`lifecycle\_environment`.
 
 
       .. raw:: html
@@ -1355,8 +1396,25 @@ Examples
             override: enabled
           - label: ExampleOrganization_ExampleCustomProduct_ExampleRepository
             override: enabled
-        auto_attach: false
         release_version: 7Server
+        service_level: Standard
+
+    - name: "Create client activation key with multiple content views"
+      redhat.satellite.activation_key:
+        username: "admin"
+        password: "changeme"
+        server_url: "https://satellite.example.com"
+        name: "Clients"
+        organization: "Default Organization"
+        content_view_environments:
+          - prod/base_rhel_9
+          - test/third_party
+        host_collections:
+          - rhel9-servers
+          - rhel9-production
+          - rhel9-third-party-test
+        auto_attach: false
+        release_version: 9
         service_level: Standard
 
 
