@@ -2,7 +2,10 @@ import json
 import os
 
 import ansible_runner
-import pkg_resources
+try:
+    from importlib.metadata import version, PackageNotFoundError
+except ModuleNotFoundError:
+    from importlib_metadata import version, PackageNotFoundError
 import pytest
 import py.path
 import yaml
@@ -63,7 +66,7 @@ def run_playbook(module, extra_vars=None, limit=None, inventory=None, check_mode
     if inventory is None:
         inventory = os.path.join(os.getcwd(), 'tests', 'inventory', 'hosts')
     kwargs['inventory'] = inventory
-    kwargs['verbosity'] = 4
+    kwargs['verbosity'] = int(os.environ.get('FAM_TEST_ANSIBLE_VERBOSITY', 4))
     if extra_vars:
         kwargs['extravars'] = extra_vars
     if limit:
@@ -112,13 +115,12 @@ def run_playbook_vcr(tmpdir, module, extra_vars=None, limit=None, inventory=None
 
 
 def get_ansible_version():
-    ansible_version = '2.14.0'
     for ansible_name in ['ansible', 'ansible-base', 'ansible-core']:
         try:
-            ansible_version = pkg_resources.get_distribution(ansible_name).version
-        except pkg_resources.DistributionNotFound:
+            return version(ansible_name)
+        except PackageNotFoundError:
             pass
-    return ansible_version
+    return '2.14.0'
 
 
 def assert_no_warnings(run):
