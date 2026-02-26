@@ -7,7 +7,7 @@
 Redhat.Satellite
 ================
 
-Collection version 5.8.0
+Collection version 5.9.0
 
 .. contents::
    :local:
@@ -54,6 +54,7 @@ Ansible Modules to manage Satellite installations
 * Greg Swift <gregswift@gmail.com>
 * Griffin Sullivan <gsulliva@redhat.com>
 * Hideki Saito <saito@fgrep.org>
+* Imed <imaouide@redhat.com>
 * Ismael Puerto <ismaelpuerto@users.noreply.github.com>
 * Jakob Oettinger <jakob.oettinger@zeiss.com>
 * Jameer Pathan <jpathan@redhat.com>
@@ -255,6 +256,7 @@ Modules
 * :ansplugin:`smart_class_parameter module <redhat.satellite.smart_class_parameter#module>` -- Manage Smart Class Parameters
 * :ansplugin:`smart_class_parameter_override_value module <redhat.satellite.smart_class_parameter_override_value#module>` -- Manage Smart Class Parameter Override Values
 * :ansplugin:`smart_proxy module <redhat.satellite.smart_proxy#module>` -- Manage Capsules
+* :ansplugin:`smart_proxy_refresh module <redhat.satellite.smart_proxy_refresh#module>` -- Refresh Capsule features
 * :ansplugin:`status_info module <redhat.satellite.status_info#module>` -- Get status info
 * :ansplugin:`subnet module <redhat.satellite.subnet#module>` -- Manage Subnets
 * :ansplugin:`subnet_info module <redhat.satellite.subnet_info#module>` -- Fetch information about Subnets
@@ -347,6 +349,7 @@ Modules
     smart_class_parameter_module
     smart_class_parameter_override_value_module
     smart_proxy_module
+    smart_proxy_refresh_module
     status_info_module
     subnet_module
     subnet_info_module
