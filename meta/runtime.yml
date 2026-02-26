@@ -76,6 +76,7 @@ action_groups:
     - smart_class_parameter
     - smart_class_parameter_override_value
     - smart_proxy
+    - smart_proxy_refresh
     - status_info
     - subnet
     - subnet_info
