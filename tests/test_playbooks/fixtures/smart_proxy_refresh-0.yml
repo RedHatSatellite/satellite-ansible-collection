@@ -14,7 +14,7 @@ interactions:
     uri: https://foreman.example.org/api/status
   response:
     body:
-      string: '{"result":"ok","status":200,"version":"3.16.0-develop","api_version":2}'
+      string: '{"result":"ok","status":200,"version":"3.18.0-develop","api_version":2}'
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
@@ -31,7 +31,7 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 3.16.0-develop
+      - 3.18.0-develop
       Keep-Alive:
       - timeout=15, max=100
       Referrer-Policy:
@@ -67,21 +67,21 @@ interactions:
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
     method: GET
-    uri: https://foreman.example.org/katello/api/organizations?search=name%3D%22Test+Organization%22&per_page=4294967296
+    uri: https://foreman.example.org/api/smart_proxies?search=name%3D%22foreman-proxy.example.com%22&per_page=4294967296
   response:
     body:
-      string: "{\n  \"total\": 2,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
-        4294967296,\n  \"search\": \"name=\\\"Test Organization\\\"\",\n  \"sort\":
-        {\n    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"label\":\"Test_Organization\",\"created_at\":\"2025-07-11
-        15:21:41 UTC\",\"updated_at\":\"2025-07-11 15:21:45 UTC\",\"id\":3,\"name\":\"Test
-        Organization\",\"title\":\"Test Organization\",\"description\":\"A test organization\"}]\n}\n"
+      string: "{\n  \"total\": 1,\n  \"subtotal\": 1,\n  \"page\": 1,\n  \"per_page\":
+        4294967296,\n  \"search\": \"name=\\\"foreman.example.org\\\"\",\n  \"sort\":
+        {\n    \"by\": null,\n    \"order\": null\n  },\n  \"results\": [{\"created_at\":\"2025-11-19
+        09:15:31 UTC\",\"updated_at\":\"2025-11-19 09:15:31 UTC\",\"hosts_count\":1,\"name\":\"foreman.example.org\",\"id\":1,\"url\":\"https://foreman.example.org:8443\",\"features\":[{\"capabilities\":[],\"name\":\"Puppet
+        CA\",\"id\":5},{\"capabilities\":[],\"name\":\"Puppet\",\"id\":13},{\"capabilities\":[],\"name\":\"Logs\",\"id\":9}]}]\n}\n"
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
       Connection:
       - Keep-Alive
       Content-Length:
-      - '388'
+      - '588'
       Content-Type:
       - application/json; charset=utf-8
       Foreman_api_version:
@@ -91,9 +91,9 @@ interactions:
       Foreman_current_organization:
       - ; ANY
       Foreman_version:
-      - 3.16.0-develop
+      - 3.18.0-develop
       Keep-Alive:
-      - timeout=15, max=99
+      - timeout=15, max=98
       Referrer-Policy:
       - strict-origin-when-cross-origin
       content-security-policy:
@@ -116,7 +116,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: null
+    body: '{}'
     headers:
       Accept:
       - application/json;version=2
@@ -124,23 +124,28 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
       User-Agent:
       - apypie (https://github.com/Apipie/apypie)
-    method: GET
-    uri: https://foreman.example.org/katello/api/organizations/3/content_views?search=name%3D%22Test+Composite+Content+View%22&per_page=4294967296
+    method: PUT
+    uri: https://foreman.example.org/api/smart_proxies/1/refresh
   response:
     body:
-      string: '{"total":2,"subtotal":0,"selectable":0,"page":1,"per_page":4294967296,"error":null,"search":"name=\"Test
-        Composite Content View\"","sort":{"by":"name","order":"asc"},"results":[]}
-
-        '
+      string: '{"created_at":"2025-11-19 09:15:31 UTC","updated_at":"2025-11-19 09:15:31
+        UTC","hosts_count":1,"name":"foreman.example.org","id":1,"url":"https://foreman.example.org:8443","features":[{"capabilities":[],"name":"Puppet
+        CA","id":5},{"capabilities":[],"name":"Puppet","id":13},{"capabilities":[],"name":"Logs","id":9}],"locations":[{"id":2,"name":"Default
+        Location","title":"Default Location","description":null}],"organizations":[{"id":1,"name":"Default
+        Organization","title":"Default Organization","description":null}]}'
     headers:
       Cache-Control:
       - max-age=0, private, must-revalidate
       Connection:
       - Keep-Alive
       Content-Length:
-      - '180'
+      - '576'
       Content-Type:
       - application/json; charset=utf-8
       Foreman_api_version:
@@ -148,11 +153,11 @@ interactions:
       Foreman_current_location:
       - ; ANY
       Foreman_current_organization:
-      - 3; Test Organization
+      - ; ANY
       Foreman_version:
-      - 3.16.0-develop
+      - 3.18.0-develop
       Keep-Alive:
-      - timeout=15, max=98
+      - timeout=15, max=97
       Referrer-Policy:
       - strict-origin-when-cross-origin
       content-security-policy:
