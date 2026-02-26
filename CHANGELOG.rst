@@ -18,7 +18,7 @@ Minor Changes
 New Modules
 -----------
 
-- theforeman.foreman.smart_proxy_refresh - Refresh Smart Proxy features
+- redhat.satellite.smart_proxy_refresh - Refresh Smart Proxy features
 
 v5.8.0
 ======

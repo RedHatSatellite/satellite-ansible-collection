@@ -23,15 +23,15 @@ DOCUMENTATION = '''
 ---
 module: smart_proxy_refresh
 version_added: 5.9.0
-short_description: Refresh Smart Proxy features
+short_description: Refresh Capsule features
 description:
-  - Refresh Smart Proxy features
+  - Refresh Capsule features
 author:
   - "Evgeni Golov (@evgeni)"
 options:
   smart_proxy:
     description:
-      - Name of the Smart Proxy
+      - Name of the Capsule
     required: true
     type: str
 attributes:
@@ -40,16 +40,16 @@ attributes:
   diff_mode:
     support: none
 extends_documentation_fragment:
-  - theforeman.foreman.foreman
-  - theforeman.foreman.foreman.taxonomy
+  - redhat.satellite.foreman
+  - redhat.satellite.foreman.taxonomy
 '''
 
 EXAMPLES = '''
-- name: "Refresh Smart Proxy"
-  theforeman.foreman.smart_proxy_refresh:
+- name: "Refresh Capsule"
+  redhat.satellite.smart_proxy_refresh:
     username: "admin"
     password: "changeme"
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     smart_proxy: "foreman-proxy.example.com"
 '''
 
@@ -65,7 +65,7 @@ entity:
       elements: dict
 '''
 
-from ansible_collections.theforeman.foreman.plugins.module_utils.foreman_helper import ForemanTaxonomicAnsibleModule
+from ansible_collections.redhat.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicAnsibleModule
 
 
 class ForemanSmartProxyRefreshModule(ForemanTaxonomicAnsibleModule):
