@@ -167,6 +167,7 @@ branding:
 	sed -i 's#packages/plugins#packages/satellite#' .packit.yaml
 	sed -i -E 's#(Foreman )?Smart Proxy#Capsule#g' plugins/*/*.py
 	sed -i -E 's#(Foreman )?Smart Proxies#Capsules#g' plugins/modules/*.py
+	sed -i '/unsupported-version/d' .ansible-lint
 	rm -rf tests/test_playbooks/scc_* tests/test_playbooks/tasks/scc_* tests/test_playbooks/fixtures/scc_* plugins/modules/scc_*.py tests/fixtures/apidoc/scc_*.json
 	rm -rf tests/test_playbooks/snapshot* tests/test_playbooks/tasks/snapshot* tests/test_playbooks/fixtures/snapshot* plugins/modules/snapshot*.py tests/fixtures/apidoc/snapshot*.json
 	rm -rf tests/test_playbooks/*_deb.yml
