@@ -1,7 +1,6 @@
 ---
 skip_list:
   - var-naming[no-role-prefix]
-  - meta-runtime[unsupported-version]
 var_naming_pattern: "^(__)?satellite_[a-z_][a-z0-9_]*$"
 enable_list:
   - only-builtins
