@@ -1,27 +1,4 @@
 ---
-- name: "Get organization (SCA) info"
-  redhat.satellite.organization_info:
-    username: "{{ satellite_username }}"
-    password: "{{ satellite_password }}"
-    server_url: "{{ satellite_server_url }}"
-    validate_certs: "{{ satellite_validate_certs | default(omit) }}"
-    name: "{{ satellite_organization }}"
-  register: satellite_convert2rhel_org_info
-
-- name: "Set non SCA facts"
-  ansible.builtin.set_fact:
-    satellite_convert2rhel_centos7_subs:
-      - name: "Convert2RHEL7"
-    satellite_convert2rhel_centos8_subs:
-      - name: "Convert2RHEL8"
-    satellite_convert2rhel_ol7_subs:
-      - name: "Convert2RHEL7"
-      - name: "{{ satellite_convert2rhel_oracle7_product }}"
-    satellite_convert2rhel_ol8_subs:
-      - name: "Convert2RHEL8"
-      - name: "{{ satellite_convert2rhel_oracle8_product }}"
-  when: not satellite_convert2rhel_org_info['organization']['simple_content_access']
-
 - name: "Create activation key '{{ satellite_convert2rhel_key_centos7 }}'"
   redhat.satellite.activation_key:
     username: "{{ satellite_username }}"
@@ -56,7 +33,6 @@
     name: "{{ satellite_convert2rhel_key_oracle7 }}"
     lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
     content_view: "{{ satellite_convert2rhel_content_view }}"
-    subscriptions: "{{ satellite_convert2rhel_org_info['organization']['simple_content_access'] | ternary(omit, satellite_convert2rhel_ol7_subs) }}"
   when: satellite_convert2rhel_enable_oracle7
 
 - name: "Create activation key '{{ satellite_convert2rhel_key_oracle8 }}'"  # noqa: args[module]
@@ -69,7 +45,6 @@
     name: "{{ satellite_convert2rhel_key_oracle8 }}"
     lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
     content_view: "{{ satellite_convert2rhel_content_view }}"
-    subscriptions: "{{ satellite_convert2rhel_org_info['organization']['simple_content_access'] | ternary(omit, satellite_convert2rhel_ol8_subs) }}"
   when: satellite_convert2rhel_enable_oracle8
 
 - name: "Create activation key '{{ satellite_convert2rhel_key_rhel7 }}'"
@@ -95,15 +70,3 @@
     lifecycle_environment: "{{ satellite_convert2rhel_lifecycle_env }}"
     content_view: "{{ satellite_convert2rhel_content_view }}"
   when: satellite_content_rhel_enable_rhel8
-
-- name: "Add subscriptions to '{{ satellite_convert2rhel_key_rhel7 }}'"
-  ansible.builtin.debug:
-    msg:
-      - "Simple content access is disabled, please add subscriptions to '{{ satellite_convert2rhel_key_rhel7 }}' activation key manually"
-  when: not satellite_convert2rhel_org_info['organization']['simple_content_access'] and satellite_content_rhel_enable_rhel7
-
-- name: "Add subscriptions to '{{ satellite_convert2rhel_key_rhel8 }}'"
-  ansible.builtin.debug:
-    msg:
-      - "Simple content access is disabled, please add subscriptions to '{{ satellite_convert2rhel_key_rhel8 }}' activation key manually"
-  when: not satellite_convert2rhel_org_info['organization']['simple_content_access'] and satellite_content_rhel_enable_rhel8
