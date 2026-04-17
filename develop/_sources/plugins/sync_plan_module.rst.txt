@@ -22,7 +22,7 @@ redhat.satellite.sync_plan module -- Manage Sync Plans
 .. Collection note
 
 .. note::
-    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.10.0).
+    This module is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.11.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -309,6 +309,78 @@ Parameters
         <div class="ansible-option-cell">
 
       Name of the sync plan
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-oauth1_consumer_key"></div>
+
+      .. _ansible_collections.redhat.satellite.sync_plan_module__parameter-oauth1_consumer_key:
+
+      .. rst-class:: ansible-option-title
+
+      **oauth1_consumer_key**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-oauth1_consumer_key" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      OAuth1 consumer key for accessing the Foreman server.
+
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_OAUTH1\_CONSUMER\_KEY` will be used instead.
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-oauth1_consumer_secret"></div>
+
+      .. _ansible_collections.redhat.satellite.sync_plan_module__parameter-oauth1_consumer_secret:
+
+      .. rst-class:: ansible-option-title
+
+      **oauth1_consumer_secret**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-oauth1_consumer_secret" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      OAuth1 consumer secret for accessing the Foreman server.
+
+      If the value is not specified in the task, the value of environment variable :literal:`SATELLITE\_OAUTH1\_CONSUMER\_SECRET` will be used instead.
 
 
       .. raw:: html
