@@ -256,6 +256,11 @@ except ImportError:
     except ImportError:
         HTTPKerberosAuth = None
 
+try:
+    from requests_oauthlib import OAuth1  # type: ignore
+except ImportError:
+    OAuth1 = None
+
 NO_CONTENT = 204
 
 
@@ -264,6 +269,12 @@ def _qs_param(param):
     if isinstance(param, bool):
         return str(param).lower()
     return param
+
+
+def _qs_key(k, v):
+    if isinstance(v, (list, tuple)):
+        return f"{k}[]"
+    return k
 
 
 class Api(object):
@@ -276,6 +287,8 @@ class Api(object):
     :param client_cert: client cert to access the API
     :param client_key: client key to access the API
     :param kerberos: use Kerberos/GSSAPI for authentication with the API. Requires either `requests-gssapi` or `requests-kerberos`.
+    :param oauth1_consumer_key: OAuth1 consumer key. Requires `requests-oauthlib`.
+    :param oauth1_consumer_secret: OAuth1 consumer secret. Requires `requests-oauthlib`.
     :param api_version: version of the API. Defaults to `1`
     :param language: prefered locale for the API description
     :param apidoc_cache_base_dir: base directory for building apidoc_cache_dir. Defaults to `~/.cache/apipie_bindings`.
@@ -326,6 +339,17 @@ class Api(object):
                 self._session.auth = HTTPKerberosAuth()
             else:
                 raise ValueError('Kerberos authentication requested, but neither requests-gssapi nor requests-kerberos found.')
+
+        oauth1_consumer_key = kwargs.get('oauth1_consumer_key')
+        oauth1_consumer_secret = kwargs.get('oauth1_consumer_secret')
+        if oauth1_consumer_key and oauth1_consumer_secret:
+            if OAuth1 is not None:
+                self._session.auth = OAuth1(
+                    oauth1_consumer_key,
+                    client_secret=oauth1_consumer_secret,
+                )
+            else:
+                raise ValueError('OAuth1 authentication requested, but requests-oauthlib not found.')
 
         self._apidoc = None
 
@@ -532,7 +556,7 @@ class Api(object):
 
         if params:
             if http_method in ['get', 'head']:
-                kwargs['params'] = {k: _qs_param(v) for k, v in params.items()}
+                kwargs['params'] = {_qs_key(k, v): _qs_param(v) for k, v in params.items()}
             else:
                 kwargs['json'] = params
         elif http_method in ['post', 'put', 'patch'] and not data and not files:
