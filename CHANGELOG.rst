@@ -1,10 +1,30 @@
-================================
+==============================
 redhat.satellite Release Notes
-================================
+==============================
 
 .. contents:: Topics
 
 This changelog describes changes after version 0.8.1.
+
+v5.12.0
+=======
+
+Minor Changes
+-------------
+
+- activation_key - internally convert deprecated ``content_view``/``lifecycle_environment`` to content view environment labels for compatibility with newer Katello API versions (https://github.com/theforeman/foreman-ansible-modules/pull/1982)
+- auth_source_ldap - add ``cacert`` parameter to set CA certificates for LDAP server verification (https://github.com/theforeman/foreman-ansible-modules/pull/1985)
+- host, hostgroup - internally convert ``content_view``/``lifecycle_environment`` to content view environment ID for compatibility with newer Katello API versions (https://github.com/theforeman/foreman-ansible-modules/pull/1977)
+
+Deprecated Features
+-------------------
+
+- activation_key - the ``content_view`` and ``lifecycle_environment`` parameters are deprecated, please use ``content_view_environments`` instead (https://github.com/theforeman/foreman-ansible-modules/pull/1982)
+
+Bugfixes
+--------
+
+- content_view - scope lifecycle_environments by organization to avoid errors with duplicate names across organizations (https://github.com/theforeman/foreman-ansible-modules/pull/1980)
 
 v5.11.0
 =======
@@ -340,6 +360,11 @@ Bugfixes
 - redhat_manifest - properly report http errors (https://github.com/theforeman/foreman-ansible-modules/issues/1497)
 - repository_sync - report an error instead of syncing the whole product when the repository could not be found
 
+New Modules
+-----------
+
+- redhat.satellite.snapshot_info - Fetch information about Foreman Snapshots
+
 v3.7.0
 ======
 
@@ -384,6 +409,7 @@ Minor Changes
 - setting - the ``foreman_setting`` return entry is deprecated and kept for backwards compatibility, please use ``entity`` as with any other module
 - smart_proxy - add ``inherit`` to possible values of ``download_policy`` (https://github.com/theforeman/foreman-ansible-modules/issues/1438)
 - smart_proxy - add ``streamed`` download policy
+- snapshot - add include_ram option when creating VMWare snapshot
 
 New Modules
 -----------
@@ -788,8 +814,11 @@ New Modules
 - redhat.satellite.role - Manage Roles
 - redhat.satellite.scap_content - Manage SCAP content
 - redhat.satellite.scap_tailoring_file - Manage SCAP Tailoring Files
+- redhat.satellite.scc_account - Manage SUSE Customer Center Accounts
+- redhat.satellite.scc_product - Subscribe SUSE Customer Center Account Products
 - redhat.satellite.setting - Manage Settings
 - redhat.satellite.smart_class_parameter - Manage Smart Class Parameters
+- redhat.satellite.snapshot - Manage Snapshots
 - redhat.satellite.subnet - Manage Subnets
 - redhat.satellite.subscription_manifest - Manage Subscription Manifests
 - redhat.satellite.sync_plan - Manage Sync Plans

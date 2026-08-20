@@ -312,6 +312,8 @@ class HostMixin(ParametersMixin):
             kickstart_repository=dict(type='entity', scope=['organization'], optional_scope=['lifecycle_environment', 'content_view'],
                                       resource_type='repositories'),
             content_view=dict(type='entity', scope=['organization'], optional_scope=['lifecycle_environment']),
+            content_view_environment_id=dict(type='int', invisible=True),
+            content_view_environment_ids=dict(type='list', elements='int', invisible=True),
             activation_keys=dict(no_log=False),
         )
         foreman_spec.update(kwargs.pop('foreman_spec', {}))
@@ -326,6 +328,9 @@ class HostMixin(ParametersMixin):
         entity = self.lookup_entity('entity')
 
         if not self.desired_absent:
+            if 'content_view' in self.foreman_params or 'lifecycle_environment' in self.foreman_params:
+                self._convert_cv_lce_to_cve(entity)
+
             if 'activation_keys' in self.foreman_params:
                 if 'parameters' not in self.foreman_params:
                     parameters = [param for param in (entity or {}).get('parameters', []) if param['name'] != 'kt_activation_keys']
@@ -342,6 +347,64 @@ class HostMixin(ParametersMixin):
         self.validate_parameters()
 
         return super(HostMixin, self).run(**kwargs)
+
+    def _convert_cv_lce_to_cve(self, entity):
+        resource = inflector.pluralize(self.entity_name)
+        _filtered, unsupported = self.foremanapi.validate_payload(resource, 'create', {'content_view_id': 1})
+        if 'content_view_id' not in unsupported:
+            return
+
+        if entity:
+            entity_cves = entity.get('content_view_environments', [])
+            if len(entity_cves) > 1:
+                self.fail_json(
+                    msg="This {0} has multiple content view environments. "
+                        "The 'content_view' and 'lifecycle_environment' parameters "
+                        "cannot safely update it — they would overwrite the existing "
+                        "multi-CV assignment.".format(self.entity_name)
+                )
+
+        cv = self.lookup_entity('content_view')
+        lce = self.lookup_entity('lifecycle_environment')
+
+        cv_id = cv['id'] if cv else None
+        lce_id = lce['id'] if lce else None
+
+        if entity and cv_id is None:
+            cv_id = entity.get('content_view_id')
+            if cv_id is None:
+                entity_cves = entity.get('content_view_environments', [])
+                if entity_cves:
+                    cv_id = entity_cves[0].get('content_view', {}).get('id')
+        if entity and lce_id is None:
+            lce_id = entity.get('lifecycle_environment_id')
+            if lce_id is None:
+                entity_cves = entity.get('content_view_environments', [])
+                if entity_cves:
+                    lce_id = entity_cves[0].get('lifecycle_environment', {}).get('id')
+
+        if cv_id is None or lce_id is None:
+            self.fail_json(msg="Both 'content_view' and 'lifecycle_environment' must be provided together.")
+
+        org_id = self.lookup_entity('organization')['id'] if 'organization' in self.foreman_params else None
+        if org_id is None and entity:
+            org_id = entity.get('organization_id')
+
+        cve = self.find_content_view_environment(cv_id, lce_id, org_id)
+
+        self.foreman_spec['content_view']['ensure'] = False
+        self.foreman_spec['lifecycle_environment']['ensure'] = False
+
+        if resource == 'hosts':
+            current_cve_ids = []
+            if entity:
+                current_cve_ids = [e['id'] for e in entity.get('content_facet_attributes', {}).get('content_view_environments', [])]
+            if [cve['id']] != current_cve_ids:
+                self.foreman_params['content_view_environment_ids'] = [cve['id']]
+        else:
+            current_cve_id = entity.get('content_view_environment_id') if entity else None
+            if cve['id'] != current_cve_id:
+                self.foreman_params['content_view_environment_id'] = cve['id']
 
 
 class ForemanAnsibleModule(AnsibleModule):
@@ -742,6 +805,21 @@ class ForemanAnsibleModule(AnsibleModule):
     def find_resources_by_name(self, resource, names, **kwargs):
         return [self.find_resource_by_name(resource, name, **kwargs) for name in names]
 
+    def find_content_view_environment(self, content_view_id, lifecycle_environment_id, organization_id=None):
+        params = {
+            'content_view_id': content_view_id,
+            'lifecycle_environment_id': lifecycle_environment_id,
+        }
+        if organization_id:
+            params['organization_id'] = organization_id
+        results = self.list_resource('content_view_environments', params=params)
+        if len(results) != 1:
+            self.fail_json(
+                msg="Expected one ContentViewEnvironment for content_view_id={0} "
+                    "and lifecycle_environment_id={1}, found {2}".format(
+                        content_view_id, lifecycle_environment_id, len(results)))
+        return results[0]
+
     def find_operatingsystem(self, name, failsafe=False, **kwargs):
         result = self.find_resource_by_title('operatingsystems', name, failsafe=True, **kwargs)
         if not result:
@@ -1097,16 +1175,25 @@ class ForemanAnsibleModule(AnsibleModule):
                 payload[key] = value
         # workaround to ensure LCE and CV are always sent together, even if only one changed
         # using the values from the existing entity, so the user doesn't need to pass it in their playbook
+        # Uses .get() because newer Katello versions may not include these fields in the API response
         if resource == 'hosts':
             if 'content_view_id' in payload and 'lifecycle_environment_id' not in payload:
-                payload['lifecycle_environment_id'] = current_flat_entity['lifecycle_environment_id']
+                lce_id = current_flat_entity.get('lifecycle_environment_id')
+                if lce_id is not None:
+                    payload['lifecycle_environment_id'] = lce_id
             elif 'lifecycle_environment_id' in payload and 'content_view_id' not in payload:
-                payload['content_view_id'] = current_flat_entity['content_view_id']
+                cv_id = current_flat_entity.get('content_view_id')
+                if cv_id is not None:
+                    payload['content_view_id'] = cv_id
         elif resource == 'activation_keys':
             if 'content_view_id' in payload and 'environment_id' not in payload:
-                payload['environment_id'] = current_flat_entity['environment_id']
+                env_id = current_flat_entity.get('environment_id')
+                if env_id is not None:
+                    payload['environment_id'] = env_id
             elif 'environment_id' in payload and 'content_view_id' not in payload:
-                payload['content_view_id'] = current_flat_entity['content_view_id']
+                cv_id = current_flat_entity.get('content_view_id')
+                if cv_id is not None:
+                    payload['content_view_id'] = cv_id
         if self._validate_supported_payload(resource, 'update', payload):
             self.set_changed()
             payload['id'] = current_flat_entity['id']

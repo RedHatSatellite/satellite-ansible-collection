@@ -97,6 +97,14 @@ options:
     description: Whether or not to use TLS when contacting the LDAP server.
     required: false
     type: bool
+  cacert:
+    description:
+      - PEM-encoded CA certificate(s) used to verify the LDAP server when LDAPS is enabled.
+      - When set, only these certificates are trusted and the system trust store is not used.
+      - Omit to use the system trust store. Pass an empty string to clear a previously set CA certificate.
+      - In containerized deployments, the container's trust store is used, so the CA certificate(s) may need to be provided here explicitly.
+    required: false
+    type: str
   groups_base:
     description: Base DN where groups reside.
     required: false
@@ -181,6 +189,19 @@ EXAMPLES = '''
     username: "admin"
     password: "changeme"
     state: present
+
+- name: LDAPS with a custom CA certificate
+  redhat.satellite.auth_source_ldap:
+    name: "Example LDAPS"
+    host: "ldap.example.org"
+    port: 636
+    tls: true
+    cacert: "{{ lookup('file', '/path/to/ldap-ca.pem') }}"
+    server_type: free_ipa
+    server_url: "https://satellite.example.com"
+    username: "admin"
+    password: "changeme"
+    state: present
 '''
 
 RETURN = '''
@@ -220,6 +241,7 @@ def main():
             onthefly_register=dict(type='bool'),
             usergroup_sync=dict(type='bool'),
             tls=dict(type='bool'),
+            cacert=dict(),
             groups_base=dict(),
             server_type=dict(choices=["free_ipa", "active_directory", "posix"]),
             ldap_filter=dict(),
