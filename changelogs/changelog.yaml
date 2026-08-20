@@ -337,9 +337,9 @@ releases:
       - bz1868145-cv_version_examples.yml
       - content_upload-decode-old-rpm.yml
       - inventory_plugin_report_api.yml
-      - subnet-externalipam_group.yml
       - redhat.satellite.content_view_version_cleanup_role.yml
       - redhat.satellite.manifest_role.yml
+      - subnet-externalipam_group.yml
     release_date: '2020-12-03'
   2.0.0:
     changes:

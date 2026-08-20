@@ -191,14 +191,14 @@ EXAMPLES = '''
     state: present
 
 - name: LDAPS with a custom CA certificate
-  theforeman.foreman.auth_source_ldap:
+  redhat.satellite.auth_source_ldap:
     name: "Example LDAPS"
     host: "ldap.example.org"
     port: 636
     tls: true
     cacert: "{{ lookup('file', '/path/to/ldap-ca.pem') }}"
     server_type: free_ipa
-    server_url: "https://foreman.example.com"
+    server_url: "https://satellite.example.com"
     username: "admin"
     password: "changeme"
     state: present
