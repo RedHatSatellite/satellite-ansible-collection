@@ -7,7 +7,7 @@
 Redhat.Satellite
 ================
 
-Collection version 5.11.0
+Collection version 5.12.0
 
 .. contents::
    :local:
