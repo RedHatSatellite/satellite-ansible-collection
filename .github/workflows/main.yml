@@ -23,6 +23,7 @@ jobs:
           - stable-2.19
           - stable-2.20
           - stable-2.21
+          - stable-2.22
           - devel
 
     runs-on: ubuntu-24.04
@@ -53,6 +54,7 @@ jobs:
           - stable-2.19
           - stable-2.20
           - stable-2.21
+          - stable-2.22
           - devel
         include:
           - python: "3.8"
@@ -88,6 +90,9 @@ jobs:
           cache: 'pip'
           cache-dependency-path: '**/requirements*.txt'
         if: matrix.container == null
+      - name: disable bullseye-security
+        run: sed -i '/bullseye-security/d' /etc/apt/sources.list
+        if: matrix.container == 'python:3.6'
       - name: Install sudo
         run: apt-get update && apt-get install -y sudo
         if: matrix.container != null
