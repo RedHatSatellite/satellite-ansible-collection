@@ -22,7 +22,7 @@ redhat.satellite.foreman inventory -- Foreman inventory source
 .. Collection note
 
 .. note::
-    This inventory plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 5.13.0).
+    This inventory plugin is part of the `redhat.satellite collection <https://galaxy.ansible.com/ui/repo/published/redhat/satellite/>`_ (version 6.0.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
@@ -1120,6 +1120,8 @@ Parameters
       Toggle, if true the plugin will build legacy hostvars present in the foreman script
 
       Places hostvars in a dictionary with keys \`foreman\`, \`foreman\_facts\`, and \`foreman\_params\`
+
+      :literal:`foreman\_params` is only set when :emphasis:`want\_params` is enabled
 
 
       .. rst-class:: ansible-option-line
